@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 
 // Pages
 import HomePage from './pages/HomePage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
           <main className="flex-grow pt-20"> {/* pt-20 pour compenser le header fixe */}
             <Routes>
               <Route path="/" element={<HomePage />} />
-              
+              // Dans App.tsx
+              <Route path="/contact" element={<ContactPage />} />
+
               {/* Redirection pour les routes inconnues */}
               <Route path="*" element={<HomePage />} />
             </Routes>
