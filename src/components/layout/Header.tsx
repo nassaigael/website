@@ -10,14 +10,12 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [language, setLanguage] = useState<Language>('mg');
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Langue persistante
   useEffect(() => {
     const saved = localStorage.getItem('fizanakara-language') as Language;
     if (saved && ['mg', 'fr', 'en'].includes(saved)) {
@@ -25,7 +23,6 @@ const Header = () => {
     }
   }, []);
 
-  // Fermer dropdown langue au clic extérieur
   useEffect(() => {
     if (!isLangOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
@@ -47,7 +44,6 @@ const Header = () => {
   const handleNavClick = (path: string) => {
     setIsMenuOpen(false);
     console.log('Navigation vers :', path);
-    // → router.push(path) ou autre logique ici
   };
 
   const getLabel = (item: NavItem) => item.label[language] ?? item.label.mg;
@@ -66,10 +62,9 @@ const Header = () => {
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Conteneur principal flex justify-between */}
         <div className="flex items-center justify-between">
 
-          {/* GAUCHE : Logo */}
+          {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
@@ -82,12 +77,7 @@ const Header = () => {
               className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
             />
             <div className="flex flex-col leading-tight">
-              <h1
-                className={`
-                  font-extrabold tracking-tight text-[#ee5253]
-                  text-lg sm:text-xl md:text-[1.38rem] lg:text-2xl
-                `}
-              >
+              <h1 className="font-extrabold tracking-tight text-[#ee5253] text-lg sm:text-xl md:text-[1.38rem] lg:text-2xl">
                 FIZANAKARA
               </h1>
               <p className="text-xs text-gray-400 font-medium hidden lg:block">
@@ -96,7 +86,7 @@ const Header = () => {
             </div>
           </motion.div>
 
-          {/* CENTRE : Navigation (visible uniquement ≥ md) */}
+          {/* Navigation centrée */}
           <nav className="hidden md:flex items-center justify-center gap-5 lg:gap-8 flex-1 mx-6 lg:mx-12">
             {navItems.slice(1).map((item) => (
               <motion.button
@@ -117,16 +107,16 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* DROITE : Sélecteur langue + burger (mobile) */}
+          {/* Droite : langue + burger */}
           <div className="flex items-center gap-3 md:gap-4">
-            {/* Sélecteur langue (toujours visible) */}
             <div className="relative lang-dropdown-container">
               <motion.button
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.94 }}
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className={`
-                  group flex items-center gap-2 rounded-full px-3 py-1.5 md:px-3.5 md:py-2
+                  group flex items-center gap-2 rounded-full
+                  px-3.5 py-1.5 md:px-4 md:py-2
                   bg-black/30 border border-white/10 hover:border-white/30
                   text-white/90 hover:text-white transition-all duration-200
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5253]/50
@@ -134,7 +124,7 @@ const Header = () => {
                 aria-label={`Langue actuelle : ${currentLang.label}`}
                 aria-expanded={isLangOpen}
               >
-                <span className="text-xl md:text-xl drop-shadow-sm">{currentLang.flag}</span>
+                <span className="text-xl drop-shadow-sm">{currentLang.flag}</span>
                 <Globe size={18} className="opacity-70 group-hover:opacity-100 transition-opacity hidden md:block" />
                 <span className="text-sm font-medium hidden md:inline">
                   {currentLang.code.toUpperCase()}
@@ -144,12 +134,13 @@ const Header = () => {
               <AnimatePresence>
                 {isLangOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                    transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                    exit={{ opacity: 0, y: 4, scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
                     className={`
-                      absolute right-0 top-full mt-2 w-52 sm:w-56 md:w-56
+                      absolute right-0 top-full mt-1.5
+                      w-fit min-w-max
                       rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl shadow-2xl
                       overflow-hidden z-50
                     `}
@@ -157,17 +148,17 @@ const Header = () => {
                     {languages.map((lang) => (
                       <motion.button
                         key={lang.code}
-                        whileHover={{ x: 4 }}
+                        whileHover={{ x: 3 }}
                         onClick={() => changeLanguage(lang.code)}
                         className={`
-                          flex w-full items-center gap-3 px-5 py-3 text-left text-sm
+                          flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm
                           transition-colors duration-150
                           hover:bg-white/8 active:bg-white/12
                           ${language === lang.code ? 'bg-[#ee5253]/15 text-[#ee5253]' : 'text-white/90'}
                         `}
                       >
                         <span className="text-2xl min-w-[32px]">{lang.flag}</span>
-                        <span className="flex-1">{lang.label}</span>
+                        <span className="flex-1 truncate pr-2">{lang.label}</span>
                       </motion.button>
                     ))}
                   </motion.div>
@@ -175,7 +166,6 @@ const Header = () => {
               </AnimatePresence>
             </div>
 
-            {/* Burger → uniquement mobile */}
             <button
               className="md:hidden rounded-full p-2.5 text-white/80 hover:text-[#ee5253] hover:bg-white/8 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -195,7 +185,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.32, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="md:hidden overflow-hidden bg-linear-to-b from-black/95 to-black/80 border-t border-white/5"
+            className="md:hidden overflow-hidden bg-gradient-to-b from-black/95 to-black/80 border-t border-white/5"
           >
             <div className="px-4 py-5 space-y-1.5">
               {navItems.slice(1).map((item, i) => (
