@@ -46,13 +46,13 @@ export const navItems: NavItem[] = [
     path: '/news'
   },
   {
-    id: 'bureau',
+    id: 'project',
     label: {
-      mg: 'Birao',
-      fr: 'Bureaucrate',
-      en: 'Officers'
+      mg: 'tetikasa ',
+      fr: 'projet',
+      en: 'projects'
     },
-    path: '/bureau'
+    path: '/project'
   },
   {
     id: 'partners',
