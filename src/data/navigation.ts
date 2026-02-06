@@ -11,6 +11,7 @@ export interface NavItem {
 }
 
 export interface LanguageOption {
+  name: unknown;
   code: Language;
   label: string;
   flag: string;
@@ -29,16 +30,16 @@ export const navItems: NavItem[] = [
   {
     id: 'about',
     label: {
-      mg: 'Iza moa Fizanakara?',
-      fr: 'Qui est Fizanakara?',
-      en: 'Who is Fizanakara?'
+      mg: 'mikasika',
+      fr: 'à propos',
+      en: 'about'
     },
     path: '/about'
   },
   {
     id: 'news',
     label: {
-      mg: 'Vaovao',
+      mg: 'vaovao',
       fr: 'Actualités',
       en: 'News'
     },
@@ -47,18 +48,18 @@ export const navItems: NavItem[] = [
   {
     id: 'bureau',
     label: {
-      mg: 'Mpikambana Birao',
-      fr: 'Membres du Bureau',
-      en: 'Bureau Members'
+      mg: 'Birao',
+      fr: 'Bureaucrate',
+      en: 'Officers'
     },
     path: '/bureau'
   },
   {
     id: 'partners',
     label: {
-      mg: 'Mpiara-miombona',
-      fr: 'Partenaires',
-      en: 'Partners'
+      mg: 'mpanohana',
+      fr: 'partenaires',
+      en: 'partners'
     },
     path: '/partners'
   },
@@ -74,7 +75,16 @@ export const navItems: NavItem[] = [
 ];
 
 export const languages: LanguageOption[] = [
-  { code: 'mg', label: 'MG', flag: '🇲🇬' },
-  { code: 'fr', label: 'FR', flag: '🇫🇷' },
-  { code: 'en', label: 'EN', flag: '🇺🇸' }
+  {
+    code: 'mg', label: 'MG', flag: '🇲🇬',
+    name: undefined
+  },
+  {
+    code: 'fr', label: 'FR', flag: '🇫🇷',
+    name: undefined
+  },
+  {
+    code: 'en', label: 'EN', flag: '🇺🇸',
+    name: undefined
+  }
 ];
