@@ -1,18 +1,29 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+
+// Pages
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <div className="min-h-screen bg-background pt-20">
-      <Header />
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-primary mb-4">
-          Site officiel de Fizanakara
-        </h1>
-        <p className="text-tertiary">
-          Fikambanan'ny Zanak'Anakara
-        </p>
-      </main>
-    </div>
+    <LanguageProvider>
+      <Router>
+        <div className="min-h-screen flex flex-col bg-white">
+          <Header />
+          <main className="flex-grow pt-20"> {/* pt-20 pour compenser le header fixe */}
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              
+              {/* Redirection pour les routes inconnues */}
+              <Route path="*" element={<HomePage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

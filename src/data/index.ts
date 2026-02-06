@@ -1,2 +1,3 @@
-export { default as Header } from '../components/layout/Header';
+// Export de toutes les données
 export * from './navigation';
+export * from './footer';
