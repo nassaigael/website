@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Globe, Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Footer from '../components/layout/Footer';
+import ContactSection from '../ContactSection';
 
 // Données de traduction pour la page contact
 const contactTranslations = {
@@ -473,6 +474,7 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+    <ContactSection/>
 
       {/* Footer */}
       <Footer />

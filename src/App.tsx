@@ -16,7 +16,8 @@ function App() {
           <main className="flex-grow pt-20"> {/* pt-20 pour compenser le header fixe */}
             <Routes>
               <Route path="/" element={<HomePage />} />
-              // Dans App.tsx
+              
+              {/* Route pour la page contact */}
               <Route path="/contact" element={<ContactPage />} />
 
               {/* Redirection pour les routes inconnues */}
