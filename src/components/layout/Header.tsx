@@ -195,7 +195,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.32, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="md:hidden overflow-hidden bg-gradient-to-b from-black/95 to-black/80 border-t border-white/5"
+            className="md:hidden overflow-hidden bg-linear-to-b from-black/95 to-black/80 border-t border-white/5"
           >
             <div className="px-4 py-5 space-y-1.5">
               {navItems.slice(1).map((item, i) => (
@@ -205,7 +205,7 @@ const Header = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07 + 0.1 }}
                   onClick={() => handleNavClick(item.path)}
-                  className="block w-full text-left py-3 px-4 text-lg font-medium text-white/90 hover:text-[#ee5253] hover:bg-white/5 rounded-lg transition-colors uppercase"
+                  className="block w-full text-left py-3 px-4 text-lg font-bold text-white/90 hover:text-[#ee5253] hover:bg-white/5 rounded-lg transition-colors uppercase"
                 >
                   {getLabel(item)}
                 </motion.button>
@@ -221,7 +221,7 @@ const Header = () => {
                       key={lang.code}
                       onClick={() => changeLanguage(lang.code)}
                       className={`
-                        flex flex-col items-center gap-1.5 py-3 rounded-lg text-sm font-medium
+                        flex flex-col items-center gap-1.5 py-3 rounded-lg text-sm font-bold
                         transition-all
                         ${language === lang.code
                           ? 'bg-[#ee5253]/20 text-[#ee5253] ring-1 ring-[#ee5253]/40'
