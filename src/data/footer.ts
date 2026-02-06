@@ -32,10 +32,9 @@ export const footerData = {
       links: [
         { label: "Iza moa Fizanakara", href: "/about" },
         { label: "Vaovao fikambanana", href: "/news" },
-        { label: "Mpanohana", href: "/supporters" },
+        { label: "Mpanohana", href: "/partners" },
         { label: "Fifandraisana", href: "/contact" },
         { label: "Tetik'asa", href: "/projects" },
-        { label: "Olomangan'ny fikambanana", href: "/members" }
       ]
     },
     recentPosts: {
@@ -84,10 +83,9 @@ export const footerData = {
       links: [
         { label: "À propos de Fizanakara", href: "/about" },
         { label: "Actualités", href: "/news" },
-        { label: "Supporters", href: "/supporters" },
+        { label: "partners", href: "/partners" },
         { label: "Contact", href: "/contact" },
         { label: "Projets", href: "/projects" },
-        { label: "Membres", href: "/members" }
       ]
     },
     recentPosts: {
@@ -136,10 +134,9 @@ export const footerData = {
       links: [
         { label: "About Fizanakara", href: "/about" },
         { label: "News", href: "/news" },
-        { label: "Supporters", href: "/supporters" },
+        { label: "partners", href: "/partners" },
         { label: "Contact", href: "/contact" },
         { label: "Projects", href: "/projects" },
-        { label: "Members", href: "/members" }
       ]
     },
     recentPosts: {
