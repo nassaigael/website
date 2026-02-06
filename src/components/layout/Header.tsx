@@ -1,5 +1,6 @@
 // components/layout/Header.tsx
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // AJOUTER ces imports
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
 import { navItems, languages, type Language } from '../../data/navigation';
@@ -10,6 +11,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate(); // AJOUTER useNavigate
   
   const { language, changeLanguage } = useLanguage();
 
@@ -36,11 +38,13 @@ const Header = () => {
     setIsLangOpen(false);
   };
 
+  // CORRECTION: Utiliser navigate pour la navigation
   const handleNavClick = (path: string) => {
     setIsMenuOpen(false);
-    console.log('Navigation vers :', path);
+    navigate(path); // Naviguer vers la route
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getLabel = (item: any) => item.label[language] ?? item.label.mg;
 
   const currentLang = languages.find((l) => l.code === language)!;
@@ -59,29 +63,30 @@ const Header = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
 
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="flex items-center gap-2.5 cursor-pointer shrink-0"
-            onClick={() => handleNavClick('/')}
-          >
-            <img
-              src={logo}
-              alt="Logo Fizanakara"
-              className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
-            />
-            <div className="flex flex-col leading-tight">
-              <h1 className="font-extrabold tracking-tight text-[#ee5253] text-lg sm:text-xl md:text-[1.38rem] lg:text-2xl">
-                FIZANAKARA
-              </h1>
-              <p className="text-xs text-gray-400 font-medium hidden lg:block">
-                {language === 'mg' ? "Fikambanan'ny Zanak'Anakara" :
-                 language === 'fr' ? "Association des Descendants Anakara" :
-                 "Association of Anakara Descendants"}
-              </p>
-            </div>
-          </motion.div>
+          {/* Logo - CHANGER en Link */}
+          <Link to="/" className="flex items-center gap-2.5 cursor-pointer shrink-0">
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-2.5"
+            >
+              <img
+                src={logo}
+                alt="Logo Fizanakara"
+                className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
+              />
+              <div className="flex flex-col leading-tight">
+                <h1 className="font-extrabold tracking-tight text-[#ee5253] text-lg sm:text-xl md:text-[1.38rem] lg:text-2xl">
+                  FIZANAKARA
+                </h1>
+                <p className="text-xs text-gray-400 font-medium hidden lg:block">
+                  {language === 'mg' ? "Fikambanan'ny Zanak'Anakara" :
+                   language === 'fr' ? "Association des Descendants Anakara" :
+                   "Association of Anakara Descendants"}
+                </p>
+              </div>
+            </motion.div>
+          </Link>
 
           {/* Navigation centrée */}
           <nav className="hidden md:flex items-center justify-center gap-5 lg:gap-8 flex-1 mx-6 lg:mx-12">
@@ -182,7 +187,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.32, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="md:hidden overflow-hidden bg-linear-to-b from-black/95 to-black/80 border-t border-white/5"
+            className="md:hidden overflow-hidden bg-gradient-to-b from-black/95 to-black/80 border-t border-white/5"
           >
             <div className="px-4 py-5 space-y-1.5">
               {navItems.slice(1).map((item, i) => (
@@ -206,7 +211,7 @@ const Header = () => {
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code)} // MODIFIER ICI
+                      onClick={() => handleLanguageChange(lang.code)}
                       className={`
                         flex flex-col items-center gap-1.5 py-3 rounded-lg text-sm font-bold
                         transition-all

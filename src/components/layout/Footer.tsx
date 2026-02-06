@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Calendar, Facebook, Instagram, Twitter, Youtube, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
