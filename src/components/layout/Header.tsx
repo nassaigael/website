@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import { Menu, X, Globe } from 'lucide-react';
 
 interface NavItem {
@@ -13,11 +12,12 @@ interface NavItem {
   path: string;
 }
 
+type Language = 'mg' | 'fr' | 'en';
+
 const Header = () => {
-  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
+  const [language, setLanguage] = useState<Language>('mg');
 
   const navItems: NavItem[] = [
     {
@@ -76,12 +76,13 @@ const Header = () => {
     }
   ];
 
-  const languages = [
+  const languages: { code: Language; label: string; flag: string }[] = [
     { code: 'mg', label: 'MG', flag: '🇲🇬' },
     { code: 'fr', label: 'FR', flag: '🇫🇷' },
     { code: 'en', label: 'EN', flag: '🇺🇸' }
   ];
 
+  // Effet pour gérer le scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -91,19 +92,37 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Charger la langue sauvegardée au démarrage
   useEffect(() => {
-    setCurrentLanguage(i18n.language);
-  }, [i18n.language]);
+    const savedLang = localStorage.getItem('fizanakara-language');
+    if (savedLang && ['mg', 'fr', 'en'].includes(savedLang)) {
+      setLanguage(savedLang as Language);
+    }
+  }, []);
 
-  const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-    setCurrentLanguage(lang);
+  const changeLanguage = (lang: Language) => {
+    if (lang !== language) {
+      setLanguage(lang);
+      localStorage.setItem('fizanakara-language', lang);
+      // Ici vous pouvez ajouter une logique pour rafraîchir les traductions si nécessaire
+    }
   };
 
   const handleNavClick = (path: string) => {
     setIsMenuOpen(false);
-    // Ici, vous pourriez utiliser React Router pour la navigation
     console.log('Navigating to:', path);
+    // À remplacer par votre logique de navigation (React Router)
+  };
+
+  const getNavLabel = (item: NavItem) => {
+    return item.label[language] || item.label.mg;
+  };
+
+  // Fonction pour cycler entre les langues (mobile)
+  const cycleLanguage = () => {
+    const currentIndex = languages.findIndex(l => l.code === language);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    changeLanguage(languages[nextIndex].code);
   };
 
   return (
@@ -142,40 +161,39 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.slice(1).map((item) => (
-              <motion.a
+              <motion.button
                 key={item.id}
-                href={item.path}
+                onClick={() => handleNavClick(item.path)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-tertiary hover:text-primary font-medium transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.path);
-                }}
+                className="text-tertiary hover:text-primary font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded px-2 py-1"
               >
-                {item.label[currentLanguage as keyof typeof item.label] || item.label.mg}
-              </motion.a>
+                {getNavLabel(item)}
+              </motion.button>
             ))}
 
             {/* Language Selector Desktop */}
             <div className="relative group ml-4">
-              <button className="flex items-center space-x-2 text-tertiary hover:text-primary transition-colors duration-200">
+              <button 
+                className="flex items-center space-x-2 text-tertiary hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded p-1"
+                aria-label="Changer la langue"
+              >
                 <Globe size={20} />
                 <span className="font-medium">
-                  {languages.find(lang => lang.code === currentLanguage)?.flag || '🌐'}
+                  {languages.find(lang => lang.code === language)?.flag || '🌐'}
                 </span>
               </button>
               
-              <div className="absolute right-0 top-full mt-2 w-32 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div className="absolute right-0 top-full mt-2 w-32 bg-white rounded-lg shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
-                    className={`w-full px-4 py-2 text-left hover:bg-surface-light transition-colors duration-150 flex items-center space-x-2 ${
-                      currentLanguage === lang.code ? 'bg-primary/10 text-primary' : ''
+                    className={`w-full px-4 py-2 text-left hover:bg-surface-light transition-colors duration-150 flex items-center space-x-2 first:rounded-t-lg last:rounded-b-lg ${
+                      language === lang.code ? 'bg-primary/10 text-primary' : ''
                     }`}
                   >
-                    <span>{lang.flag}</span>
+                    <span className="text-lg">{lang.flag}</span>
                     <span>{lang.label}</span>
                   </button>
                 ))}
@@ -186,26 +204,23 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <div className="flex items-center space-x-4 md:hidden">
             {/* Language Selector Mobile */}
-            <div className="relative">
-              <button
-                onClick={() => changeLanguage(
-                  languages[(languages.findIndex(l => l.code === currentLanguage) + 1) % languages.length].code
-                )}
-                className="flex items-center space-x-1 text-tertiary"
-              >
-                <Globe size={20} />
-                <span>
-                  {languages.find(lang => lang.code === currentLanguage)?.label}
-                </span>
-              </button>
-            </div>
+            <button
+              onClick={cycleLanguage}
+              className="flex items-center space-x-2 text-tertiary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-light"
+              aria-label="Changer la langue"
+            >
+              <Globe size={20} />
+              <span className="font-medium">
+                {languages.find(lang => lang.code === language)?.label}
+              </span>
+            </button>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-tertiary hover:text-primary transition-colors duration-200"
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              className="text-tertiary hover:text-primary transition-colors duration-200 p-2 rounded-full hover:bg-surface-light"
+              aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -218,22 +233,20 @@ const Header = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              className="md:hidden overflow-hidden bg-white border-t border-border mt-4"
             >
-              <div className="pt-6 pb-4 space-y-4">
-                {navItems.slice(1).map((item) => (
-                  <motion.a
+              <div className="pt-4 pb-4 space-y-1">
+                {navItems.slice(1).map((item, index) => (
+                  <motion.button
                     key={item.id}
-                    href={item.path}
-                    whileHover={{ x: 10 }}
-                    className="block text-lg text-tertiary hover:text-primary font-medium py-2 border-b border-border last:border-b-0"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(item.path);
-                    }}
+                    onClick={() => handleNavClick(item.path)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="block w-full text-left text-lg text-tertiary hover:text-primary hover:bg-surface-light font-medium py-3 px-4 transition-colors duration-150 rounded-lg mx-2"
                   >
-                    {item.label[currentLanguage as keyof typeof item.label] || item.label.mg}
-                  </motion.a>
+                    {getNavLabel(item)}
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
