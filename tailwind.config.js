@@ -1,8 +1,10 @@
-// tailwind.config.js
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'media', // or 'class' if you want manual control
   theme: {
     extend: {
       colors: {
@@ -11,6 +13,14 @@ module.exports = {
         tertiary: 'var(--color-tertiary)',
         background: 'var(--color-background)',
         text: 'var(--color-text)',
+        accent: 'var(--color-accent)',
+        success: 'var(--color-success)',
+        warning: 'var(--color-warning)',
+        error: 'var(--color-error)',
+        info: 'var(--color-info)',
+        'surface-light': 'var(--color-surface-light)',
+        'surface-dark': 'var(--color-surface-dark)',
+        border: 'var(--color-border)',
       },
       fontFamily: {
         sans: 'var(--font-family-sans)',
@@ -19,11 +29,11 @@ module.exports = {
         malagasy: 'var(--font-family-malagasy)',
       },
       fontSize: {
-        'xs': 'var(--font-size-xs)',
-        'sm': 'var(--font-size-sm)',
-        'base': 'var(--font-size-base)',
-        'lg': 'var(--font-size-lg)',
-        'xl': 'var(--font-size-xl)',
+        xs: 'var(--font-size-xs)',
+        sm: 'var(--font-size-sm)',
+        base: 'var(--font-size-base)',
+        lg: 'var(--font-size-lg)',
+        xl: 'var(--font-size-xl)',
         '2xl': 'var(--font-size-2xl)',
         '3xl': 'var(--font-size-3xl)',
         '4xl': 'var(--font-size-4xl)',
@@ -38,6 +48,82 @@ module.exports = {
         semibold: 'var(--font-weight-semibold)',
         bold: 'var(--font-weight-bold)',
         extrabold: 'var(--font-weight-extrabold)',
+      },
+      lineHeight: {
+        tight: 'var(--line-height-tight)',
+        normal: 'var(--line-height-normal)',
+        relaxed: 'var(--line-height-relaxed)',
+        loose: 'var(--line-height-loose)',
+      },
+      borderRadius: {
+        sm: 'var(--border-radius-sm)',
+        md: 'var(--border-radius-md)',
+        lg: 'var(--border-radius-lg)',
+        xl: 'var(--border-radius-xl)',
+        '2xl': 'var(--border-radius-2xl)',
+        full: 'var(--border-radius-full)',
+      },
+      borderWidth: {
+        thin: 'var(--border-width-thin)',
+        medium: 'var(--border-width-medium)',
+        thick: 'var(--border-width-thick)',
+      },
+      boxShadow: {
+        sm: 'var(--shadow-sm)',
+        md: 'var(--shadow-md)',
+        lg: 'var(--shadow-lg)',
+        xl: 'var(--shadow-xl)',
+        primary: 'var(--shadow-primary)',
+      },
+      transitionDuration: {
+        fast: 'var(--transition-fast)',
+        normal: 'var(--transition-normal)',
+        slow: 'var(--transition-slow)',
+      },
+      zIndex: {
+        dropdown: 'var(--z-dropdown)',
+        sticky: 'var(--z-sticky)',
+        fixed: 'var(--z-fixed)',
+        'modal-backdrop': 'var(--z-modal-backdrop)',
+        modal: 'var(--z-modal)',
+        popover: 'var(--z-popover)',
+        tooltip: 'var(--z-tooltip)',
+      },
+      screens: {
+        sm: 'var(--breakpoint-sm)',
+        md: 'var(--breakpoint-md)',
+        lg: 'var(--breakpoint-lg)',
+        xl: 'var(--breakpoint-xl)',
+        '2xl': 'var(--breakpoint-2xl)',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+        'slide-down': 'slideDown 0.5s ease-out',
+        'slide-in-left': 'slideInLeft 0.5s ease-out',
+        'slide-in-right': 'slideInRight 0.5s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideInLeft: {
+          '0%': { transform: 'translateX(-20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        slideInRight: {
+          '0%': { transform: 'translateX(20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
       },
     },
   },
