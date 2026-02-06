@@ -43,3 +43,74 @@ body {
 }
 
 /* ... le reste de votre CSS ... */
+@import "tailwindcss";
+
+/* Styles globaux pour une meilleure responsivité */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Assurer que les images et vidéos sont responsives */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Amélioration de la typographie responsive */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ee5253;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d94645;
+}
+
+/* Focus styles accessibles */
+:focus-visible {
+  outline: 2px solid #ee5253;
+  outline-offset: 2px;
+}
+
+/* Prévenir le débordement horizontal sur mobile */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Amélioration du tap target sur mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Support pour les très petits écrans */
+@media (max-width: 375px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
