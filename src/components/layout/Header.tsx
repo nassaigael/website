@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
 import { navItems, languages, type Language } from '../../data/navigation';
-import { useLanguage } from '../../contexts/LanguageContext'; // AJOUTER CE IMPORT
+import { useLanguage } from '../../contexts/LanguageContext'; 
 import logo from "../../assets/images/logo.png";
 
 const Header = () => {
@@ -11,7 +11,6 @@ const Header = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // MODIFIER CETTE LIGNE : utiliser le hook du contexte au lieu de useState
   const { language, changeLanguage } = useLanguage();
 
   useEffect(() => {
@@ -31,7 +30,6 @@ const Header = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isLangOpen]);
 
-  // MODIFIER CETTE FONCTION : utiliser la fonction du contexte
   const handleLanguageChange = (lang: Language) => {
     if (lang === language) return;
     changeLanguage(lang);
@@ -148,7 +146,7 @@ const Header = () => {
                       <motion.button
                         key={lang.code}
                         whileHover={{ x: 3 }}
-                        onClick={() => handleLanguageChange(lang.code)} // MODIFIER ICI
+                        onClick={() => handleLanguageChange(lang.code)}
                         className={`
                           flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm
                           transition-colors duration-150
@@ -156,7 +154,7 @@ const Header = () => {
                           ${language === lang.code ? 'bg-[#ee5253]/15 text-[#ee5253]' : 'text-white/90'}
                         `}
                       >
-                        <span className="text-2xl min-w-[32px]">{lang.flag}</span>
+                        <span className="text-2xl min-w-8">{lang.flag}</span>
                         <span className="flex-1 truncate pr-2">{lang.label}</span>
                       </motion.button>
                     ))}
@@ -184,7 +182,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.32, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="md:hidden overflow-hidden bg-gradient-to-b from-black/95 to-black/80 border-t border-white/5"
+            className="md:hidden overflow-hidden bg-linear-to-b from-black/95 to-black/80 border-t border-white/5"
           >
             <div className="px-4 py-5 space-y-1.5">
               {navItems.slice(1).map((item, i) => (
