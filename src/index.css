@@ -2,14 +2,14 @@
 
 :root {
   /* === COULEURS PRINCIPALES === */
-  --color-primary: #ee5253;
-  --color-secondary: #ffffff;
-  --color-tertiary: #000000;
+  --color-primary: #ee5253;    /* Rouge */
+  --color-secondary: #ffffff;  /* Blanc */
+  --color-tertiary: #000000;   /* Noir */
   
   /* === COULEURS DE BASE === */
-  --color-background: var(--color-secondary);
-  --color-text: var(--color-tertiary);
-  --color-accent: var(--color-primary);
+  --color-background: #ffffff; /* Blanc pour le fond */
+  --color-text: #000000;       /* Noir pour le texte */
+  --color-accent: #ee5253;     /* Rouge pour les accents */
   
   /* === COULEURS D'ÉTAT === */
   --color-success: #10b981;
@@ -18,154 +18,28 @@
   --color-info: #3b82f6;
   
   /* === COULEURS DE SURFACE === */
-  --color-surface-light: #f8fafc;
+  --color-surface-light: #f8fafc; /* Gris très clair */
   --color-surface-dark: #1e293b;
-  --color-border: #e2e8f0;
+  --color-border: #e2e8f0;        /* Gris clair pour les bordures */
   
   /* === POLICES === */
-  
-  /* Familles de polices */
   --font-family-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-family-serif: 'Georgia', 'Times New Roman', serif;
   --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
-  --font-family-malagasy: 'Arial', sans-serif; /* À remplacer par une police adaptée au malagasy */
+  --font-family-malagasy: 'Arial', sans-serif;
   
-  /* Tailles de police (Desktop First) */
-  --font-size-xs: 0.75rem;     /* 12px */
-  --font-size-sm: 0.875rem;    /* 14px */
-  --font-size-base: 1rem;      /* 16px */
-  --font-size-lg: 1.125rem;    /* 18px */
-  --font-size-xl: 1.25rem;     /* 20px */
-  --font-size-2xl: 1.5rem;     /* 24px */
-  --font-size-3xl: 1.875rem;   /* 30px */
-  --font-size-4xl: 2.25rem;    /* 36px */
-  --font-size-5xl: 3rem;       /* 48px */
-  --font-size-6xl: 3.75rem;    /* 60px */
-  --font-size-7xl: 4.5rem;     /* 72px */
-  
-  /* Poids de police */
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  
-  /* Hauteurs de ligne */
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
-  --line-height-loose: 2;
-  
-  /* === BORDURES === */
-  --border-radius-sm: 0.125rem;  /* 2px */
-  --border-radius-md: 0.375rem;  /* 6px */
-  --border-radius-lg: 0.5rem;    /* 8px */
-  --border-radius-xl: 0.75rem;   /* 12px */
-  --border-radius-2xl: 1rem;     /* 16px */
-  --border-radius-full: 9999px;
-  
-  --border-width-thin: 1px;
-  --border-width-medium: 2px;
-  --border-width-thick: 3px;
-  
-  /* === OMBRES === */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-primary: 0 4px 14px 0 rgba(238, 82, 83, 0.3);
-  
-  /* === TRANSITIONS === */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* === CLASSES UTILITAIRES PERSONNALISÉES === */
-.font-malagasy {
-  font-family: var(--font-family-malagasy);
-}
-
-.text-primary {
-  color: var(--color-primary);
-}
-
-.bg-primary {
-  background-color: var(--color-primary);
-}
-
-.border-primary {
-  border-color: var(--color-primary);
-}
-
-.shadow-primary {
-  box-shadow: var(--shadow-primary);
-}
-
-/* === DARK MODE (optionnel) === */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #1a1a1a;
-    --color-text: #ffffff;
-    --color-surface-light: #2d3748;
-    --color-border: #4a5568;
-  }
+  /* ... le reste de vos variables ... */
 }
 
 /* === STYLES DE BASE === */
 body {
   font-family: var(--font-family-sans);
-  color: var(--color-text);
-  background-color: var(--color-background);
+  color: rgb(var(--color-text)); /* Correction ici */
+  background-color: rgb(var(--color-background));
   line-height: var(--line-height-normal);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-}
-
-h1 { font-size: var(--font-size-5xl); }
-h2 { font-size: var(--font-size-4xl); }
-h3 { font-size: var(--font-size-3xl); }
-h4 { font-size: var(--font-size-2xl); }
-h5 { font-size: var(--font-size-xl); }
-h6 { font-size: var(--font-size-lg); }
-
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: color-mix(in srgb, var(--color-primary) 80%, black);
-}
-
-/* === SCROLLBAR PERSONNALISÉE === */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-surface-light);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: var(--border-radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in srgb, var(--color-primary) 80%, black);
-}
-
-/* === FOCUS STYLES === */
-:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
+/* ... le reste de votre CSS ... */
