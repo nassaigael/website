@@ -1,26 +1,23 @@
+// components/layout/Header.tsx
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
-import { navItems, languages, type Language, type NavItem } from '../../data/navigation';
+import { navItems, languages, type Language } from '../../data/navigation';
+import { useLanguage } from '../../contexts/LanguageContext'; // AJOUTER CE IMPORT
 import logo from "../../assets/images/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [language, setLanguage] = useState<Language>('mg');
+  
+  // MODIFIER CETTE LIGNE : utiliser le hook du contexte au lieu de useState
+  const { language, changeLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('fizanakara-language') as Language;
-    if (saved && ['mg', 'fr', 'en'].includes(saved)) {
-      setLanguage(saved);
-    }
   }, []);
 
   useEffect(() => {
@@ -34,10 +31,10 @@ const Header = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isLangOpen]);
 
-  const changeLanguage = (lang: Language) => {
+  // MODIFIER CETTE FONCTION : utiliser la fonction du contexte
+  const handleLanguageChange = (lang: Language) => {
     if (lang === language) return;
-    setLanguage(lang);
-    localStorage.setItem('fizanakara-language', lang);
+    changeLanguage(lang);
     setIsLangOpen(false);
   };
 
@@ -46,7 +43,7 @@ const Header = () => {
     console.log('Navigation vers :', path);
   };
 
-  const getLabel = (item: NavItem) => item.label[language] ?? item.label.mg;
+  const getLabel = (item: any) => item.label[language] ?? item.label.mg;
 
   const currentLang = languages.find((l) => l.code === language)!;
 
@@ -81,7 +78,9 @@ const Header = () => {
                 FIZANAKARA
               </h1>
               <p className="text-xs text-gray-400 font-medium hidden lg:block">
-                Fikambanan'ny Zanak'Anakara
+                {language === 'mg' ? "Fikambanan'ny Zanak'Anakara" :
+                 language === 'fr' ? "Association des Descendants Anakara" :
+                 "Association of Anakara Descendants"}
               </p>
             </div>
           </motion.div>
@@ -149,7 +148,7 @@ const Header = () => {
                       <motion.button
                         key={lang.code}
                         whileHover={{ x: 3 }}
-                        onClick={() => changeLanguage(lang.code)}
+                        onClick={() => handleLanguageChange(lang.code)} // MODIFIER ICI
                         className={`
                           flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm
                           transition-colors duration-150
@@ -209,7 +208,7 @@ const Header = () => {
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => changeLanguage(lang.code)}
+                      onClick={() => handleLanguageChange(lang.code)} // MODIFIER ICI
                       className={`
                         flex flex-col items-center gap-1.5 py-3 rounded-lg text-sm font-bold
                         transition-all

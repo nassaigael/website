@@ -1,11 +1,12 @@
+// components/Footer.tsx
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Calendar, Facebook, Instagram, Twitter, Youtube, Heart } from 'lucide-react';
-import { useLanguage } from '../../contexts/LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext'; // Même hook que Header
 import { footerData } from '../../data/footer';
 
 const Footer = () => {
-  const { language } = useLanguage();
-  const t = footerData[language];
+  const { language } = useLanguage(); // Utiliser le hook du contexte
+  const t = footerData[language]; // Récupérer les données selon la langue actuelle
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-12 pb-8">
