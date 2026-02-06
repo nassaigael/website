@@ -18,7 +18,6 @@ export type FooterTranslations = {
   officeHours: string;
 };
 
-// data/footer.ts
 export const footerData = {
   mg: {
     organization: {
