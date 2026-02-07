@@ -44,7 +44,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
 
   if (!article) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
         <div className="text-center">
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
@@ -60,7 +60,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
           </h1>
           <button
             onClick={() => navigate('/news')}
-            className="px-6 py-3 bg-gradient-to-r from-[#ee5253] to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+            className="px-6 py-3 bg-linear-to-r from-[#ee5253] to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
           >
             {language === 'mg' ? 'Hiverina amin\'ny lisitra' : 
              language === 'fr' ? 'Retour à la liste' : 
@@ -135,7 +135,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-20"
+      className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-20"
     >
       {/* Copy Alert */}
       <AnimatePresence>
@@ -185,7 +185,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsBookmarked(!isBookmarked)}
               className={`p-3 rounded-xl shadow-lg transition-all ${isBookmarked 
-                ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white' 
+                ? 'bg-linear-to-r from-amber-500 to-orange-500 text-white' 
                 : 'bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:text-amber-500'
               } border border-gray-200 dark:border-gray-800`}
             >
@@ -197,7 +197,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowShareMenu(!showShareMenu)}
-                className="p-3 bg-gradient-to-r from-[#ee5253] to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl"
+                className="p-3 bg-linear-to-r from-[#ee5253] to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl"
               >
                 <Share2 className="w-5 h-5" />
               </motion.button>
@@ -309,7 +309,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
             <img
               src={images[currentImage]}
               alt={`${article.title[language]} - Image ${currentImage + 1}`}
-              className="w-full h-[500px] sm:h-[600px] object-cover"
+              className="w-full h-125 sm:h-150 object-cover"
             />
 
             {/* Gallery Navigation */}
@@ -362,7 +362,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setCurrentImage(index)}
-                  className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                  className={`shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                     index === currentImage
                       ? 'border-[#ee5253] shadow-lg'
                       : 'border-transparent hover:border-gray-300'
@@ -498,7 +498,7 @@ const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/news')}
-            className="px-10 py-4 bg-gradient-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+            className="px-10 py-4 bg-linear-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
           >
             {language === 'mg' ? 'Hiverina amin\'ny vaovao rehetra' : 
              language === 'fr' ? 'Retour à toutes les actualités' : 
