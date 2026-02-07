@@ -189,7 +189,7 @@ const ContactPage = () => {
                       <p className="text-red-50/90 mt-1 text-sm md:text-base font-light">
                         {language === 'mg' ? "Manerana an'i Madagasikara" :
                           language === 'fr' ? "Présent dans toute Madagascar" :
-                            "Présent à travers Madagascar"}
+                            "Present across Madagascar"}
                       </p>
                     </div>
                   </motion.div>
