@@ -75,7 +75,7 @@ const NewsPage = () => {
             'janary': '01', 'febroary': '02', 'martsa': '03', 'aprily': '04', 'mey': '05', 'jona': '06',
             'jolay': '07', 'aogositra': '08', 'septambra': '09', 'oktobra': '10', 'novambra': '11', 'desambra': '12'
         };
-        
+
         const parts = dateStr.toLowerCase().split(' ');
         if (parts.length === 3) {
             const day = parts[0].padStart(2, '0');
@@ -330,8 +330,8 @@ const NewsPage = () => {
                                                         setShowFilters(false);
                                                     }}
                                                     className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
-                                                            ? 'bg-[#ee5253]/10 text-[#ee5253]'
-                                                            : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                                                        ? 'bg-[#ee5253]/10 text-[#ee5253]'
+                                                        : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                                                         }`}
                                                 >
                                                     {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
@@ -366,8 +366,8 @@ const NewsPage = () => {
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setSelectedCategory(cat.id)}
                                         className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
-                                                ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
-                                                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                            ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
+                                            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                                             }`}
                                     >
                                         <Icon className="w-4 h-4" />
