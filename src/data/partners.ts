@@ -1,4 +1,3 @@
-// data/partners.ts
 export type PartnerCategory = 'institutional' | 'cultural' | 'academic' | 'media' | 'community';
 
 export interface Partner {

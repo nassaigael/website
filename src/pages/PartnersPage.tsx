@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Users, Award, Building, BookOpen, Radio, Heart, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import Footer from '../components/layout/Footer';
-import { partnersData, partners, type PartnerCategory } from '../data/partners';
+import { partnersData, partners, type PartnerCategory } from '../data/index';
 
 const PartnersPage = () => {
   const { language } = useLanguage();
@@ -54,7 +53,7 @@ const PartnersPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white pt-24 pb-20 md:pt-32 md:pb-28">
+      <section className="relative overflow-hidden bg-linear-to-br from-gray-900 via-black to-gray-900 text-white pt-24 pb-20 md:pt-32 md:pb-28">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
@@ -215,7 +214,7 @@ const PartnersPage = () => {
                 >
                   <div className="bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 h-full overflow-hidden hover:-translate-y-2">
                     {/* Logo */}
-                    <div className="p-8 flex items-center justify-center h-40 bg-gradient-to-b from-gray-50 to-white">
+                    <div className="p-8 flex items-center justify-center h-40 bg-linear-to-b from-gray-50 to-white">
                       <div className="relative w-48 h-20 flex items-center justify-center">
                         {/* Logo principal */}
                         <img
@@ -225,7 +224,7 @@ const PartnersPage = () => {
                         />
                         
                         {/* Overlay au hover */}
-                        <div className={`absolute inset-0 bg-gradient-to-r from-[#ee5253]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg`} />
+                        <div className={`absolute inset-0 bg-linear-to-r from-[#ee5253]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg`} />
                       </div>
                     </div>
 
@@ -278,7 +277,7 @@ const PartnersPage = () => {
                     </div>
 
                     {/* Effet de bordure colorée */}
-                    <div className={`h-1 w-full bg-gradient-to-r from-[#ee5253] to-[#ff6b6b] transform transition-transform duration-300 ${hoveredPartner === partner.id ? 'scale-x-100' : 'scale-x-0'}`} />
+                    <div className={`h-1 w-full bg-linear-to-r from-[#ee5253] to-[#ff6b6b] transform transition-transform duration-300 ${hoveredPartner === partner.id ? 'scale-x-100' : 'scale-x-0'}`} />
                   </div>
                 </motion.div>
               ))}
@@ -309,7 +308,7 @@ const PartnersPage = () => {
       </section>
 
       {/* Section Devenir Partenaire */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
+      <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <motion.div
