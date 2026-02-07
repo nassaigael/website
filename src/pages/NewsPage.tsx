@@ -126,7 +126,7 @@ const NewsPage = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-gradient-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
+            className="min-h-screen bg-linear-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
         >
             {/* Animated Background */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -136,7 +136,7 @@ const NewsPage = () => {
                         y: [0, 50, 0],
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
+                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -144,7 +144,7 @@ const NewsPage = () => {
                         y: [0, -50, 0],
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"
+                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-linear-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"
                 />
             </div>
 
@@ -163,8 +163,8 @@ const NewsPage = () => {
                         className="inline-block mb-6"
                     >
                         <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#ee5253] to-purple-600 rounded-full blur-xl opacity-75" />
-                            <div className="relative px-8 py-3 bg-gradient-to-r from-[#ee5253] to-purple-600 rounded-full">
+                            <div className="absolute inset-0 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full blur-xl opacity-75" />
+                            <div className="relative px-8 py-3 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full">
                                 <span className="text-white font-bold tracking-wider">
                                     {language === 'mg' ? 'VAOVAO FARANY' :
                                         language === 'fr' ? 'ACTUALITÉS' :
@@ -180,7 +180,7 @@ const NewsPage = () => {
                         transition={{ delay: 0.4 }}
                         className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6"
                     >
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-[#ee5253] dark:from-white dark:via-gray-300 dark:to-[#ee5253]">
+                        <span className="bg-clip-text text-transparent bg-linear-to-r from-gray-900 to-[#ee5253] dark:from-white dark:via-gray-300 dark:to-[#ee5253]">
                             {language === 'mg' ? 'Hetsika & Vaovao' :
                                 language === 'fr' ? 'Événements & Actualités' :
                                     'Events & News'}
@@ -209,7 +209,7 @@ const NewsPage = () => {
                     >
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg">
+                                <div className="p-2 bg-linear-to-r from-amber-500 to-orange-500 rounded-lg">
                                     <Star className="w-5 h-5 text-white" fill="white" />
                                 </div>
                                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
@@ -366,7 +366,7 @@ const NewsPage = () => {
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setSelectedCategory(cat.id)}
                                         className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
-                                                ? `bg-gradient-to-r ${cat.color} text-white shadow-lg`
+                                                ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
                                                 : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                                             }`}
                                     >
@@ -452,7 +452,7 @@ const NewsPage = () => {
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                 className="w-48 h-48 mx-auto mb-8 relative"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#ee5253] to-purple-600 rounded-full blur-2xl opacity-20" />
+                                <div className="absolute inset-0 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full blur-2xl opacity-20" />
                                 <Search className="w-48 h-48 text-gray-300 dark:text-gray-700" />
                             </motion.div>
 
@@ -486,7 +486,7 @@ const NewsPage = () => {
                                     setSelectedCategory('all');
                                     setSortBy('newest');
                                 }}
-                                className="px-8 py-3.5 bg-gradient-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                                className="px-8 py-3.5 bg-linear-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
                             >
                                 {language === 'mg' ? 'Hamafa ny safidy rehetra' :
                                     language === 'fr' ? 'Réinitialiser tous les filtres' :
@@ -528,7 +528,7 @@ const NewsPage = () => {
                                         repeat: Infinity,
                                         ease: "easeInOut"
                                     }}
-                                    className="w-2 h-2 bg-gradient-to-r from-[#ee5253] to-purple-600 rounded-full mx-auto"
+                                    className="w-2 h-2 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full mx-auto"
                                 />
                             </div>
                         </motion.div>
