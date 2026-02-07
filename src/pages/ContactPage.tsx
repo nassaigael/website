@@ -1,6 +1,6 @@
 // pages/ContactPage.tsx
 import { motion } from 'framer-motion';
-import { Globe, MapPin } from 'lucide-react'; // Import manquant
+import { Globe, MapPin, Phone } from 'lucide-react'; // Import manquant
 import { useLanguage } from '../contexts/LanguageContext';
 import Contact from '../components/sections/Contact'; // Vérifiez ce chemin
 
@@ -82,10 +82,10 @@ const contactTranslations = {
 
 const ContactPage = () => {
   const { language } = useLanguage();
-  
+
   // Type assertion pour TypeScript
   const t = contactTranslations[language as keyof typeof contactTranslations];
-  
+
   const locations = [
     { name: t.sections.locations.antananarivo, phone: '+261 38 90 065 67' },
     { name: t.sections.locations.vatomasina, phone: '+261 34 21 787 64' },
@@ -110,12 +110,12 @@ const ContactPage = () => {
             <div className="inline-flex items-center gap-3 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-white/10">
               <Globe className="text-[#ee5253]" size={20} />
               <span className="text-sm font-medium">
-                {language === 'mg' ? 'Fikambanana eran-tany' : 
-                 language === 'fr' ? 'Association mondiale' : 
-                 'Worldwide association'}
+                {language === 'mg' ? 'Fikambanana eran-tany' :
+                  language === 'fr' ? 'Association mondiale' :
+                    'Worldwide association'}
               </span>
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
               {t.hero.title}
             </h1>
@@ -138,9 +138,9 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Section (composant ContactSection) */}
-        <section id="contact-section" className="py-12 bg-white">
-            <Contact />
-        </section>
+      <section id="contact-section" className="py-12 bg-white">
+        <Contact />
+      </section>
 
       {/* Additional Contact Info Section */}
       <section className="py-20 bg-gray-50">
@@ -161,41 +161,77 @@ const ContactPage = () => {
               </p>
             </motion.div>
 
-            {/* Contact Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Locations Card */}
+            {/* Contact Cards - Version élégante & professionnelle */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12">
+              {/* Locations Card principale - plus large sur desktop */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-white p-8 rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow lg:col-span-3 md:col-span-2"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="col-span-1 md:col-span-2 lg:col-span-3 bg-white/95 backdrop-blur-sm rounded-3xl border border-gray-100/80 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
               >
-                <div className="flex items-center justify-center gap-4 mb-6">
-                  <div className="w-14 h-14 bg-[#ee5253] rounded-full flex items-center justify-center">
-                    <MapPin className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-black">
-                      {t.sections.locations.title}
-                    </h3>
-                    <p className="text-gray-600">
-                      {language === 'mg' ? 'Manerana an\'i Madagasikara' : 
-                       language === 'fr' ? 'À travers Madagascar' : 
-                       'Across Madagascar'}
-                    </p>
+                {/* Header élégant */}
+                <div className="bg-gradient-to-r from-[#ee5253] to-red-700 px-8 py-10 text-white">
+                  <div className="flex items-center gap-5">
+                    <div className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-lg">
+                      <MapPin className="w-8 h-8 text-white" strokeWidth={1.8} />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+                        {t.sections.locations.title}
+                      </h3>
+                      <p className="text-red-100/90 mt-1.5 text-lg font-light">
+                        {language === 'mg' ? "Manerana an'i Madagasikara" :
+                          language === 'fr' ? "À travers toute Madagascar" :
+                            "Présent à travers Madagascar"}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                  {locations.map((location, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
-                      <MapPin className="w-5 h-5 text-[#ee5253] mt-1 shrink-0" />
-                      <div>
-                        <p className="text-gray-800 font-medium">{location.name}</p>
-                        <p className="text-gray-600 text-sm">{location.phone}</p>
-                      </div>
-                    </div>
-                  ))}
+
+                {/* Contenu des localisations */}
+                <div className="p-6 md:p-8 lg:p-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
+                    {locations.map((location, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        className="group bg-gray-50/70 hover:bg-white border border-gray-200 hover:border-red-200/60 rounded-2xl p-6 transition-all duration-400 hover:shadow-lg hover:-translate-y-1"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 mt-1">
+                            <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                              <MapPin className="w-5 h-5 text-[#ee5253]" strokeWidth={2} />
+                            </div>
+                          </div>
+
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900 text-lg group-hover:text-[#ee5253] transition-colors">
+                              {location.name}
+                            </h4>
+                            {location.phone && (
+                              <p className="mt-2 text-gray-600 font-medium flex items-center gap-2">
+                                <Phone className="w-4 h-4 text-gray-500" />
+                                {location.phone}
+                              </p>
+                            )}
+
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Petit footer subtil optionnel */}
+                <div className="px-8 py-5 bg-gray-50/50 border-t border-gray-100 text-center text-sm text-gray-500">
+                  {language === 'mg' ? "Antsoina ho an'ny fiaraha-miasa" :
+                    language === 'fr' ? "Contactez-nous pour toute collaboration" :
+                      "Contact us for any partnership"}
                 </div>
               </motion.div>
             </div>
