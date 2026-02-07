@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';           // ← ajouté
-import { Mail, Phone, MapPin, Calendar, Facebook, Instagram, Twitter } from 'lucide-react';
+import { MapPin, Calendar, Facebook, Instagram, Twitter } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { footerData } from '../../data/footer';
 import logo from "../../assets/images/logo.png";
@@ -11,7 +11,7 @@ const Footer = () => {
     const t = footerData[language];
 
     return (
-        <footer className="bg-gradient-to-b from-gray-950 via-gray-950 to-black text-white">
+        <footer className="bg-linear-to-b from-gray-950 via-gray-950 to-black text-white">
             <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
                 {/* Grille des 4 colonnes principales */}
                 <div className="grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-8 xl:gap-12">
@@ -54,7 +54,7 @@ const Footer = () => {
                         </p>
 
                         <div className="flex items-start justify-center gap-3 text-sm text-gray-300 md:justify-start">
-                            <MapPin className="mt-1 h-5 w-5 flex-shrink-0 text-red-500" />
+                            <MapPin className="mt-1 h-5 w-5 shrink-0 text-red-500" />
                             <span className="leading-relaxed">{t.address}</span>
                         </div>
                     </motion.div>
