@@ -187,7 +187,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.32, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="md:hidden overflow-hidden bg-gradient-to-b from-black/95 to-black/80 border-t border-white/5"
+            className="md:hidden overflow-hidden bg-linear-to-b from-black/95 to-black/80 border-t border-white/5"
           >
             <div className="px-4 py-5 space-y-1.5">
               {navItems.slice(1).map((item, i) => (
@@ -204,28 +204,6 @@ const Header = () => {
               ))}
 
               <div className="h-px bg-white/5 my-5" />
-
-              <div className="px-4">
-                <p className="text-xs text-gray-400 mb-3 uppercase tracking-wider">Langue</p>
-                <div className="grid grid-cols-3 gap-3">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code)}
-                      className={`
-                        flex flex-col items-center gap-1.5 py-3 rounded-lg text-sm font-bold
-                        transition-all
-                        ${language === lang.code
-                          ? 'bg-[#ee5253]/20 text-[#ee5253] ring-1 ring-[#ee5253]/40'
-                          : 'text-white/70 hover:bg-white/6'}
-                      `}
-                    >
-                      <span className="text-3xl">{lang.flag}</span>
-                      <span>{lang.code.toUpperCase()}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           </motion.div>
         )}
