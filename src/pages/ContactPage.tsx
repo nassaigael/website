@@ -161,65 +161,71 @@ const ContactPage = () => {
               </p>
             </motion.div>
 
-            {/* Contact Cards - Version élégante & professionnelle */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12">
-              {/* Locations Card principale - plus large sur desktop */}
+            {/* Contact Cards - Compact & Responsive */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8">
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="col-span-1 md:col-span-2 lg:col-span-3 bg-white/95 backdrop-blur-sm rounded-3xl border border-gray-100/80 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="col-span-1 md:col-span-2 lg:col-span-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-100 shadow-lg overflow-hidden"
               >
-                {/* Header élégant */}
-                <div className="bg-linear-to-r from-[#ee5253] to-red-700 px-8 py-10 text-white">
-                  <div className="flex items-center gap-5">
-                    <div className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-lg">
-                      <MapPin className="w-8 h-8 text-white" strokeWidth={1.8} />
+                {/* Header compact */}
+                <div className="bg-gradient-to-r from-[#ee5253] via-red-600 to-red-700 px-5 py-7 text-white text-center">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.7, delay: 0.1 }}
+                    className="inline-flex flex-col items-center gap-2"
+                  >
+                    <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-sm">
+                      <MapPin className="w-7 h-7 text-white" strokeWidth={1.6} />
                     </div>
+
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+                      <h3 className="text-xl md:text-2xl font-bold tracking-tight drop-shadow-sm">
                         {t.sections.locations.title}
                       </h3>
-                      <p className="text-red-100/90 mt-1.5 text-lg font-light">
+                      <p className="text-red-50/90 mt-1 text-sm md:text-base font-light">
                         {language === 'mg' ? "Manerana an'i Madagasikara" :
-                          language === 'fr' ? "À travers toute Madagascar" :
+                          language === 'fr' ? "Présent dans toute Madagascar" :
                             "Présent à travers Madagascar"}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
-                {/* Contenu des localisations */}
-                <div className="p-6 md:p-8 lg:p-10">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
+                {/* Grid des locations - plus compacte */}
+                <div className="p-4 md:p-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
                     {locations.map((location, index) => (
                       <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="group bg-gray-50/70 hover:bg-white border border-gray-200 hover:border-red-200/60 rounded-2xl p-6 transition-all duration-400 hover:shadow-lg hover:-translate-y-1"
+                        whileTap={{ scale: 0.98 }} // pour mobile interaction
+                        transition={{ duration: 0.6, delay: 0.1 + index * 0.08, ease: "easeOut" }}
+                        className="bg-white border border-gray-200/50 rounded-lg p-4 md:p-5 shadow-sm hover:shadow-md cursor-pointer"
                       >
-                        <div className="flex items-start gap-4">
-                          <div className="shrink-0 mt-1">
-                            <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
-                              <MapPin className="w-5 h-5 text-[#ee5253]" strokeWidth={2} />
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 mt-1">
+                            <div className="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center border border-red-100">
+                              <MapPin className="w-4.5 h-4.5 text-[#ee5253]" strokeWidth={2} />
                             </div>
                           </div>
 
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 text-lg group-hover:text-[#ee5253] transition-colors">
+                            <h4 className="font-semibold text-gray-900 text-sm md:text-base">
                               {location.name}
                             </h4>
+
                             {location.phone && (
-                              <p className="mt-2 text-gray-600 font-medium flex items-center gap-2">
-                                <Phone className="w-4 h-4 text-gray-500" />
+                              <p className="mt-1.5 text-gray-700 font-medium flex items-center gap-1.5 text-xs md:text-sm">
+                                <Phone className="w-3.5 h-3.5 text-gray-500" />
                                 {location.phone}
                               </p>
                             )}
-
                           </div>
                         </div>
                       </motion.div>
@@ -227,14 +233,15 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                {/* Petit footer subtil optionnel */}
-                <div className="px-8 py-5 bg-gray-50/50 border-t border-gray-100 text-center text-sm text-gray-500">
-                  {language === 'mg' ? "Antsoina ho an'ny fiaraha-miasa" :
-                    language === 'fr' ? "Contactez-nous pour toute collaboration" :
-                      "Contact us for any partnership"}
+                {/* Footer subtil */}
+                <div className="px-5 py-4 bg-gray-50/80 border-t border-gray-100 text-center text-xs md:text-sm text-gray-600 font-medium">
+                  {language === 'mg' ? "Antsoina ho an'ny fiaraha-miasa sy ny fanohanana" :
+                    language === 'fr' ? "Contactez-nous pour toute collaboration ou soutien" :
+                      "Contact us for any collaboration or support"}
                 </div>
               </motion.div>
             </div>
+
           </div>
         </div>
       </section>
