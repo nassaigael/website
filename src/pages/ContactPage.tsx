@@ -171,7 +171,7 @@ const ContactPage = () => {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="bg-white p-8 rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow lg:col-span-3 md:col-span-2"
               >
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center justify-center gap-4 mb-6">
                   <div className="w-14 h-14 bg-[#ee5253] rounded-full flex items-center justify-center">
                     <MapPin className="w-7 h-7 text-white" />
                   </div>
