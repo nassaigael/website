@@ -172,7 +172,7 @@ const ContactPage = () => {
                 className="col-span-1 md:col-span-2 lg:col-span-3 bg-white/95 backdrop-blur-sm rounded-3xl border border-gray-100/80 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
               >
                 {/* Header élégant */}
-                <div className="bg-gradient-to-r from-[#ee5253] to-red-700 px-8 py-10 text-white">
+                <div className="bg-linear-to-r from-[#ee5253] to-red-700 px-8 py-10 text-white">
                   <div className="flex items-center gap-5">
                     <div className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-lg">
                       <MapPin className="w-8 h-8 text-white" strokeWidth={1.8} />
@@ -203,7 +203,7 @@ const ContactPage = () => {
                         className="group bg-gray-50/70 hover:bg-white border border-gray-200 hover:border-red-200/60 rounded-2xl p-6 transition-all duration-400 hover:shadow-lg hover:-translate-y-1"
                       >
                         <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 mt-1">
+                          <div className="shrink-0 mt-1">
                             <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
                               <MapPin className="w-5 h-5 text-[#ee5253]" strokeWidth={2} />
                             </div>
