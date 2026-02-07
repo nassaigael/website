@@ -155,14 +155,11 @@ export const footerData = {
       title: "Contact Us",
       email: "contact@fizanakara.mg",
       phone: "(+261)38 90 065 67",
-      emergency: {
-        label: "Emergency Call",
-        phone: "(+261)34 21 787 64"
-      }
+
     },
     socialMedia: {
       title: "Social Media",
-      platforms: ["Facebook", "Instagram", "Twitter", "YouTube"]
+      platforms: ["Facebook", "Instagram", "Twitter"]
     },
     copyright: {
       text: "© 2026 FIZANAKARA. All rights reserved",
