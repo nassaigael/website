@@ -1,3 +1,5 @@
+import axian from "../assets/images/partners/axian.png";
+
 export type PartnerCategory = 'institutional' | 'cultural' | 'academic' | 'media' | 'community';
 
 export interface Partner {
@@ -55,13 +57,12 @@ export const partnersData = {
   }
 };
 
-// Données des partenaires
 export const partners: Partner[] = [
   {
     id: 1,
     name: 'Ministère de la Culture',
     category: 'institutional',
-    logo: './assets/partners/axian.png',
+    logo: axian,
     website: 'https://culture.gov.mg',
     description: {
       mg: 'Minisiteran\'ny Kolontsaina - Fiarovana ny vakoka',
@@ -73,7 +74,7 @@ export const partners: Partner[] = [
     id: 2,
     name: 'UNESCO Madagascar',
     category: 'institutional',
-    logo: './assets/partners/axian.png',
+    logo: axian,
     website: 'https://unesco.org',
     description: {
       mg: 'Fampandriam-paharoa ny lova tsy mifindra',
@@ -85,7 +86,7 @@ export const partners: Partner[] = [
     id: 3,
     name: 'Université d\'Antananarivo',
     category: 'academic',
-    logo: './assets/partners/axian.png',
+    logo: axian,
     website: 'https://univ-antananarivo.mg',
     description: {
       mg: 'Fikarohana sy fanabeazana momba ny vakoka',
@@ -97,7 +98,7 @@ export const partners: Partner[] = [
     id: 4,
     name: 'Radio Nationale Malagasy',
     category: 'media',
-    logo: './assets/partners/axian.png',
+    logo: axian,
     website: 'https://rnm.mg',
     description: {
       mg: 'Fampielezan-dahatsoratra momba ny kolontsaina',
@@ -109,7 +110,7 @@ export const partners: Partner[] = [
     id: 5,
     name: 'MadaCulture',
     category: 'cultural',
-    logo: './assets/partners/axian.png',
+    logo: axian,
     website: 'https://madaculture.mg',
     description: {
       mg: 'Fampiroboroboana ny zavakanto malagasy',
@@ -121,7 +122,7 @@ export const partners: Partner[] = [
     id: 6,
     name: 'Fikambanan\'ny Ray aman-dreny',
     category: 'community',
-    logo: './assets/partners/axian.png',
+    logo: axian,
     website: '#',
     description: {
       mg: 'Fiaraha-miasa eo amin\'ny fiarahamonina',
@@ -133,7 +134,7 @@ export const partners: Partner[] = [
     id: 7,
     name: 'TV Plus Madagascar',
     category: 'media',
-    logo: '../assets/partners/axian.png',
+    logo: axian,
     website: 'https://tvplus.mg',
     description: {
       mg: 'Fampielezan-tsary momba ny fomban-drazana',
@@ -145,7 +146,7 @@ export const partners: Partner[] = [
     id: 8,
     name: 'Centre Culturel Albert Camus',
     category: 'cultural',
-    logo: './assets/partners/axian.png',
+    logo: axian,
     website: 'https://ccac.mg',
     description: {
       mg: 'Tranonkala ho an\'ny kolontsaina sy ny zavakanto',
