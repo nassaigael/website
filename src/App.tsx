@@ -7,6 +7,8 @@ import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import PartnersPage from './pages/PartnersPage';
+import NewsDetail from './pages/NewsDetail';
+import NewsPage from './pages/NewsPage';
 
 function App() {
   return (
@@ -17,10 +19,12 @@ function App() {
           <main className="grow pt-20"> {/* pt-20 pour compenser le header fixe */}
             <Routes>
               <Route path="/" element={<HomePage />} />
-              
+
               {/* Route pour la page contact */}
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/partners" element={<PartnersPage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/news/:id" element={<NewsDetail />} />
 
               {/* Redirection pour les routes inconnues */}
               <Route path="*" element={<HomePage />} />
