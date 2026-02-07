@@ -1,6 +1,6 @@
 export interface NewsArticle {
   id: number;
-  date: string; // Format: "14 Mey 2025"
+  date: string;
   title: {
     mg: string;
     fr: string;
@@ -16,11 +16,13 @@ export interface NewsArticle {
     fr: string[];
     en: string[];
   };
-  category: 'event' | 'project' | 'announcement' | 'culture';
+  category: 'event' | 'project' | 'announcement' | 'culture' | 'heritage';
   image: string;
   gallery?: string[];
   location?: string;
   author: string;
+  readTime: number; // en minutes
+  featured?: boolean;
 }
 
 export const newsArticles: NewsArticle[] = [
@@ -56,45 +58,50 @@ export const newsArticles: NewsArticle[] = [
     },
     category: "announcement",
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
-    author: "Patrick RAMONJAVELO"
+    author: "Patrick RAMONJAVELO",
+    readTime: 5,
+    featured: true
   },
   {
     id: 2,
     date: "05 Mey 2025",
     title: {
-      mg: "SAKANDRO 2025",
-      fr: "SAKANDRO 2025",
-      en: "SAKANDRO 2025"
+      mg: "SAKANDRO 2025 - Fihaonambe Ara-kolontsaina",
+      fr: "SAKANDRO 2025 - Rassemblement Culturel",
+      en: "SAKANDRO 2025 - Cultural Gathering"
     },
     excerpt: {
-      mg: "Hananamafy ny fifankatiavana sy ny firaisan-kina eo amin'ny mpikambana",
-      fr: "Renforcer l'amitié et l'unité entre les membres",
-      en: "Strengthen friendship and unity among members"
+      mg: "Hetsika lehibe mampivondrona ny taranaka rehetra mba hanamafisana ny fifandraisana sy hitazonana ny vakoka nentin-drazana.",
+      fr: "Grand événement rassemblant toutes les générations pour renforcer les liens et préserver l'héritage ancestral.",
+      en: "Major event bringing together all generations to strengthen bonds and preserve ancestral heritage."
     },
     content: {
       mg: [
-        "Tanjon'ny Sakandro 2025 ny hanamafy ny fifankatiavana sy ny firaisan-kina eo amin'ny mpikambana.",
-        "Hanohy ny iraka masina amin'ny fiarovana ny kolontsaina sy vakoka navelan'ny razam-be.",
-        "Hampitohy ny taranaka vaovao amin'ny niaviany."
+        "Sakandro 2025 dia fihaonambe ara-kolontsaina lehibe izay hanangona ny taranak'Anakara manerana izao tontolo izao.",
+        "Ity hetsika ity dia hanamafy ny fifandraisana eo amin'ny mpikambana sy hanentana ny firaisana eo amin'ny taranaka samy hafa.",
+        "Hampiseho ny zavakanto nentin-drazana, ny fomba amam-panao, ary ny sakafo malagasy manokana ho an'ny vahiny sy ny mpikambana."
       ],
       fr: [
-        "L'objectif de Sakandro 2025 est de renforcer l'amitié et l'unité entre les membres.",
-        "Poursuivre la mission sacrée de protéger la culture et l'héritage laissés par les ancêtres.",
-        "Relier les nouvelles générations à leurs origines."
+        "Sakandro 2025 est un grand rassemblement culturel qui réunira les descendants Anakara du monde entier.",
+        "Cet événement renforcera les liens entre les membres et encouragera l'unité entre les différentes générations.",
+        "Il mettra en valeur l'art ancestral, les traditions et la cuisine malgache unique pour les invités et les membres."
       ],
       en: [
-        "The goal of Sakandro 2025 is to strengthen friendship and unity among members.",
-        "Continue the sacred mission of protecting the culture and heritage left by ancestors.",
-        "Connect new generations to their origins."
+        "Sakandro 2025 is a major cultural gathering that will bring together Anakara descendants from around the world.",
+        "This event will strengthen bonds between members and encourage unity among different generations.",
+        "It will showcase ancestral art, traditions, and unique Malagasy cuisine for guests and members."
       ]
     },
     category: "event",
-    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w-800&q=80",
+    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80",
     location: "Vatomasina, Vohipeno",
-    author: "Comité d'Organisation"
+    author: "Comité d'Organisation",
+    readTime: 4,
+    featured: true
   },
   {
     id: 3,
+    date: "10 Aprily 2025",
     title: {
       mg: "Tetikasa 'Cartable iray, Fahazavana iray'",
       fr: "Projet 'Un Cartable, Une Lumière'",
@@ -122,13 +129,14 @@ export const newsArticles: NewsArticle[] = [
         "Over 500 bags were already distributed in 2024."
       ]
     },
-    date: "10 Aprily 2025",
     category: "project",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w-800&q=80",
-    author: "Département Social"
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
+    author: "Département Social",
+    readTime: 3
   },
   {
     id: 4,
+    date: "22 Martsa 2025",
     title: {
       mg: "Vakoka Velona - Fampiasana ny Soratra Anakara",
       fr: "Vakoka Vivant - Utilisation de l'Écriture Anakara",
@@ -156,13 +164,163 @@ export const newsArticles: NewsArticle[] = [
         "Pass on knowledge of ancestral writing to future generations."
       ]
     },
-    date: "22 Martsa 2025",
     category: "culture",
     image: "https://images.unsplash.com/photo-1544716278-e513176f20b5?w=800&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1544716278-e513176f20b5?w=800&q=80",
       "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&q=80"
     ],
-    author: "Département Culturel"
+    author: "Département Culturel",
+    readTime: 4
+  },
+  {
+    id: 5,
+    date: "15 Febroary 2025",
+    title: {
+      mg: "Famoriam-bola ho an'ny Tanora Mpanara-dia",
+      fr: "Collecte de Fonds pour les Jeunes Talents",
+      en: "Fundraising for Young Talents"
+    },
+    excerpt: {
+      mg: "Hanohana ny talenta tanora ao amin'ny fokonolona Anakara",
+      fr: "Soutenir les jeunes talents au sein de la communauté Anakara",
+      en: "Support young talents within the Anakara community"
+    },
+    content: {
+      mg: [
+        "Hetsika famoriam-bola ho an'ny tanora manana talenta ao amin'ny fokonolona.",
+        "Ny vola azo dia hampiasaina amin'ny fanohanana ny fianarana sy ny fivoaran'ireo tanora.",
+        "Tanisaina ny mankany amin'ny 5 tapitrisa Ariary ny tanjona."
+      ],
+      fr: [
+        "Événement de collecte de fonds pour les jeunes talents de la communauté.",
+        "Les fonds collectés seront utilisés pour soutenir les études et le développement des jeunes.",
+        "Objectif fixé à 5 millions d'Ariary."
+      ],
+      en: [
+        "Fundraising event for young talents in the community.",
+        "Funds raised will be used to support studies and development of youth.",
+        "Goal set at 5 million Ariary."
+      ]
+    },
+    category: "event",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+    location: "Antananarivo",
+    author: "Comité de Développement",
+    readTime: 3
+  },
+  {
+    id: 6,
+    date: "30 Janoary 2025",
+    title: {
+      mg: "Famerenana ny Tranon'ny Razana",
+      fr: "Rénovation de la Maison des Ancêtres",
+      en: "Renovation of the Ancestral House"
+    },
+    excerpt: {
+      mg: "Fikarohana sy fanavaozana ny toerana masina nentin-drazana",
+      fr: "Recherche et rénovation des sites sacrés ancestraux",
+      en: "Research and renovation of sacred ancestral sites"
+    },
+    content: {
+      mg: [
+        "Tetikasa fanavaozana ny tranon'ny razana ao Vatomasina.",
+        "Ity tetikasa ity dia mampiasa teknika nentin-drazana mba hitazonana ny maha-izy azy voalohany.",
+        "Hanampy amin'ny fahafantarana ny tantara sy ny kolontsaina."
+      ],
+      fr: [
+        "Projet de rénovation de la maison ancestrale à Vatomasina.",
+        "Ce projet utilise des techniques traditionnelles pour préserver l'authenticité originelle.",
+        "Contribuera à la connaissance de l'histoire et de la culture."
+      ],
+      en: [
+        "Renovation project of the ancestral house in Vatomasina.",
+        "This project uses traditional techniques to preserve original authenticity.",
+        "Will contribute to knowledge of history and culture."
+      ]
+    },
+    category: "heritage",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    location: "Vatomasina",
+    author: "Comité du Patrimoine",
+    readTime: 5
+  },
+  {
+    id: 7,
+    date: "10 Desambra 2024",
+    title: {
+      mg: "Fankalazana ny Krismasy miaraka amin'ny Ankizy",
+      fr: "Célébration de Noël avec les Enfants",
+      en: "Christmas Celebration with Children"
+    },
+    excerpt: {
+      mg: "Fankalazana ny Krismasy miaraka amin'ny ankizy ao amin'ny faritra Anakara",
+      fr: "Célébration de Noël avec les enfants des régions Anakara",
+      en: "Christmas celebration with children from Anakara regions"
+    },
+    content: {
+      mg: [
+        "Fankalazana ny Krismasy tany Manakara miaraka amin'ny ankizy 200.",
+        "Nomena fanomezana sy sakafo ny ankizy rehetra.",
+        "Hetsika mampifandray ny kolontsaina kristiana sy ny fomban-drazana."
+      ],
+      fr: [
+        "Célébration de Noël à Manakara avec 200 enfants.",
+        "Tous les enfants ont reçu des cadeaux et de la nourriture.",
+        "Événement mêlant culture chrétienne et traditions ancestrales."
+      ],
+      en: [
+        "Christmas celebration in Manakara with 200 children.",
+        "All children received gifts and food.",
+        "Event combining Christian culture and ancestral traditions."
+      ]
+    },
+    category: "event",
+    image: "https://images.unsplash.com/photo-1544717305-99670f9c28f4?w=800&q=80",
+    location: "Manakara",
+    author: "Comité Social",
+    readTime: 3
+  },
+  {
+    id: 8,
+    date: "25 Novambra 2024",
+    title: {
+      mg: "Seminary momba ny Tantaran'ny Anakara",
+      fr: "Séminaire sur l'Histoire des Anakara",
+      en: "Seminar on Anakara History"
+    },
+    excerpt: {
+      mg: "Fampahafantarana momba ny tantara sy ny fiavian'ny foko Anakara",
+      fr: "Sensibilisation sur l'histoire et l'origine du peuple Anakara",
+      en: "Awareness about the history and origin of the Anakara people"
+    },
+    content: {
+      mg: [
+        "Seminary natao tany Toamasina ho an'ny mpianatra sy ny mpikambana.",
+        "Niresaka momba ny tantara, ny fiaviana, ary ny zava-nitranga manan-danja ny foko.",
+        "Nandray anjara olona 150 tamin'ity seminary ity."
+      ],
+      fr: [
+        "Séminaire organisé à Toamasina pour les étudiants et les membres.",
+        "Discussions sur l'histoire, l'origine et les événements importants du peuple.",
+        "150 personnes ont participé à ce séminaire."
+      ],
+      en: [
+        "Seminar organized in Toamasina for students and members.",
+        "Discussions on history, origin and important events of the people.",
+        "150 people participated in this seminar."
+      ]
+    },
+    category: "culture",
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
+    location: "Toamasina",
+    author: "Département Historique",
+    readTime: 4
   }
 ];
+
+export const getRelatedArticles = (currentId: number, limit: number = 3): NewsArticle[] => {
+  return newsArticles
+    .filter(article => article.id !== currentId)
+    .slice(0, limit);
+};
