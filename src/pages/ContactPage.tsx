@@ -161,7 +161,7 @@ const ContactPage = () => {
               </p>
             </motion.div>
 
-            {/* Contact Cards - Compact & Responsive */}
+            {/* Contact Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -171,7 +171,7 @@ const ContactPage = () => {
                 className="col-span-1 md:col-span-2 lg:col-span-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-100 shadow-lg overflow-hidden"
               >
                 {/* Header compact */}
-                <div className="bg-gradient-to-r from-[#ee5253] via-red-600 to-red-700 px-5 py-7 text-white text-center">
+                <div className="bg-linear-to-r from-[#ee5253] via-red-600 to-red-700 px-5 py-7 text-white text-center">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -195,7 +195,7 @@ const ContactPage = () => {
                   </motion.div>
                 </div>
 
-                {/* Grid des locations - plus compacte */}
+                {/* Grid des locations */}
                 <div className="p-4 md:p-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
                     {locations.map((location, index) => (
@@ -204,12 +204,12 @@ const ContactPage = () => {
                         initial={{ opacity: 0, y: 30, scale: 0.96 }}
                         whileInView={{ opacity: 1, y: 0, scale: 1 }}
                         viewport={{ once: true }}
-                        whileTap={{ scale: 0.98 }} // pour mobile interaction
+                        whileTap={{ scale: 0.98 }}
                         transition={{ duration: 0.6, delay: 0.1 + index * 0.08, ease: "easeOut" }}
                         className="bg-white border border-gray-200/50 rounded-lg p-4 md:p-5 shadow-sm hover:shadow-md cursor-pointer"
                       >
                         <div className="flex items-start gap-3">
-                          <div className="flex-shrink-0 mt-1">
+                          <div className="shrink-0 mt-1">
                             <div className="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center border border-red-100">
                               <MapPin className="w-4.5 h-4.5 text-[#ee5253]" strokeWidth={2} />
                             </div>
@@ -231,13 +231,6 @@ const ContactPage = () => {
                       </motion.div>
                     ))}
                   </div>
-                </div>
-
-                {/* Footer subtil */}
-                <div className="px-5 py-4 bg-gray-50/80 border-t border-gray-100 text-center text-xs md:text-sm text-gray-600 font-medium">
-                  {language === 'mg' ? "Antsoina ho an'ny fiaraha-miasa sy ny fanohanana" :
-                    language === 'fr' ? "Contactez-nous pour toute collaboration ou soutien" :
-                      "Contact us for any collaboration or support"}
                 </div>
               </motion.div>
             </div>
