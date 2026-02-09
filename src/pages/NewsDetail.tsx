@@ -54,7 +54,7 @@ const NewsDetail = () => {
                     </h1>
                     <button
                         onClick={() => navigate('/news')}
-                        className="px-6 py-3 bg-gradient-to-r from-[#ee5253] to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                        className="px-6 py-3 bg-linear-to-r from-[#ee5253] to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
                     >
                         {language === 'mg' ? 'Hiverina amin\'ny lisitra' :
                             language === 'fr' ? 'Retour à la liste' :
