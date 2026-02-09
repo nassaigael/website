@@ -38,7 +38,7 @@ const NewsDetail = () => {
 
     if (!article) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+            <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
                 <div className="text-center">
                     <motion.div
                         animate={{ scale: [1, 1.1, 1] }}
@@ -126,7 +126,7 @@ const NewsDetail = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-20"
+            className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-20"
         >
             {/* Copy Alert */}
             <AnimatePresence>
@@ -272,7 +272,7 @@ const NewsDetail = () => {
                         <img
                             src={images[currentImage]}
                             alt={`${article.title[language]} - Image ${currentImage + 1}`}
-                            className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
+                            className="w-full h-75 sm:h-100 md:h-125 lg:h-150 object-cover"
                         />
 
                         {/* Gallery Navigation */}
