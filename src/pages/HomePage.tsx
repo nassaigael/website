@@ -1,18 +1,117 @@
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { motion } from 'framer-motion';
-import { Users, Globe, BookOpen, Award, Target, Heart } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Users, Globe, BookOpen, Award, Target, Heart, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 
 const HomePage = () => {
   const { language } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const carouselSlides = [
+    {
+      image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1920&q=80",
+      title: {
+        mg: "FIZANAKARA",
+        fr: "FIZANAKARA",
+        en: "FIZANAKARA"
+      },
+      subtitle: {
+        mg: "Fikambanan'ny Zanak'Anakara",
+        fr: "Association des Descendants Anakara",
+        en: "Anakara Descendants Association"
+      },
+      description: {
+        mg: "Andao isika hiara-hiasa hampandrosoana ny ANAKARA mba hananan-tsika fireharehàna sy fahatsapana fa masina sy manan-danja io Tanindrazantsika io.",
+        fr: "Travaillons ensemble pour faire progresser les ANAKARA afin que nous ayons la fierté et le sentiment que notre Patrie est sacrée et importante.",
+        en: "Let's work together to advance the ANAKARA so that we have pride and the feeling that our Homeland is sacred and important."
+      }
+    },
+    {
+      image: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1920&q=80",
+      title: {
+        mg: "VAKOKA NENTIN-DRAZANA",
+        fr: "PATRIMOINE ANCESTRAL",
+        en: "ANCESTRAL HERITAGE"
+      },
+      subtitle: {
+        mg: "Hitahiry ny lova tsara navelan'ny razantsika",
+        fr: "Préserver le bon héritage laissé par nos ancêtres",
+        en: "Preserve the good heritage left by our ancestors"
+      },
+      description: {
+        mg: "Miarova sy mitahiry ny kolontsaina, fomba amam-panao, ary ny soratra nentin-drazana Anakara.",
+        fr: "Défendre et préserver la culture, les traditions et l'écriture ancestrale Anakara.",
+        en: "Defend and preserve the culture, traditions and ancestral Anakara writing."
+      }
+    },
+    {
+      image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1920&q=80",
+      title: {
+        mg: "FIARAHAMONINA MIRAY",
+        fr: "COMMUNAUTÉ UNIE",
+        en: "UNITED COMMUNITY"
+      },
+      subtitle: {
+        mg: "Mahery ny 10.000 mpikambana eran-tany",
+        fr: "Plus de 10.000 membres à travers le monde",
+        en: "Over 10,000 members worldwide"
+      },
+      description: {
+        mg: "Mampifandray ny taranaka Anakara manerana izao tontolo izao mba hanamafisana ny fifandraisana sy ny firaisana.",
+        fr: "Relier les générations Anakara à travers le monde pour renforcer les liens et l'unité.",
+        en: "Connecting Anakara generations worldwide to strengthen bonds and unity."
+      }
+    },
+    {
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=80",
+      title: {
+        mg: "FANABEAZANA SY FAMPIROBOROBOANA",
+        fr: "ÉDUCATION ET PROMOTION",
+        en: "EDUCATION AND PROMOTION"
+      },
+      subtitle: {
+        mg: "Manohana ny tanora sy ny fahaizana",
+        fr: "Soutenir la jeunesse et les compétences",
+        en: "Support youth and skills"
+      },
+      description: {
+        mg: "Mandray anjara amin'ny fanomezana fahaizana sy fanampiana ho an'ny tanora Anakara mba hahatratrarany ny fivoarana.",
+        fr: "Contribuer à donner des compétences et de l'aide aux jeunes Anakara pour atteindre le développement.",
+        en: "Contribute to providing skills and assistance to Anakara youth to achieve development."
+      }
+    }
+  ];
+
+  // Auto-play functionality
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (isPlaying) {
+      interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+      }, 5000); // Change slide every 5 seconds
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isPlaying, carouselSlides.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   const content = {
     mg: {
-      hero: {
-        title: "FIZANAKARA",
-        subtitle: "Fikambanan'ny Zanak'Anakara",
-        description: "Andao isika hiara-hiasa hampandrosoana ny ANAKARA mba hananan-tsika fireharehàna sy fahatsapana fa masina sy manan-danja io Tanindrazantsika io.",
-        cta: "Hijery bebe kokoa"
-      },
       about: {
         title: "Iza moa Fizanakara?",
         description: "Ny FIZANAKARA dia fikambanan'ireo taranak'i Ali Tawarath, izay avy ao Vatomasina Vohipeno, faritra Fitovinany. Niorina tamin'ny taona 1970 tao Antananarivo.",
@@ -56,12 +155,6 @@ const HomePage = () => {
       }
     },
     fr: {
-      hero: {
-        title: "FIZANAKARA",
-        subtitle: "Association des Descendants Anakara",
-        description: "Travaillons ensemble pour faire progresser les ANAKARA afin que nous ayons la fierté et le sentiment que notre Patrie est sacrée et importante.",
-        cta: "Voir plus"
-      },
       about: {
         title: "Qui est Fizanakara?",
         description: "FIZANAKARA est l'association des descendants d'Ali Tawarath, originaires de Vatomasina Vohipeno, région Fitovinany. Fondée en 1970 à Antananarivo.",
@@ -105,12 +198,6 @@ const HomePage = () => {
       }
     },
     en: {
-      hero: {
-        title: "FIZANAKARA",
-        subtitle: "Anakara Descendants Association",
-        description: "Let's work together to advance the ANAKARA so that we have pride and the feeling that our Homeland is sacred and important.",
-        cta: "See more"
-      },
       about: {
         title: "Who is Fizanakara?",
         description: "FIZANAKARA is the association of descendants of Ali Tawarath, from Vatomasina Vohipeno, Fitovinany region. Founded in 1970 in Antananarivo.",
@@ -156,45 +243,139 @@ const HomePage = () => {
   };
 
   const t = content[language];
+  const currentSlideData = carouselSlides[currentSlide];
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-gray-900 via-black to-gray-900 text-white pt-24 pb-20 md:pt-32 md:pb-28">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80')] opacity-5 bg-cover bg-center"></div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      {/* Full Screen Carousel */}
+      <section className="relative h-screen">
+        <AnimatePresence mode="wait">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto text-center"
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0"
           >
-            <div className="inline-flex items-center gap-3 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-white/10">
-              <Globe className="text-[#ee5253]" size={20} />
-              <span className="text-sm font-medium">
-                {language === 'mg' ? 'Fikambanana eran-tany' : 
-                 language === 'fr' ? 'Association mondiale' : 
-                 'Worldwide association'}
-              </span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              {t.hero.title}
-            </h1>
-            <p className="text-2xl md:text-3xl text-[#ee5253] font-bold mb-8">
-              {t.hero.subtitle}
-            </p>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              {t.hero.description}
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#ee5253] hover:bg-[#d94646] text-white font-bold py-4 px-10 rounded-full text-lg transition-colors shadow-2xl shadow-[#ee5253]/30"
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${currentSlideData.image})` }}
             >
-              {t.hero.cta}
-            </motion.button>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+            </div>
+
+            {/* Content Overlay */}
+            <div className="relative h-full flex items-center justify-center">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="max-w-4xl mx-auto text-center text-white"
+                >
+                  <div className="inline-flex items-center gap-3 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-white/10">
+                    <Globe className="text-[#ee5253]" size={20} />
+                    <span className="text-sm font-medium">
+                      {language === 'mg' ? 'Fikambanana eran-tany' : 
+                       language === 'fr' ? 'Association mondiale' : 
+                       'Worldwide association'}
+                    </span>
+                  </div>
+                  
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
+                    {currentSlideData.title[language]}
+                  </h1>
+                  <p className="text-2xl md:text-3xl lg:text-4xl text-[#ee5253] font-bold mb-8">
+                    {currentSlideData.subtitle[language]}
+                  </p>
+                  <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    {currentSlideData.description[language]}
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-[#ee5253] hover:bg-[#d94646] text-white font-bold py-4 px-10 rounded-full text-lg transition-colors shadow-2xl shadow-[#ee5253]/30"
+                    >
+                      {language === 'mg' ? 'Hijery bebe kokoa' : 
+                       language === 'fr' ? 'Voir plus' : 
+                       'See more'}
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-transparent border-2 border-white text-white font-bold py-4 px-10 rounded-full text-lg transition-colors hover:bg-white/10"
+                    >
+                      {language === 'mg' ? 'Mifandray' : 
+                       language === 'fr' ? 'Nous contacter' : 
+                       'Contact us'}
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
           </motion.div>
+        </AnimatePresence>
+
+        {/* Carousel Controls */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="flex items-center gap-4">
+            {/* Play/Pause Button */}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="p-2 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-colors"
+            >
+              {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+            </motion.button>
+
+            {/* Navigation Dots */}
+            <div className="flex gap-3">
+              {carouselSlides.map((_, index) => (
+                <motion.button
+                  key={index}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    index === currentSlide
+                      ? 'bg-[#ee5253] scale-125'
+                      : 'bg-white/50 hover:bg-white/80'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex gap-2">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={prevSlide}
+                className="p-2 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-colors"
+              >
+                <ChevronLeft size={20} />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={nextSlide}
+                className="p-2 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-colors"
+              >
+                <ChevronRight size={20} />
+              </motion.button>
+            </div>
+          </div>
+        </div>
+
+        {/* Slide Indicator */}
+        <div className="absolute bottom-4 right-4 z-20">
+          <div className="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+            {currentSlide + 1} / {carouselSlides.length}
+          </div>
         </div>
       </section>
 
@@ -285,7 +466,7 @@ const HomePage = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 bg-linear-to-b from-white to-gray-50">
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -333,7 +514,7 @@ const HomePage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
+      <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -353,7 +534,8 @@ const HomePage = () => {
                 ? 'Indro ny tanako mivelatra ho an\'ny rehetra, indrindra ho an\'ireo taranaka Anakara manerana izao tontolo izao.'
                 : language === 'fr'
                 ? 'Voici ma main tendue à tous, particulièrement aux générations Anakara à travers le monde.'
-                : 'Here is my hand extended to all, especially to Anakara generations around the world.'}
+                : 'Here is my hand extended to all, especially to Anakara generations around the world.'
+              }
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
