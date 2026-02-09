@@ -10,6 +10,8 @@
   --color-background: #ffffff; /* Blanc pour le fond */
   --color-text: #000000;       /* Noir pour le texte */
   --color-accent: #ee5253;     /* Rouge pour les accents */
+  --autre: #e38282;
+  --1: #932020;
   
   /* === COULEURS D'ÉTAT === */
   --color-success: #10b981;

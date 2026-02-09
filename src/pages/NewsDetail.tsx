@@ -9,14 +9,11 @@ import {
     Share2,
     ChevronLeft,
     ChevronRight,
-    Bookmark,
     Facebook,
     Twitter,
     Linkedin,
     Mail,
     Link as LinkIcon,
-    Eye,
-    Heart,
     ArrowRight
 } from 'lucide-react';
 import { newsArticles, getRelatedArticles } from '../data/news';
@@ -29,9 +26,6 @@ const NewsDetail = () => {
     const navigate = useNavigate();
     const { language } = useLanguage();
     const [currentImage, setCurrentImage] = useState(0);
-    const [isBookmarked, setIsBookmarked] = useState(false);
-    const [views] = useState(() => Math.floor(Math.random() * 1000) + 500);
-    const [likes, setLikes] = useState(() => Math.floor(Math.random() * 500) + 100);
     const [showShareMenu, setShowShareMenu] = useState(false);
     const [showCopyAlert, setShowCopyAlert] = useState(false);
 
@@ -74,23 +68,23 @@ const NewsDetail = () => {
     const categoryConfig = {
         event: {
             label: { mg: 'HETSIKA', fr: 'ÉVÉNEMENT', en: 'EVENT' },
-            color: 'bg-gradient-to-r from-blue-500 to-cyan-500'
+            color: 'bg-[#ee5253]'
         },
         project: {
             label: { mg: 'TETIKASA', fr: 'PROJET', en: 'PROJECT' },
-            color: 'bg-gradient-to-r from-emerald-500 to-green-500'
+            color: 'bg-[#ee5253]'
         },
         announcement: {
             label: { mg: 'FANAMBARANA', fr: 'ANNONCE', en: 'ANNOUNCEMENT' },
-            color: 'bg-gradient-to-r from-purple-500 to-pink-500'
+            color: 'bg-[#ee5253]'
         },
         culture: {
             label: { mg: 'KOLONTSAINA', fr: 'CULTURE', en: 'CULTURE' },
-            color: 'bg-gradient-to-r from-amber-500 to-orange-500'
+            color: 'bg-[#ee5253]'
         },
         heritage: {
             label: { mg: 'VAKOKA', fr: 'PATRIMOINE', en: 'HERITAGE' },
-            color: 'bg-gradient-to-r from-rose-500 to-red-500'
+            color: 'bg-[#ee5253]'
         }
     };
 
@@ -113,7 +107,6 @@ const NewsDetail = () => {
                 window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank', 'noopener,noreferrer');
                 break;
             case 'email':
-                // Correction : utiliser un élément anchor
                 {
                     const emailLink = document.createElement('a');
                     emailLink.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${text}\n\n${url}`)}`;
@@ -127,10 +120,6 @@ const NewsDetail = () => {
                 break;
         }
         setShowShareMenu(false);
-    };
-
-    const handleLike = () => {
-        setLikes(prev => prev + 1);
     };
 
     return (
@@ -148,7 +137,7 @@ const NewsDetail = () => {
                         exit={{ opacity: 0, y: -20 }}
                         className="fixed bottom-6 right-6 z-50"
                     >
-                        <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-3">
+                        <div className="bg-[#ee5253] text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-3">
                             <LinkIcon className="w-5 h-5" />
                             <span>
                                 {language === 'mg' ? 'Ny rohy nohoraofina' :
@@ -171,10 +160,10 @@ const NewsDetail = () => {
                         whileHover={{ x: -4 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => navigate('/news')}
-                        className="flex items-center gap-3 px-5 py-3 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-800 transition-all group"
+                        className="flex items-center gap-3 px-5 py-3 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl hover:bg-[#ee5253] border border-gray-200 dark:border-gray-800 transition-all group"
                     >
-                        <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-[#ee5253] transition-colors" />
-                        <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#ee5253] transition-colors">
+                        <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors" />
+                        <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors">
                             {language === 'mg' ? 'Hiverina' :
                                 language === 'fr' ? 'Retour' :
                                     'Back'}
@@ -182,24 +171,12 @@ const NewsDetail = () => {
                     </motion.button>
 
                     <div className="flex items-center gap-3">
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => setIsBookmarked(!isBookmarked)}
-                            className={`p-3 rounded-xl shadow-lg transition-all ${isBookmarked
-                                ? 'bg-linear-to-r from-amber-500 to-orange-500 text-white'
-                                : 'bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:text-amber-500'
-                                } border border-gray-200 dark:border-gray-800`}
-                        >
-                            <Bookmark className="w-5 h-5" fill={isBookmarked ? 'white' : 'transparent'} />
-                        </motion.button>
-
                         <div className="relative">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setShowShareMenu(!showShareMenu)}
-                                className="p-3 bg-linear-to-r from-[#ee5253] to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl"
+                                className="p-3 bg-[#ee5253] text-white rounded-xl shadow-lg hover:shadow-xl"
                             >
                                 <Share2 className="w-5 h-5" />
                             </motion.button>
@@ -282,22 +259,6 @@ const NewsDetail = () => {
                     <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
                         {article.excerpt[language]}
                     </p>
-
-                    {/* Stats */}
-                    <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-gray-200 dark:border-gray-800">
-                        <div className="flex items-center gap-2">
-                            <Eye className="w-5 h-5 text-gray-500" />
-                            <span className="font-medium text-gray-700 dark:text-gray-300">{views.toLocaleString()} {language === 'mg' ? 'mpijery' : language === 'fr' ? 'vues' : 'views'}</span>
-                        </div>
-
-                        <button
-                            onClick={handleLike}
-                            className="flex items-center gap-2 hover:text-rose-500 transition-colors"
-                        >
-                            <Heart className="w-5 h-5" fill="#ef4444" />
-                            <span className="font-medium text-gray-700 dark:text-gray-300">{likes.toLocaleString()}</span>
-                        </button>
-                    </div>
                 </motion.header>
 
                 {/* Main Image Gallery */}
@@ -404,23 +365,9 @@ const NewsDetail = () => {
                     transition={{ delay: 0.6 }}
                     className="flex flex-col sm:flex-row items-center justify-between gap-6 py-8 border-t border-b border-gray-200 dark:border-gray-800 mb-16"
                 >
-                    <div className="flex flex-wrap gap-3">
-                        <span className="text-gray-600 dark:text-gray-400 font-medium">
-                            {language === 'mg' ? 'Marika:' : language === 'fr' ? 'Tags:' : 'Tags:'}
-                        </span>
-                        {['Fizanakara', 'Anakara', 'Kolontsaina', 'Vakoka'].map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-
                     <div className="flex items-center gap-4">
                         <span className="text-gray-600 dark:text-gray-400 font-medium">
-                            {language === 'mg' ? 'Zarao:' : language === 'fr' ? 'Partager:' : 'Share:'}
+                            {language === 'mg' ? 'Zarao :' : language === 'fr' ? 'Partager :' : 'Share :'}
                         </span>
                         <div className="flex gap-2">
                             {[Facebook, Twitter, Linkedin].map((Icon, index) => (
@@ -498,7 +445,7 @@ const NewsDetail = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => navigate('/news')}
-                        className="px-10 py-4 bg-linear-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                        className="px-10 py-4 bg-[#ee5253] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
                     >
                         {language === 'mg' ? 'Hiverina amin\'ny vaovao rehetra' :
                             language === 'fr' ? 'Retour à toutes les actualités' :

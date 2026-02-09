@@ -3,3 +3,4 @@ export * from './footer';
 export * from './contact';
 export * from './partners';
 export * from './news'
+export * from './about'

@@ -13,8 +13,6 @@ import {
     Sparkles,
     X,
     ChevronDown,
-    Clock,
-    Star
 } from 'lucide-react';
 import NewsCard from '../components/sections/NewsCard';
 import { newsArticles } from '../data/news';
@@ -33,37 +31,37 @@ const NewsPage = () => {
             id: 'all',
             icon: Sparkles,
             label: { mg: 'REHETRA', fr: 'TOUS', en: 'ALL' },
-            color: 'from-purple-500 to-pink-500'
+            color: 'bg-[#ee5253]'
         },
         {
             id: 'event',
             icon: Calendar,
             label: { mg: 'HETSIKA', fr: 'ÉVÉNEMENTS', en: 'EVENTS' },
-            color: 'from-blue-500 to-cyan-500'
+            color: 'bg-[#ee5253]'
         },
         {
             id: 'project',
             icon: TrendingUp,
             label: { mg: 'TETIKASA', fr: 'PROJETS', en: 'PROJECTS' },
-            color: 'from-emerald-500 to-green-500'
+            color: 'bg-[#ee5253]'
         },
         {
             id: 'announcement',
             icon: Megaphone,
             label: { mg: 'FANAMBARANA', fr: 'ANNONCES', en: 'ANNOUNCEMENTS' },
-            color: 'from-orange-500 to-red-500'
+            color: 'bg-[#ee5253]'
         },
         {
             id: 'culture',
             icon: Palette,
             label: { mg: 'KOLONTSAINA', fr: 'CULTURE', en: 'CULTURE' },
-            color: 'from-amber-500 to-yellow-500'
+            color: 'bg-[#ee5253]'
         },
         {
             id: 'heritage',
             icon: Castle,
             label: { mg: 'VAKOKA', fr: 'PATRIMOINE', en: 'HERITAGE' },
-            color: 'from-rose-500 to-pink-500'
+            color: 'bg-[#ee5253]'
         }
     ];
 
@@ -83,7 +81,7 @@ const NewsPage = () => {
             const year = parts[2];
             return new Date(`${year}-${month}-${day}`);
         }
-        return new Date(); // Retourne date actuelle si parsing échoue
+        return new Date(); 
     };
 
     // Filter and sort articles
@@ -111,7 +109,6 @@ const NewsPage = () => {
     const featuredArticles = newsArticles.filter(article => article.featured);
     const regularArticles = filteredArticles.filter(article => !article.featured);
 
-    // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -163,8 +160,8 @@ const NewsPage = () => {
                         className="inline-block mb-6"
                     >
                         <div className="relative">
-                            <div className="absolute inset-0 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full blur-xl opacity-75" />
-                            <div className="relative px-8 py-3 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full">
+                            <div className="absolute inset-0 bg-[#ee5253] rounded-full opacity-75" />
+                            <div className="relative px-8 py-3 bg-[#ee5253] rounded-full">
                                 <span className="text-white font-bold tracking-wider">
                                     {language === 'mg' ? 'VAOVAO FARANY' :
                                         language === 'fr' ? 'ACTUALITÉS' :
@@ -173,19 +170,6 @@ const NewsPage = () => {
                             </div>
                         </div>
                     </motion.div>
-
-                    <motion.h1
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6"
-                    >
-                        <span className="bg-clip-text text-transparent bg-linear-to-r from-gray-900 to-[#ee5253] dark:from-white dark:via-gray-300 dark:to-[#ee5253]">
-                            {language === 'mg' ? 'Hetsika & Vaovao' :
-                                language === 'fr' ? 'Événements & Actualités' :
-                                    'Events & News'}
-                        </span>
-                    </motion.h1>
 
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -207,23 +191,6 @@ const NewsPage = () => {
                         transition={{ delay: 0.8 }}
                         className="mb-16"
                     >
-                        <div className="flex items-center justify-between mb-8">
-                            <div className="flex items-center gap-3">
-                                <div className="p-2 bg-linear-to-r from-amber-500 to-orange-500 rounded-lg">
-                                    <Star className="w-5 h-5 text-white" fill="white" />
-                                </div>
-                                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                                    {language === 'mg' ? 'Voavoatra' :
-                                        language === 'fr' ? 'À la une' :
-                                            'Featured'}
-                                </h2>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                                <Clock className="w-4 h-4" />
-                                <span>{language === 'mg' ? 'Vaovao farany' : language === 'fr' ? 'Dernières actualités' : 'Latest updates'}</span>
-                            </div>
-                        </div>
-
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {featuredArticles.map((article, index) => (
                                 <NewsCard
@@ -258,7 +225,7 @@ const NewsPage = () => {
                                     }
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
+                                    className="w-full pl-14 pr-12 py-4 bg-white text-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
                                 />
                                 {searchTerm && (
                                     <motion.button
@@ -301,11 +268,11 @@ const NewsPage = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                    className="flex items-center gap-2 px-4 py-3 bg-gray-100 text-white dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                                     onClick={() => setShowFilters(!showFilters)}
                                 >
                                     <Filter className="w-4 h-4" />
-                                    <span className="text-sm font-medium">
+                                    <span className="text-sm font-mediu0m text-white">
                                         {sortBy === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
                                             sortBy === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
                                                 (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
@@ -331,7 +298,7 @@ const NewsPage = () => {
                                                     }}
                                                     className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
                                                         ? 'bg-[#ee5253]/10 text-[#ee5253]'
-                                                        : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                                                        : 'hover:bg-gray-100 text-white dark:hover:bg-gray-700'
                                                         }`}
                                                 >
                                                     {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
@@ -381,42 +348,6 @@ const NewsPage = () => {
                     </motion.div>
                 </motion.div>
 
-                {/* Results Count */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    className="mb-8"
-                >
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-lg text-gray-600 dark:text-gray-400">
-                                {language === 'mg' ? `Hita ${filteredArticles.length} vaovao` :
-                                    language === 'fr' ? `${filteredArticles.length} actualités trouvées` :
-                                        `${filteredArticles.length} articles found`}
-                            </p>
-                            {searchTerm && (
-                                <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                                    {language === 'mg' ? `Fikarohana ho an'ny "${searchTerm}"` :
-                                        language === 'fr' ? `Recherche pour "${searchTerm}"` :
-                                            `Search for "${searchTerm}"`}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="hidden sm:flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                            <div className="flex items-center gap-1.5">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                                <span>{language === 'mg' ? 'Hetsika' : language === 'fr' ? 'Événements' : 'Events'}</span>
-                            </div>
-                            <div className="flex items-center gap-1.5">
-                                <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                                <span>{language === 'mg' ? 'Tetikasa' : language === 'fr' ? 'Projets' : 'Projects'}</span>
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-
                 {/* Articles Grid/List */}
                 <AnimatePresence mode="wait">
                     {filteredArticles.length > 0 ? (
@@ -452,12 +383,12 @@ const NewsPage = () => {
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                 className="w-48 h-48 mx-auto mb-8 relative"
                             >
-                                <div className="absolute inset-0 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full blur-2xl opacity-20" />
+                                <div className="absolute inset-0 gb-[#ee5253] rounded-full blur-2xl opacity-20" />
                                 <Search className="w-48 h-48 text-gray-300 dark:text-gray-700" />
                             </motion.div>
 
                             <motion.h3
-                                className="text-3xl font-bold text-gray-900 dark:text-white mb-4"
+                                className="text-3xl font-bold text-white mb-4"
                                 initial={{ y: 20 }}
                                 animate={{ y: 0 }}
                                 transition={{ type: "spring" }}
@@ -486,7 +417,7 @@ const NewsPage = () => {
                                     setSelectedCategory('all');
                                     setSortBy('newest');
                                 }}
-                                className="px-8 py-3.5 bg-linear-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                                className="px-8 py-3.5 bg-[#ee5253]  text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
                             >
                                 {language === 'mg' ? 'Hamafa ny safidy rehetra' :
                                     language === 'fr' ? 'Réinitialiser tous les filtres' :
@@ -495,45 +426,6 @@ const NewsPage = () => {
                         </motion.div>
                     )}
                 </AnimatePresence>
-
-                {/* Load More / Pagination */}
-                {filteredArticles.length > 0 && (
-                    <motion.div
-                        className="mt-16 text-center"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.5 }}
-                    >
-                        <motion.div
-                            animate={{
-                                y: [0, -8, 0],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            className="inline-flex items-center gap-3 text-gray-600 dark:text-gray-400"
-                        >
-                            <span className="text-sm">
-                                {language === 'mg' ? 'Mijery vaovao bebe kokoa' :
-                                    language === 'fr' ? 'Voir plus d\'actualités' :
-                                        'View more news'}
-                            </span>
-                            <div className="w-8 h-12 border-2 border-gray-300 dark:border-gray-600 rounded-full p-1">
-                                <motion.div
-                                    animate={{ y: [0, 16, 0] }}
-                                    transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
-                                        ease: "easeInOut"
-                                    }}
-                                    className="w-2 h-2 bg-linear-to-r from-[#ee5253] to-purple-600 rounded-full mx-auto"
-                                />
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
             </div>
         </motion.div>
     );

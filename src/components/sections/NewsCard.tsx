@@ -17,32 +17,32 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
     event: {
       label: { mg: 'HETSIKA', fr: 'ÉVÉNEMENT', en: 'EVENT' },
       color: 'from-blue-500 to-cyan-500',
-      bg: 'bg-blue-500/10',
-      text: 'text-blue-600 dark:text-blue-400'
+      bg: 'bg-[#ee5253]',
+      text: 'text-white'
     },
     project: {
       label: { mg: 'TETIKASA', fr: 'PROJET', en: 'PROJECT' },
       color: 'from-emerald-500 to-green-500',
-      bg: 'bg-emerald-500/10',
-      text: 'text-emerald-600 dark:text-emerald-400'
+      bg: 'bg-[#ee5253]',
+      text: 'text-white'
     },
     announcement: {
       label: { mg: 'FANAMBARANA', fr: 'ANNONCE', en: 'ANNOUNCEMENT' },
       color: 'from-purple-500 to-pink-500',
-      bg: 'bg-purple-500/10',
-      text: 'text-purple-600 dark:text-purple-400'
+      bg: 'bg-[#ee5253]',
+      text: 'text-white'
     },
     culture: {
       label: { mg: 'KOLONTSAINA', fr: 'CULTURE', en: 'CULTURE' },
       color: 'from-amber-500 to-orange-500',
-      bg: 'bg-amber-500/10',
-      text: 'text-amber-600 dark:text-amber-400'
+      bg: 'bg-[#ee5253]',
+      text: 'text-white'
     },
     heritage: {
       label: { mg: 'VAKOKA', fr: 'PATRIMOINE', en: 'HERITAGE' },
       color: 'from-rose-500 to-red-500',
-      bg: 'bg-rose-500/10',
-      text: 'text-rose-600 dark:text-rose-400'
+      bg: 'bg-[#ee5253]',
+      text: 'text-white'
     }
   };
 
@@ -55,12 +55,12 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: index * 0.1 }}
         whileHover={{ y: -8 }}
-        className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 to-black shadow-2xl hover:shadow-3xl transition-all duration-500"
+        className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-gray-900 to-black shadow-2xl hover:shadow-3xl transition-all duration-500"
       >
         {/* Featured Badge */}
         {article.featured && (
           <div className="absolute top-6 right-6 z-20">
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full shadow-lg">
+            <div className="flex items-center gap-2 px-4 py-2 bg-[#ee5253] rounded-full shadow-lg">
               <Star className="w-4 h-4 text-white" fill="white" />
               <span className="text-xs font-bold text-white tracking-wider">
                 {language === 'mg' ? 'VOAVOARY' : language === 'fr' ? 'À LA UNE' : 'FEATURED'}
@@ -69,9 +69,9 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
           </div>
         )}
 
-        <div className="relative h-[500px] overflow-hidden">
+        <div className="relative h-125 overflow-hidden">
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent z-10" />
+          <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent z-10" />
           
           {/* Image */}
           <img
@@ -98,7 +98,7 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
               </div>
             </div>
 
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
               {article.title[language]}
             </h3>
 
@@ -110,7 +110,7 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
               <motion.button
                 whileHover={{ x: 10 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-[#ee5253]/30 transition-all duration-300 group/btn"
+                className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#ee5253] text-white font-bold rounded-xl transition-all duration-300 group/btn"
               >
                 <span className="tracking-wide">
                   {language === 'mg' ? 'HAMAKY NY ZAVA-BITANY' : 
@@ -201,8 +201,8 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
               
               {article.featured && (
                 <div className="flex items-center gap-1 px-3 py-1 bg-amber-500/10 rounded-full">
-                  <Star className="w-3 h-3 text-amber-500" fill="#f59e0b" />
-                  <span className="text-xs font-medium text-amber-600 dark:text-amber-400">
+                  <Star className="w-3 h-3  text-[#ee5253]" fill="#f59e0b" />
+                  <span className="text-xs font-medium  text-[#ee5253]">
                     {language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured'}
                   </span>
                 </div>
@@ -233,7 +233,7 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
       {/* Featured Star */}
       {article.featured && (
         <div className="absolute top-4 right-4 z-10">
-          <div className="p-2 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full shadow-lg">
+          <div className="p-2  bg-[#ee5253] rounded-full shadow-lg">
             <Star className="w-4 h-4 text-white" fill="white" />
           </div>
         </div>
@@ -246,7 +246,7 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
           alt={article.title[language]}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       {/* Content */}
@@ -280,7 +280,7 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 bg-gradient-to-r from-[#ee5253] to-purple-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+              className="px-4 py-2 bg-[#ee5253] text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
             >
               {language === 'mg' ? 'Hamaky' : language === 'fr' ? 'Lire' : 'Read'}
             </motion.button>
@@ -289,7 +289,7 @@ const NewsCard = ({ article, index, viewMode = 'grid' }: NewsCardProps) => {
       </div>
 
       {/* Hover Effect Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ee5253] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#ee5253] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
     </motion.article>
   );
 };
