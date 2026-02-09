@@ -424,105 +424,106 @@ const HomePage = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Enhanced Carousel Controls - MODIFIÉ POUR MOBILE */}
+        {/* Enhanced Carousel Controls - Design Premium sans barre de progression */}
         <div className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20 w-full max-w-4xl px-4">
-          <div className="flex flex-col items-center gap-4 md:gap-6">
-            {/* Progress Bar - Cachée sur mobile, visible sur desktop */}
-            <div className="hidden md:block w-full h-1 bg-white/20 rounded-full overflow-hidden">
-              <motion.div
-                key={currentSlide}
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 5, ease: "linear" }}
-                className="h-full bg-gradient-to-r from-[#ee5253] to-[#932020]"
-              />
-            </div>
+          <div className="flex items-center justify-between w-full">
+            {/* Côté gauche: Play/Pause et Navigation */}
+            <div className="flex items-center gap-3 md:gap-4">
+              {/* Play/Pause */}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg"
+              >
+                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+              </motion.button>
 
-            {/* Contrôles - Nouvelle disposition */}
-            <div className="flex items-center justify-between w-full">
-              {/* Côté gauche: Play/Pause et Navigation */}
-              <div className="flex items-center gap-3 md:gap-4">
-                {/* Play/Pause */}
+              {/* Navigation Previous/Next */}
+              <div className="flex items-center gap-2 md:gap-3">
                 <motion.button
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.1, x: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10"
+                  onClick={prevSlide}
+                  className="p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg"
                 >
-                  {isPlaying ? <Pause size={16} className="md:w-4 md:h-4" /> : <Play size={16} className="md:w-4 md:h-4" />}
+                  <ChevronLeft size={18} />
                 </motion.button>
 
-                {/* Navigation Previous/Next */}
-                <div className="flex items-center gap-1 md:gap-2">
-                  <motion.button
-                    whileHover={{ scale: 1.1, x: -2 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={prevSlide}
-                    className="p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10"
-                  >
-                    <ChevronLeft size={16} className="md:w-4 md:h-4" />
-                  </motion.button>
-
-                  {/* Indicateur de slide - Visible sur desktop seulement */}
-                  <div className="text-white text-sm font-medium hidden md:block">
-                    {currentSlide + 1} / {carouselSlides.length}
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.1, x: 2 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={nextSlide}
-                    className="p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10"
-                  >
-                    <ChevronRight size={16} className="md:w-4 md:h-4" />
-                  </motion.button>
-                </div>
-              </div>
-
-              {/* Côté droit: Indicateur de slide (mobile) et points du carrousel (desktop seulement) */}
-              <div className="flex items-center gap-3 md:gap-4">
-                {/* Indicateur de slide - Version mobile simple */}
-                <div className="text-white text-xs md:text-sm font-medium bg-black/40 backdrop-blur-sm px-2.5 py-1.5 md:px-3 md:py-1 rounded-full md:hidden">
+                {/* Indicateur de slide */}
+                <div className="text-white text-sm md:text-base font-medium bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
                   {currentSlide + 1} / {carouselSlides.length}
                 </div>
 
-                {/* Slide Dots - Cachés sur mobile, visibles sur desktop */}
-                <div className="hidden md:flex gap-3">
-                  {carouselSlides.map((_, index) => (
-                    <motion.button
-                      key={index}
-                      whileHover={{ scale: 1.3 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => goToSlide(index)}
-                      className="group relative"
-                    >
-                      <div className={`w-2 h-2 rounded-full transition-all ${
+                <motion.button
+                  whileHover={{ scale: 1.1, x: 2 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={nextSlide}
+                  className="p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg"
+                >
+                  <ChevronRight size={18} />
+                </motion.button>
+              </div>
+            </div>
+
+            {/* Côté droit: Points du carrousel (desktop seulement) */}
+            <div className="hidden md:flex items-center gap-3">
+              {/* Slide Dots - Version premium avec effet de survol amélioré */}
+              <div className="flex gap-3">
+                {carouselSlides.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    whileHover={{ scale: 1.4 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => goToSlide(index)}
+                    className="group relative"
+                  >
+                    <div className="relative">
+                      <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
                         index === currentSlide
-                          ? 'bg-gradient-to-r from-[#ee5253] to-[#932020] scale-125'
-                          : 'bg-white/50 group-hover:bg-white/80'
+                          ? 'bg-gradient-to-r from-[#ee5253] to-[#932020] scale-100 shadow-lg shadow-[#ee5253]/30'
+                          : 'bg-white/30 group-hover:bg-white/60'
                       }`} />
-                      <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="bg-black/80 backdrop-blur-sm text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                          {index + 1}
-                        </div>
+                      {/* Effet de halo sur le point actif */}
+                      {index === currentSlide && (
+                        <motion.div
+                          className="absolute inset-0 w-3 h-3 rounded-full bg-[#ee5253]"
+                          animate={{ scale: [1, 1.5, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          style={{ opacity: 0.3 }}
+                        />
+                      )}
+                    </div>
+                    
+                    {/* Tooltip au survol */}
+                    <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                      <div className="bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xl">
+                        Slide {index + 1}
+                        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-black/80 rotate-45"></div>
                       </div>
-                    </motion.button>
-                  ))}
-                </div>
+                    </div>
+                  </motion.button>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Version premium */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5 }}
           className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 hidden md:block"
         >
-          <div className="text-white/60 text-sm flex flex-col items-center gap-2">
-            <span>Scroll</span>
-            <ChevronDown className="w-4 h-4" />
+          <div className="flex flex-col items-center gap-1">
+            <div className="text-white/40 text-xs font-light tracking-widest uppercase">
+              {language === 'mg' ? 'Mitsofoka' : language === 'fr' ? 'Défiler' : 'Scroll'}
+            </div>
+            <div className="relative">
+              <ChevronDown className="w-5 h-5 text-white/60" />
+              {/* Effet de ligne en dessous */}
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-[1px] h-6 bg-gradient-to-b from-white/30 to-transparent mt-1"></div>
+            </div>
           </div>
         </motion.div>
       </section>
