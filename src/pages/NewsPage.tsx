@@ -1,11 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Search,
     Filter,
     Calendar,
-    Grid3x3,
-    List,
     TrendingUp,
     Megaphone,
     Palette,
@@ -25,6 +23,24 @@ const NewsPage = () => {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [showFilters, setShowFilters] = useState(false);
     const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'featured'>('newest');
+
+    // Déterminer automatiquement le mode d'affichage selon l'appareil
+    useEffect(() => {
+        const checkDevice = () => {
+            if (window.innerWidth < 768) {
+                setViewMode('grid'); // Mobile = grille
+            } else {
+                setViewMode('list'); // Desktop = liste
+            }
+        };
+
+        checkDevice();
+        window.addEventListener('resize', checkDevice);
+        
+        return () => {
+            window.removeEventListener('resize', checkDevice);
+        };
+    }, []);
 
     const categories = [
         {
@@ -123,7 +139,7 @@ const NewsPage = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-linear-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
+            className="min-h-screen bg-gradient-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
         >
             {/* Animated Background */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -133,7 +149,7 @@ const NewsPage = () => {
                         y: [0, 50, 0],
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
+                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -141,7 +157,7 @@ const NewsPage = () => {
                         y: [0, -50, 0],
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-linear-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"
+                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"
                 />
             </div>
 
@@ -225,7 +241,7 @@ const NewsPage = () => {
                                     }
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-14 pr-12 py-4 bg-white text-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
+                                    className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
                                 />
                                 {searchTerm && (
                                     <motion.button
@@ -242,108 +258,87 @@ const NewsPage = () => {
                             </div>
                         </div>
 
-                        {/* View Toggle */}
-                        <div className="flex items-center gap-4">
-                            <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={() => setViewMode('grid')}
-                                    className={`p-3 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-gray-700 shadow-md' : 'hover:bg-white/50 dark:hover:bg-gray-700/50'}`}
-                                >
-                                    <Grid3x3 className={`w-5 h-5 ${viewMode === 'grid' ? 'text-[#ee5253]' : 'text-gray-500'}`} />
-                                </motion.button>
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={() => setViewMode('list')}
-                                    className={`p-3 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-gray-700 shadow-md' : 'hover:bg-white/50 dark:hover:bg-gray-700/50'}`}
-                                >
-                                    <List className={`w-5 h-5 ${viewMode === 'list' ? 'text-[#ee5253]' : 'text-gray-500'}`} />
-                                </motion.button>
-                            </div>
+                        {/* Sort Dropdown seulement */}
+                        <div className="relative">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                onClick={() => setShowFilters(!showFilters)}
+                            >
+                                <Filter className="w-4 h-4" />
+                                <span className="text-sm font-medium">
+                                    {sortBy === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
+                                        sortBy === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
+                                            (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
+                                </span>
+                                <ChevronDown className="w-4 h-4" />
+                            </motion.button>
 
-                            {/* Sort Dropdown */}
-                            <div className="relative">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="flex items-center gap-2 px-4 py-3 bg-gray-100 text-white dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                                    onClick={() => setShowFilters(!showFilters)}
-                                >
-                                    <Filter className="w-4 h-4" />
-                                    <span className="text-sm font-mediu0m text-white">
-                                        {sortBy === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
-                                            sortBy === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
-                                                (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
-                                    </span>
-                                    <ChevronDown className="w-4 h-4" />
-                                </motion.button>
-
-                                <AnimatePresence>
-                                    {showFilters && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                            className="absolute top-full mt-2 right-0 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-40"
-                                        >
-                                            {['newest', 'oldest', 'featured'].map((option) => (
-                                                <button
-                                                    key={option}
-                                                    onClick={() => {
-                                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                                        setSortBy(option as any);
-                                                        setShowFilters(false);
-                                                    }}
-                                                    className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
-                                                        ? 'bg-[#ee5253]/10 text-[#ee5253]'
-                                                        : 'hover:bg-gray-100 text-white dark:hover:bg-gray-700'
-                                                        }`}
-                                                >
-                                                    {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
-                                                        option === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
-                                                            (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
-                                                </button>
-                                            ))}
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
+                            <AnimatePresence>
+                                {showFilters && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        className="absolute top-full mt-2 right-0 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-40"
+                                    >
+                                        {['newest', 'oldest', 'featured'].map((option) => (
+                                            <button
+                                                key={option}
+                                                onClick={() => {
+                                                    setSortBy(option as 'newest' | 'oldest' | 'featured');
+                                                    setShowFilters(false);
+                                                }}
+                                                className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
+                                                    ? 'bg-[#ee5253]/10 text-[#ee5253]'
+                                                    : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                                                    }`}
+                                            >
+                                                {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
+                                                    option === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
+                                                        (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     </div>
 
-                    {/* Category Filters */}
+                    {/* Category Filters - CENTRÉ */}
                     <motion.div
                         className="mt-8 pt-8 border-t border-gray-200/50 dark:border-gray-800/50"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <div className="flex flex-wrap gap-3">
-                            {categories.map((cat, index) => {
-                                const Icon = cat.icon;
-                                return (
-                                    <motion.button
-                                        key={cat.id}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.05 }}
-                                        whileHover={{ scale: 1.05, y: -2 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() => setSelectedCategory(cat.id)}
-                                        className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
-                                            ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
-                                            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                                            }`}
-                                    >
-                                        <Icon className="w-4 h-4" />
-                                        <span className="font-medium text-sm">
-                                            {cat.label[language]}
-                                        </span>
-                                    </motion.button>
-                                );
-                            })}
+                        <div className="flex justify-center">
+                            <div className="flex flex-wrap gap-3 justify-center">
+                                {categories.map((cat, index) => {
+                                    const Icon = cat.icon;
+                                    return (
+                                        <motion.button
+                                            key={cat.id}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: index * 0.05 }}
+                                            whileHover={{ scale: 1.05, y: -2 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onClick={() => setSelectedCategory(cat.id)}
+                                            className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
+                                                ? `bg-gradient-to-r ${cat.color} text-white shadow-lg`
+                                                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                                }`}
+                                        >
+                                            <Icon className="w-4 h-4" />
+                                            <span className="font-medium text-sm">
+                                                {cat.label[language]}
+                                            </span>
+                                        </motion.button>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </motion.div>
                 </motion.div>
@@ -383,12 +378,12 @@ const NewsPage = () => {
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                 className="w-48 h-48 mx-auto mb-8 relative"
                             >
-                                <div className="absolute inset-0 gb-[#ee5253] rounded-full blur-2xl opacity-20" />
+                                <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-2xl opacity-20" />
                                 <Search className="w-48 h-48 text-gray-300 dark:text-gray-700" />
                             </motion.div>
 
                             <motion.h3
-                                className="text-3xl font-bold text-white mb-4"
+                                className="text-3xl font-bold mb-4"
                                 initial={{ y: 20 }}
                                 animate={{ y: 0 }}
                                 transition={{ type: "spring" }}
@@ -417,7 +412,7 @@ const NewsPage = () => {
                                     setSelectedCategory('all');
                                     setSortBy('newest');
                                 }}
-                                className="px-8 py-3.5 bg-[#ee5253]  text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                                className="px-8 py-3.5 bg-[#ee5253] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
                             >
                                 {language === 'mg' ? 'Hamafa ny safidy rehetra' :
                                     language === 'fr' ? 'Réinitialiser tous les filtres' :
