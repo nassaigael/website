@@ -230,7 +230,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
               </motion.button>
 
               {/* Slide indicator */}
-              <div className="text-white text-xs sm:text-sm md:text-base font-medium bg-black/40 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-full min-w-[60px] sm:min-w-[70px] text-center">
+              <div className="text-white text-xs sm:text-sm md:text-base font-medium bg-black/40 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-1.5 rounded-full min-w-15 sm:min-w-17.5 text-center">
                 {currentSlide + 1} / {slides.length}
               </div>
 

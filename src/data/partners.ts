@@ -3,6 +3,8 @@ import axian from "../assets/images/partners/axian.png";
 export type PartnerCategory = 'institutional' | 'cultural' | 'academic' | 'media' | 'community';
 
 export interface Partner {
+  featured: unknown;
+  location: unknown;
   id: number;
   name: string;
   category: PartnerCategory;
@@ -14,6 +16,7 @@ export interface Partner {
     en: string;
   };
 }
+
 
 export const partnersData = {
   mg: {
@@ -68,7 +71,9 @@ export const partners: Partner[] = [
       mg: 'Minisiteran\'ny Kolontsaina - Fiarovana ny vakoka',
       fr: 'Ministère de la Culture - Protection du patrimoine',
       en: 'Ministry of Culture - Heritage protection'
-    }
+    },
+    featured: undefined,
+    location: undefined
   },
   {
     id: 2,
@@ -80,7 +85,9 @@ export const partners: Partner[] = [
       mg: 'Fampandriam-paharoa ny lova tsy mifindra',
       fr: 'Promotion du patrimoine immatériel',
       en: 'Promotion of intangible heritage'
-    }
+    },
+    featured: undefined,
+    location: undefined
   },
   {
     id: 3,
@@ -92,7 +99,9 @@ export const partners: Partner[] = [
       mg: 'Fikarohana sy fanabeazana momba ny vakoka',
       fr: 'Recherche et éducation sur le patrimoine',
       en: 'Research and education on heritage'
-    }
+    },
+    featured: undefined,
+    location: undefined
   },
   {
     id: 4,
@@ -104,7 +113,9 @@ export const partners: Partner[] = [
       mg: 'Fampielezan-dahatsoratra momba ny kolontsaina',
       fr: 'Diffusion de contenus culturels',
       en: 'Broadcasting cultural content'
-    }
+    },
+    featured: undefined,
+    location: undefined
   },
   {
     id: 5,
@@ -116,7 +127,9 @@ export const partners: Partner[] = [
       mg: 'Fampiroboroboana ny zavakanto malagasy',
       fr: 'Promotion des arts malgaches',
       en: 'Promotion of Malagasy arts'
-    }
+    },
+    featured: undefined,
+    location: undefined
   },
   {
     id: 6,
@@ -128,7 +141,9 @@ export const partners: Partner[] = [
       mg: 'Fiaraha-miasa eo amin\'ny fiarahamonina',
       fr: 'Collaboration communautaire',
       en: 'Community collaboration'
-    }
+    },
+    featured: undefined,
+    location: undefined
   },
   {
     id: 7,
@@ -140,7 +155,9 @@ export const partners: Partner[] = [
       mg: 'Fampielezan-tsary momba ny fomban-drazana',
       fr: 'Diffusion de documentaires sur les traditions',
       en: 'Broadcasting documentaries on traditions'
-    }
+    },
+    featured: undefined,
+    location: undefined
   },
   {
     id: 8,
@@ -152,6 +169,8 @@ export const partners: Partner[] = [
       mg: 'Tranonkala ho an\'ny kolontsaina sy ny zavakanto',
       fr: 'Espace pour la culture et les arts',
       en: 'Space for culture and arts'
-    }
+    },
+    featured: undefined,
+    location: undefined
   }
 ];

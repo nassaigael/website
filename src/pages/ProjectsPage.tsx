@@ -1,15 +1,12 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Search,
-  Filter,
   Grid3x3,
   List,
   TrendingUp,
   Target,
-  Sparkles,
   X,
-  ChevronDown,
   BarChart3,
   Users,
   Award
@@ -23,99 +20,12 @@ const ProjectsPage = () => {
   const t = projectsData[language];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [showFilters, setShowFilters] = useState(false);
-  const [sortBy, setSortBy] = useState<'newest' | 'progress' | 'budget'>('newest');
 
-  const categories = [
-    {
-      id: 'all',
-      icon: Sparkles,
-      label: t.categories.education,
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      id: 'education',
-      icon: TrendingUp,
-      label: t.categories.education,
-      color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      id: 'culture',
-      icon: Award,
-      label: t.categories.culture,
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      id: 'social',
-      icon: Users,
-      label: t.categories.social,
-      color: 'from-green-500 to-emerald-500'
-    },
-    {
-      id: 'infrastructure',
-      icon: BarChart3,
-      label: t.categories.infrastructure,
-      color: 'from-orange-500 to-amber-500'
-    },
-    {
-      id: 'heritage',
-      icon: Target,
-      label: t.categories.heritage,
-      color: 'from-rose-500 to-red-500'
-    },
-    {
-      id: 'environment',
-      icon: Sparkles,
-      label: t.categories.environment,
-      color: 'from-teal-500 to-green-500'
-    }
-  ];
+  // Pas de filtres - afficher tous les projets
+  const allProjects = [...projects];
 
-  const statuses = [
-    { id: 'all', label: { mg: 'REHETRA', fr: 'TOUS', en: 'ALL' } },
-    { id: 'ongoing', label: t.statuses.ongoing },
-    { id: 'completed', label: t.statuses.completed },
-    { id: 'upcoming', label: t.statuses.upcoming },
-    { id: 'planning', label: t.statuses.planning }
-  ];
-
-  // Fonction pour trier les projets
-  const filteredProjects = projects
-    .filter(project => {
-      const matchesSearch =
-        project.title[language].toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.excerpt[language].toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.location.toLowerCase().includes(searchTerm.toLowerCase());
-
-      const matchesCategory =
-        selectedCategory === 'all' || project.category === selectedCategory;
-
-      const matchesStatus =
-        selectedStatus === 'all' || project.status === selectedStatus;
-
-      return matchesSearch && matchesCategory && matchesStatus;
-    })
-    .sort((a, b) => {
-      if (sortBy === 'newest') {
-        // Trier par date de début (simplifié)
-        return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
-      } else if (sortBy === 'progress') {
-        return (b.progress || 0) - (a.progress || 0);
-      } else {
-        // Trier par budget (simplifié)
-        const budgetA = parseFloat(a.budget?.replace(/[^0-9]/g, '') || '0');
-        const budgetB = parseFloat(b.budget?.replace(/[^0-9]/g, '') || '0');
-        return budgetB - budgetA;
-      }
-    });
-
-  const featuredProjects = projects.filter(project => project.featured);
-  const regularProjects = filteredProjects.filter(project => !project.featured);
-
-  // Statistiques
+  // Statistiques (toujours utiles pour l'affichage)
   const stats = {
     total: projects.length,
     ongoing: projects.filter(p => p.status === 'ongoing').length,
@@ -125,6 +35,19 @@ const ProjectsPage = () => {
       return sum + budget;
     }, 0)
   };
+
+  // Garder uniquement la recherche
+  const filteredProjects = allProjects.filter(project => {
+    const matchesSearch =
+      project.title[language].toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.excerpt[language].toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.location.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return matchesSearch;
+  });
+
+  const featuredProjects = projects.filter(project => project.featured);
+  const regularProjects = filteredProjects.filter(project => !project.featured);
 
   return (
     <motion.div
@@ -162,7 +85,7 @@ const ProjectsPage = () => {
           >
             <div className="relative">
               <div className="absolute inset-0 to-teal-600 rounded-full blur-xl opacity-75" />
-              <div className="relative px-8 py-3  bg-[#ee5253] to-teal-600 rounded-full">
+              <div className="relative px-8 py-3 bg-[#ee5253] to-teal-600 rounded-full">
                 <span className="text-white font-bold tracking-wider">
                   {t.title}
                 </span>
@@ -270,7 +193,7 @@ const ProjectsPage = () => {
           </motion.div>
         )}
 
-        {/* Control Bar */}
+        {/* Control Bar - Simplifié sans filtres */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -308,7 +231,7 @@ const ProjectsPage = () => {
               </div>
             </div>
 
-            {/* View Toggle & Sort */}
+            {/* View Toggle seulement */}
             <div className="flex items-center gap-4">
               <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
                 <motion.button
@@ -328,121 +251,25 @@ const ProjectsPage = () => {
                   <List className={`w-5 h-5 ${viewMode === 'list' ? 'text-emerald-500' : 'text-gray-500'}`} />
                 </motion.button>
               </div>
-
-              {/* Sort Dropdown */}
-              <div className="relative">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                  onClick={() => setShowFilters(!showFilters)}
-                >
-                  <Filter className="w-4 h-4" />
-                  <span className="text-sm font-medium">
-                    {sortBy === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
-                      sortBy === 'progress' ? (language === 'mg' ? 'Fandrosoana' : language === 'fr' ? 'Progression' : 'Progress') :
-                        (language === 'mg' ? 'Tetibola' : language === 'fr' ? 'Budget' : 'Budget')}
-                  </span>
-                  <ChevronDown className="w-4 h-4" />
-                </motion.button>
-
-                <AnimatePresence>
-                  {showFilters && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute top-full mt-2 right-0 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-40"
-                    >
-                      {['newest', 'progress', 'budget'].map((option) => (
-                        <button
-                          key={option}
-                          onClick={() => {
-                            setSortBy(option as never);
-                            setShowFilters(false);
-                          }}
-                          className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
-                            ? 'bg-emerald-500/10 text-emerald-500'
-                            : 'hover:bg-gray-100 dark:hover:bg-gray-700'
-                            }`}
-                        >
-                          {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
-                            option === 'progress' ? (language === 'mg' ? 'Fandrosoana' : language === 'fr' ? 'Progression' : 'Progress') :
-                              (language === 'mg' ? 'Tetibola' : language === 'fr' ? 'Budget' : 'Budget')}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
             </div>
           </div>
 
-          {/* Filters */}
+          {/* Message indiquant que tous les projets sont affichés */}
           <motion.div
-            className="mt-8 space-y-6"
+            className="mt-8 pt-6 border-t border-gray-200/50 dark:border-gray-800/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.3 }}
           >
-            {/* Categories */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                {language === 'mg' ? 'Karazana tetikasa' : language === 'fr' ? 'Catégories' : 'Categories'}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {categories.map((cat, index) => {
-                  const Icon = cat.icon;
-                  return (
-                    <motion.button
-                      key={cat.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setSelectedCategory(cat.id)}
-                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
-                        ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
-                        : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                        }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      <span className="font-medium text-sm">
-                        {cat.label}
-                      </span>
-                    </motion.button>
-                  );
-                })}
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-emerald-500/10 rounded-lg">
+                <Users className="w-5 h-5 text-emerald-500" />
               </div>
-            </div>
-
-            {/* Status Filters */}
-            <div>
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                {language === 'mg' ? 'Sata' : language === 'fr' ? 'Statut' : 'Status'}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {statuses.map((status, index) => (
-                  <motion.button
-                    key={status.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSelectedStatus(status.id)}
-                    className={`px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedStatus === status.id
-                      ? 'bg-linear-to-r from-emerald-500 to-teal-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                      }`}
-                  >
-                    <span className="font-medium text-sm">
-                      {typeof status.label === 'object' ? status.label[language] : status.label}
-                    </span>
-                  </motion.button>
-                ))}
-              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {language === 'mg' ? 'Ireo tetikasa rehetra eto amin\'ny lisitra' :
+                  language === 'fr' ? 'Tous les projets sont affichés dans cette liste' :
+                    'All projects are displayed in this list'}
+              </p>
             </div>
           </motion.div>
         </motion.div>
@@ -473,83 +300,77 @@ const ProjectsPage = () => {
         </motion.div>
 
         {/* Projects Grid/List */}
-        <AnimatePresence mode="wait">
-          {filteredProjects.length > 0 ? (
+        {filteredProjects.length > 0 ? (
+          <motion.div
+            key={`${viewMode}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className={viewMode === 'grid'
+              ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+              : "flex flex-col gap-6"
+            }
+          >
+            {regularProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                viewMode={viewMode}
+              />
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            key="no-results"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-20"
+          >
             <motion.div
-              key={`${viewMode}-${selectedCategory}-${selectedStatus}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className={viewMode === 'grid'
-                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-                : "flex flex-col gap-6"
-              }
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="w-48 h-48 mx-auto mb-8 relative"
             >
-              {regularProjects.map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  index={index}
-                  viewMode={viewMode}
-                />
-              ))}
+              <div className="absolute inset-0 bg-linear-to-r from-emerald-500 to-teal-600 rounded-full blur-2xl opacity-20" />
+              <Target className="w-48 h-48 text-gray-300 dark:text-gray-700" />
             </motion.div>
-          ) : (
-            <motion.div
-              key="no-results"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="text-center py-20"
+
+            <motion.h3
+              className="text-3xl font-bold text-gray-900 dark:text-white mb-4"
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              transition={{ type: "spring" }}
             >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="w-48 h-48 mx-auto mb-8 relative"
-              >
-                <div className="absolute inset-0 bg-linear-to-r from-emerald-500 to-teal-600 rounded-full blur-2xl opacity-20" />
-                <Target className="w-48 h-48 text-gray-300 dark:text-gray-700" />
-              </motion.div>
+              {language === 'mg' ? 'Tsy misy tetikasa hita' :
+                language === 'fr' ? 'Aucun projet trouvé' :
+                  'No projects found'}
+            </motion.h3>
 
-              <motion.h3
-                className="text-3xl font-bold text-gray-900 dark:text-white mb-4"
-                initial={{ y: 20 }}
-                animate={{ y: 0 }}
-                transition={{ type: "spring" }}
-              >
-                {language === 'mg' ? 'Tsy misy tetikasa hita' :
-                  language === 'fr' ? 'Aucun projet trouvé' :
-                    'No projects found'}
-              </motion.h3>
+            <motion.p
+              className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto"
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              {language === 'mg' ? `Tsy misy tetikasa mifanaraka amin'ny fikarohana. Andramo ny manova ny teny fikarohana.` :
+                language === 'fr' ? `Aucun projet ne correspond à votre recherche. Essayez de modifier vos termes de recherche.` :
+                  `No projects match your search. Try adjusting your search terms.`}
+            </motion.p>
 
-              <motion.p
-                className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto"
-                initial={{ y: 20 }}
-                animate={{ y: 0 }}
-                transition={{ delay: 0.1 }}
-              >
-                {language === 'mg' ? `Tsy misy tetikasa mifanaraka amin'ny safidy nataonao. Andramo ny manova ny teny fikarohana na ny karazana safidy.` :
-                  language === 'fr' ? `Aucun projet ne correspond à vos critères. Essayez de modifier vos termes de recherche ou vos filtres.` :
-                    `No projects match your criteria. Try adjusting your search terms or filters.`}
-              </motion.p>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('all');
-                  setSelectedStatus('all');
-                  setSortBy('newest');
-                }}
-                className="px-8 py-3.5 bg-linear-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-              >
-                {language === 'mg' ? 'Hamafa ny safidy rehetra' :
-                  language === 'fr' ? 'Réinitialiser tous les filtres' :
-                    'Reset all filters'}
-              </motion.button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                setSearchTerm('');
+              }}
+              className="px-8 py-3.5 bg-linear-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+            >
+              {language === 'mg' ? 'Hamafa ny fikarohana' :
+                language === 'fr' ? 'Effacer la recherche' :
+                  'Clear search'}
+            </motion.button>
+          </motion.div>
+        )}
       </div>
     </motion.div>
   ); 
