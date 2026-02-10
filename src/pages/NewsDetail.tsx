@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Calendar,
     MapPin,
-    Clock,
     User,
     ArrowLeft,
     Share2,
@@ -16,7 +15,7 @@ import {
     Link as LinkIcon,
     Eye
 } from 'lucide-react';
-import { newsArticles, getRelatedArticles } from '../data/news';
+import { newsArticles, getRelatedArticles } from '../data/index';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useState, useEffect } from 'react';
 import NewsCard from '../components/cards/NewsCard';
@@ -176,7 +175,7 @@ const NewsDetail = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setShowShareMenu(!showShareMenu)}
-                                className="p-2 sm:p-3 bg-[#ee5253] text-white rounded-xl shadow-lg hover:shadow-xl"
+                                className="p-2 sm:p-3 bg-[#ee5253] text-white rounded-xl shadow-lg hover:shadow-xl flex items-center justify-center transition-all"
                             >
                                 <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
                             </motion.button>
@@ -239,11 +238,6 @@ const NewsDetail = () => {
                                     <span>{article.location}</span>
                                 </div>
                             )}
-
-                            <div className="flex items-center gap-1.5 sm:gap-2">
-                                <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-                                <span>{article.readTime} min {language === 'mg' ? 'faharoa' : language === 'fr' ? 'de lecture' : 'read'}</span>
-                            </div>
 
                             <div className="flex items-center gap-1.5 sm:gap-2">
                                 <User className="w-3 h-3 sm:w-4 sm:h-4" />

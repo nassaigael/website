@@ -21,7 +21,6 @@ export interface NewsArticle {
   gallery?: string[];
   location?: string;
   author: string;
-  readTime: number; // en minutes
   featured?: boolean;
 }
 
@@ -59,7 +58,6 @@ export const newsArticles: NewsArticle[] = [
     category: "announcement",
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
     author: "Patrick RAMONJAVELO",
-    readTime: 5,
     featured: true
   },
   {
@@ -96,7 +94,6 @@ export const newsArticles: NewsArticle[] = [
     image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80",
     location: "Vatomasina, Vohipeno",
     author: "Comité d'Organisation",
-    readTime: 4,
     featured: true
   },
   {
@@ -132,7 +129,6 @@ export const newsArticles: NewsArticle[] = [
     category: "project",
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
     author: "Département Social",
-    readTime: 3
   },
   {
     id: 4,
@@ -171,7 +167,6 @@ export const newsArticles: NewsArticle[] = [
       "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&q=80"
     ],
     author: "Département Culturel",
-    readTime: 4
   },
   {
     id: 5,
@@ -207,7 +202,6 @@ export const newsArticles: NewsArticle[] = [
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
     location: "Antananarivo",
     author: "Comité de Développement",
-    readTime: 3
   },
   {
     id: 6,
@@ -243,7 +237,6 @@ export const newsArticles: NewsArticle[] = [
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
     location: "Vatomasina",
     author: "Comité du Patrimoine",
-    readTime: 5
   },
   {
     id: 7,
@@ -279,7 +272,6 @@ export const newsArticles: NewsArticle[] = [
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
     location: "Manakara",
     author: "Comité Social",
-    readTime: 3
   },
   {
     id: 8,
@@ -315,7 +307,6 @@ export const newsArticles: NewsArticle[] = [
     image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
     location: "Toamasina",
     author: "Département Historique",
-    readTime: 4
   }
 ];
 
