@@ -86,10 +86,6 @@ const NewsListCard = ({ article, index }: NewsListCardProps) => {
               </div>
             )}
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4" />
-              <span>{article.readTime} min</span>
-            </div>
-            <div className="flex items-center gap-2">
               <User className="w-4 h-4" />
               <span>{article.author}</span>
             </div>
