@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import PartnersHero from '../components/sections/PartnersHero';
-import PartnersGrid from '../components/sections/PartnersGrid';
+import PartnersGrid from '../components/grids/PartnersGrid';
 
 const PartnersPage = () => {
   const { language } = useLanguage();
