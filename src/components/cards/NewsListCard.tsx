@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Clock, User, ArrowRight, Star } from 'lucide-react';
+import { Calendar, MapPin, User, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { type NewsArticle } from '../../data/news';
 import { useLanguage } from '../../contexts/LanguageContext';
