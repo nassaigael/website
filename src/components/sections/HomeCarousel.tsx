@@ -6,6 +6,7 @@ import {
   ChevronRight,
   Play,
   Pause,
+  ChevronRight as ChevronRightIcon,
 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { Slide } from '../../data/index';
@@ -61,6 +62,42 @@ const HomeCarousel: React.FC<CarouselProps> = ({
 
   return (
     <section className="relative h-screen overflow-hidden">
+      {/* Boutons CTA FIXES - placés en dehors du AnimatePresence */}
+      <div className="absolute bottom-32 left-0 right-0 z-30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+            className="flex flex-col sm:flex-row gap-6 justify-start max-w-6xl mx-auto"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative overflow-hidden bg-linear-to-r from-[#ee5253] via-[#e38282] to-[#932020] text-white font-semibold py-5 px-12 rounded-full text-lg transition-all duration-300 shadow-2xl shadow-[#ee5253]/30"
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                {language === 'mg' ? 'Hijery bebe kokoa' :
+                  language === 'fr' ? 'Découvrir plus' :
+                    'Discover more'}
+                <ChevronRightIcon className="group-hover:translate-x-1 transition-transform" size={20} />
+              </span>
+              <div className="absolute inset-0 bg-linear-to-r from-[#932020] via-[#ee5253] to-[#e38282] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white/5 backdrop-blur-lg border border-white/20 text-white font-semibold py-5 px-12 rounded-full text-lg transition-all hover:border-white/40 hover:shadow-2xl hover:shadow-white/10"
+            >
+              {language === 'mg' ? 'Mifandray aminay' :
+                language === 'fr' ? 'Nous rejoindre' :
+                  'Join us'}
+            </motion.button>
+          </motion.div>
+        </div>
+      </div>
+
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -143,38 +180,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 >
                   {currentSlideData.description[language]}
                 </motion.p>
-
-                {/* CTA Buttons */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9 }}
-                  className="flex flex-col sm:flex-row gap-6 justify-start"
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)" }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group relative overflow-hidden bg-linear-to-r from-[#ee5253] via-[#e38282] to-[#932020] text-white font-semibold py-5 px-12 rounded-full text-lg transition-all duration-300 shadow-2xl shadow-[#ee5253]/30"
-                  >
-                    <span className="relative z-10 flex items-center gap-3">
-                      {language === 'mg' ? 'Hijery bebe kokoa' :
-                        language === 'fr' ? 'Découvrir plus' :
-                          'Discover more'}
-                      <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                    </span>
-                    <div className="absolute inset-0 bg-linear-to-r from-[#932020] via-[#ee5253] to-[#e38282] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </motion.button>
-
-                  <motion.button
-                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-white/5 backdrop-blur-lg border border-white/20 text-white font-semibold py-5 px-12 rounded-full text-lg transition-all hover:border-white/40 hover:shadow-2xl hover:shadow-white/10"
-                  >
-                    {language === 'mg' ? 'Mifandray aminay' :
-                      language === 'fr' ? 'Nous rejoindre' :
-                        'Join us'}
-                  </motion.button>
-                </motion.div>
               </motion.div>
             </div>
           </div>
