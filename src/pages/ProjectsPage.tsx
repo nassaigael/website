@@ -14,6 +14,7 @@ import {
 import ProjectCard from '../components/cards/ProjectCard';
 import { projects, projectsData } from '../data/projects';
 import { useLanguage } from '../contexts/LanguageContext';
+import NoResultsState from '../components/states/NoResultsState';
 
 const ProjectsPage = () => {
   const { language } = useLanguage();
@@ -22,7 +23,6 @@ const ProjectsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
-  // Pas de filtres - afficher tous les projets
   const allProjects = [...projects];
 
   // Statistiques (toujours utiles pour l'affichage)
@@ -48,6 +48,21 @@ const ProjectsPage = () => {
 
   const featuredProjects = projects.filter(project => project.featured);
   const regularProjects = filteredProjects.filter(project => !project.featured);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function setSelectedCategory(_arg0: string) {
+    throw new Error('Function not implemented.');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function setSelectedStatus(_arg0: string) {
+    throw new Error('Function not implemented.');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function setSortBy(_arg0: string) {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <motion.div
@@ -320,56 +335,16 @@ const ProjectsPage = () => {
             ))}
           </motion.div>
         ) : (
-          <motion.div
-            key="no-results"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-20"
-          >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="w-48 h-48 mx-auto mb-8 relative"
-            >
-              <div className="absolute inset-0 bg-linear-to-r from-emerald-500 to-teal-600 rounded-full blur-2xl opacity-20" />
-              <Target className="w-48 h-48 text-gray-300 dark:text-gray-700" />
-            </motion.div>
-
-            <motion.h3
-              className="text-3xl font-bold text-gray-900 dark:text-white mb-4"
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ type: "spring" }}
-            >
-              {language === 'mg' ? 'Tsy misy tetikasa hita' :
-                language === 'fr' ? 'Aucun projet trouvé' :
-                  'No projects found'}
-            </motion.h3>
-
-            <motion.p
-              className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto"
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              {language === 'mg' ? `Tsy misy tetikasa mifanaraka amin'ny fikarohana. Andramo ny manova ny teny fikarohana.` :
-                language === 'fr' ? `Aucun projet ne correspond à votre recherche. Essayez de modifier vos termes de recherche.` :
-                  `No projects match your search. Try adjusting your search terms.`}
-            </motion.p>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setSearchTerm('');
-              }}
-              className="px-8 py-3.5 bg-linear-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-            >
-              {language === 'mg' ? 'Hamafa ny fikarohana' :
-                language === 'fr' ? 'Effacer la recherche' :
-                  'Clear search'}
-            </motion.button>
-          </motion.div>
+          <NoResultsState
+            entityType="projects"
+            onResetFilters={() => {
+              setSearchTerm('');
+              setSelectedCategory('all');
+              setSelectedStatus('all');
+              setSortBy('newest');
+            }}
+            searchTerm={searchTerm}
+          />
         )}
       </div>
     </motion.div>

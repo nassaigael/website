@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-    Users, 
-    Globe, 
-    Star, 
-    Search, 
+import {
+    Users,
+    Globe,
+    Star,
+    Search,
     X,
     Building,
     Award,
@@ -13,13 +13,14 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { partnersData, partners, type PartnerCategory } from '../../data/index';
+import NoResultsState from '../states/NoResultsState';
 
 interface PartnersGridProps {
     showSearch?: boolean;
     showStats?: boolean;
 }
 
-const PartnersGrid = ({ 
+const PartnersGrid = ({
     showSearch = true,
 }: PartnersGridProps) => {
     const { language } = useLanguage();
@@ -33,7 +34,7 @@ const PartnersGrid = ({
     );
 
     // Filtrer par recherche
-    const filteredPartners = searchTerm 
+    const filteredPartners = searchTerm
         ? allPartnersSorted.filter(partner =>
             partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             partner.description[language].toLowerCase().includes(searchTerm.toLowerCase())
@@ -76,12 +77,17 @@ const PartnersGrid = ({
         return t.categories[category] || category;
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    function setSelectedCategory(_arg0: string) {
+        throw new Error('Function not implemented.');
+    }
+
     return (
         <section id="partners-grid" className="py-2 md:py-4 bg-linear-to-b from-white via-gray-50/30 to-white relative overflow-hidden">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <motion.div
-                    animate={{ 
+                    animate={{
                         x: [0, 100, 0],
                         y: [0, 50, 0]
                     }}
@@ -89,7 +95,7 @@ const PartnersGrid = ({
                     className="absolute top-1/4 left-1/4 w-160 h-160 bg-linear-to-r from-[#ee5253]/3 to-purple-500/3 rounded-full blur-3xl"
                 />
                 <motion.div
-                    animate={{ 
+                    animate={{
                         x: [0, -100, 0],
                         y: [0, -50, 0]
                     }}
@@ -128,7 +134,7 @@ const PartnersGrid = ({
                                             language === 'mg'
                                                 ? 'Hikaroka mpanohana, sehatra, fanjakana...'
                                                 : language === 'fr' ? 'Rechercher un partenaire, secteur, localisation...'
-                                                : 'Search for a partner, sector, location...'
+                                                    : 'Search for a partner, sector, location...'
                                         }
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -167,14 +173,14 @@ const PartnersGrid = ({
                                     key={partner.id}
                                     initial={{ opacity: 0, y: 50, scale: 0.9 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ 
-                                        delay: index * 0.1, 
+                                    transition={{
+                                        delay: index * 0.1,
                                         duration: 0.6,
                                         type: "spring",
                                         stiffness: 100
                                     }}
-                                    whileHover={{ 
-                                        y: -12, 
+                                    whileHover={{
+                                        y: -12,
                                         scale: 1.03,
                                         transition: { duration: 0.3 }
                                     }}
@@ -184,22 +190,22 @@ const PartnersGrid = ({
                                 >
                                     {/* Premium Card Container */}
                                     <div className="relative h-full bg-linear-to-br from-white to-gray-50/50 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/50">
-                                        
+
                                         {/* Animated Background Layer */}
                                         <div className="absolute inset-0 bg-linear-to-br from-transparent via-transparent to-white/30" />
-                                        
+
                                         {/* Card Header with Premium Effects */}
                                         <div className="relative h-56 bg-linear-to-br from-gray-50/80 to-white/60 p-10 flex items-center justify-center overflow-hidden">
                                             {/* Dynamic Gradient Overlay */}
                                             <div className={`absolute inset-0 bg-linear-to-r ${getCategoryColor(partner.category)} opacity-0 group-hover:opacity-10 transition-opacity duration-700`} />
-                                            
+
                                             {/* Animated Rings */}
                                             <motion.div
                                                 animate={{ rotate: 360 }}
                                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                                 className="absolute inset-0 border-2 border-[#ee5253]/5 rounded-full"
                                             />
-                                            
+
                                             {/* Partner Logo Container */}
                                             <div className="relative z-20">
                                                 <div className="relative p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg">
@@ -289,7 +295,7 @@ const PartnersGrid = ({
 
                                         {/* Premium Hover Effects */}
                                         <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-linear-to-r ${getCategoryColor(partner.category)} transition-transform duration-700 origin-left ${hoveredPartner === partner.id ? 'scale-x-100' : 'scale-x-0'}`} />
-                                        
+
                                         {/* Corner Accents */}
                                         <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#ee5253]/30 rounded-tl-3xl" />
                                         <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#ee5253]/30 rounded-tr-3xl" />
@@ -301,43 +307,14 @@ const PartnersGrid = ({
                             ))}
                         </motion.div>
                     ) : (
-                        // Premium No Results State
-                        <motion.div
-                            key="no-results"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            className="text-center py-32"
-                        >
-                            <div className="relative inline-block mb-10">
-                                <motion.div
-                                    animate={{ scale: [1, 1.1, 1] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
-                                    className="absolute inset-0 bg-linear-to-r from-[#ee5253]/20 to-purple-500/20 rounded-full blur-3xl"
-                                />
-                                <Users className="w-40 h-40 text-gray-300 relative" />
-                            </div>
-
-                            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                                {language === 'mg' ? 'Tsy misy mpanohana hita' : language === 'fr' ? 'Aucun partenaire trouvé' : 'No partners found'}
-                            </h3>
-                            
-                            <p className="text-gray-600 max-w-lg mx-auto mb-10 text-lg">
-                                {language === 'mg'
-                                    ? 'Tsy misy mpanohana mifanaraka amin\'ny fikarohana. Andramo ny manova ny teny fikarohana.'
-                                    : language === 'fr' ? 'Aucun partenaire ne correspond à votre recherche.' : 'No partners match your search. Try adjusting your search terms.'}
-                            </p>
-
-                            <motion.button
-                                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)" }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => setSearchTerm('')}
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-[#ee5253] to-[#ff6b6b] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
-                            >
-                                <X className="w-5 h-5" />
-                                {language === 'mg' ? 'Hamafa ny fikarohana' : language === 'fr' ? 'Effacer la recherche' : 'Clear search'}
-                            </motion.button>
-                        </motion.div>
+                        <NoResultsState
+                            entityType="partners"
+                            onResetFilters={() => {
+                                setSearchTerm('');
+                                setSelectedCategory('all');
+                            }}
+                            searchTerm={searchTerm}
+                        />
                     )}
                 </AnimatePresence>
             </div>

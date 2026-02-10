@@ -15,6 +15,7 @@ import {
 import NewsCard from '../components/cards/NewsCard';
 import { newsArticles } from '../data/index';
 import { useLanguage } from '../contexts/LanguageContext';
+import NoResultsState from '../components/states/NoResultsState';
 
 const NewsPage = () => {
     const { language } = useLanguage();
@@ -139,7 +140,7 @@ const NewsPage = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-gradient-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
+            className="min-h-screen bg-linear-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
         >
             {/* Animated Background */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -149,7 +150,7 @@ const NewsPage = () => {
                         y: [0, 50, 0],
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
+                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -157,7 +158,7 @@ const NewsPage = () => {
                         y: [0, -50, 0],
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"
+                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-linear-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"
                 />
             </div>
 
@@ -327,7 +328,7 @@ const NewsPage = () => {
                                             whileTap={{ scale: 0.95 }}
                                             onClick={() => setSelectedCategory(cat.id)}
                                             className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
-                                                ? `bg-gradient-to-r ${cat.color} text-white shadow-lg`
+                                                ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
                                                 : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-white'
                                                 }`}
                                         >
@@ -366,59 +367,15 @@ const NewsPage = () => {
                             ))}
                         </motion.div>
                     ) : (
-                        <motion.div
-                            key="no-results"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            className="text-center py-20"
-                        >
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                className="w-48 h-48 mx-auto mb-8 relative"
-                            >
-                                <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-2xl opacity-20" />
-                                <Search className="w-48 h-48 text-gray-300 dark:text-gray-700" />
-                            </motion.div>
-
-                            <motion.h3
-                                className="text-3xl font-bold mb- text-white"
-                                initial={{ y: 20 }}
-                                animate={{ y: 0 }}
-                                transition={{ type: "spring" }}
-                            >
-                                {language === 'mg' ? 'Tsy misy vaovao hita' :
-                                    language === 'fr' ? 'Aucun résultat trouvé' :
-                                        'No results found'}
-                            </motion.h3>
-
-                            <motion.p
-                                className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto"
-                                initial={{ y: 20 }}
-                                animate={{ y: 0 }}
-                                transition={{ delay: 0.1 }}
-                            >
-                                {language === 'mg' ? `Tsy misy vaovao mifanaraka amin'ny safidy nataonao. Andramo ny manova ny teny fikarohana na ny karazana safidy.` :
-                                    language === 'fr' ? `Aucun article ne correspond à vos critères. Essayez de modifier vos termes de recherche ou vos filtres.` :
-                                        `No articles match your criteria. Try adjusting your search terms or filters.`}
-                            </motion.p>
-
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => {
-                                    setSearchTerm('');
-                                    setSelectedCategory('all');
-                                    setSortBy('newest');
-                                }}
-                                className="px-8 py-3.5 bg-[#ee5253] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
-                            >
-                                {language === 'mg' ? 'Hamafa ny safidy rehetra' :
-                                    language === 'fr' ? 'Réinitialiser tous les filtres' :
-                                        'Reset all filters'}
-                            </motion.button>
-                        </motion.div>
+                        <NoResultsState
+                            entityType="news"
+                            onResetFilters={() => {
+                                setSearchTerm('');
+                                setSelectedCategory('all');
+                                setSortBy('newest');
+                            }}
+                            searchTerm={searchTerm}
+                        />
                     )}
                 </AnimatePresence>
             </div>
