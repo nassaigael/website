@@ -2,16 +2,14 @@
 
 :root {
   /* === COULEURS PRINCIPALES === */
-  --color-primary: #ee5253;    /* Rouge */
-  --color-secondary: #ffffff;  /* Blanc */
-  --color-tertiary: #000000;   /* Noir */
+  --color-primary: #ee5253;    
+  --color-secondary: #ffffff;  
+  --color-tertiary: #000000;  
   
   /* === COULEURS DE BASE === */
-  --color-background: #ffffff; /* Blanc pour le fond */
-  --color-text: #000000;       /* Noir pour le texte */
-  --color-accent: #ee5253;     /* Rouge pour les accents */
-  --autre: #e38282;
-  --1: #932020;
+  --color-background: #ffffff; 
+  --color-text: #000000;       
+  --color-accent: #ee5253;     
   
   /* === COULEURS D'ÉTAT === */
   --color-success: #10b981;
@@ -20,23 +18,21 @@
   --color-info: #3b82f6;
   
   /* === COULEURS DE SURFACE === */
-  --color-surface-light: #f8fafc; /* Gris très clair */
+  --color-surface-light: #f8fafc; 
   --color-surface-dark: #1e293b;
-  --color-border: #e2e8f0;        /* Gris clair pour les bordures */
+  --color-border: #e2e8f0;
   
   /* === POLICES === */
   --font-family-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-family-serif: 'Georgia', 'Times New Roman', serif;
   --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
   --font-family-malagasy: 'Arial', sans-serif;
-  
-  /* ... le reste de vos variables ... */
-}
+  }
 
 /* === STYLES DE BASE === */
 body {
   font-family: var(--font-family-sans);
-  color: rgb(var(--color-text)); /* Correction ici */
+  color: rgb(var(--color-text));
   background-color: rgb(var(--color-background));
   line-height: var(--line-height-normal);
   font-size: var(--font-size-base);
@@ -44,10 +40,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ... le reste de votre CSS ... */
-@import "tailwindcss";
 
-/* Styles globaux pour une meilleure responsivité */
 html {
   scroll-behavior: smooth;
 }
