@@ -210,7 +210,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="p-2 sm:p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg"
+                className="p-2 sm:p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg flex items-center justify-center"
                 aria-label={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause size={14} className="sm:w-4 sm:h-4 md:w-5 md:h-5" /> : <Play size={14} className="sm:w-4 sm:h-4 md:w-5 md:h-5" />}
@@ -223,7 +223,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 whileHover={{ scale: 1.1, x: -2 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={prevSlide}
-                className="p-2 sm:p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg"
+                className="p-2 sm:p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg flex items-center justify-center"
                 aria-label="Previous slide"
               >
                 <ChevronLeft size={14} className="sm:w-4 sm:h-4 md:w-5 md:h-5" />
@@ -238,7 +238,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 whileHover={{ scale: 1.1, x: 2 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={nextSlide}
-                className="p-2 sm:p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg"
+                className="p-2 sm:p-2.5 md:p-3 bg-black/40 backdrop-blur-lg text-white rounded-full hover:bg-black/60 transition-all border border-white/10 shadow-lg flex items-center justify-center"
                 aria-label="Next slide"
               >
                 <ChevronRight size={14} className="sm:w-4 sm:h-4 md:w-5 md:h-5" />
