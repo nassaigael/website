@@ -276,7 +276,7 @@ export const newsArticles: NewsArticle[] = [
       ]
     },
     category: "event",
-    image: "https://images.unsplash.com/photo-1544717305-99670f9c28f4?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
     location: "Manakara",
     author: "Comité Social",
     readTime: 3

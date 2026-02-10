@@ -13,7 +13,7 @@ import {
     ChevronDown,
 } from 'lucide-react';
 import NewsCard from '../components/cards/NewsCard';
-import { newsArticles } from '../data/news';
+import { newsArticles } from '../data/index';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const NewsPage = () => {
@@ -28,9 +28,9 @@ const NewsPage = () => {
     useEffect(() => {
         const checkDevice = () => {
             if (window.innerWidth < 768) {
-                setViewMode('grid'); // Mobile = grille
+                setViewMode('grid');
             } else {
-                setViewMode('list'); // Desktop = liste
+                setViewMode('list');
             }
         };
 
@@ -241,7 +241,7 @@ const NewsPage = () => {
                                     }
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
+                                    className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 text-white"
                                 />
                                 {searchTerm && (
                                     <motion.button
@@ -266,13 +266,13 @@ const NewsPage = () => {
                                 className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                                 onClick={() => setShowFilters(!showFilters)}
                             >
-                                <Filter className="w-4 h-4" />
-                                <span className="text-sm font-medium">
+                                <Filter className="w-4 h-4 text-white" />
+                                <span className="text-sm text-white font-medium">
                                     {sortBy === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
                                         sortBy === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
                                             (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
                                 </span>
-                                <ChevronDown className="w-4 h-4" />
+                                <ChevronDown className="w-4 h-4 text-white" />
                             </motion.button>
 
                             <AnimatePresence>
@@ -292,7 +292,7 @@ const NewsPage = () => {
                                                 }}
                                                 className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
                                                     ? 'bg-[#ee5253]/10 text-[#ee5253]'
-                                                    : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                                                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-white'
                                                     }`}
                                             >
                                                 {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
@@ -328,7 +328,7 @@ const NewsPage = () => {
                                             onClick={() => setSelectedCategory(cat.id)}
                                             className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
                                                 ? `bg-gradient-to-r ${cat.color} text-white shadow-lg`
-                                                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                                                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-white'
                                                 }`}
                                         >
                                             <Icon className="w-4 h-4" />
@@ -383,7 +383,7 @@ const NewsPage = () => {
                             </motion.div>
 
                             <motion.h3
-                                className="text-3xl font-bold mb-4"
+                                className="text-3xl font-bold mb- text-white"
                                 initial={{ y: 20 }}
                                 animate={{ y: 0 }}
                                 transition={{ type: "spring" }}
