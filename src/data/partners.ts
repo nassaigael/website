@@ -1,22 +1,26 @@
 import axian from "../assets/images/partners/axian.png";
+import henriFraise from "../assets/images/partners/henri_fraise.png";
+import starMadagascar from "../assets/images/partners/star_madagascar.png";
 
-export type PartnerCategory = 'institutional' | 'cultural' | 'academic' | 'media' | 'community';
+export type PartnerCategory = 'foundation' | 'corporate' | 'food_beverage' | 'equipment_distribution';
 
 export interface Partner {
-  featured: unknown;
-  location: unknown;
   id: number;
   name: string;
   category: PartnerCategory;
   logo: string;
-  website?: string;
+  website: string;
   description: {
     mg: string;
     fr: string;
     en: string;
   };
+  featured: boolean;
+  location: string;
+  foundingYear?: number;
+  keyFigures?: Record<string, string>;
+  partnershipFocus?: string[];
 }
-
 
 export const partnersData = {
   mg: {
@@ -24,11 +28,10 @@ export const partnersData = {
     subtitle: 'Izay miara-miasa amintsika',
     description: 'Miaraka amin\'ireo mpanohana sy mpiara-miasa malaza izahay mba hanatanterahana ny tanjona rehetra.',
     categories: {
-      institutional: 'Fikambanana',
-      cultural: 'Kolontsaina',
-      academic: 'Fampianarana',
-      media: 'Haino Aman-jery',
-      community: 'Fiarahamonina'
+      foundation: 'Fondasy',
+      corporate: 'Orinasa',
+      food_beverage: 'Sakafo sy zava-pisotro',
+      equipment_distribution: 'Fizarana fitaovana'
     },
     cta: 'Mba ho Mpanohana'
   },
@@ -37,11 +40,10 @@ export const partnersData = {
     subtitle: 'Ceux qui collaborent avec nous',
     description: 'Nous travaillons avec des partenaires et supporters prestigieux pour atteindre tous nos objectifs.',
     categories: {
-      institutional: 'Institutionnel',
-      cultural: 'Culturel',
-      academic: 'Académique',
-      media: 'Médias',
-      community: 'Communautaire'
+      foundation: 'Fondation',
+      corporate: 'Entreprise',
+      food_beverage: 'Alimentation et Boissons',
+      equipment_distribution: 'Distribution d\'équipements'
     },
     cta: 'Devenir Partenaire'
   },
@@ -50,11 +52,10 @@ export const partnersData = {
     subtitle: 'Those who collaborate with us',
     description: 'We work with prestigious partners and supporters to achieve all our goals.',
     categories: {
-      institutional: 'Institutional',
-      cultural: 'Cultural',
-      academic: 'Academic',
-      media: 'Media',
-      community: 'Community'
+      foundation: 'Foundation',
+      corporate: 'Corporate',
+      food_beverage: 'Food & Beverage',
+      equipment_distribution: 'Equipment Distribution'
     },
     cta: 'Become a Partner'
   }
@@ -63,114 +64,64 @@ export const partnersData = {
 export const partners: Partner[] = [
   {
     id: 1,
-    name: 'Ministère de la Culture',
-    category: 'institutional',
+    name: 'Fondation AXIAN',
+    category: 'foundation',
     logo: axian,
-    website: 'https://culture.gov.mg',
+    website: 'https://www.fondation-axian.org/',
     description: {
-      mg: 'Minisiteran\'ny Kolontsaina - Fiarovana ny vakoka',
-      fr: 'Ministère de la Culture - Protection du patrimoine',
-      en: 'Ministry of Culture - Heritage protection'
+      mg: 'Fondation AXIAN dia manangona ny loharanon-karena olombelona, ara-bola ary ara-bokatra avy amin\'ny orinasa ao amin\'ny Vondrona AXIAN mba hanatanterahana tetikasa ho an\'ny tombontsoa iraisana. Miasa amin\'ny sehatra telo fototra: Fampianarana, Fahasalamana, ary ny Fandrosoana maharitra sy fanampiana ara-panentanana.',
+      fr: 'La Fondation AXIAN mutualise les ressources humaines, financières et matérielles des entreprises du Groupe AXIAN pour déployer des programmes au service de l\'intérêt général. Elle intervient dans trois domaines principaux : Éducation, Santé, et Développement communautaire durable et aide humanitaire.',
+      en: 'The AXIAN Foundation pools human, financial, and material resources from AXIAN Group companies to deploy programs serving the public interest. It operates in three main areas: Education, Health, and Sustainable Community Development and Humanitarian Aid.'
     },
-    featured: undefined,
-    location: undefined
+    featured: true,
+    location: 'Antananarivo, Madagascar',
+    keyFigures: {
+      schools: '207 Sekoly Yas construites et réhabilitées à Madagascar',
+      beneficiaries: '294,700 bénéficiaires des infrastructures de santé',
+      volunteers: '2,000 ACTers mobilisés sur le terrain depuis 2021',
+      programs: '9 programmes entreprise déployés dans 4 pays'
+    },
+    partnershipFocus: ['éducation', 'santé', 'développement communautaire', 'environnement']
   },
   {
     id: 2,
-    name: 'UNESCO Madagascar',
-    category: 'institutional',
-    logo: axian,
-    website: 'https://unesco.org',
+    name: 'Henri Fraise Fils & Cie',
+    category: 'equipment_distribution',
+    logo: henriFraise,
+    website: 'https://henrifraise.com/',
     description: {
-      mg: 'Fampandriam-paharoa ny lova tsy mifindra',
-      fr: 'Promotion du patrimoine immatériel',
-      en: 'Promotion of intangible heritage'
+      mg: 'Henri Fraise Fils & Cie dia mpizara sy mpanome tolotra aorian\'ny fivarotana ho an\'ny milina sy fitaovana Caterpillar eto Madagasikara. Manome vokatra sy tolotra manokana ho an\'ny sehatry ny fanorenana, ny angovo, ary ny asa lehibe.',
+      fr: 'Henri Fraise Fils & Cie est un distributeur et prestataire de services après-vente pour les machines et équipements Caterpillar à Madagascar. L\'entreprise fournit des produits et services spécialisés pour les secteurs de la construction, de l\'énergie et des grands travaux.',
+      en: 'Henri Fraise Fils & Cie is a distributor and after-sales service provider for Caterpillar machinery and equipment in Madagascar. The company provides specialized products and services for the construction, energy, and major works sectors.'
     },
-    featured: undefined,
-    location: undefined
+    featured: true,
+    location: 'Antananarivo, Madagascar',
+    keyFigures: {
+      expertise: 'Expertise unique dédiée à la maintenance des machines',
+      solutions: 'Solutions d\'énergie thermiques et renouvelables',
+      logistics: 'Logistique optimisée pour les pièces détachées OEM'
+    },
+    partnershipFocus: ['équipements', 'infrastructure', 'développement industriel', 'formation technique']
   },
   {
     id: 3,
-    name: 'Université d\'Antananarivo',
-    category: 'academic',
-    logo: axian,
-    website: 'https://univ-antananarivo.mg',
+    name: 'STAR Madagascar',
+    category: 'food_beverage',
+    logo: starMadagascar,
+    website: 'https://www.star.mg/',
     description: {
-      mg: 'Fikarohana sy fanabeazana momba ny vakoka',
-      fr: 'Recherche et éducation sur le patrimoine',
-      en: 'Research and education on heritage'
+      mg: 'STAR, izay Malagasy hatramin\'ny 1953, dia marika malagasy voalohany amin\'ny zava-pisotro. Manantitra ny fahaizana Malagasy, ny saina famoronana ary ny voninahitra Malagasy. Manohana ny tantsaha Malagasy miisa 18,000 ary mampiasa mpiasa 1,650 manerana an\'i Madagasikara.',
+      fr: 'STAR, fièrement Malagasy depuis 1953, est une marque de boissons emblématique de Madagascar. Elle valorise le savoir-faire local, l\'esprit d\'innovation et la fierté malgache. STAR soutient 18,000 agriculteurs locaux et emploie 1,650 collaborateurs à travers Madagascar.',
+      en: 'STAR, proudly Malagasy since 1953, is an iconic beverage brand from Madagascar. It promotes local know-how, innovative spirit, and Malagasy pride. STAR supports 18,000 local farmers and employs 1,650 staff members across Madagascar.'
     },
-    featured: undefined,
-    location: undefined
-  },
-  {
-    id: 4,
-    name: 'Radio Nationale Malagasy',
-    category: 'media',
-    logo: axian,
-    website: 'https://rnm.mg',
-    description: {
-      mg: 'Fampielezan-dahatsoratra momba ny kolontsaina',
-      fr: 'Diffusion de contenus culturels',
-      en: 'Broadcasting cultural content'
+    featured: true,
+    location: 'Antananarivo, Madagascar',
+    keyFigures: {
+      farmers: '18,000 agriculteurs locaux soutenus',
+      salesPoints: '20,000 points de vente',
+      dailyProduction: '2,000,000 de bouteilles transportées par jour',
+      employees: '1,650 collaborateurs dans tout Madagascar'
     },
-    featured: undefined,
-    location: undefined
-  },
-  {
-    id: 5,
-    name: 'MadaCulture',
-    category: 'cultural',
-    logo: axian,
-    website: 'https://madaculture.mg',
-    description: {
-      mg: 'Fampiroboroboana ny zavakanto malagasy',
-      fr: 'Promotion des arts malgaches',
-      en: 'Promotion of Malagasy arts'
-    },
-    featured: undefined,
-    location: undefined
-  },
-  {
-    id: 6,
-    name: 'Fikambanan\'ny Ray aman-dreny',
-    category: 'community',
-    logo: axian,
-    website: '#',
-    description: {
-      mg: 'Fiaraha-miasa eo amin\'ny fiarahamonina',
-      fr: 'Collaboration communautaire',
-      en: 'Community collaboration'
-    },
-    featured: undefined,
-    location: undefined
-  },
-  {
-    id: 7,
-    name: 'TV Plus Madagascar',
-    category: 'media',
-    logo: axian,
-    website: 'https://tvplus.mg',
-    description: {
-      mg: 'Fampielezan-tsary momba ny fomban-drazana',
-      fr: 'Diffusion de documentaires sur les traditions',
-      en: 'Broadcasting documentaries on traditions'
-    },
-    featured: undefined,
-    location: undefined
-  },
-  {
-    id: 8,
-    name: 'Centre Culturel Albert Camus',
-    category: 'cultural',
-    logo: axian,
-    website: 'https://ccac.mg',
-    description: {
-      mg: 'Tranonkala ho an\'ny kolontsaina sy ny zavakanto',
-      fr: 'Espace pour la culture et les arts',
-      en: 'Space for culture and arts'
-    },
-    featured: undefined,
-    location: undefined
+    partnershipFocus: ['développement rural', 'économie locale', 'emploi', 'savoir-faire malgache']
   }
 ];

@@ -15,14 +15,13 @@ const PartnersPage = () => {
       <section id="partners-grid" className="py-8 md:py-8 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            {/* Grille des partenaires */}
-            <PartnersGrid showSearch={true} showStats={true} />
+            <PartnersGrid showSearch={true} />
           </div>
         </div>
       </section>
 
       {/* Section devenir partenaire */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
+      <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">

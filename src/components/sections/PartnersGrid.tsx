@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
+import { 
+    Users, 
+    Globe, 
+    Star, 
+    Search, 
+    X,
     Building,
     Award,
-    BookOpen,
-    Radio,
-    Users,
-    Globe,
-    ChevronRight,
-    Star,
-    Search,
-    X
+    Heart,
+    ExternalLink,
 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { partnersData, partners, type PartnerCategory } from '../../data/partners';
@@ -20,14 +19,13 @@ interface PartnersGridProps {
     showStats?: boolean;
 }
 
-const PartnersGrid = ({
+const PartnersGrid = ({ 
     showSearch = true,
 }: PartnersGridProps) => {
     const { language } = useLanguage();
     const t = partnersData[language];
     const [searchTerm, setSearchTerm] = useState('');
     const [hoveredPartner, setHoveredPartner] = useState<number | null>(null);
-    const [selectedCategory, setSelectedCategory] = useState<PartnerCategory | 'all'>('all');
 
     // Tous les partenaires triés alphabétiquement
     const allPartnersSorted = [...partners].sort((a, b) =>
@@ -35,263 +33,308 @@ const PartnersGrid = ({
     );
 
     // Filtrer par recherche
-    const filteredPartners = searchTerm
+    const filteredPartners = searchTerm 
         ? allPartnersSorted.filter(partner =>
             partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             partner.description[language].toLowerCase().includes(searchTerm.toLowerCase())
         )
         : allPartnersSorted;
 
-    // Filtrer par catégorie si sélectionnée
-    const finalPartners = selectedCategory === 'all'
-        ? filteredPartners
-        : filteredPartners.filter(partner => partner.category === selectedCategory);
+    // Gestionnaire d'erreur pour les images
+    const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        event.currentTarget.style.display = 'none';
+    };
 
+    // Fonction pour obtenir la description du partenaire
+    const getPartnerDescription = (partner: typeof partners[0]): string => {
+        const description = partner.description[language];
+        return typeof description === 'string' ? description : String(description || '');
+    };
+
+    // Fonction pour obtenir l'icône de catégorie
     const getCategoryIcon = (category: PartnerCategory) => {
         switch (category) {
-            case 'institutional': return <Building className="w-5 h-5" />;
-            case 'cultural': return <Award className="w-5 h-5" />;
-            case 'academic': return <BookOpen className="w-5 h-5" />;
-            case 'media': return <Radio className="w-5 h-5" />;
-            case 'community': return <Users className="w-5 h-5" />;
+            case 'foundation': return <Heart className="w-5 h-5" />;
+            case 'equipment_distribution': return <Building className="w-5 h-5" />;
+            case 'food_beverage': return <Award className="w-5 h-5" />;
             default: return <Users className="w-5 h-5" />;
         }
     };
 
+    // Fonction pour obtenir la couleur de catégorie
     const getCategoryColor = (category: PartnerCategory) => {
         switch (category) {
-            case 'institutional': return 'from-blue-500 to-cyan-500';
-            case 'cultural': return 'from-purple-500 to-pink-500';
-            case 'academic': return 'from-emerald-500 to-green-500';
-            case 'media': return 'from-orange-500 to-amber-500';
-            case 'community': return 'from-rose-500 to-red-500';
-            default: return 'from-gray-500 to-gray-700';
+            case 'foundation': return 'from-blue-500 to-cyan-500';
+            case 'equipment_distribution': return 'from-emerald-500 to-green-500';
+            case 'food_beverage': return 'from-orange-500 to-amber-500';
+            default: return 'from-purple-500 to-pink-500';
         }
     };
 
+    // Fonction pour obtenir le nom de la catégorie
+    const getCategoryName = (category: PartnerCategory): string => {
+        return t.categories[category] || category;
+    };
 
     return (
-        <section id="partners-grid" className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50/50 relative overflow-hidden">
-            {/* Background Elements */}
+        <section id="partners-grid" className="py-2 md:py-4 bg-gradient-to-b from-white via-gray-50/30 to-white relative overflow-hidden">
+            {/* Animated Background Elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#ee5253]/5 to-transparent rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tr from-purple-500/5 to-transparent rounded-full blur-3xl" />
+                <motion.div
+                    animate={{ 
+                        x: [0, 100, 0],
+                        y: [0, 50, 0]
+                    }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-gradient-to-r from-[#ee5253]/3 to-purple-500/3 rounded-full blur-3xl"
+                />
+                <motion.div
+                    animate={{ 
+                        x: [0, -100, 0],
+                        y: [0, -50, 0]
+                    }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute bottom-1/4 right-1/4 w-[40rem] h-[40rem] bg-gradient-to-r from-emerald-500/3 to-cyan-500/3 rounded-full blur-3xl"
+                />
+                {/* Grid Pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,#f0f0f0_1px,transparent_1px),linear-gradient(180deg,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.02]" />
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Header Section */}
+                {/* Premium Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-12 md:mb-16"
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
+                    className="mb-16 md:mb-24"
                 >
-                    <div className="text-center max-w-4xl mx-auto mb-10">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                            <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                                {language === 'mg' ? 'Ireo Mpanohana Rehetra' : 'Our Valued Partners'}
-                            </span>
-                        </h2>
 
-                        <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-                            {language === 'mg'
-                                ? 'Fikambanana sy orinasa miara-miasa aminay hanohana ny sehatra samihafa'
-                                : 'Organizations and companies collaborating with us across various domains'}
-                        </p>
-                    </div>
-
-                    {/* Search Bar */}
+                    {/* Premium Search Bar */}
                     {showSearch && (
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="max-w-2xl mx-auto mb-10"
+                            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            transition={{ delay: 0.9, type: "spring" }}
+                            className="max-w-2xl mx-auto mb-16"
                         >
-                            <div className="relative">
-                                <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                                <input
-                                    type="text"
-                                    placeholder={
-                                        language === 'mg'
-                                            ? 'Hikaroka mpanohana, sehatra, fanjakana...'
-                                            : 'Search partners, domains, countries...'
-                                    }
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-14 pr-12 py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200/50 rounded-2xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 shadow-lg"
-                                />
-                                {searchTerm && (
-                                    <motion.button
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        onClick={() => setSearchTerm('')}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#ee5253] transition-colors"
-                                    >
-                                        <X className="w-4 h-4" />
-                                    </motion.button>
-                                )}
+                            <div className="relative group">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-[#ee5253] to-purple-500 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+                                <div className="relative">
+                                    <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 w-6 h-6" />
+                                    <input
+                                        type="text"
+                                        placeholder={
+                                            language === 'mg'
+                                                ? 'Hikaroka mpanohana, sehatra, fanjakana...'
+                                                : 'Search partners, domains, countries...'
+                                        }
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        className="w-full pl-16 pr-14 py-5 bg-white/90 backdrop-blur-xl border-2 border-white/50 rounded-2xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-400 shadow-2xl text-lg"
+                                    />
+                                    {searchTerm && (
+                                        <motion.button
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            whileHover={{ scale: 1.1, rotate: 90 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            onClick={() => setSearchTerm('')}
+                                            className="absolute right-5 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-[#ee5253] transition-colors"
+                                        >
+                                            <X className="w-5 h-5" />
+                                        </motion.button>
+                                    )}
+                                </div>
                             </div>
                         </motion.div>
                     )}
                 </motion.div>
 
-                {/* Partners Grid */}
+                {/* Centered Partners Grid */}
                 <AnimatePresence mode="wait">
-                    {finalPartners.length > 0 ? (
+                    {filteredPartners.length > 0 ? (
                         <motion.div
                             key="partners-grid"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
+                            className="flex flex-wrap justify-center gap-8 md:gap-12 max-w-7xl mx-auto"
                         >
-                            {finalPartners.map((partner, index) => (
+                            {filteredPartners.map((partner, index) => (
                                 <motion.div
                                     key={partner.id}
-                                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                                    initial={{ opacity: 0, y: 50, scale: 0.9 }}
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ delay: index * 0.05, duration: 0.5 }}
-                                    whileHover={{ y: -8, scale: 1.02 }}
+                                    transition={{ 
+                                        delay: index * 0.1, 
+                                        duration: 0.6,
+                                        type: "spring",
+                                        stiffness: 100
+                                    }}
+                                    whileHover={{ 
+                                        y: -12, 
+                                        scale: 1.03,
+                                        transition: { duration: 0.3 }
+                                    }}
                                     onMouseEnter={() => setHoveredPartner(partner.id)}
                                     onMouseLeave={() => setHoveredPartner(null)}
-                                    className="group relative"
+                                    className="group relative flex-1 min-w-[300px] max-w-[400px]"
                                 >
-                                    {/* Card Container */}
-                                    <div className="relative h-full bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200/50">
-
-                                        {/* Card Header with Gradient */}
-                                        <div className="relative h-48 bg-gradient-to-br from-gray-50 to-white p-8 flex items-center justify-center overflow-hidden">
-                                            {/* Animated Background Gradient */}
-                                            <div className={`absolute inset-0 bg-gradient-to-r ${getCategoryColor(partner.category)} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-
-                                            {/* Partner Logo */}
-                                            <div className="relative z-10 transform transition-transform duration-500 group-hover:scale-110">
-                                                <img
-                                                    src={partner.logo}
-                                                    alt={partner.name}
-                                                    className="max-h-20 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
-                                                    onError={(e) => {
-                                                        (e.target as HTMLImageElement).style.display = 'none';
-                                                    }}
-                                                />
+                                    {/* Premium Card Container */}
+                                    <div className="relative h-full bg-gradient-to-br from-white to-gray-50/50 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/50">
+                                        
+                                        {/* Animated Background Layer */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-white/30" />
+                                        
+                                        {/* Card Header with Premium Effects */}
+                                        <div className="relative h-56 bg-gradient-to-br from-gray-50/80 to-white/60 p-10 flex items-center justify-center overflow-hidden">
+                                            {/* Dynamic Gradient Overlay */}
+                                            <div className={`absolute inset-0 bg-gradient-to-r ${getCategoryColor(partner.category)} opacity-0 group-hover:opacity-10 transition-opacity duration-700`} />
+                                            
+                                            {/* Animated Rings */}
+                                            <motion.div
+                                                animate={{ rotate: 360 }}
+                                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                                className="absolute inset-0 border-2 border-[#ee5253]/5 rounded-full"
+                                            />
+                                            
+                                            {/* Partner Logo Container */}
+                                            <div className="relative z-20">
+                                                <div className="relative p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg">
+                                                    <img
+                                                        src={partner.logo}
+                                                        alt={partner.name}
+                                                        className="max-h-24 max-w-[200px] object-contain transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0 grayscale-0"
+                                                        onError={handleImageError}
+                                                    />
+                                                </div>
                                             </div>
 
-                                            {/* Category Badge */}
-                                            <div className="absolute top-4 left-4 z-20">
-                                                <div className="flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full border border-white/20 shadow-md">
+                                            {/* Category Badge - Premium */}
+                                            <div className="absolute top-5 left-5 z-30">
+                                                <div className="flex items-center gap-2.5 px-4 py-2.5 bg-white/95 backdrop-blur-xl rounded-full border border-white/30 shadow-xl">
                                                     <span className="text-[#ee5253]">
                                                         {getCategoryIcon(partner.category)}
                                                     </span>
-                                                    <span className="text-xs font-semibold text-gray-700">
-                                                        {t.categories[partner.category]}
+                                                    <span className="text-sm font-bold text-gray-800 tracking-wide">
+                                                        {getCategoryName(partner.category)}
                                                     </span>
                                                 </div>
                                             </div>
 
-                                            {/* Featured Badge */}
+                                            {/* Premium Featured Badge */}
                                             {partner.featured && (
-                                                <div className="absolute top-4 right-4 z-20">
-                                                    <div className="p-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full shadow-lg">
-                                                        <Star className="w-4 h-4 text-white" />
-                                                    </div>
+                                                <div className="absolute top-5 right-5 z-30">
+                                                    <motion.div
+                                                        animate={{ rotate: [0, 10, -10, 0] }}
+                                                        transition={{ duration: 2, repeat: Infinity }}
+                                                        className="p-2.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 rounded-full shadow-2xl"
+                                                    >
+                                                        <Star className="w-5 h-5 text-white" />
+                                                    </motion.div>
                                                 </div>
                                             )}
                                         </div>
 
-                                        {/* Card Content */}
-                                        <div className="p-6 flex flex-col flex-grow">
-                                            {/* Partner Name */}
-                                            <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#ee5253] transition-colors">
+                                        {/* Premium Card Content */}
+                                        <div className="relative p-8 flex flex-col flex-grow bg-gradient-to-b from-white via-white to-gray-50/30">
+                                            {/* Partner Name with Gradient */}
+                                            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-[#ee5253] group-hover:to-[#d32f2f] transition-all duration-500">
                                                 {partner.name}
                                             </h3>
 
-                                            {/* Description */}
-                                            <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-grow leading-relaxed">
-                                                {partner.description[language]}
+                                            {/* Premium Description */}
+                                            <p className="text-gray-600 mb-6 flex-grow leading-relaxed text-base line-clamp-3">
+                                                {getPartnerDescription(partner)}
                                             </p>
 
-                                            {/* Additional Info */}
-                                            {partner.location && (
-                                                <div className="flex items-center gap-2 text-gray-500 text-sm mb-4">
-                                                    <Globe className="w-4 h-4" />
-                                                    <span>{partner.location}</span>
-                                                </div>
-                                            )}
+                                            {/* Additional Info - Premium */}
+                                            <div className="space-y-3 mb-8">
+                                                {partner.location && (
+                                                    <div className="flex items-center gap-3 text-gray-500">
+                                                        <Globe className="w-5 h-5" />
+                                                        <span className="font-medium">{partner.location}</span>
+                                                    </div>
+                                                )}
+                                            </div>
 
-                                            {/* Action Button */}
-                                            <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100">
+                                            {/* Premium Action Area */}
+                                            <div className="flex items-center justify-between mt-auto pt-8 border-t border-gray-100/50">
+                                                {/* Website Link */}
                                                 {partner.website && partner.website !== '#' ? (
                                                     <a
                                                         href={partner.website}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="group/btn flex items-center gap-2 text-[#ee5253] hover:text-[#d32f2f] font-medium text-sm transition-colors"
+                                                        className="group/btn flex items-center gap-3 text-[#ee5253] hover:text-[#d32f2f] font-bold transition-all"
                                                     >
-                                                        <span>
-                                                            {language === 'mg' ? 'Hitsidiha' : 'Visit Website'}
+                                                        <span className="relative">
+                                                            <span className="relative z-10">
+                                                                {language === 'mg' ? 'Hitsidiha Tranokala' : 'Visit Website'}
+                                                            </span>
+                                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ee5253] group-hover/btn:w-full transition-all duration-300" />
                                                         </span>
-                                                        <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                                        <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                                     </a>
                                                 ) : (
-                                                    <span className="text-gray-400 text-sm italic">
+                                                    <span className="text-gray-400 font-medium italic">
                                                         {language === 'mg' ? 'Tsy misy tranokala' : 'Website coming soon'}
                                                     </span>
                                                 )}
 
-                                                <span className="text-xs bg-gradient-to-r from-[#ee5253]/10 to-[#ff6b6b]/10 text-[#ee5253] px-3 py-1.5 rounded-full font-semibold">
-                                                    {t.categories[partner.category]}
-                                                </span>
                                             </div>
                                         </div>
 
-                                        {/* Hover Effect Line */}
-                                        <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${getCategoryColor(partner.category)} transition-transform duration-500 origin-left ${hoveredPartner === partner.id ? 'scale-x-100' : 'scale-x-0'
-                                            }`} />
+                                        {/* Premium Hover Effects */}
+                                        <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${getCategoryColor(partner.category)} transition-transform duration-700 origin-left ${hoveredPartner === partner.id ? 'scale-x-100' : 'scale-x-0'}`} />
+                                        
+                                        {/* Corner Accents */}
+                                        <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#ee5253]/30 rounded-tl-3xl" />
+                                        <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#ee5253]/30 rounded-tr-3xl" />
                                     </div>
 
-                                    {/* Glow Effect */}
-                                    <div className="absolute -inset-2 bg-gradient-to-r from-transparent via-[#ee5253]/5 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                                    {/* Premium Glow Effect */}
+                                    <div className="absolute -inset-4 bg-gradient-to-r from-transparent via-[#ee5253]/10 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                                 </motion.div>
                             ))}
                         </motion.div>
                     ) : (
-                        // No Results State
+                        // Premium No Results State
                         <motion.div
                             key="no-results"
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className="text-center py-20"
+                            className="text-center py-32"
                         >
-                            <div className="relative inline-block mb-8">
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#ee5253]/20 to-purple-500/20 rounded-full blur-2xl" />
-                                <Users className="w-32 h-32 text-gray-300 relative" />
+                            <div className="relative inline-block mb-10">
+                                <motion.div
+                                    animate={{ scale: [1, 1.1, 1] }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                    className="absolute inset-0 bg-gradient-to-r from-[#ee5253]/20 to-purple-500/20 rounded-full blur-3xl"
+                                />
+                                <Users className="w-40 h-40 text-gray-300 relative" />
                             </div>
 
-                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
                                 {language === 'mg' ? 'Tsy misy mpanohana hita' : 'No partners found'}
                             </h3>
-
-                            <p className="text-gray-600 max-w-md mx-auto mb-8">
+                            
+                            <p className="text-gray-600 max-w-lg mx-auto mb-10 text-lg">
                                 {language === 'mg'
-                                    ? 'Tsy misy mpanohana mifanaraka amin\'ny fikarohana. Andramo ny manova ny teny fikarohana na ny sokajy.'
-                                    : 'No partners match your search criteria. Try adjusting your search terms or category.'}
+                                    ? 'Tsy misy mpanohana mifanaraka amin\'ny fikarohana. Andramo ny manova ny teny fikarohana.'
+                                    : 'No partners match your search. Try adjusting your search terms.'}
                             </p>
 
                             <motion.button
-                                whileHover={{ scale: 1.05 }}
+                                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)" }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => {
-                                    setSearchTerm('');
-                                    setSelectedCategory('all');
-                                }}
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#ee5253] to-[#ff6b6b] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                                onClick={() => setSearchTerm('')}
+                                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#ee5253] to-[#ff6b6b] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
                             >
-                                <X className="w-4 h-4" />
-                                {language === 'mg' ? 'Hamafa ny safidy' : 'Clear filters'}
+                                <X className="w-5 h-5" />
+                                {language === 'mg' ? 'Hamafa ny fikarohana' : 'Clear search'}
                             </motion.button>
                         </motion.div>
                     )}
