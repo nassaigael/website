@@ -36,9 +36,9 @@ const PartnersHero = () => {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-gray-900 to-black text-white">
             {/* Background Elements */}
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2070')] opacity-5 bg-cover bg-fixed" />
+            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2070')] bg-cover bg-fixed" />
 
             {/* Animated Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/80 to-gray-900/90" />

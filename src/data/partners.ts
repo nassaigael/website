@@ -33,7 +33,7 @@ export const partnersData = {
       food_beverage: 'Sakafo sy zava-pisotro',
       equipment_distribution: 'Fizarana fitaovana'
     },
-    cta: 'Mba ho Mpanohana'
+    cta: 'Te hanohana'
   },
   fr: {
     title: 'Partenaires et Supporters',
