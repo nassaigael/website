@@ -1,12 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  Calendar, 
-  MapPin, 
-  TrendingUp, 
-  Users, 
-  Target, 
-  CheckCircle, 
+import {
+  Calendar,
+  MapPin,
+  TrendingUp,
+  Users,
+  Target,
+  CheckCircle,
   ArrowLeft,
   DollarSign,
   BarChart3,
@@ -17,14 +17,14 @@ import {
 import { projects, projectsData, getRelatedProjects } from '../data/projects';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useState } from 'react';
-import ProjectCard from '../components/sections/ProjectCard';
+import ProjectCard from '../components/cards/ProjectCard';
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { language } = useLanguage();
   const t = projectsData[language];
-  
+
   const project = projects.find(p => p.id === parseInt(id || '0'));
   const relatedProjects = project ? getRelatedProjects(project.id) : [];
 
@@ -42,17 +42,17 @@ const ProjectDetail = () => {
             404
           </motion.div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            {language === 'mg' ? 'Tsy hita ny tetikasa' : 
-             language === 'fr' ? 'Projet non trouvé' : 
-             'Project not found'}
+            {language === 'mg' ? 'Tsy hita ny tetikasa' :
+              language === 'fr' ? 'Projet non trouvé' :
+                'Project not found'}
           </h1>
           <button
             onClick={() => navigate('/projects')}
             className="px-6 py-3 bg-linear-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
           >
-            {language === 'mg' ? 'Hiverina amin\'ny lisitra' : 
-             language === 'fr' ? 'Retour à la liste' : 
-             'Back to list'}
+            {language === 'mg' ? 'Hiverina amin\'ny lisitra' :
+              language === 'fr' ? 'Retour à la liste' :
+                'Back to list'}
           </button>
         </div>
       </div>
@@ -69,23 +69,23 @@ const ProjectDetail = () => {
   };
 
   const statusConfig = {
-    ongoing: { 
-      label: t.statuses.ongoing, 
+    ongoing: {
+      label: t.statuses.ongoing,
       color: 'bg-gradient-to-r from-blue-500 to-cyan-500',
       text: 'text-blue-100'
     },
-    completed: { 
-      label: t.statuses.completed, 
+    completed: {
+      label: t.statuses.completed,
       color: 'bg-gradient-to-r from-emerald-500 to-green-500',
       text: 'text-emerald-100'
     },
-    upcoming: { 
-      label: t.statuses.upcoming, 
+    upcoming: {
+      label: t.statuses.upcoming,
       color: 'bg-gradient-to-r from-purple-500 to-pink-500',
       text: 'text-purple-100'
     },
-    planning: { 
-      label: t.statuses.planning, 
+    planning: {
+      label: t.statuses.planning,
       color: 'bg-gradient-to-r from-gray-500 to-gray-700',
       text: 'text-gray-100'
     }
@@ -95,7 +95,7 @@ const ProjectDetail = () => {
   const status = statusConfig[project.status];
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-20"
@@ -112,9 +112,9 @@ const ProjectDetail = () => {
         >
           <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-emerald-500 transition-colors" />
           <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-emerald-500 transition-colors">
-            {language === 'mg' ? 'Hiverina amin\'ny tetikasa' : 
-             language === 'fr' ? 'Retour aux projets' : 
-             'Back to projects'}
+            {language === 'mg' ? 'Hiverina amin\'ny tetikasa' :
+              language === 'fr' ? 'Retour aux projets' :
+                'Back to projects'}
           </span>
         </motion.button>
 
@@ -132,7 +132,7 @@ const ProjectDetail = () => {
             <span className={`px-3 py-1.5 rounded-full ${status.color} ${status.text} font-semibold text-sm`}>
               {status.label}
             </span>
-            
+
             {project.featured && (
               <span className="px-3 py-1.5 bg-linear-to-r from-amber-500 to-orange-500 text-white font-semibold text-sm rounded-full">
                 ⭐ {language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'Prioritaire' : 'Featured'}
@@ -157,7 +157,7 @@ const ProjectDetail = () => {
               </div>
               <p className="font-semibold text-gray-900 dark:text-white">{project.startDate}</p>
             </div>
-            
+
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                 <MapPin className="w-4 h-4" />
@@ -165,7 +165,7 @@ const ProjectDetail = () => {
               </div>
               <p className="font-semibold text-gray-900 dark:text-white">{project.location}</p>
             </div>
-            
+
             {project.budget && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
@@ -175,7 +175,7 @@ const ProjectDetail = () => {
                 <p className="font-semibold text-gray-900 dark:text-white">{project.budget}</p>
               </div>
             )}
-            
+
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                 <Users className="w-4 h-4" />
@@ -199,7 +199,7 @@ const ProjectDetail = () => {
               alt={project.title[language]}
               className="w-full h-100 sm:h-125 object-cover"
             />
-            
+
             {/* Progress Overlay */}
             {project.progress && (
               <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-6">
@@ -243,8 +243,8 @@ const ProjectDetail = () => {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`flex items-center gap-2 px-6 py-3 border-b-2 transition-all ${activeTab === tab.id
-                    ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
-                    : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
+                  ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                  : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
                   }`}
               >
                 <tab.icon className="w-4 h-4" />
@@ -271,7 +271,7 @@ const ProjectDetail = () => {
                   </p>
                 ))}
               </div>
-              
+
               {/* Gallery */}
               {project.gallery && project.gallery.length > 0 && (
                 <div className="mt-12">
@@ -361,7 +361,7 @@ const ProjectDetail = () => {
                       <p className="text-gray-600 dark:text-gray-400">{project.startDate}</p>
                     </div>
                   </div>
-                  
+
                   {project.endDate && (
                     <div className="flex items-center gap-4 p-4 bg-linear-to-r from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
                       <div className="p-3 bg-green-500/10 rounded-lg">
@@ -392,7 +392,7 @@ const ProjectDetail = () => {
                       {language === 'mg' ? 'Mpiara-miasa' : language === 'fr' ? 'Partenaires' : 'Partners'}
                     </p>
                   </div>
-                  
+
                   <div className="p-6 bg-linear-to-br from-emerald-500/5 to-green-500/5 rounded-2xl border border-emerald-500/20">
                     <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
                       {project.progress || 0}%
@@ -401,11 +401,11 @@ const ProjectDetail = () => {
                       {language === 'mg' ? 'Fandrosoana' : language === 'fr' ? 'Progression' : 'Progress'}
                     </p>
                   </div>
-                  
+
                   <div className="p-6 bg-linear-to-br from-purple-500/5 to-pink-500/5 rounded-2xl border border-purple-500/20">
                     <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                      {project.status === 'completed' ? '100%' : 
-                       project.status === 'ongoing' ? `${project.progress || 0}%` : '0%'}
+                      {project.status === 'completed' ? '100%' :
+                        project.status === 'ongoing' ? `${project.progress || 0}%` : '0%'}
                     </div>
                     <p className="text-gray-700 dark:text-gray-300">
                       {status.label}
@@ -451,9 +451,9 @@ const ProjectDetail = () => {
                     <span className="text-gray-700 dark:text-gray-300">{project.contactPerson}</span>
                   </div>
                   {project.website && (
-                    <a 
-                      href={project.website} 
-                      target="_blank" 
+                    <a
+                      href={project.website}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
                     >
@@ -478,17 +478,17 @@ const ProjectDetail = () => {
             <div className="flex items-center justify-between mb-10">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                  {language === 'mg' ? 'Tetikasa mifandraika' : 
-                   language === 'fr' ? 'Projets similaires' : 
-                   'Related projects'}
+                  {language === 'mg' ? 'Tetikasa mifandraika' :
+                    language === 'fr' ? 'Projets similaires' :
+                      'Related projects'}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400">
                   {language === 'mg' ? 'Mijery ireo tetikasa hafa mety ho liana aminao' :
-                   language === 'fr' ? 'Découvrez d\'autres projets qui pourraient vous intéresser' :
-                   'Discover other projects you might be interested in'}
+                    language === 'fr' ? 'Découvrez d\'autres projets qui pourraient vous intéresser' :
+                      'Discover other projects you might be interested in'}
                 </p>
               </div>
-              
+
               <motion.button
                 whileHover={{ x: 4 }}
                 whileTap={{ scale: 0.95 }}
@@ -496,9 +496,9 @@ const ProjectDetail = () => {
                 className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold group"
               >
                 <span>
-                  {language === 'mg' ? 'Hijery ny rehetra' : 
-                   language === 'fr' ? 'Voir tout' : 
-                   'View all'}
+                  {language === 'mg' ? 'Hijery ny rehetra' :
+                    language === 'fr' ? 'Voir tout' :
+                      'View all'}
                 </span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
               </motion.button>
@@ -506,9 +506,9 @@ const ProjectDetail = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {relatedProjects.map((relatedProject, index) => (
-                <ProjectCard 
-                  key={relatedProject.id} 
-                  project={relatedProject} 
+                <ProjectCard
+                  key={relatedProject.id}
+                  project={relatedProject}
                   index={index}
                 />
               ))}
@@ -529,9 +529,9 @@ const ProjectDetail = () => {
             onClick={() => navigate('/projects')}
             className="px-10 py-4 bg-linear-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
           >
-            {language === 'mg' ? 'Hiverina amin\'ny tetikasa rehetra' : 
-             language === 'fr' ? 'Retour à tous les projets' : 
-             'Back to all projects'}
+            {language === 'mg' ? 'Hiverina amin\'ny tetikasa rehetra' :
+              language === 'fr' ? 'Retour à tous les projets' :
+                'Back to all projects'}
           </motion.button>
         </motion.div>
       </div>

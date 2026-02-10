@@ -19,7 +19,7 @@ import {
 import { newsArticles, getRelatedArticles } from '../data/news';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useState, useEffect } from 'react';
-import NewsCard from '../components/sections/NewsCard';
+import NewsCard from '../components/cards/NewsCard';
 
 const NewsDetail = () => {
     const { id } = useParams();
@@ -305,8 +305,8 @@ const NewsDetail = () => {
                                             whileTap={{ scale: 0.9 }}
                                             onClick={() => setCurrentImage(index)}
                                             className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${index === currentImage
-                                                    ? 'bg-white scale-125'
-                                                    : 'bg-white/50 hover:bg-white/80'
+                                                ? 'bg-white scale-125'
+                                                : 'bg-white/50 hover:bg-white/80'
                                                 }`}
                                         />
                                     ))}
@@ -325,8 +325,8 @@ const NewsDetail = () => {
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => setCurrentImage(index)}
                                     className={`shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${index === currentImage
-                                            ? 'border-[#ee5253] shadow-lg'
-                                            : 'border-transparent hover:border-gray-300'
+                                        ? 'border-[#ee5253] shadow-lg'
+                                        : 'border-transparent hover:border-gray-300'
                                         }`}
                                 >
                                     <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
@@ -417,8 +417,8 @@ const NewsDetail = () => {
                                 <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
                                 <span>
                                     {language === 'mg' ? 'Hijery ny rehetra' :
-                                     language === 'fr' ? 'Voir tout' :
-                                     'View all'}
+                                        language === 'fr' ? 'Voir tout' :
+                                            'View all'}
                                 </span>
                             </motion.button>
                         </div>

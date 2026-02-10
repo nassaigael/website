@@ -12,7 +12,7 @@ import {
     X,
     ChevronDown,
 } from 'lucide-react';
-import NewsCard from '../components/sections/NewsCard';
+import NewsCard from '../components/cards/NewsCard';
 import { newsArticles } from '../data/news';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -36,7 +36,7 @@ const NewsPage = () => {
 
         checkDevice();
         window.addEventListener('resize', checkDevice);
-        
+
         return () => {
             window.removeEventListener('resize', checkDevice);
         };
@@ -97,7 +97,7 @@ const NewsPage = () => {
             const year = parts[2];
             return new Date(`${year}-${month}-${day}`);
         }
-        return new Date(); 
+        return new Date();
     };
 
     // Filter and sort articles

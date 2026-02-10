@@ -11,7 +11,7 @@ import {
   Users,
   Award
 } from 'lucide-react';
-import ProjectCard from '../components/sections/ProjectCard';
+import ProjectCard from '../components/cards/ProjectCard';
 import { projects, projectsData } from '../data/projects';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -373,7 +373,7 @@ const ProjectsPage = () => {
         )}
       </div>
     </motion.div>
-  ); 
+  );
 };
 
 export default ProjectsPage;
