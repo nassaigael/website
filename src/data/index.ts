@@ -4,3 +4,5 @@ export * from './contact';
 export * from './partners';
 export * from './news'
 export * from './about'
+export * from './homepage-icons'
+export * from './homepage'
