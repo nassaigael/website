@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Users, Award, TrendingUp, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { partnersData, partners } from '../../data/index';
+import { Link } from 'react-router-dom';
 
 const PartnersHero = () => {
     const { language } = useLanguage();
@@ -145,36 +146,40 @@ const PartnersHero = () => {
                         transition={{ delay: 1.6 }}
                         className="relative"
                     >
-                        <motion.button
-                            whileHover={{
-                                scale: 1.05,
-                                boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)"
-                            }}
-                            whileTap={{ scale: 0.97 }}
-                            onClick={scrollToPartners}
-                            className="group relative overflow-hidden bg-linear-to-r from-[#ee5253] via-[#ff6b6b] to-[#d32f2f] text-white font-bold py-4 px-8 md:py-5 md:px-14 rounded-full text-lg md:text-xl transition-all duration-300 shadow-2xl shadow-[#ee5253]/30"
-                        >
-                            {/* Button Content */}
-                            <span className="relative z-10 flex items-center justify-center gap-3 md:gap-4">
-                                <Users className="w-6 h-6 md:w-7 md:h-7" />
-                                <span className="tracking-wide">{t.cta}</span>
-                                <motion.div
-                                    animate={{ x: [0, 5, 0] }}
-                                    transition={{ duration: 1.5, repeat: Infinity }}
-                                    className="hidden sm:block"
-                                >
-                                    <ChevronDown className="w-5 h-5" />
-                                </motion.div>
-                            </span>
 
-                            {/* Button Hover Effect */}
-                            <div className="absolute inset-0 bg-linear-to-r from-[#d32f2f] via-[#ee5253] to-[#ff6b6b] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <Link to={'/contact'}>
 
-                            {/* Shine Effect */}
-                            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
-                                <div className="w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-                            </div>
-                        </motion.button>
+                            <motion.button 
+                                whileHover={{
+                                    scale: 1.05,
+                                    boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)"
+                                }}
+                                whileTap={{ scale: 0.97 }}
+                                onClick={scrollToPartners}
+                                className="group relative overflow-hidden bg-linear-to-r from-[#ee5253] via-[#ff6b6b] to-[#d32f2f] text-white font-bold py-4 px-8 md:py-5 md:px-14 rounded-full text-lg md:text-xl transition-all duration-300 shadow-2xl shadow-[#ee5253]/30"
+                            >
+                                {/* Button Content */}
+                                <span className="relative z-10 flex items-center justify-center gap-3 md:gap-4">
+                                    <Users className="w-6 h-6 md:w-7 md:h-7" />
+                                    <span className="tracking-wide">{t.cta}</span>
+                                    <motion.div
+                                        animate={{ x: [0, 5, 0] }}
+                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                        className="hidden sm:block"
+                                    >
+                                        <ChevronDown className="w-5 h-5" />
+                                    </motion.div>
+                                </span>
+
+                                {/* Button Hover Effect */}
+                                <div className="absolute inset-0 bg-linear-to-r from-[#d32f2f] via-[#ee5253] to-[#ff6b6b] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                                {/* Shine Effect */}
+                                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
+                                    <div className="w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12" />
+                                </div>
+                            </motion.button>
+                        </Link>
                     </motion.div>
                 </motion.div>
             </div>
