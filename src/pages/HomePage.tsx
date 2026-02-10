@@ -44,7 +44,7 @@ const HomePage = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, carouselSlides.length]);
+  }, [isPlaying]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
@@ -92,7 +92,7 @@ const HomePage = () => {
             </div>
 
             {/* Animated Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/30"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-black/40 via-transparent to-black/30"></div>
 
             {/* Floating Elements */}
             <div className="absolute top-20 left-10 w-32 h-32 bg-[#ee5253]/10 rounded-full blur-3xl"></div>
@@ -112,7 +112,7 @@ const HomePage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-black/30 to-black/10 backdrop-blur-lg px-6 py-3 rounded-full mb-10 border border-white/10 shadow-2xl"
+                    className="inline-flex items-center gap-2 bg-linear-to-r from-black/30 to-black/10 backdrop-blur-lg px-6 py-3 rounded-full mb-10 border border-white/10 shadow-2xl"
                   >
                     <div className="w-2 h-2 bg-[#ee5253] rounded-full animate-pulse"></div>
                     <Sparkles className="text-[#ee5253]" size={16} />
@@ -126,18 +126,18 @@ const HomePage = () => {
                   {/* Main Title */}
                   <div className="mb-8">
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
-                      <span className="bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
+                      <span className="bg-linear-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
                         {currentSlideData.title[language]}
                       </span>
                     </h1>
 
                     <div className="relative inline-block">
                       <p className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
-                        <span className="bg-gradient-to-r from-[#ee5253] via-[#e38282] to-[#932020] bg-clip-text text-transparent">
+                        <span className="bg-linear-to-r from-[#ee5253] via-[#e38282] to-[#932020] bg-clip-text text-transparent">
                           {currentSlideData.subtitle[language]}
                         </span>
                       </p>
-                      <div className="absolute -bottom-2 left-0 w-1/3 h-1 bg-gradient-to-r from-[#ee5253] to-transparent rounded-full"></div>
+                      <div className="absolute -bottom-2 left-0 w-1/3 h-1 bg-linear-to-r from-[#ee5253] to-transparent rounded-full"></div>
                     </div>
                   </div>
 
@@ -161,7 +161,7 @@ const HomePage = () => {
                     <motion.button
                       whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)" }}
                       whileTap={{ scale: 0.95 }}
-                      className="group relative overflow-hidden bg-gradient-to-r from-[#ee5253] via-[#e38282] to-[#932020] text-white font-semibold py-5 px-12 rounded-full text-lg transition-all duration-300 shadow-2xl shadow-[#ee5253]/30"
+                      className="group relative overflow-hidden bg-linear-to-r from-[#ee5253] via-[#e38282] to-[#932020] text-white font-semibold py-5 px-12 rounded-full text-lg transition-all duration-300 shadow-2xl shadow-[#ee5253]/30"
                     >
                       <span className="relative z-10 flex items-center gap-3">
                         {language === 'mg' ? 'Hijery bebe kokoa' :
@@ -169,7 +169,7 @@ const HomePage = () => {
                             'Discover more'}
                         <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#932020] via-[#ee5253] to-[#e38282] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-linear-to-r from-[#932020] via-[#ee5253] to-[#e38282] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </motion.button>
 
                     <motion.button
@@ -244,7 +244,7 @@ const HomePage = () => {
                   >
                     <div className="relative">
                       <div className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                        ? 'bg-gradient-to-r from-[#ee5253] to-[#932020] scale-100 shadow-lg shadow-[#ee5253]/30'
+                        ? 'bg-linear-to-r from-[#ee5253] to-[#932020] scale-100 shadow-lg shadow-[#ee5253]/30'
                         : 'bg-white/30 group-hover:bg-white/60'
                         }`} />
                       {/* Effet de halo sur le point actif */}
@@ -274,7 +274,7 @@ const HomePage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-16 bg-linear-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
@@ -288,10 +288,10 @@ const HomePage = () => {
                   transition={{ delay: index * 0.1 }}
                   className="text-center group"
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#ee5253]/10 to-[#932020]/5 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-[#ee5253]/10 to-[#932020]/5 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     <Icon className="w-8 h-8 text-[#932020]" />
                   </div>
-                  <div className="text-4xl font-bold text-gray-800 mb-2 bg-gradient-to-r from-[#932020] to-[#ee5253] bg-clip-text text-transparent">
+                  <div className="text-4xl font-bold text-gray-800 mb-2 bg-linear-to-r from-[#932020] to-[#ee5253] bg-clip-text">
                     {stat.value}
                   </div>
                   <div className="text-gray-600 font-medium">
@@ -307,8 +307,8 @@ const HomePage = () => {
       {/* About Fizanakara - Premium Section */}
       <section className="py-24 bg-white relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#ee5253]/5 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-[#932020]/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-[#ee5253]/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-linear-to-tr from-[#932020]/5 to-transparent rounded-full blur-3xl"></div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -323,7 +323,7 @@ const HomePage = () => {
               {/* Section Header */}
               <div>
                 <div className="inline-flex items-center gap-3 mb-6">
-                  <div className="w-12 h-1 bg-gradient-to-r from-[#ee5253] to-[#932020] rounded-full"></div>
+                  <div className="w-12 h-1 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full"></div>
                   <span className="text-[#932020] font-semibold tracking-wider uppercase">
                     {language === 'mg' ? 'Mombamomba antsika' :
                       language === 'fr' ? 'À propos' :
@@ -343,9 +343,9 @@ const HomePage = () => {
               {/* Mission & Vision Cards */}
               <div className="space-y-8">
                 {/* Mission Card */}
-                <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-200 shadow-xl">
+                <div className="bg-linear-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-200 shadow-xl">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center">
                       {(() => {
                         const targetValue = t.about.values[2];
                         if (targetValue) {
@@ -367,9 +367,9 @@ const HomePage = () => {
                 </div>
 
                 {/* Vision Card */}
-                <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-200 shadow-xl">
+                <div className="bg-linear-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-200 shadow-xl">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center">
                       <Lightbulb className="w-6 h-6 text-[#932020]" />
                     </div>
                     <div>
@@ -404,7 +404,7 @@ const HomePage = () => {
                         whileHover={{ y: -5 }}
                         className="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all"
                       >
-                        <div className="w-14 h-14 bg-gradient-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center mb-4">
+                        <div className="w-14 h-14 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center mb-4">
                           <Icon className="w-7 h-7 text-[#932020]" />
                         </div>
                         <h4 className="text-xl font-bold text-gray-800 mb-2">
@@ -429,10 +429,10 @@ const HomePage = () => {
               className="space-y-8"
             >
               {/* Anakara Card */}
-              <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-10 shadow-2xl relative overflow-hidden">
+              <div className="bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-10 shadow-2xl relative overflow-hidden">
                 {/* Accent Elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#ee5253]/20 to-transparent rounded-full blur-2xl"></div>
-                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-[#932020]/10 to-transparent rounded-full blur-2xl"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-bl from-[#ee5253]/20 to-transparent rounded-full blur-2xl"></div>
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-linear-to-tr from-[#932020]/10 to-transparent rounded-full blur-2xl"></div>
 
                 <div className="relative z-10">
                   {/* Header */}
@@ -441,9 +441,9 @@ const HomePage = () => {
                       <h3 className="text-4xl font-bold text-white mb-2">
                         {t.anakara.title}
                       </h3>
-                      <div className="w-20 h-1 bg-gradient-to-r from-[#ee5253] to-[#e38282] rounded-full"></div>
+                      <div className="w-20 h-1 bg-linear-to-r from-[#ee5253] to-[#e38282] rounded-full"></div>
                     </div>
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#ee5253]/20 to-[#932020]/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10">
+                    <div className="w-16 h-16 bg-linear-to-r from-[#ee5253]/20 to-[#932020]/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10">
                       <History className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -486,7 +486,7 @@ const HomePage = () => {
                     <div className="space-y-4">
                       {t.anakara.characteristics.map((char, index) => (
                         <div key={index} className="flex items-center gap-4">
-                          <div className="w-2 h-2 bg-gradient-to-r from-[#ee5253] to-[#e38282] rounded-full"></div>
+                          <div className="w-2 h-2 bg-linear-to-r from-[#ee5253] to-[#e38282] rounded-full"></div>
                           <span className="text-gray-300">{char}</span>
                         </div>
                       ))}
@@ -501,7 +501,7 @@ const HomePage = () => {
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
-                className="bg-gradient-to-r from-[#ee5253] via-[#e38282] to-[#932020] text-white p-6 rounded-2xl shadow-2xl shadow-[#932020]/30"
+                className="bg-linear-to-r from-[#ee5253] via-[#e38282] to-[#932020] text-white p-6 rounded-2xl shadow-2xl shadow-[#932020]/30"
               >
                 <div className="text-center">
                   <div className="text-5xl font-bold mb-2">1970</div>
@@ -521,7 +521,7 @@ const HomePage = () => {
               {/* Location Info */}
               <div className="bg-white p-6 rounded-2xl shadow-xl border border-gray-200">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-xl flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-[#932020]" />
                   </div>
                   <div>
@@ -540,7 +540,7 @@ const HomePage = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-20 bg-linear-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -591,7 +591,7 @@ const HomePage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-black text-white">
+      <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
