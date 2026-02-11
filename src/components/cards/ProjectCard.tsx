@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, TrendingUp, Users, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Users, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { type Project, projectsData } from '../../data/projects';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -17,44 +17,44 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
   const categoryConfig = {
     education: {
       label: t.categories.education,
-      color: 'from-blue-500 to-cyan-500',
       bg: 'bg-[#ee5253]',
       text: 'text-white',
+      progressColor: 'from-[#ee5253] to-[#932020]',
       icon: '📚'
     },
     culture: {
       label: t.categories.culture,
-      color: 'from-purple-500 to-pink-500',
-      bg: 'bg-[#ee5253]',
+      bg: 'bg-[#932020]',
       text: 'text-white',
+      progressColor: 'from-[#932020] to-[#ee5253]',
       icon: '🎭'
     },
     social: {
       label: t.categories.social,
-      color: 'from-green-500 to-emerald-500',
-      bg: 'bg-[#ee5253]',
+      bg: 'bg-[#e38282]',
       text: 'text-white',
+      progressColor: 'from-[#e38282] to-[#932020]',
       icon: '🤝'
     },
     infrastructure: {
       label: t.categories.infrastructure,
-      color: 'from-orange-500 to-amber-500',
-      bg: 'bg-[#ee5253]',
+      bg: 'bg-[#932020]',
       text: 'text-white',
+      progressColor: 'from-[#932020] to-[#ee5253]',
       icon: '🏗️'
     },
     heritage: {
       label: t.categories.heritage,
-      color: 'from-rose-500 to-red-500',
       bg: 'bg-[#ee5253]',
       text: 'text-white',
+      progressColor: 'from-[#ee5253] to-[#932020]',
       icon: '🏛️'
     },
     environment: {
       label: t.categories.environment,
-      color: 'from-teal-500 to-green-500',
-      bg: 'bg-teal-500/10',
+      bg: 'bg-[#e38282]',
       text: 'text-white',
+      progressColor: 'from-[#e38282] to-[#932020]',
       icon: '🌿'
     }
   };
@@ -62,27 +62,27 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
   const statusConfig = {
     ongoing: {
       label: t.statuses.ongoing,
-      color: 'bg-gradient-to-r from-blue-500 to-cyan-500',
-      text: 'text-blue-100',
-      dot: 'bg-blue-400'
+      bg: 'bg-blue-50 dark:bg-blue-900/20',
+      text: 'text-blue-700 dark:text-blue-300',
+      border: 'border-blue-200 dark:border-blue-700'
     },
     completed: {
       label: t.statuses.completed,
-      color: 'bg-gradient-to-r from-emerald-500 to-green-500',
-      text: 'text-emerald-100',
-      dot: 'bg-emerald-400'
+      bg: 'bg-green-50 dark:bg-green-900/20',
+      text: 'text-green-700 dark:text-green-300',
+      border: 'border-green-200 dark:border-green-700'
     },
     upcoming: {
       label: t.statuses.upcoming,
-      color: 'bg-gradient-to-r from-purple-500 to-pink-500',
-      text: 'text-purple-100',
-      dot: 'bg-purple-400'
+      bg: 'bg-purple-50 dark:bg-purple-900/20',
+      text: 'text-purple-700 dark:text-purple-300',
+      border: 'border-purple-200 dark:border-purple-700'
     },
     planning: {
       label: t.statuses.planning,
-      color: 'bg-gradient-to-r from-gray-500 to-gray-700',
-      text: 'text-gray-100',
-      dot: 'bg-gray-400'
+      bg: 'bg-gray-50 dark:bg-gray-900/20',
+      text: 'text-gray-700 dark:text-gray-300',
+      border: 'border-gray-200 dark:border-gray-700'
     }
   };
 
@@ -99,7 +99,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-gray-900 to-black shadow-2xl hover:shadow-3xl transition-all duration-500"
       >
         {/* Progress Bar */}
-        {project.progress && (
+        {project.progress !== undefined && (
           <div className="absolute top-6 right-6 z-20">
             <div className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full">
               <div className="relative w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
@@ -107,7 +107,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                   initial={{ width: 0 }}
                   animate={{ width: `${project.progress}%` }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className={`absolute h-full ${config.color} rounded-full`}
+                  className={`absolute h-full bg-linear-to-r ${config.progressColor} rounded-full`}
                 />
               </div>
               <span className="text-sm font-bold text-white">{project.progress}%</span>
@@ -115,7 +115,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
           </div>
         )}
 
-        <div className="relative h-125 overflow-hidden">
+        <div className="relative h-96 overflow-hidden">
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent z-10" />
           
@@ -132,12 +132,12 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
               <span className={`px-4 py-2 rounded-full ${config.bg} ${config.text} font-bold text-sm tracking-wider`}>
                 {config.icon} {config.label}
               </span>
-              <span className={`px-3 py-1.5 rounded-full ${status.color} ${status.text} text-xs font-semibold`}>
+              <span className={`px-3 py-1.5 rounded-full ${status.bg} ${status.text} border ${status.border} text-xs font-semibold`}>
                 {status.label}
               </span>
             </div>
 
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
               {project.title[language]}
             </h3>
 
@@ -154,19 +154,17 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                 <Calendar className="w-4 h-4" />
                 <span>{project.startDate}</span>
               </div>
-              {project.budget && (
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4" />
-                  <span>{project.budget}</span>
-                </div>
-              )}
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4" />
+                <span>{project.partners.length} {language === 'mg' ? 'mpiara' : language === 'fr' ? 'partenaires' : 'partners'}</span>
+              </div>
             </div>
 
             <Link to={`/projects/${project.id}`}>
               <motion.button
                 whileHover={{ x: 10 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-8 py-3.5 bg-linear-to-r from-[#ee5253] to-purple-600 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-[#ee5253]/30 transition-all duration-300 group/btn"
+                className="inline-flex items-center gap-3 px-8 py-3.5 bg-linear-to-r from-[#ee5253] to-[#932020] text-white font-bold rounded-xl hover:shadow-xl hover:shadow-[#ee5253]/30 transition-all duration-300 group/btn"
               >
                 <span className="tracking-wide">{t.cta}</span>
                 <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
@@ -190,7 +188,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         <div className="flex flex-col md:flex-row">
           {/* Image */}
           <div className="md:w-2/5 relative overflow-hidden">
-            <div className="relative h-64 md:h-full">
+            <div className="relative h-48 md:h-full">
               <img
                 src={project.image}
                 alt={project.title[language]}
@@ -200,7 +198,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                 <span className={`px-3 py-1.5 rounded-lg ${config.bg} ${config.text} font-bold text-xs`}>
                   {config.icon} {config.label}
                 </span>
-                <span className={`px-2 py-1 rounded ${status.color} ${status.text} text-xs font-medium`}>
+                <span className={`px-2 py-1 rounded ${status.bg} ${status.text} border ${status.border} text-xs font-medium`}>
                   {status.label}
                 </span>
               </div>
@@ -220,7 +218,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
               </div>
               <div className="flex items-center gap-2">
                 <Users className="w-4 h-4" />
-                <span>{project.partners.length} {language === 'mg' ? 'mpiaraka' : language === 'fr' ? 'partenaires' : 'partners'}</span>
+                <span>{project.partners.length} {language === 'mg' ? 'mpiara' : language === 'fr' ? 'partenaires' : 'partners'}</span>
               </div>
             </div>
 
@@ -233,13 +231,13 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
             </p>
 
             {/* Progress */}
-            {project.progress && (
+            {project.progress !== undefined && (
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     {language === 'mg' ? 'Fandrosoana' : language === 'fr' ? 'Progression' : 'Progress'}
                   </span>
-                  <span className="text-sm font-bold" style={{ color: `var(--color-${project.status})` }}>
+                  <span className="text-sm font-bold text-[#ee5253]">
                     {project.progress}%
                   </span>
                 </div>
@@ -248,7 +246,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                     initial={{ width: 0 }}
                     animate={{ width: `${project.progress}%` }}
                     transition={{ duration: 1, delay: index * 0.1 }}
-                    className={`h-full rounded-full ${config.color}`}
+                    className={`h-full rounded-full bg-linear-to-r ${config.progressColor}`}
                   />
                 </div>
               </div>
@@ -271,8 +269,9 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
               </Link>
               
               {project.featured && (
-                <div className="flex items-center gap-1 px-3 py-1 bg-linear-to-r from-amber-500 to-orange-500 rounded-full">
-                  <span className="text-xs font-bold text-white">
+                <div className="flex items-center gap-1 px-3 py-1 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full">
+                  <Star className="w-3 h-3 text-white" />
+                  <span className="text-xs font-bold text-white ml-1">
                     {language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'Prioritaire' : 'Featured'}
                   </span>
                 </div>
@@ -290,7 +289,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      whileHover={{ y: -12, scale: 1.02 }}
+      whileHover={{ y: -8, scale: 1.02 }}
       className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300"
     >
       {/* Category & Status Badges */}
@@ -298,7 +297,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         <span className={`px-3 py-1.5 rounded-lg ${config.bg} ${config.text} font-bold text-xs tracking-wide`}>
           {config.icon} {config.label}
         </span>
-        <span className={`px-2 py-1 rounded ${status.color} ${status.text} text-xs font-medium`}>
+        <span className={`px-2 py-1 rounded ${status.bg} ${status.text} border ${status.border} text-xs font-medium`}>
           {status.label}
         </span>
       </div>
@@ -306,8 +305,8 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       {/* Featured Badge */}
       {project.featured && (
         <div className="absolute top-4 right-4 z-10">
-          <div className="p-2 bg-linear-to-br from-amber-500 to-orange-500 rounded-full shadow-lg">
-            <span className="text-xs font-bold text-white">⭐</span>
+          <div className="p-2 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-full shadow-lg">
+            <Star className="w-4 h-4 text-white" />
           </div>
         </div>
       )}
@@ -331,7 +330,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <MapPin className="w-4 h-4" />
-            <span className="truncate max-w-25">{project.location}</span>
+            <span className="truncate max-w-24">{project.location}</span>
           </div>
         </div>
 
@@ -344,13 +343,13 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         </p>
 
         {/* Progress Bar */}
-        {project.progress && (
+        {project.progress !== undefined && (
           <div className="mb-4">
             <div className="flex items-center justify-between mb-1">
               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
                 {language === 'mg' ? 'Fandrosoana' : language === 'fr' ? 'Progression' : 'Progress'}
               </span>
-              <span className="text-xs font-bold" style={{ color: `var(--color-${project.status})` }}>
+              <span className="text-xs font-bold text-[#ee5253]">
                 {project.progress}%
               </span>
             </div>
@@ -359,7 +358,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                 initial={{ width: 0 }}
                 animate={{ width: `${project.progress}%` }}
                 transition={{ duration: 1, delay: index * 0.1 }}
-                className={`h-full rounded-full ${config.color}`}
+                className={`h-full rounded-full bg-linear-to-r ${config.progressColor}`}
               />
             </div>
           </div>
@@ -375,7 +374,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 bg-linear-to-r from-[#ee5253] to-purple-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+              className="px-4 py-2 bg-linear-to-r from-[#ee5253] to-[#932020] text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
             >
               {language === 'mg' ? 'Hijery' : language === 'fr' ? 'Voir' : 'View'}
             </motion.button>

@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Search,
-  Grid3x3,
-  List,
   TrendingUp,
   Target,
   X,
-  BarChart3,
+  Award,
+  Building2,
   Users,
-  Award
+  Sparkles,
+  TargetIcon
 } from 'lucide-react';
 import ProjectCard from '../components/cards/ProjectCard';
 import { projects, projectsData } from '../data/projects';
@@ -21,22 +21,36 @@ const ProjectsPage = () => {
   const t = projectsData[language];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list'); // Par défaut en liste
+
+  // Détection automatique du mode d'affichage selon la taille d'écran
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setViewMode('grid'); // Mobile: grille
+      } else {
+        setViewMode('list'); // Desktop: liste
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const allProjects = [...projects];
 
-  // Statistiques (toujours utiles pour l'affichage)
+  // Statistiques simplifiées (sans budget)
   const stats = {
     total: projects.length,
     ongoing: projects.filter(p => p.status === 'ongoing').length,
     completed: projects.filter(p => p.status === 'completed').length,
-    totalBudget: projects.reduce((sum, p) => {
-      const budget = parseFloat(p.budget?.replace(/[^0-9]/g, '') || '0');
-      return sum + budget;
-    }, 0)
+    partners: projects.reduce((sum, p) => sum + p.partners.length, 0)
   };
 
-  // Garder uniquement la recherche
+  // Filtre de recherche
   const filteredProjects = allProjects.filter(project => {
     const matchesSearch =
       project.title[language].toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -49,129 +63,130 @@ const ProjectsPage = () => {
   const featuredProjects = projects.filter(project => project.featured);
   const regularProjects = filteredProjects.filter(project => !project.featured);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function setSelectedCategory(_arg0: string) {
-    throw new Error('Function not implemented.');
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function setSelectedStatus(_arg0: string) {
-    throw new Error('Function not implemented.');
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function setSortBy(_arg0: string) {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-linear-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
+      className="min-h-screen bg-white dark:bg-[#1e293b] pt-24 pb-32"
     >
-      {/* Animated Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div
-          animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-linear-to-r from-emerald-500/5 to-green-500/5 rounded-full blur-3xl"
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Premium Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="relative mb-20"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", delay: 0.2 }}
-            className="inline-block mb-6"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 to-teal-600 rounded-full blur-xl opacity-75" />
-              <div className="relative px-8 py-3 bg-[#ee5253] to-teal-600 rounded-full">
-                <span className="text-white font-bold tracking-wider">
-                  {t.title}
-                </span>
-              </div>
-            </div>
-          </motion.div>
+          {/* Background Element */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#ee5253]/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#932020]/5 rounded-full blur-3xl" />
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            {t.description}
-          </motion.p>
-        </motion.div>
-
-        {/* Stats Overview */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
-        >
-          {[
-            {
-              label: { mg: 'Tetikasa', fr: 'Projets', en: 'Projects' },
-              value: stats.total,
-              icon: Target,
-              color: 'bg-[#ee5253]'
-            },
-            {
-              label: { mg: 'Mbola mitohy', fr: 'En cours', en: 'Ongoing' },
-              value: stats.ongoing,
-              icon: TrendingUp,
-              color: 'bg-[#ee5253]'
-            },
-            {
-              label: { mg: 'Vita', fr: 'Terminés', en: 'Completed' },
-              value: stats.completed,
-              icon: Award,
-              color: 'bg-[#ee5253]'
-            },
-            {
-              label: { mg: 'Total tetibola', fr: 'Budget total', en: 'Total budget' },
-              value: `${(stats.totalBudget / 1000000).toFixed(1)}M Ar`,
-              icon: BarChart3,
-              color: 'bg-[#ee5253]'
-            }
-          ].map((stat, index) => (
+          <div className="relative z-10 text-center">
+            {/* Premium Badge */}
             <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9 + index * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-800/50 shadow-lg"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", delay: 0.2 }}
+              className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 rounded-xl bg-linear-to-r ${stat.color}`}>
-                  <stat.icon className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                  {stat.value}
-                </span>
+              <div className="p-2 bg-[#ee5253] rounded-lg">
+                <TargetIcon className="w-5 h-5 text-white" />
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {typeof stat.label === 'object' ? stat.label[language] : stat.label}
+              <span className="text-sm font-bold text-gray-800 dark:text-white tracking-wider uppercase">
+                {t.title}
+              </span>
+            </motion.div>
+
+            {/* Main Title */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
+              <span className="relative">
+                <span className="relative z-10">
+                  {language === 'mg' ? 'Tetikasantsika' : 
+                   language === 'fr' ? 'Nos Projets' : 
+                   'Our Projects'}
+                </span>
+                <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253]/20 -z-10"></span>
+              </span>
+            </h1>
+
+            {/* Premium Subtitle */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="max-w-3xl mx-auto mb-12"
+            >
+              <p className="text-2xl sm:text-3xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                {t.description}
               </p>
             </motion.div>
-          ))}
+
+            {/* Elegant Divider */}
+            <div className="flex items-center justify-center gap-4 mb-16">
+              <div className="w-12 h-0.5 bg-[#ee5253]/30"></div>
+              <div className="w-4 h-4 border-2 border-[#ee5253] rotate-45"></div>
+              <div className="w-12 h-0.5 bg-[#ee5253]/30"></div>
+            </div>
+
+            {/* Premium Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto"
+            >
+              {[
+                {
+                  label: { mg: 'Tetikasa', fr: 'Projets', en: 'Projects' },
+                  value: stats.total,
+                  icon: Building2,
+                  color: 'bg-[#ee5253]'
+                },
+                {
+                  label: { mg: 'Mbola mitohy', fr: 'En cours', en: 'Ongoing' },
+                  value: stats.ongoing,
+                  icon: TrendingUp,
+                  color: 'bg-[#932020]'
+                },
+                {
+                  label: { mg: 'Vita', fr: 'Terminés', en: 'Completed' },
+                  value: stats.completed,
+                  icon: Award,
+                  color: 'bg-[#e38282]'
+                },
+                {
+                  label: { mg: 'Mpiara-miasa', fr: 'Partenaires', en: 'Partners' },
+                  value: stats.partners,
+                  icon: Users,
+                  color: 'bg-[#ee5253]'
+                }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  whileHover={{ y: -4 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-linear-to-br from-white/0 to-white/0 group-hover:from-[#ee5253]/5 group-hover:to-[#932020]/5 rounded-2xl transition-all duration-300" />
+                  <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`p-3 rounded-xl ${stat.color}`}>
+                        <stat.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <span className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                        {stat.value}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                      {typeof stat.label === 'object' ? stat.label[language] : stat.label}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Featured Projects */}
@@ -180,18 +195,23 @@ const ProjectsPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="mb-16"
+            className="mb-20"
           >
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-[#ee5253] rounded-lg">
-                  <Award className="w-5 h-5 text-white" />
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                  {language === 'mg' ? 'Tetikasa voavoatra' :
-                    language === 'fr' ? 'Projets prioritaires' :
+            <div className="flex items-center gap-4 mb-12">
+              <div className="p-3 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+                  {language === 'mg' ? 'Tetikasa Voavoatra' :
+                    language === 'fr' ? 'Projets Prioritaires' :
                       'Featured Projects'}
                 </h2>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                  {language === 'mg' ? 'Ireo tetikasa tena manan-danja sy mpiantraika' :
+                    language === 'fr' ? 'Les projets les plus importants et impactants' :
+                      'Most important and impactful projects'}
+                </p>
               </div>
             </div>
 
@@ -208,18 +228,20 @@ const ProjectsPage = () => {
           </motion.div>
         )}
 
-        {/* Control Bar - Simplifié sans filtres */}
+        {/* Control Bar - Recherche seulement */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="sticky top-24 z-30 mb-12 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-gray-200/50 dark:border-gray-800/50"
+          className="sticky top-24 z-30 mb-12 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-700"
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Search */}
             <div className="flex-1 w-full">
               <div className="relative">
-                <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <div className="absolute left-5 top-1/2 transform -translate-y-1/2">
+                  <Search className="w-5 h-5 text-gray-400" />
+                </div>
                 <input
                   type="text"
                   placeholder={
@@ -229,7 +251,7 @@ const ProjectsPage = () => {
                   }
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
                 />
                 {searchTerm && (
                   <motion.button
@@ -238,7 +260,7 @@ const ProjectsPage = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-emerald-500 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#ee5253] transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </motion.button>
@@ -246,78 +268,65 @@ const ProjectsPage = () => {
               </div>
             </div>
 
-            {/* View Toggle seulement */}
+            {/* View Mode Indicator (Informative seulement) */}
             <div className="flex items-center gap-4">
-              <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setViewMode('grid')}
-                  className={`p-3 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-gray-700 shadow-md' : 'hover:bg-white/50 dark:hover:bg-gray-700/50'}`}
-                >
-                  <Grid3x3 className={`w-5 h-5 ${viewMode === 'grid' ? 'text-emerald-500' : 'text-gray-500'}`} />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setViewMode('list')}
-                  className={`p-3 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white dark:bg-gray-700 shadow-md' : 'hover:bg-white/50 dark:hover:bg-gray-700/50'}`}
-                >
-                  <List className={`w-5 h-5 ${viewMode === 'list' ? 'text-emerald-500' : 'text-gray-500'}`} />
-                </motion.button>
+              <div className="hidden md:flex items-center gap-3 px-4 py-2 bg-gray-100 dark:bg-gray-900 rounded-xl">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {viewMode === 'grid' ? 
+                      (language === 'mg' ? 'Endrika takila' : 
+                       language === 'fr' ? 'Mode grille' : 
+                       'Grid view') : 
+                      (language === 'mg' ? 'Endrika lisitra' : 
+                       language === 'fr' ? 'Mode liste' : 
+                       'List view')}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Message indiquant que tous les projets sont affichés */}
-          <motion.div
-            className="mt-8 pt-6 border-t border-gray-200/50 dark:border-gray-800/50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-emerald-500/10 rounded-lg">
-                <Users className="w-5 h-5 text-emerald-500" />
+          {/* Search Info */}
+          {filteredProjects.length > 0 && (
+            <motion.div
+              className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-[#ee5253]/10 rounded-lg">
+                    <Target className="w-4 h-4 text-[#ee5253]" />
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {searchTerm ? 
+                      (language === 'mg' ? `Hita ${filteredProjects.length} tetikasa tamin'ny fikarohana "${searchTerm}"` :
+                       language === 'fr' ? `${filteredProjects.length} projets trouvés pour "${searchTerm}"` :
+                       `${filteredProjects.length} projects found for "${searchTerm}"`) :
+                      (language === 'mg' ? `Ireo tetikasa ${filteredProjects.length} rehetra` :
+                       language === 'fr' ? `Tous les ${filteredProjects.length} projets` :
+                       `All ${filteredProjects.length} projects`)
+                    }
+                  </p>
+                </div>
+                
+                {/* Mobile View Mode Indicator */}
+                <div className="md:hidden flex items-center gap-2">
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {viewMode === 'grid' ? 'Takila' : 'Lisitra'}
+                  </span>
+                </div>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {language === 'mg' ? 'Ireo tetikasa rehetra eto amin\'ny lisitra' :
-                  language === 'fr' ? 'Tous les projets sont affichés dans cette liste' :
-                    'All projects are displayed in this list'}
-              </p>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
         </motion.div>
 
-        {/* Results Count */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4 }}
-          className="mb-8"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-lg text-gray-600 dark:text-gray-400">
-                {language === 'mg' ? `Hita ${filteredProjects.length} tetikasa` :
-                  language === 'fr' ? `${filteredProjects.length} projets trouvés` :
-                    `${filteredProjects.length} projects found`}
-              </p>
-              {searchTerm && (
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                  {language === 'mg' ? `Fikarohana ho an'ny "${searchTerm}"` :
-                    language === 'fr' ? `Recherche pour "${searchTerm}"` :
-                      `Search for "${searchTerm}"`}
-                </p>
-              )}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Projects Grid/List */}
+        {/* Projects List/Grid (Auto-détecté) */}
         {filteredProjects.length > 0 ? (
           <motion.div
-            key={`${viewMode}`}
+            key={`${viewMode}-${filteredProjects.length}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className={viewMode === 'grid'
@@ -337,12 +346,7 @@ const ProjectsPage = () => {
         ) : (
           <NoResultsState
             entityType="projects"
-            onResetFilters={() => {
-              setSearchTerm('');
-              setSelectedCategory('all');
-              setSelectedStatus('all');
-              setSortBy('newest');
-            }}
+            onResetFilters={() => setSearchTerm('')}
             searchTerm={searchTerm}
           />
         )}
