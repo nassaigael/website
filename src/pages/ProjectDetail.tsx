@@ -484,10 +484,7 @@ const ProjectDetail = () => {
             <div className="space-y-12">
               {/* DESCRIPTION */}
               <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 md:p-8 shadow-xl border border-gray-200 dark:border-gray-800">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl shadow-lg">
-                    <FaChartBar className="w-6 h-6 text-white" />
-                  </div>
+                <div className="flex items-center lg:justify-between justify-center gap-3 mb-6">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                     {language === 'mg' ? 'Fampidirana' : language === 'fr' ? 'Description' : 'Description'}
                   </h3>
@@ -510,18 +507,12 @@ const ProjectDetail = () => {
               {/* GALERIE */}
               {project.gallery && project.gallery.length > 0 && (
                 <div>
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-center mb-6">
                     <div className="flex items-center gap-3">
-                      <div className="p-3 bg-linear-to-br from-[#932020] to-[#ee5253] rounded-xl shadow-lg">
-                        <FaImage className="w-6 h-6 text-white" />
-                      </div>
                       <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                         {language === 'mg' ? 'Sary' : language === 'fr' ? 'Galerie' : 'Gallery'}
                       </h3>
                     </div>
-                    <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
-                      {project.gallery.length} {language === 'mg' ? 'sary' : language === 'fr' ? 'photos' : 'photos'}
-                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
@@ -562,18 +553,10 @@ const ProjectDetail = () => {
               {/* OBJECTIFS */}
               <div>
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="p-3 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl shadow-lg">
-                    <FaBullseye className="w-6 h-6 text-white" />
-                  </div>
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                       {language === 'mg' ? 'Tanjona' : language === 'fr' ? 'Objectifs' : 'Objectives'}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                      {language === 'mg' ? 'Ireo tanjona natao ho tratran\'ity tetikasa ity' :
-                        language === 'fr' ? 'Les objectifs à atteindre pour ce projet' :
-                          'The goals to achieve for this project'}
-                    </p>
                   </div>
                 </div>
 
@@ -612,18 +595,10 @@ const ProjectDetail = () => {
               {project.achievements && (
                 <div>
                   <div className="flex items-center gap-3 mb-8">
-                    <div className="p-3 bg-linear-to-br from-[#932020] to-[#ee5253] rounded-xl shadow-lg">
-                      <FaCheckCircle className="w-6 h-6 text-white" />
-                    </div>
                     <div>
                       <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                         {language === 'mg' ? 'Zava-bita' : language === 'fr' ? 'Réalisations' : 'Achievements'}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                        {language === 'mg' ? 'Ireo zava-bita efa voatanteraka' :
-                          language === 'fr' ? 'Les réalisations déjà accomplies' :
-                            'Achievements already accomplished'}
-                      </p>
                     </div>
                   </div>
 
@@ -655,18 +630,10 @@ const ProjectDetail = () => {
               {/* DATES CLÉS */}
               <div>
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="p-3 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl shadow-lg">
-                    <FaCalendarAlt className="w-6 h-6 text-white" />
-                  </div>
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                       {language === 'mg' ? 'Daty Manan-danja' : language === 'fr' ? 'Dates Importantes' : 'Key Dates'}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                      {language === 'mg' ? 'Ireo daty manan-danja amin\'ny tetikasa' :
-                        language === 'fr' ? 'Les dates importantes du projet' :
-                          'Important dates for the project'}
-                    </p>
                   </div>
                 </div>
 
@@ -711,18 +678,10 @@ const ProjectDetail = () => {
               {/* STATISTIQUES DE PROGRESSION */}
               <div>
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="p-3 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl shadow-lg">
-                    <FaChartLine className="w-6 h-6 text-white" />
-                  </div>
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                       {language === 'mg' ? 'Fampitana ny Fandrosoana' : language === 'fr' ? 'Détails de Progression' : 'Progress Details'}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                      {language === 'mg' ? 'Ny fampitana antsipirihany momba ny fandrosoana' :
-                        language === 'fr' ? 'Les détails détaillés sur la progression' :
-                          'Detailed information about progress'}
-                    </p>
                   </div>
                 </div>
 
@@ -800,18 +759,10 @@ const ProjectDetail = () => {
               {/* GRILLE PARTENAIRES */}
               <div>
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="p-3 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl shadow-lg">
-                    <FaHandshake className="w-6 h-6 text-white" />
-                  </div>
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                       {language === 'mg' ? 'Mpiara-miasa' : language === 'fr' ? 'Partenaires' : 'Partners'}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                      {language === 'mg' ? 'Ireo andrim-panjakana sy fikambanana miara-miasa amin\'ity tetikasa ity' :
-                        language === 'fr' ? 'Les organisations et institutions qui collaborent sur ce projet' :
-                          'Organizations and institutions collaborating on this project'}
-                    </p>
                   </div>
                 </div>
 
@@ -852,49 +803,6 @@ const ProjectDetail = () => {
                   })}
                 </div>
               </div>
-
-              {/* CONTACT */}
-              <div className="p-6 md:p-8 bg-linear-to-br from-[#ee5253]/10 via-[#932020]/5 to-[#e38282]/10 dark:from-[#ee5253]/20 dark:via-[#932020]/10 dark:to-[#e38282]/10 rounded-3xl border border-[#ee5253]/20 shadow-xl">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl shadow-lg">
-                      <FaUserTie className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        {language === 'mg' ? 'Fifandraisana' : language === 'fr' ? 'Contact' : 'Contact'}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        {language === 'mg' ? 'Ny mpandray anjara amin\'ity tetikasa ity' :
-                          language === 'fr' ? 'Le responsable de ce projet' :
-                            'The person in charge of this project'}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md">
-                      <FaUserTie className="w-5 h-5 text-[#ee5253]" />
-                      <span className="font-medium text-gray-900 dark:text-white">{project.contactPerson}</span>
-                    </div>
-
-                    {project.website && (
-                      <a
-                        href={project.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group/website"
-                      >
-                        <FaExternalLinkAlt className="w-5 h-5 text-[#ee5253]" />
-                        <span className="text-[#ee5253] font-medium">
-                          {language === 'mg' ? 'Vakio bebe kokoa' : language === 'fr' ? 'En savoir plus' : 'Learn more'}
-                        </span>
-                        <FaChevronRight className="w-3 h-3 text-[#ee5253] group-hover/website:translate-x-1 transition-transform" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
             </div>
           )}
         </motion.div>
@@ -910,20 +818,12 @@ const ProjectDetail = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 md:mb-10">
               <div>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2.5 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-xl shadow-lg">
-                    <FaChartLine className="w-5 h-5 text-white" />
-                  </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                     {language === 'mg' ? 'Tetikasa Mifandraika' :
                       language === 'fr' ? 'Projets Similaires' :
                         'Related Projects'}
                   </h2>
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base max-w-2xl">
-                  {language === 'mg' ? 'Mijery ireo tetikasa hafa mety ho liana aminao sy mifandraika amin\'ity tetikasa ity' :
-                    language === 'fr' ? 'Découvrez d\'autres projets qui pourraient vous intéresser et liés à ce projet' :
-                      'Discover other projects you might be interested in and related to this project'}
-                </p>
               </div>
 
               <Link to="/projects">
