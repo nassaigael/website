@@ -21,15 +21,14 @@ const ProjectsPage = () => {
   const t = projectsData[language];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list'); // Par défaut en liste
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
-  // Détection automatique du mode d'affichage selon la taille d'écran
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setViewMode('grid'); // Mobile: grille
+        setViewMode('grid');
       } else {
-        setViewMode('list'); // Desktop: liste
+        setViewMode('list');
       }
     };
 
