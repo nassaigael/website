@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import {
   Search,
   TrendingUp,
-  Target,
   X,
   Award,
   Building2,
@@ -294,30 +293,8 @@ const ProjectsPage = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-[#ee5253]/10 rounded-lg">
-                    <Target className="w-4 h-4 text-[#ee5253]" />
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {searchTerm ? 
-                      (language === 'mg' ? `Hita ${filteredProjects.length} tetikasa tamin'ny fikarohana "${searchTerm}"` :
-                       language === 'fr' ? `${filteredProjects.length} projets trouvés pour "${searchTerm}"` :
-                       `${filteredProjects.length} projects found for "${searchTerm}"`) :
-                      (language === 'mg' ? `Ireo tetikasa ${filteredProjects.length} rehetra` :
-                       language === 'fr' ? `Tous les ${filteredProjects.length} projets` :
-                       `All ${filteredProjects.length} projects`)
-                    }
-                  </p>
-                </div>
-                
-                {/* Mobile View Mode Indicator */}
-                <div className="md:hidden flex items-center gap-2">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {viewMode === 'grid' ? 'Takila' : 'Lisitra'}
-                  </span>
-                </div>
-              </div>
+
+
             </motion.div>
           )}
         </motion.div>

@@ -1,4 +1,3 @@
-
 export type ProjectStatus = 'ongoing' | 'completed' | 'upcoming' | 'planning';
 export type ProjectCategory = 'education' | 'culture' | 'social' | 'infrastructure' | 'heritage' | 'environment';
 
@@ -112,7 +111,7 @@ export const projects: Project[] = [
     id: 1,
     title: {
       mg: 'Tetikasa "Cartable iray, Fahazavana iray"',
-      fr: 'Projet "Un Cartable, Une Lumière"',
+      fr: 'Projet "Un Cartable, Une Lumière" EPP Vatomasina',
       en: 'Project "One Bag, One Light"'
     },
     excerpt: {

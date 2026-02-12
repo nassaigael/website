@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { type Project, projectsData } from '../../data/projects';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-// Import des icônes react-icons
-import { 
+import {
   GiTheater,
   GiHandSaw,
   GiCrane,
@@ -15,11 +14,11 @@ import {
   GiSandsOfTime,
   GiGearHammer
 } from 'react-icons/gi';
-import { 
-  FaUsers, 
-  FaMapMarkerAlt, 
-  FaCalendarAlt, 
-  FaArrowRight, 
+import {
+  FaUsers,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaArrowRight,
   FaStar
 } from 'react-icons/fa';
 import { IoMdSchool } from 'react-icons/io';
@@ -34,7 +33,6 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
   const { language } = useLanguage();
   const t = projectsData[language];
 
-  // Icônes par catégorie avec react-icons
   const categoryIcons = {
     education: <IoMdSchool className="w-4 h-4" />,
     culture: <GiTheater className="w-4 h-4" />,
@@ -44,7 +42,6 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     environment: <GiForest className="w-4 h-4" />
   };
 
-  // Icônes pour le mode featured (plus grandes)
   const featuredCategoryIcons = {
     education: <IoMdSchool className="w-5 h-5" />,
     culture: <GiTheater className="w-5 h-5" />,
@@ -54,7 +51,6 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     environment: <GiForest className="w-5 h-5" />
   };
 
-  // Icônes pour les statuts
   const statusIcons = {
     ongoing: <GiProgression className="w-3.5 h-3.5" />,
     completed: <GiCheckMark className="w-3.5 h-3.5" />,
@@ -154,29 +150,29 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: index * 0.1 }}
         whileHover={{ y: -8 }}
-        className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 to-black shadow-2xl hover:shadow-3xl transition-all duration-500 h-full flex flex-col"
+        className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-gray-900 to-black shadow-2xl hover:shadow-3xl transition-all duration-500 h-full flex flex-col"
       >
-        {/* Progress Bar */}
+        {/* Progress Bar - Aligné à droite */}
         {project.progress !== undefined && (
-          <div className="absolute top-6 right-6 z-20">
-            <div className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full">
-              <div className="relative w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
+          <div className="absolute top-4 right-4 z-20">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full">
+              <div className="relative w-20 h-1.5 bg-gray-700 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${project.progress}%` }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className={`absolute h-full bg-gradient-to-r ${config.progressColor} rounded-full`}
+                  className={`absolute h-full bg-linear-to-r ${config.progressColor} rounded-full`}
                 />
               </div>
-              <span className="text-sm font-bold text-white">{project.progress}%</span>
+              <span className="text-xs font-bold text-white">{project.progress}%</span>
             </div>
           </div>
         )}
 
-        <div className="relative h-72 overflow-hidden flex-shrink-0">
+        <div className="relative h-72 overflow-hidden shrink-0">
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent z-10" />
-          
+          <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent z-10" />
+
           {/* Image */}
           <img
             src={project.image}
@@ -185,25 +181,26 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
           />
 
           {/* Content */}
-          <div className="absolute bottom-0 left-0 right-0 z-20 p-6">
-            <div className="flex flex-wrap items-center gap-3 mb-3">
-              <span className={`px-3 py-1.5 rounded-full ${config.bg} ${config.text} font-bold text-xs tracking-wider flex items-center gap-1.5`}>
+          <div className="absolute bottom-0 left-0 right-0 z-20 p-5">
+            {/* Category et Status empilés - alignés à gauche */}
+            <div className="flex flex-col items-start gap-1.5 mb-3">
+              <span className={`px-3 py-1.5 rounded-full ${config.bg} ${config.text} font-bold text-xs tracking-wider flex items-center gap-1.5 shadow-lg`}>
                 {config.featuredIcon} {config.label}
               </span>
-              <span className={`px-2 py-1 rounded-full ${status.bg} ${status.text} border ${status.border} text-xs font-medium flex items-center gap-1`}>
+              <span className={`px-2.5 py-1 rounded-full ${status.bg} ${status.text} border ${status.border} text-[10px] font-medium flex items-center gap-1 shadow-md`}>
                 {status.icon} {status.label}
               </span>
             </div>
 
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
+            <h3 className="text-lg md:text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
               {project.title[language]}
             </h3>
 
-            <p className="text-gray-200 mb-3 text-sm line-clamp-2">
+            <p className="text-gray-200 mb-3 text-xs line-clamp-2">
               {project.excerpt[language]}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 mb-3 text-xs text-gray-200">
+            <div className="flex flex-wrap items-center gap-3 mb-3 text-xs text-gray-200">
               <div className="flex items-center gap-1.5">
                 <FaMapMarkerAlt className="w-3.5 h-3.5" />
                 <span className="truncate max-w-24">{project.location}</span>
@@ -222,10 +219,10 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
               <motion.button
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-[#ee5253] to-[#932020] text-white text-sm font-semibold rounded-lg hover:shadow-xl hover:shadow-[#ee5253]/30 transition-all duration-300 group/btn"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-[#ee5253] to-[#932020] text-white text-xs font-semibold rounded-lg hover:shadow-xl hover:shadow-[#ee5253]/30 transition-all duration-300 group/btn"
               >
                 <span>{t.cta}</span>
-                <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                <FaArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
               </motion.button>
             </Link>
           </div>
@@ -252,11 +249,24 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                 alt={project.title[language]}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute top-3 left-3">
-                <span className={`px-2 py-1 rounded-lg ${config.bg} ${config.text} font-bold text-xs flex items-center gap-1.5`}>
+              {/* Category et Status empilés sur l'image */}
+              <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                <span className={`px-2.5 py-1.5 rounded-lg ${config.bg} ${config.text} font-bold text-xs flex items-center gap-1.5 shadow-lg`}>
                   {config.icon} {config.label}
                 </span>
+                <span className={`px-2 py-1 rounded-lg ${status.bg} ${status.text} border ${status.border} text-[10px] font-medium flex items-center gap-1 shadow-md`}>
+                  {status.icon} {status.label}
+                </span>
               </div>
+
+              {/* Featured Badge */}
+              {project.featured && (
+                <div className="absolute top-3 right-3">
+                  <div className="p-1.5 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-full shadow-lg">
+                    <FaStar className="w-3.5 h-3.5 text-white" />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -264,11 +274,8 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
           <div className="md:w-3/5 p-5 flex flex-col h-full">
             <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-2">
-                <span className={`px-2 py-1 rounded ${status.bg} ${status.text} border ${status.border} text-xs font-medium flex items-center gap-1`}>
-                  {status.icon} {status.label}
-                </span>
                 {project.featured && (
-                  <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-[#ee5253] to-[#932020] rounded-full">
+                  <div className="flex items-center gap-1 px-2 py-1 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full md:hidden">
                     <FaStar className="w-2.5 h-2.5 text-white" />
                     <span className="text-[10px] font-bold text-white">
                       {language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'Prioritaire' : 'Featured'}
@@ -301,7 +308,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
               {project.excerpt[language]}
             </p>
 
-            {/* Progress */}
+            {/* Progress Bar - Aligné à droite */}
             {project.progress !== undefined && (
               <div className="mb-3">
                 <div className="flex items-center justify-between mb-1">
@@ -318,7 +325,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                     initial={{ width: 0 }}
                     animate={{ width: `${project.progress}%` }}
                     transition={{ duration: 1, delay: index * 0.1 }}
-                    className={`h-full rounded-full bg-gradient-to-r ${config.progressColor}`}
+                    className={`h-full rounded-full bg-linear-to-r ${config.progressColor}`}
                   />
                 </div>
               </div>
@@ -349,7 +356,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     );
   }
 
-  // Default grid view - TAILLE FIXE POUR TOUTES LES CARTES
+  // Default grid view
   return (
     <motion.article
       initial={{ opacity: 0, scale: 0.95 }}
@@ -359,24 +366,20 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 h-full flex flex-col"
     >
       {/* Image Container - Hauteur fixe */}
-      <div className="relative h-48 flex-shrink-0 overflow-hidden">
+      <div className="relative h-48 shrink-0 overflow-hidden">
         <img
           src={project.image}
           alt={project.title[language]}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        {/* Category Badge - Position fixe */}
-        <div className="absolute top-3 left-3">
+        <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        {/* Category et Status empilés - alignés à gauche */}
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           <span className={`px-2.5 py-1.5 rounded-lg ${config.bg} ${config.text} font-bold text-xs flex items-center gap-1.5 shadow-lg`}>
             {config.icon} {config.label}
           </span>
-        </div>
-
-        {/* Status Badge - Ajouté dans la grid */}
-        <div className="absolute bottom-3 left-3">
-          <span className={`px-2 py-1 rounded-full ${status.bg} ${status.text} border ${status.border} text-[10px] font-medium flex items-center gap-1 shadow-md`}>
+          <span className={`px-2 py-1 rounded-lg ${status.bg} ${status.text} border ${status.border} text-[10px] font-medium flex items-center gap-1 shadow-md`}>
             {status.icon} {status.label}
           </span>
         </div>
@@ -384,14 +387,31 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         {/* Featured Badge */}
         {project.featured && (
           <div className="absolute top-3 right-3">
-            <div className="p-1.5 bg-gradient-to-br from-[#ee5253] to-[#932020] rounded-full shadow-lg">
+            <div className="p-1.5 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-full shadow-lg">
               <FaStar className="w-3.5 h-3.5 text-white" />
+            </div>
+          </div>
+        )}
+
+        {/* Progress Bar - Aligné à droite sur l'image */}
+        {project.progress !== undefined && (
+          <div className="absolute bottom-3 right-3 z-20">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-black/60 backdrop-blur-sm rounded-full">
+              <div className="relative w-16 h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${project.progress}%` }}
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                  className={`absolute h-full bg-linear-to-r ${config.progressColor} rounded-full`}
+                />
+              </div>
+              <span className="text-[10px] font-bold text-white">{project.progress}%</span>
             </div>
           </div>
         )}
       </div>
 
-      {/* Content - Hauteur fixe avec flex-1 pour occuper l'espace */}
+      {/* Content */}
       <div className="p-4 flex flex-col flex-1">
         {/* Date et Location */}
         <div className="flex items-center justify-between mb-2">
@@ -405,42 +425,20 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
           </div>
         </div>
 
-        {/* Titre - Hauteur fixe 2 lignes */}
+        {/* Titre */}
         <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 h-12 group-hover:text-[#ee5253] transition-colors">
           {project.title[language]}
         </h3>
 
-        {/* Description - Hauteur fixe 2 lignes */}
+        {/* Description */}
         <p className="text-gray-600 dark:text-gray-300 mb-3 line-clamp-2 text-xs h-8 flex-1">
           {project.excerpt[language]}
         </p>
 
-        {/* Progress Bar - Hauteur fixe */}
-        {project.progress !== undefined ? (
-          <div className="mb-3">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] font-medium text-gray-600 dark:text-gray-400 flex items-center gap-1">
-                <GiProgression className="w-3 h-3" />
-                {language === 'mg' ? 'Fandrosoana' : language === 'fr' ? 'Progression' : 'Progress'}
-              </span>
-              <span className="text-[10px] font-bold text-[#ee5253]">
-                {project.progress}%
-              </span>
-            </div>
-            <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${project.progress}%` }}
-                transition={{ duration: 1, delay: index * 0.1 }}
-                className={`h-full rounded-full bg-gradient-to-r ${config.progressColor}`}
-              />
-            </div>
-          </div>
-        ) : (
-          <div className="h-8 mb-3"></div> // Espace réservé pour l'alignement
+        {project.progress === undefined && (
+          <div className="h-8 mb-3"></div>
         )}
 
-        {/* Footer - Hauteur fixe */}
         <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-800 mt-auto">
           <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
             <FaUsers className="w-3.5 h-3.5" />
@@ -451,7 +449,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-3 py-1.5 bg-gradient-to-r from-[#ee5253] to-[#932020] text-white text-xs font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center gap-1.5"
+              className="px-3 py-1.5 bg-linear-to-r from-[#ee5253] to-[#932020] text-white text-xs font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center gap-1.5"
             >
               <span>{language === 'mg' ? 'Hijery' : language === 'fr' ? 'Voir' : 'View'}</span>
               <FaArrowRight className="w-2.5 h-2.5" />
@@ -461,7 +459,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       </div>
 
       {/* Hover Effect Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#ee5253] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-[#ee5253] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
     </motion.article>
   );
 };
