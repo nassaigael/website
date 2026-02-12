@@ -1,3 +1,4 @@
+
 export type ProjectStatus = 'ongoing' | 'completed' | 'upcoming' | 'planning';
 export type ProjectCategory = 'education' | 'culture' | 'social' | 'infrastructure' | 'heritage' | 'environment';
 
@@ -40,7 +41,7 @@ export interface Project {
   contactPerson: string;
   website?: string;
   featured?: boolean;
-  progress?: number; // 0-100 pourcentage
+  progress?: number; 
 }
 
 export const projectsData = {
