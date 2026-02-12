@@ -99,7 +99,7 @@ const ProjectsPage = () => {
               transition={{ delay: 0.4 }}
               className="max-w-3xl mx-auto mb-12"
             >
-              <p className="text-2xl sm:text-3xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+              <p className="text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
                 {t.description}
               </p>
             </motion.div>

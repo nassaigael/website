@@ -199,7 +199,7 @@ const NewsPage = () => {
                         transition={{ delay: 0.4 }}
                         className="max-w-3xl mx-auto mb-12"
                     >
-                        <p className="text-2xl sm:text-3xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                        <p className="text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
                             {language === 'mg' ? 'Mijery ny zava-baovao, hetsika ary tetikasa rehetra momba ny Fikambanana Fizanakara. Miaraha miaina ny tantaranay isika.' :
                                 language === 'fr' ? 'Découvrez toutes les nouvelles, événements et projets de l\'Association Fizanakara. Partageons notre histoire ensemble.' :
                                     'Discover all news, events and projects of the Fizanakara Association. Let\'s share our story together.'}
