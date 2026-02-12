@@ -40,7 +40,7 @@ const ProjectsPage = () => {
 
   const allProjects = [...projects];
 
-  // Statistiques simplifiées (sans budget)
+  // Statistiques
   const stats = {
     total: projects.length,
     ongoing: projects.filter(p => p.status === 'ongoing').length,
@@ -99,9 +99,9 @@ const ProjectsPage = () => {
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
               <span className="relative">
                 <span className="relative z-10">
-                  {language === 'mg' ? 'Tetikasantsika' : 
-                   language === 'fr' ? 'Nos Projets' : 
-                   'Our Projects'}
+                  {language === 'mg' ? 'Tetikasantsika' :
+                    language === 'fr' ? 'Nos Projets' :
+                      'Our Projects'}
                 </span>
                 <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253]/20 -z-10"></span>
               </span>
@@ -231,57 +231,36 @@ const ProjectsPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="sticky top-24 z-30 mb-12 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-gray-700"
-        >
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            {/* Search */}
-            <div className="flex-1 w-full">
-              <div className="relative">
-                <div className="absolute left-5 top-1/2 transform -translate-y-1/2">
-                  <Search className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  placeholder={
-                    language === 'mg' ? 'Hikaroka tetikasa, toerana, sehatra...' :
-                      language === 'fr' ? 'Rechercher des projets, lieux, domaines...' :
-                        'Search projects, locations, fields...'
-                  }
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
-                />
-                {searchTerm && (
-                  <motion.button
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => setSearchTerm('')}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#ee5253] transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                  </motion.button>
-                )}
+          className="flex flex-col lg:flex-row items-center justify-between gap-6">
+          {/* Search */}
+          <div className="flex-1 w-full">
+            <div className="relative">
+              <div className="absolute left-5 top-1/2 transform -translate-y-1/2">
+                <Search className="w-5 h-5 text-gray-400" />
               </div>
-            </div>
-
-            {/* View Mode Indicator (Informative seulement) */}
-            <div className="flex items-center gap-4">
-              <div className="hidden md:flex items-center gap-3 px-4 py-2 bg-gray-100 dark:bg-gray-900 rounded-xl">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {viewMode === 'grid' ? 
-                      (language === 'mg' ? 'Endrika takila' : 
-                       language === 'fr' ? 'Mode grille' : 
-                       'Grid view') : 
-                      (language === 'mg' ? 'Endrika lisitra' : 
-                       language === 'fr' ? 'Mode liste' : 
-                       'List view')}
-                  </span>
-                </div>
-              </div>
+              <input
+                type="text"
+                placeholder={
+                  language === 'mg' ? 'Hikaroka tetikasa, toerana, sehatra...' :
+                    language === 'fr' ? 'Rechercher des projets, lieux, domaines...' :
+                      'Search projects, locations, fields...'
+                }
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400"
+              />
+              {searchTerm && (
+                <motion.button
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#ee5253] transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </motion.button>
+              )}
             </div>
           </div>
 
