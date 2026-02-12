@@ -170,23 +170,6 @@ const NewsPage = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", delay: 0.2 }}
-                        className="inline-block mb-6"
-                    >
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-[#ee5253] rounded-full opacity-75" />
-                            <div className="relative px-8 py-3 bg-[#ee5253] rounded-full">
-                                <span className="text-white font-bold tracking-wider">
-                                    {language === 'mg' ? 'VAOVAO FARANY' :
-                                        language === 'fr' ? 'ACTUALITÉS' :
-                                            'LATEST NEWS'}
-                                </span>
-                            </div>
-                        </div>
-                    </motion.div>
 
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -194,10 +177,39 @@ const NewsPage = () => {
                         transition={{ delay: 0.6 }}
                         className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
                     >
-                        {language === 'mg' ? 'Mijery ny zava-baovao, hetsika ary tetikasa rehetra momba ny Fikambanana Fizanakara. Miaraha miaina ny tantaranay isika.' :
-                            language === 'fr' ? 'Découvrez toutes les nouvelles, événements et projets de l\'Association Fizanakara. Partageons notre histoire ensemble.' :
-                                'Discover all news, events and projects of the Fizanakara Association. Let\'s share our story together.'}
+
                     </motion.p>
+
+                    {/* Main Title */}
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
+                        <span className="relative">
+                            <span className="relative z-10 capitalize">
+                                {language === 'mg' ? 'Vaovao farany' :
+                                    language === 'fr' ? 'actualités' :
+                                        'Latest news'}
+                            </span>
+                            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253]/20 -z-10"></span>
+                        </span>
+                    </h1>
+
+                    {/* Premium Subtitle */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="max-w-3xl mx-auto mb-12"
+                    >
+                        <p className="text-2xl sm:text-3xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                            {language === 'mg' ? 'Mijery ny zava-baovao, hetsika ary tetikasa rehetra momba ny Fikambanana Fizanakara. Miaraha miaina ny tantaranay isika.' :
+                                language === 'fr' ? 'Découvrez toutes les nouvelles, événements et projets de l\'Association Fizanakara. Partageons notre histoire ensemble.' :
+                                    'Discover all news, events and projects of the Fizanakara Association. Let\'s share our story together.'}
+                        </p>
+                    </motion.div>
+                    <div className="flex items-center justify-center gap-4 mb-16">
+                        <div className="w-12 h-0.5 bg-[#ee5253]/30"></div>
+                        <div className="w-4 h-4 border-2 border-[#ee5253] rotate-45"></div>
+                        <div className="w-12 h-0.5 bg-[#ee5253]/30"></div>
+                    </div>
                 </motion.div>
 
                 {/* Featured Articles Carousel */}

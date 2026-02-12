@@ -8,7 +8,6 @@ import {
   Building2,
   Users,
   Sparkles,
-  TargetIcon
 } from 'lucide-react';
 import ProjectCard from '../components/cards/ProjectCard';
 import { projects, projectsData } from '../data/projects';
@@ -80,20 +79,6 @@ const ProjectsPage = () => {
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#932020]/5 rounded-full blur-3xl" />
 
           <div className="relative z-10 text-center">
-            {/* Premium Badge */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", delay: 0.2 }}
-              className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700"
-            >
-              <div className="p-2 bg-[#ee5253] rounded-lg">
-                <TargetIcon className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-sm font-bold text-gray-800 dark:text-white tracking-wider uppercase">
-                {t.title}
-              </span>
-            </motion.div>
 
             {/* Main Title */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
