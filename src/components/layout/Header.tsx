@@ -1,6 +1,6 @@
 // components/layout/Header.tsx
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // AJOUTER ces imports
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe } from 'lucide-react';
 import { navItems, languages, type Language } from '../../data/navigation';
@@ -11,7 +11,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate(); // AJOUTER useNavigate
+  const navigate = useNavigate();
   
   const { language, changeLanguage } = useLanguage();
 
@@ -38,7 +38,6 @@ const Header = () => {
     setIsLangOpen(false);
   };
 
-  // CORRECTION: Utiliser navigate pour la navigation
   const handleNavClick = (path: string) => {
     setIsMenuOpen(false);
     navigate(path); // Naviguer vers la route
@@ -88,7 +87,7 @@ const Header = () => {
             </motion.div>
           </Link>
 
-          {/* Navigation centrée */}
+          {/* Navigation */}
           <nav className="hidden md:flex items-center justify-center gap-5 lg:gap-8 flex-1 mx-6 lg:mx-12">
             {navItems.slice(1).map((item) => (
               <motion.button
