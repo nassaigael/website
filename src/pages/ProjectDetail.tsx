@@ -440,13 +440,6 @@ const ProjectDetail = () => {
                         <div className="absolute inset-0 bg-linear-to-r from-white/20 to-transparent w-1/3 animate-pulse" />
                       </motion.div>
                     </div>
-
-                    {/* Indicateur de progression */}
-                    <div className="flex justify-between mt-1.5 md:mt-2">
-                      <span className="text-white/50 text-[10px] md:text-xs">0%</span>
-                      <span className="text-white/50 text-[10px] md:text-xs">50%</span>
-                      <span className="text-white/50 text-[10px] md:text-xs">100%</span>
-                    </div>
                   </div>
                 </div>
               </div>
