@@ -195,52 +195,6 @@ const OfficeSection = () => {
             ))}
           </div>
         )}
-
-        {/* STATS FOOTER */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
-        >
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-            {/* Nombre de membres */}
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-[#ee5253] mb-2">
-                {members.length}
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {language === 'mg' ? 'Mpikambana' :
-                  language === 'fr' ? 'Membres' :
-                    'Members'}
-              </p>
-            </div>
-
-            {/* Nombre de postes */}
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-[#932020] mb-2">
-                {new Set(members.map(m => m.role[language])).size}
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {language === 'mg' ? 'Tobra' :
-                  language === 'fr' ? 'Postes' :
-                    'Positions'}
-              </p>
-            </div>
-
-            {/* Nombre de profils LinkedIn */}
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-[#e38282] mb-2">
-                {members.filter(m => m.contacts.linkedin).length}
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {language === 'mg' ? 'LinkedIn' :
-                  language === 'fr' ? 'LinkedIn' :
-                    'LinkedIn'}
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
