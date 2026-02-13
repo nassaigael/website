@@ -30,25 +30,27 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
 
   // BADGES SELON LE RANG
   const getRankBadge = () => {
-    if (index === 0) {
+    const role = member.role.en; 
+    
+    if (role === 'President') {
       return {
         icon: <FaCrown className="w-3 h-3" />,
         text: { mg: 'Filoha', fr: 'Président', en: 'President' },
-        bg: 'bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600',
+        bg: 'bg-[#ee5253]',
         shadow: 'shadow-amber-500/30'
       };
-    } else if (index === 1) {
+    } else if (role === 'Secretary') {
       return {
         icon: <FaMedal className="w-3 h-3" />,
         text: { mg: 'Sekretera', fr: 'Secrétaire', en: 'Secretary' },
-        bg: 'bg-gradient-to-r from-slate-400 via-gray-500 to-slate-600',
+        bg: 'bg-[#ee5253]',
         shadow: 'shadow-gray-500/30'
       };
-    } else if (index === 2) {
+    } else if (role === 'Treasurer') {
       return {
         icon: <RiVipCrownLine className="w-3 h-3" />,
         text: { mg: 'Mpitahiry vola', fr: 'Trésorier', en: 'Treasurer' },
-        bg: 'bg-gradient-to-r from-amber-600 to-amber-800',
+        bg: 'bg-[#ee5253]',
         shadow: 'shadow-amber-700/30'
       };
     }
@@ -82,7 +84,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
         <div className="absolute bottom-0 -right-40 w-80 h-80 bg-[#932020]/10 rounded-full blur-3xl animate-pulse-slower" />
       </div>
 
-      {/* BADGE DE RANG PREMIUM */}
+      {/* BADGE DE RANG PREMIUM  */}
       {rankBadge && (
         <motion.div 
           initial={{ x: -20, opacity: 0 }}
@@ -114,10 +116,8 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
         </motion.div>
       </div>
 
-      {/* ======================================== */}
-      {/* IMAGE CONTAINER - HAUTEUR RÉDUITE */}
+      {/* IMAGE CONTAINER */}
       <div className="relative h-80 overflow-hidden">
-        {/* Skeleton Loader Premium */}
         {!imageLoaded && (
           <div className="absolute inset-0 bg-linear-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 animate-shimmer" />
         )}
@@ -148,7 +148,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
         
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15)_0.5px,transparent_0.5px)] bg-size-[16px_16px] opacity-20 pointer-events-none" />
         
-        {/* CONTACT ICONS - TAILLE RÉDUITE */}
+        {/* CONTACT ICONS */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ 
