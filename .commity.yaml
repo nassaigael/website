@@ -99,6 +99,8 @@ commitMessagePrompt: |
   Date: {{date}}
   
   Changes to Analyze:
+  
   {{changes}}
+  
   
   Generate ONLY the final commit message, with no additional commentary or formatting notes.

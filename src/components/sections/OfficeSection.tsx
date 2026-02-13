@@ -11,25 +11,18 @@ import { HiOutlineUserGroup } from 'react-icons/hi';
 const OfficeSection = () => {
   const { language } = useLanguage();
   const members = useMemo(() => getOfficeMembersByOrder(), []);
-
-  // ============================================
-  // ÉTATS
-  // ============================================
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(3);
 
-  // ============================================
-  // RESPONSIVE - Ajuster itemsPerPage selon la taille d'écran
-  // ============================================
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setItemsPerPage(1); // Mobile : 1 membre
+        setItemsPerPage(1);
       } else if (window.innerWidth < 1024) {
-        setItemsPerPage(2); // Tablet : 2 membres
+        setItemsPerPage(2);
       } else {
-        setItemsPerPage(3); // Desktop : 3 membres
+        setItemsPerPage(3);
       }
     };
 
@@ -38,12 +31,9 @@ const OfficeSection = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // ============================================
-  // CALCULS - Dépendants de itemsPerPage ET currentIndex
-  // ============================================
+
   const totalSlides = Math.ceil(members.length / itemsPerPage);
   
-  // S'assurer que currentIndex est valide par rapport à itemsPerPage
   const validCurrentIndex = useMemo(() => {
     const maxIndex = Math.max(0, (totalSlides - 1) * itemsPerPage);
     if (currentIndex > maxIndex) {
@@ -54,15 +44,11 @@ const OfficeSection = () => {
 
   const currentSlide = Math.floor(validCurrentIndex / itemsPerPage);
 
-  // Membres à afficher
   const displayedMembers = useMemo(() => 
     members.slice(validCurrentIndex, validCurrentIndex + itemsPerPage),
     [members, validCurrentIndex, itemsPerPage]
   );
 
-  // ============================================
-  // NAVIGATION
-  // ============================================
   const nextSlide = () => {
     if (currentSlide < totalSlides - 1) {
       setDirection(1);
@@ -82,9 +68,6 @@ const OfficeSection = () => {
     setCurrentIndex(slideIndex * itemsPerPage);
   };
 
-  // ============================================
-  // VARIANTS D'ANIMATION
-  // ============================================
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
@@ -102,19 +85,15 @@ const OfficeSection = () => {
     })
   };
 
-  // ============================================
-  // RENDU - Si aucun membre, ne rien afficher
-  // ============================================
+
   if (members.length === 0) {
     return null;
   }
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 overflow-hidden">
+    <section className="py-16 md:py-24 bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ======================================== */}
         {/* HEADER */}
-        {/* ======================================== */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,9 +120,7 @@ const OfficeSection = () => {
           </p>
         </motion.div>
 
-        {/* ======================================== */}
         {/* CAROUSEL CONTAINER */}
-        {/* ======================================== */}
         <div className="relative px-4 md:px-12">
           {/* BOUTONS DE NAVIGATION */}
           {totalSlides > 1 && (
@@ -200,9 +177,7 @@ const OfficeSection = () => {
           </AnimatePresence>
         </div>
 
-        {/* ======================================== */}
         {/* PAGINATION DOTS */}
-        {/* ======================================== */}
         {totalSlides > 1 && (
           <div className="flex justify-center gap-2 mt-10">
             {Array.from({ length: totalSlides }).map((_, index) => (
@@ -213,7 +188,7 @@ const OfficeSection = () => {
                 onClick={() => goToSlide(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   currentSlide === index
-                    ? 'w-8 bg-gradient-to-r from-[#ee5253] to-[#932020]'
+                    ? 'w-8 bg-linear-to-r from-[#ee5253] to-[#932020]'
                     : 'w-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600'
                 }`}
               />
@@ -221,9 +196,7 @@ const OfficeSection = () => {
           </div>
         )}
 
-        {/* ======================================== */}
         {/* STATS FOOTER */}
-        {/* ======================================== */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
