@@ -6,3 +6,4 @@ export * from './news'
 export * from './about'
 export * from '../components/sections/homepage-icons'
 export * from './homepage'
+export * from './office_manager';

@@ -11,6 +11,7 @@ import Carousel from '../components/sections/HomeCarousel';
 // Import des données
 import { carouselSlides, stats, content } from '../data/index';
 import type { Content } from '../data/index';
+import OfficeSection from '../components/sections/OfficeSection';
 
 // Mapping des icônes pour les projets
 const projectIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -347,6 +348,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      <OfficeSection/>
 
       {/* Call to Action */}
       <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
