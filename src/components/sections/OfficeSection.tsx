@@ -1,10 +1,9 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useMemo } from 'react';
+import { motion, AnimatePresence, type PanInfo } from 'framer-motion';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getOfficeMembersByOrder } from '../../data/office_manager';
 import OfficeMemberCard from '../cards/OfficeMemberCard';
 
-// Icônes react-icons
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 
@@ -14,10 +13,16 @@ const OfficeSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [isMobile, setIsMobile] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
+  // RESPONSIVE
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
+      const mobile = window.innerWidth < 640;
+      setIsMobile(mobile);
+      
+      if (mobile) {
         setItemsPerPage(1);
       } else if (window.innerWidth < 1024) {
         setItemsPerPage(2);
@@ -31,7 +36,7 @@ const OfficeSection = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
+  // CALCULS
   const totalSlides = Math.ceil(members.length / itemsPerPage);
   
   const validCurrentIndex = useMemo(() => {
@@ -49,6 +54,7 @@ const OfficeSection = () => {
     [members, validCurrentIndex, itemsPerPage]
   );
 
+  // NAVIGATION
   const nextSlide = () => {
     if (currentSlide < totalSlides - 1) {
       setDirection(1);
@@ -68,6 +74,23 @@ const OfficeSection = () => {
     setCurrentIndex(slideIndex * itemsPerPage);
   };
 
+  // SWIPE TACTILE POUR MOBILE
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (!isMobile) return;
+    
+    const swipeThreshold = 50;
+    const { offset, velocity } = info;
+    
+    if (Math.abs(offset.x) > swipeThreshold || Math.abs(velocity.x) > 0.5) {
+      if (offset.x > 0 || velocity.x > 0.5) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    }
+  };
+
+  // VARIANTS D'ANIMATION
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
@@ -84,7 +107,6 @@ const OfficeSection = () => {
       opacity: 0
     })
   };
-
 
   if (members.length === 0) {
     return null;
@@ -121,9 +143,12 @@ const OfficeSection = () => {
         </motion.div>
 
         {/* CAROUSEL CONTAINER */}
-        <div className="relative px-4 md:px-12">
+        <div 
+          ref={carouselRef}
+          className="relative px-4 md:px-12"
+        >
           {/* BOUTONS DE NAVIGATION */}
-          {totalSlides > 1 && (
+          {totalSlides > 1 && !isMobile && (
             <>
               <motion.button
                 whileHover={{ scale: 1.1, x: -2 }}
@@ -156,44 +181,83 @@ const OfficeSection = () => {
           )}
 
           {/* CONTENU DU CAROUSEL */}
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={currentSlide}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
-              }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-            >
-              {displayedMembers.map((member, idx) => (
-                <OfficeMemberCard key={member.id} member={member} index={idx} />
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          <motion.div
+            drag={isMobile ? "x" : false}
+            dragConstraints={carouselRef}
+            dragElastic={0.2}
+            dragMomentum={false}
+            onDragEnd={handleDragEnd}
+            className="cursor-grab active:cursor-grabbing"
+          >
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={currentSlide}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 }
+                }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+              >
+                {displayedMembers.map((member, idx) => (
+                  <OfficeMemberCard key={member.id} member={member} index={idx} />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         {/* PAGINATION DOTS */}
         {totalSlides > 1 && (
-          <div className="flex justify-center gap-2 mt-10">
-            {Array.from({ length: totalSlides }).map((_, index) => (
-              <motion.button
-                key={index}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.8 }}
-                onClick={() => goToSlide(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentSlide === index
-                    ? 'w-8 bg-linear-to-r from-[#ee5253] to-[#932020]'
-                    : 'w-2 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600'
-                }`}
-              />
-            ))}
+          <div className="flex justify-center items-center gap-3 mt-10 px-4 overflow-x-auto py-2">
+            {Array.from({ length: totalSlides }).map((_, index) => {
+              const slideStartIndex = index * itemsPerPage;
+              const slideMember = members[slideStartIndex];
+              
+              return (
+                <motion.button
+                  key={index}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => goToSlide(index)}
+                  className={`relative rounded-full overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl ${
+                    currentSlide === index
+                      ? 'w-14 h-14 md:w-16 md:h-16 ring-4 ring-[#ee5253] ring-offset-2 ring-offset-white dark:ring-offset-gray-900'
+                      : 'w-10 h-10 md:w-12 md:h-12 opacity-70 hover:opacity-100'
+                  }`}
+                >
+                  <img
+                    src={slideMember?.image}
+                    alt={`Slide ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  {currentSlide === index && (
+                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
+                  )}
+                </motion.button>
+              );
+            })}
           </div>
+        )}
+
+        {isMobile && totalSlides > 1 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex justify-center items-center gap-2 mt-4 text-xs text-gray-500 dark:text-gray-400"
+          >
+            <span>←</span>
+            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">
+              {language === 'mg' ? 'Ateleke mba hifindra' : 
+               language === 'fr' ? 'Glissez pour naviguer' : 
+               'Swipe to navigate'}
+            </span>
+            <span>→</span>
+          </motion.div>
         )}
       </div>
     </section>
