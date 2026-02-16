@@ -17,9 +17,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { 
   aboutData, 
   sectionContents, 
-  timelineEvents, 
 } from '../data/about';
-import Timeline from '../components/sections/Timeline';
 
 const AboutPage = () => {
   const { language } = useLanguage();
@@ -303,10 +301,6 @@ const AboutPage = () => {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
               {t.sections.timeline}
             </h2>
-          </div>
-
-          <div className="relative">
-            <Timeline events={timelineEvents} />
           </div>
         </motion.section>
 
