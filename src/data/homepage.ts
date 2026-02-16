@@ -71,7 +71,7 @@ export interface Content {
 // Données du carrousel
 export const carouselSlides: Slide[] = [
     {
-        image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1920&q=80",
+        image: "../assets/images/test.jpg",
         overlay: "rgba(20, 20, 20, 0.7)",
         title: {
             mg: "FIZANAKARA",
@@ -90,7 +90,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1920&q=80",
+        image: "../assets/images/test.jpg",
         overlay: "rgba(30, 30, 40, 0.75)",
         title: {
             mg: "VAKOKA NENTIN-DRAZANA",
@@ -109,7 +109,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1920&q=80",
+        image: "../assets/images/test.jpg",
         overlay: "rgba(20, 25, 35, 0.8)",
         title: {
             mg: "FIARAHAMONINA MIRAY",
@@ -128,7 +128,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=80",
+        image: "../assets/images/test.jpg",
         overlay: "rgba(25, 20, 30, 0.8)",
         title: {
             mg: "FANABEAZANA SY FAMPIROBOROBOANA",

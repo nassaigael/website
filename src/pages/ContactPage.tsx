@@ -1,14 +1,13 @@
 // pages/ContactPage.tsx
 import { motion } from 'framer-motion';
-import { Globe, MapPin, Phone } from 'lucide-react'; // Import manquant
+import { MapPin, Phone } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import Contact from '../components/sections/Contact'; // Vérifiez ce chemin
+import Contact from '../components/sections/Contact';
 
-// Données de traduction pour la page contact
 const contactTranslations = {
   mg: {
     hero: {
-      title: 'FIFANDRAISANA',
+      title: 'Fifandraisana',
       subtitle: 'Miaraka aminay',
       description: 'Mifandray aminay mba hiara-hiasa amin ny fiarovana sy fampitana ny lova nentim-paharazana anakara.',
       cta: 'Hanomboka resaka'
@@ -32,7 +31,7 @@ const contactTranslations = {
   },
   fr: {
     hero: {
-      title: 'CONTACT',
+      title: 'Contact',
       subtitle: 'Avec nous',
       description: 'Contactez-nous pour collaborer à la protection et à la transmission du patrimoine traditionnel anakara.',
       cta: 'Commencer une discussion'
@@ -56,7 +55,7 @@ const contactTranslations = {
   },
   en: {
     hero: {
-      title: 'CONTACT',
+      title: 'Contact',
       subtitle: 'With us',
       description: 'Contact us to collaborate on the protection and transmission of traditional anakara heritage.',
       cta: 'Start a discussion'
@@ -83,7 +82,6 @@ const contactTranslations = {
 const ContactPage = () => {
   const { language } = useLanguage();
 
-  // Type assertion pour TypeScript
   const t = contactTranslations[language as keyof typeof contactTranslations];
 
   const locations = [
@@ -107,24 +105,39 @@ const ContactPage = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto text-center"
           >
-            <div className="inline-flex items-center gap-3 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-white/10">
-              <Globe className="text-[#ee5253]" size={20} />
-              <span className="text-sm font-medium">
-                {language === 'mg' ? 'Fikambanana eran-tany' :
-                  language === 'fr' ? 'Association mondiale' :
-                    'Worldwide association'}
+            {/* Main Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight"
+            >
+              <span className="relative inline-block">
+                <span className="relative z-10">
+                  {t.hero.title}
+                </span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 z-10"></span>
               </span>
-            </div>
+            </motion.h1>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              {t.hero.title}
-            </h1>
-            <p className="text-2xl md:text-3xl text-[#ee5253] font-bold mb-8">
-              {t.hero.subtitle}
-            </p>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              {t.hero.description}
-            </p>
+            {/* Description */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
+            >
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                {t.hero.description}
+              </p>
+            </motion.div>
+
+            {/* Elegant Divider */}
+            <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+            </div>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -137,7 +150,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Contact Section (composant ContactSection) */}
+      {/* Contact */}
       <section id="contact-section" className="py-12 bg-white">
         <Contact />
       </section>

@@ -13,10 +13,8 @@ const Footer = () => {
     return (
         <footer className="bg-linear-to-b from-gray-950 via-gray-950 to-black text-white">
             <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-                {/* Grille des 4 colonnes principales */}
                 <div className="grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-8 xl:gap-12">
 
-                    {/* Colonne 1 - Logo (ton vrai logo) + description + adresse */}
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +22,7 @@ const Footer = () => {
                         transition={{ duration: 0.7 }}
                         className="space-y-6 text-center md:text-left"
                     >
-                        {/* Logo - CHANGER en Link */}
+                        {/* Logo */}
                         <Link to="/" className="flex items-center justify-center gap-2.5 cursor-pointer shrink-0 md:justify-start">
                             <motion.div
                                 whileHover={{ scale: 1.04 }}
@@ -59,7 +57,7 @@ const Footer = () => {
                         </div>
                     </motion.div>
 
-                    {/* Colonne 2 - Liens rapides */}
+                    {/* Liens rapides */}
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +83,7 @@ const Footer = () => {
                         </ul>
                     </motion.div>
 
-                    {/* Colonne 3 - Articles récents */}
+                    {/* Articles récents */}
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +109,7 @@ const Footer = () => {
                         </div>
                     </motion.div>
 
-                    {/* Colonne 4 - Contact */}
+                    {/* Contact */}
                     <motion.div
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +149,6 @@ const Footer = () => {
                     </motion.div>
                 </div>
 
-                {/* Zone Réseaux sociaux + copyright – centrée en bas */}
                 <div className="border-t border-gray-800/70 pt-10 pb-12">
                     <div className="flex flex-col items-center gap-8 text-center">
                         {/* Réseaux sociaux */}

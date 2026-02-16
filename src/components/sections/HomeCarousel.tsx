@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Sparkles,
   ChevronLeft,
   ChevronRight,
   Play,
@@ -140,21 +139,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="max-w-6xl mx-auto pt-12 sm:pt-0"
               >
-                {/* Badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="inline-flex items-center gap-2 bg-linear-to-r from-black/30 to-black/10 backdrop-blur-lg px-4 py-2 sm:px-6 sm:py-3 rounded-full mb-6 sm:mb-10 border border-white/10 shadow-xl sm:shadow-2xl"
-                >
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#ee5253] rounded-full animate-pulse"></div>
-                  <Sparkles className="text-[#ee5253] w-3 h-3 sm:w-4 sm:h-4" />
-                  <span className="text-xs sm:text-sm font-medium text-white/90 tracking-wider uppercase">
-                    {language === 'mg' ? 'Fikambanana eran-tany' :
-                      language === 'fr' ? 'Association mondiale' :
-                        'Worldwide association'}
-                  </span>
-                </motion.div>
 
                 {/* Main Title */}
                 <div className="mb-6 sm:mb-8">

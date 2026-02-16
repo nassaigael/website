@@ -50,9 +50,7 @@ const ProjectsPage = () => {
       className="min-h-screen bg-white dark:bg-[#1e293b] pt-20 md:pt-24 pb-16 md:pb-32"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ============================================ */}
         {/* HERO SECTION */}
-        {/* ============================================ */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -156,9 +154,7 @@ const ProjectsPage = () => {
           </div>
         </motion.div>
 
-        {/* ============================================ */}
         {/* FEATURED PROJECTS */}
-        {/* ============================================ */}
         {featuredProjects.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,9 +185,7 @@ const ProjectsPage = () => {
           </motion.div>
         )}
 
-        {/* ============================================ */}
-        {/* BARRE DE RECHERCHE PREMIUM */}
-        {/* ============================================ */}
+        {/* BARRE DE RECHERCHE */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -252,9 +246,7 @@ const ProjectsPage = () => {
           </div>
         </motion.div>
 
-        {/* ============================================ */}
-        {/* PROJETS - MODE GRILLE UNIQUEMENT */}
-        {/* ============================================ */}
+        {/* PROJETS */}
         {filteredProjects.length > 0 ? (
           <motion.div
             key={`grid-${filteredProjects.length}`}
@@ -272,7 +264,7 @@ const ProjectsPage = () => {
                   </h3>
                 )}
                 
-                {/* GRILLE - MÊME SUR TOUS LES ÉCRANS */}
+                {/* GRILLEs */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
                   {regularProjects.map((project, index) => (
                     <ProjectCard

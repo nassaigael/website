@@ -24,7 +24,7 @@ export interface Partner {
 
 export const partnersData = {
   mg: {
-    title: 'Mpanohana sy Mpiara-miasa',
+    title: 'Mpiara-miasa',
     subtitle: 'Izay miara-miasa amintsika',
     description: 'Miaraka amin\'ireo mpanohana sy mpiara-miasa malaza izahay mba hanatanterahana ny tanjona rehetra.',
     categories: {
@@ -36,7 +36,7 @@ export const partnersData = {
     cta: 'Te hanohana'
   },
   fr: {
-    title: 'Partenaires et Supporters',
+    title: 'Partenaires',
     subtitle: 'Ceux qui collaborent avec nous',
     description: 'Nous travaillons avec des partenaires et supporters prestigieux pour atteindre tous nos objectifs.',
     categories: {
@@ -48,7 +48,7 @@ export const partnersData = {
     cta: 'Devenir Partenaire'
   },
   en: {
-    title: 'Partners and Supporters',
+    title: 'Partners',
     subtitle: 'Those who collaborate with us',
     description: 'We work with prestigious partners and supporters to achieve all our goals.',
     categories: {

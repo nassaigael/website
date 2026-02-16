@@ -141,7 +141,7 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                             onClick={onClose}
                             whileHover={{ scale: 1.1, backgroundColor: '#ee5253' }}
                             whileTap={{ scale: 0.9 }}
-                            className="absolute top-3 right-3 z-20 w-9 h-9 bg-white dark:bg-gray-800 hover:bg-[#ee5253] text-gray-600 dark:text-gray-300 hover:text-white rounded-xl shadow-lg flex items-center justify-center transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                            className="absolute top-3 right-3 z-20 w-9 h-9 bg-white dark:bg-gray-800 hover:bg-[#ee5253] text-gray-600 dark:text-gray-300 hover:text-white rounded-xl shadow-lg flex items-center justify-center transition-all duration-300 border border-gray-200 dark:border-gray-700 cursor-pointer"
                         >
                             <FaTimes className="w-4 h-4" />
                         </motion.button>
@@ -180,9 +180,8 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                                 </div>
                             </div>
 
-                            {/* COLONNE DROITE - INFOS (visible sur desktop) */}
+                            {/* COLONNE DROITE - INFOS */}
                             <div className="hidden lg:flex lg:w-3/5 p-6 lg:p-8 flex-col">
-                                {/* Badge et nom desktop */}
                                 <div className="mb-6">
                                     {rankBadge && (
                                         <div className={`inline-flex items-center gap-2 px-4 py-2 ${rankBadge.bg} rounded-xl text-white font-bold text-sm mb-4`}>
@@ -195,7 +194,7 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                                 </div>
 
                                 {/* DISCOURS */}
-                                <div className="flex-1">
+                                <div className="flex-1 cursor-auto">
                                     <div className="relative">
                                         <FaQuoteLeft className="absolute -top-2 -left-2 w-6 h-6 text-[#ee5253]/20" />
                                         <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
@@ -251,7 +250,7 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
 
                                 {/* EMAIL DIRECT */}
                                 {member.contacts.email && (
-                                    <div className="mt-4 p-3 bg-linear-to-r from-[#ee5253]/5 to-[#4299e1]/5 rounded-lg border border-[#ee5253]/20">
+                                    <div className="mt-4 p-3 bg-linear-to-r from-[#ee5253]/5 to-[#4299e1]/5 rounded-lg border border-[#ee5253]/20 cursor-auto">
                                         <div className="flex items-center gap-3">
                                             <IoMdMail className="w-5 h-5 text-[#ee5253]" />
                                             <span className="text-sm text-gray-700 dark:text-gray-300 truncate">{member.contacts.email}</span>

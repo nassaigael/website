@@ -63,37 +63,36 @@ const PartnersHero = () => {
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
-                        className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 md:mb-8 tracking-tight leading-tight"
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight"
                     >
-                        <span className="bg-linear-to-r from-white via-white/95 to-white/80 bg-clip-text text-transparent">
-                            {t.title}
+                        <span className="relative inline-block">
+                            <span className="relative z-10">
+                                {t.title}
+                            </span>
+                            <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 -z-10"></span>
                         </span>
                     </motion.h1>
 
-                    {/* Subtitle */}
+                    {/* Description */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.7 }}
-                        className="relative inline-block mb-8 md:mb-10"
+                        transition={{ delay: 0.4 }}
+                        className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
                     >
-                        <p className="text-2xl sm:text-3xl md:text-4xl font-bold bg-linear-to-r from-[#ee5253] via-[#ff6b6b] to-[#d32f2f] bg-clip-text text-transparent">
-                            {t.subtitle}
+                        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                            {t.description}
                         </p>
-                        <div className="absolute -bottom-3 left-1/4 w-1/2 h-1 bg-linear-to-r from-transparent via-[#ee5253] to-transparent rounded-full" />
                     </motion.div>
 
-                    {/* Description */}
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.9 }}
-                        className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-10 md:mb-14 max-w-3xl mx-auto leading-relaxed font-light px-4"
-                    >
-                        {t.description}
-                    </motion.p>
+                    {/* Elegant Divider */}
+                    <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
+                        <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+                        <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
+                        <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+                    </div>
 
-                    {/* Stats Cards - Responsive Grid */}
+                    {/* Stats Cards */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -149,7 +148,7 @@ const PartnersHero = () => {
 
                         <Link to={'/contact'}>
 
-                            <motion.button 
+                            <motion.button
                                 whileHover={{
                                     scale: 1.05,
                                     boxShadow: "0 20px 40px rgba(238, 82, 83, 0.3)"

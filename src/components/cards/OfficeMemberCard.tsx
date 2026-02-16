@@ -79,7 +79,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
         onHoverEnd={() => setIsHovered(false)}
         className="group relative w-full bg-linear-to-br from-white via-white to-gray-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800/50 rounded-2xl overflow-hidden shadow-2xl hover:shadow-4xl border border-gray-200/50 dark:border-gray-800/50 transition-all duration-700 perspective-1000"
       >
-        {/* BADGE DE RANG PREMIUM - basé sur le rôle réel */}
+        {/* BADGE DE RANG PREMIUM */}
         {rankBadge && (
           <motion.div 
             initial={{ x: -20, opacity: 0 }}
@@ -159,7 +159,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
             }}
             className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20"
           >
-            {/* Facebook */}
+            {/* FACEBOKK */}
             {member.contacts.facebook && (
               <motion.a
                 href={member.contacts.facebook}
@@ -176,7 +176,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
               </motion.a>
             )}
             
-            {/* LinkedIn */}
+            {/* LINKEDIN */}
             {member.contacts.linkedin && (
               <motion.a
                 href={member.contacts.linkedin}
@@ -193,7 +193,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
               </motion.a>
             )}
             
-            {/* Twitter */}
+            {/* TWITTER */}
             {member.contacts.twitter && (
               <motion.a
                 href={member.contacts.twitter}
@@ -210,7 +210,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
               </motion.a>
             )}
             
-            {/* Phone */}
+            {/* PHONE */}
             {member.contacts.phone && (
               <motion.a
                 href={`tel:${member.contacts.phone}`}
@@ -225,7 +225,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
               </motion.a>
             )}
             
-            {/* Email */}
+            {/* EMAIL */}
             {member.contacts.email && (
               <motion.a
                 href={`mailto:${member.contacts.email}`}
@@ -255,7 +255,6 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
             <FaQuoteRight className="w-10 h-10" />
           </motion.div>
 
-          {/* Effet de lumière sur l'image */}
           <motion.div 
             animate={{ 
               x: isHovered ? '100%' : '-100%'
@@ -271,7 +270,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
           <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-[#ee5253] shadow-lg shadow-[#ee5253]/50" />
           
-          {/* Avatar */}
+          {/* AVATAR */}
           <div className="absolute -top-10 left-1/2 -translate-x-1/2">
             <div className="relative">
               <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-lg opacity-50 animate-pulse-slow" />
@@ -292,7 +291,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
             </div>
           </div>
 
-          {/* Nom */}
+          {/* NOM */}
           <div className="mt-10 mb-1">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
               <span className="bg-linear-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
@@ -307,7 +306,7 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
             </div>
           </div>
           
-          {/* Bio */}
+          {/* BIO */}
           <div className="relative mt-4 px-3 py-3 bg-linear-to-br from-gray-50/80 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
             <FaQuoteRight className="absolute -left-1.5 -top-1.5 w-4 h-4 text-[#ee5253]/30 rotate-180" />
             <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed line-clamp-2 font-light italic">
@@ -316,10 +315,10 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
             <FaQuoteRight className="absolute -right-1.5 -bottom-1.5 w-4 h-4 text-[#ee5253]/30" />
           </div>
           
-          {/* Lien de profil - OUVRE LE POPUP */}
+          {/* LIEN DE PROFIL - POPUP */}
           <button
             onClick={() => setIsProfileOpen(true)}
-            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-linear-to-r from-[#ee5253] to-[#932020] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden"
+            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-linear-to-r from-[#ee5253] to-[#932020] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden cursor-pointer"
           >
             <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/link:translate-y-0 transition-transform duration-500" />
             <RiShieldFlashLine className="w-3.5 h-3.5 relative z-10 group-hover/link:animate-pulse" />
