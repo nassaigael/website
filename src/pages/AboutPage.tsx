@@ -18,12 +18,8 @@ import {
   aboutData, 
   sectionContents, 
   timelineEvents, 
-  bureauMembers, 
-  nobleFigures 
 } from '../data/about';
 import Timeline from '../components/sections/Timeline';
-import BureauCarousel from '../components/sections/BureauCarousel';
-import NoblesCarousel from '../components/sections/NoblesCarousel';
 
 const AboutPage = () => {
   const { language } = useLanguage();
@@ -337,7 +333,6 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <BureauCarousel members={bureauMembers} />
         </motion.section>
 
         {/* Noble Figures Section */}
@@ -363,7 +358,6 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <NoblesCarousel nobles={nobleFigures} />
         </motion.section>
 
         {/* CTA Section */}

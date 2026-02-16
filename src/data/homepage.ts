@@ -3,7 +3,12 @@ import {
     Users, Globe, Calendar, Trophy
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import testImage from '../assets/images/test.jpg';
+
+import slideOne from "../assets/images/homepage/slideOne.jpg";
+import slideTwo from "../assets/images/homepage/slideTwo.jpg";
+import slideThree from "../assets/images/homepage/slideThree.jpg";
+import slideFour from "../assets/images/homepage/slideFour.jpg";
+
 
 export interface Slide {
     image: string;
@@ -69,10 +74,9 @@ export interface Content {
     };
 }
 
-// Données du carrousel
 export const carouselSlides: Slide[] = [
     {
-        image: testImage,
+        image: slideOne,
         overlay: "rgba(20, 20, 20, 0.7)",
         title: {
             mg: "FIZANAKARA",
@@ -91,7 +95,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: testImage,
+        image: slideTwo,
         overlay: "rgba(30, 30, 40, 0.75)",
         title: {
             mg: "VAKOKA NENTIN-DRAZANA",
@@ -110,7 +114,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: testImage,
+        image: slideThree,
         overlay: "rgba(20, 25, 35, 0.8)",
         title: {
             mg: "FIARAHAMONINA MIRAY",
@@ -129,7 +133,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: testImage,
+        image: slideFour,
         overlay: "rgba(25, 20, 30, 0.8)",
         title: {
             mg: "FANABEAZANA SY FAMPIROBOROBOANA",
