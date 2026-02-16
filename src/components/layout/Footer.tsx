@@ -1,209 +1,243 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';           // ← ajouté
-import { MapPin, Calendar, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Facebook, Instagram, Twitter, Mail, Phone, Heart, Globe, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { footerData } from '../../data/footer';
 import logo from "../../assets/images/logo.png";
-
 
 const Footer = () => {
     const { language } = useLanguage();
     const t = footerData[language];
 
-    return (
-        <footer className="bg-linear-to-b from-gray-950 via-gray-950 to-black text-white">
-            <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-8 xl:gap-12">
+    const socialIcons = {
+        Facebook: Facebook,
+        Instagram: Instagram,
+        Twitter: Twitter,
+        YouTube: Globe
+    };
 
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 }
+    };
+
+    return (
+        <footer className="relative bg-gray-950 text-white overflow-hidden">
+            {/* Éléments décoratifs d'arrière-plan */}
+            <div className="absolute inset-0 pointer-events-none">
+
+                {/* Cercles flous */}
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#ee5253]/10 rounded-full blur-3xl" />
+                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#932020]/10 rounded-full blur-3xl" />
+            </div>
+
+            {/* Ligne décorative supérieure */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
+
+            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+                <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+
+                    {/* Logo & Description */}
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial="hidden"
+                        whileInView="visible"
                         viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
-                        className="space-y-6 text-center md:text-left"
+                        variants={fadeInUp}
+                        transition={{ duration: 0.6 }}
+                        className="space-y-6"
                     >
-                        {/* Logo */}
-                        <Link to="/" className="flex items-center justify-center gap-2.5 cursor-pointer shrink-0 md:justify-start">
-                            <motion.div
-                                whileHover={{ scale: 1.04 }}
-                                whileTap={{ scale: 0.97 }}
-                                className="flex items-center gap-2.5"
-                            >
+                        <Link to="/" className="inline-flex items-center gap-3 group">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-[#ee5253] rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
                                 <img
                                     src={logo}
                                     alt="Logo Fizanakara"
-                                    className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
+                                    className="relative h-14 w-14 sm:h-16 sm:w-16 object-contain"
                                 />
-                                <div className="flex flex-col leading-tight">
-                                    <h1 className="font-extrabold tracking-tight text-[#ee5253] text-lg sm:text-xl md:text-[1.38rem] lg:text-2xl">
-                                        FIZANAKARA
-                                    </h1>
-                                    <p className="text-xs text-gray-400 font-medium hidden lg:block">
-                                        {language === 'mg' ? "Fikambanan'ny Zanak'Anakara" :
-                                            language === 'fr' ? "Association des Descendants Anakara" :
-                                                "Association of Anakara Descendants"}
-                                    </p>
-                                </div>
-                            </motion.div>
+                            </div>
+                            <div className="flex flex-col">
+                                <h1 className="font-extrabold tracking-tight text-white text-2xl sm:text-3xl group-hover:text-[#ee5253] transition-colors">
+                                    FIZANAKARA
+                                </h1>
+                                <p className="text-xs text-gray-400 font-medium">
+                                    {t.organization.subtitle}
+                                </p>
+                            </div>
                         </Link>
 
-                        <p className="text-sm leading-relaxed text-gray-300 md:text-base">
-                            {t.organization.description}
-                        </p>
+                        <div className="relative">
+                            <div className="absolute -left-2 top-0 w-1 h-full bg-[#ee5253]" />
+                            <p className="text-sm leading-relaxed text-gray-300 md:text-base italic pl-4">
+                                "{t.organization.description}"
+                            </p>
+                        </div>
 
-                        <div className="flex items-start justify-center gap-3 text-sm text-gray-300 md:justify-start">
-                            <MapPin className="mt-1 h-5 w-5 shrink-0 text-red-500" />
+                        <div className="flex items-start gap-3 text-sm text-gray-300 bg-gray-900/30 p-4 rounded-xl border border-gray-800/50 hover:border-[#ee5253]/30 transition-all duration-300">
+                            <MapPin className="mt-1 h-5 w-5 shrink-0 text-[#ee5253]" />
                             <span className="leading-relaxed">{t.address}</span>
+                        </div>
+
+                        {/* Année de fondation */}
+                        <div className="flex items-center gap-2 text-sm text-gray-400">
+                            <Heart className="w-4 h-4 text-[#ee5253]" />
+                            <span>
+                                {language === 'mg' ? 'Niorina tamin\'ny 1970' :
+                                    language === 'fr' ? 'Fondé en 1970' :
+                                        'Founded in 1970'}
+                            </span>
                         </div>
                     </motion.div>
 
-                    {/* Liens rapides */}
+                    {/* LIENS RAPIDES */}
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial="hidden"
+                        whileInView="visible"
                         viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.1 }}
-                        className="space-y-6 text-center md:text-left"
+                        variants={fadeInUp}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="space-y-6"
                     >
-                        <h3 className="border-b border-gray-700 pb-3 text-xl font-semibold">
+                        <h3 className="text-xl font-bold text-white relative inline-block">
                             {t.quickLinks.title}
+                            <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#ee5253]" />
                         </h3>
-                        <ul className="space-y-3 text-sm">
-                            {t.quickLinks.links.map((link, i) => (
-                                <li key={i}>
-                                    <a
-                                        href={link.href}
-                                        className="group inline-flex items-center gap-2.5 text-gray-300 transition-colors hover:text-red-400"
-                                    >
-                                        <span className="h-1.5 w-1.5 rounded-full bg-red-500/60 group-hover:scale-125 transition-transform" />
-                                        {link.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </motion.div>
 
-                    {/* Articles récents */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                        className="space-y-6 text-center md:text-left"
-                    >
-                        <h3 className="border-b border-gray-700 pb-3 text-xl font-semibold">
-                            {t.recentPosts.title}
-                        </h3>
-                        <div className="space-y-6 text-sm">
-                            {t.recentPosts.posts.map((post, i) => (
-                                <div key={i} className="group">
-                                    <div className="mb-2 flex items-center justify-center gap-2 text-xs text-gray-500 md:justify-start">
-                                        <Calendar className="h-4 w-4 text-red-500" />
-                                        <span>{post.date}</span>
-                                    </div>
-                                    <p className="leading-relaxed text-gray-300 group-hover:text-red-400 transition-colors">
-                                        {post.content}
-                                    </p>
-                                </div>
+                        <div className="space-y-3">
+                            {t.quickLinks.links.map((link, i) => (
+                                <Link
+                                    key={i}
+                                    to={link.href}
+                                    className="group flex items-center gap-3 p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] hover:bg-gray-900/50 transition-all duration-300"
+                                >
+                                    <ChevronRight className="w-4 h-4 text-[#ee5253] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                                    <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                                        {link.label}
+                                    </span>
+                                </Link>
                             ))}
                         </div>
                     </motion.div>
 
                     {/* Contact */}
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial="hidden"
+                        whileInView="visible"
                         viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.3 }}
-                        className="space-y-8 text-center"
+                        variants={fadeInUp}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="space-y-6"
                     >
-                        <h3 className="border-b border-gray-700 pb-3 text-xl font-semibold">
+                        <h3 className="text-xl font-bold text-white relative inline-block">
                             {t.contact.title}
+                            <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#ee5253]" />
                         </h3>
 
-                        <div className="space-y-7">
-                            {/* Email */}
-                            <div className="flex flex-col items-center gap-2">
-                                <a
-                                    href={`mailto:${t.contact.email}`}
-                                    className="text-base font-medium text-gray-100 hover:text-red-400"
-                                >
-                                    {t.contact.email}
-                                </a>
-                                <span className="hidden text-xs text-gray-500 md:block">Email</span>
+                        {/* Email */}
+                        <div className="group p-5 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300">
+                            <div className="flex items-center gap-4">
+                                <div className="p-2.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
+                                    <Mail className="w-4 h-4 text-white" />
+                                </div>
+                                <div>
+                                    <p className="text-xs text-[#ee5253] font-semibold uppercase tracking-wider mb-1">
+                                        {language === 'mg' ? 'EMAIL' : 'EMAIL'}
+                                    </p>
+                                    <a href={`mailto:${t.contact.email}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                                        {t.contact.email}
+                                    </a>
+                                </div>
                             </div>
+                        </div>
 
-                            {/* Téléphone */}
-                            <div className="flex flex-col items-center gap-2">
-                                <a
-                                    href={`tel:${t.contact.phone.replace(/\D/g, '')}`}
-                                    className="text-base font-medium text-gray-100 hover:text-red-400"
-                                >
-                                    {t.contact.phone}
-                                </a>
-                                <span className="hidden text-xs text-gray-500 md:block">
-                                    {language === 'mg' ? 'Téléphone' : 'Téléphone'}
-                                </span>
+                        {/* Téléphone */}
+                        <div className="group p-5 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300">
+                            <div className="flex items-center gap-4">
+                                <div className="p-2.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
+                                    <Phone className="w-4 h-4 text-white" />
+                                </div>
+                                <div>
+                                    <p className="text-xs text-[#ee5253] font-semibold uppercase tracking-wider mb-1">
+                                        {language === 'mg' ? 'TELEFONINA' : 'TÉLÉPHONE'}
+                                    </p>
+                                    <a href={`tel:${t.contact.phone.replace(/\D/g, '')}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                                        {t.contact.phone}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
                 </div>
 
-                <div className="border-t border-gray-800/70 pt-10 pb-12">
-                    <div className="flex flex-col items-center gap-8 text-center">
-                        {/* Réseaux sociaux */}
-                        <div className="space-y-5">
-                            <h3 className="text-xl font-semibold tracking-wide">
-                                {t.socialMedia.title}
-                            </h3>
-                            <div className="flex justify-center gap-5 sm:gap-7">
-                                {t.socialMedia.platforms.map((platform, i) => {
-                                    const Icon = { Facebook, Instagram, Twitter }[platform];
-                                    return (
-                                        <motion.a
-                                            key={i}
-                                            href="#"
-                                            whileHover={{ scale: 1.2, y: -4 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-800/70 text-gray-200 transition-all hover:bg-red-600 hover:text-white hover:shadow-xl hover:shadow-red-900/40"
-                                            aria-label={platform}
-                                        >
-                                            {Icon && <Icon className="h-7 w-7" />}
-                                        </motion.a>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        {/* Copyright */}
-                        <div className="space-y-3 text-sm text-gray-400">
-                            <p>
-                                © {new Date().getFullYear()} FIZANAKARA.{' '}
-                                {language === 'mg'
-                                    ? "Zon'ny rehetra voatokana"
-                                    : language === 'fr'
-                                        ? 'Tous droits réservés'
-                                        : 'All rights reserved'}
-                            </p>
-                            <p className="text-xs text-gray-600">
-                                {language === 'mg'
-                                    ? "Niorina tamin'ny 1970 tao Antananarivo"
-                                    : language === 'fr'
-                                        ? 'Fondé en 1970 à Antananarivo'
-                                        : 'Founded in 1970 in Antananarivo'}
-                            </p>
-
-                            <div className="flex justify-center gap-6 pt-2 text-gray-400">
-                                <a href="#" className="hover:text-red-400 transition-colors">
-                                    {t.copyright?.links?.terms || 'Conditions'}
-                                </a>
-                                <a href="#" className="hover:text-red-400 transition-colors">
-                                    {t.copyright?.links?.privacy || 'Confidentialité'}
-                                </a>
-                            </div>
+                {/* RÉSEAUX SOCIAUX & COPYRIGHT */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeInUp}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="mt-16 pt-8 border-t border-gray-800"
+                >
+                    {/* Réseaux sociaux */}
+                    <div className="text-center mb-8">
+                        <h3 className="text-lg font-semibold text-gray-300 mb-5">
+                            {t.socialMedia.title}
+                        </h3>
+                        <div className="flex justify-center gap-4 sm:gap-5">
+                            {t.socialMedia.platforms.map((platform, i) => {
+                                const Icon = socialIcons[platform as keyof typeof socialIcons] || Globe;
+                                return (
+                                    <a
+                                        key={i}
+                                        href="#"
+                                        className="relative group"
+                                    >
+                                        <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity" />
+                                        <div className="relative w-12 h-12 bg-gray-800 group-hover:bg-[#ee5253] rounded-full flex items-center justify-center border border-gray-700 group-hover:border-transparent transition-all duration-300 shadow-lg">
+                                            <Icon className="h-5 w-5 text-gray-300 group-hover:text-white transition-colors" />
+                                        </div>
+                                    </a>
+                                );
+                            })}
                         </div>
                     </div>
-                </div>
+
+                    {/* COPYRIGHT, TERMES, CONFIDENTIALITÉ */}
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-sm">
+                        {/* Copyright */}
+                        <p className="text-gray-400 text-center lg:text-left order-1">
+                            {t.copyright.text}
+                        </p>
+
+                        {/* Developed by Gaël */}
+                        <div className="flex items-center gap-2 order-3">
+                            <span className="text-xs text-gray-500">
+                                {language === 'mg' ? 'Namboarin\'i' :
+                                    language === 'fr' ? 'Développé par' :
+                                        'Developed by'}
+                            </span>
+                            <span className="text-sm font-medium text-white hover:text-[#ee5253] transition-colors cursor-default">
+                                Gaël RAMAHANDRISOA
+                            </span>
+                        </div>
+
+                        {/* Termes et Confidentialité */}
+                        <div className="flex items-center gap-4 order-2">
+                            {t.copyright.links && (
+                                <>
+                                    <a href="#" className="text-gray-400 hover:text-[#ee5253] transition-colors relative group">
+                                        {t.copyright.links.terms}
+                                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#ee5253] group-hover:w-full transition-all duration-300" />
+                                    </a>
+                                    <span className="w-1 h-1 bg-[#ee5253] rounded-full" />
+                                    <a href="#" className="text-gray-400 hover:text-[#ee5253] transition-colors relative group">
+                                        {t.copyright.links.privacy}
+                                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#ee5253] group-hover:w-full transition-all duration-300" />
+                                    </a>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </footer>
     );
