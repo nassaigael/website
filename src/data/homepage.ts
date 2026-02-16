@@ -3,6 +3,7 @@ import {
     Users, Globe, Calendar, Trophy
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import testImage from '../assets/images/test.jpg';
 
 export interface Slide {
     image: string;
@@ -41,7 +42,7 @@ export interface Value {
 }
 
 export interface ProjectItem {
-    icon: string; // Nom de l'icône
+    icon: string;
     title: string;
     description: string;
 }
@@ -71,7 +72,7 @@ export interface Content {
 // Données du carrousel
 export const carouselSlides: Slide[] = [
     {
-        image: "../assets/images/test.jpg",
+        image: testImage,
         overlay: "rgba(20, 20, 20, 0.7)",
         title: {
             mg: "FIZANAKARA",
@@ -90,7 +91,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: "../assets/images/test.jpg",
+        image: testImage,
         overlay: "rgba(30, 30, 40, 0.75)",
         title: {
             mg: "VAKOKA NENTIN-DRAZANA",
@@ -109,7 +110,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: "../assets/images/test.jpg",
+        image: testImage,
         overlay: "rgba(20, 25, 35, 0.8)",
         title: {
             mg: "FIARAHAMONINA MIRAY",
@@ -128,7 +129,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: "../assets/images/test.jpg",
+        image: testImage,
         overlay: "rgba(25, 20, 30, 0.8)",
         title: {
             mg: "FANABEAZANA SY FAMPIROBOROBOANA",
@@ -148,7 +149,6 @@ export const carouselSlides: Slide[] = [
     }
 ];
 
-// Données des statistiques
 export const stats: Stat[] = [
     {
         icon: Users,
