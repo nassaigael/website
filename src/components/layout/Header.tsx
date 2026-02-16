@@ -1,19 +1,25 @@
 // components/layout/Header.tsx
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { navItems, languages, type Language } from '../../data/navigation';
-import { useLanguage } from '../../contexts/LanguageContext'; 
+import { useLanguage } from '../../contexts/LanguageContext';
 import logo from "../../assets/images/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activePath, setActivePath] = useState('/');
   const navigate = useNavigate();
-  
+  const location = useLocation();
+
   const { language, changeLanguage } = useLanguage();
+
+  useEffect(() => {
+    setActivePath(location.pathname);
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -40,7 +46,7 @@ const Header = () => {
 
   const handleNavClick = (path: string) => {
     setIsMenuOpen(false);
-    navigate(path); // Naviguer vers la route
+    navigate(path);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,118 +54,144 @@ const Header = () => {
 
   const currentLang = languages.find((l) => l.code === language)!;
 
+
+
+  const isActive = (path: string) => {
+    if (path === '/' && activePath === '/') return true;
+    if (path !== '/' && activePath.startsWith(path)) return true;
+    return false;
+  };
+
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-black/92 backdrop-blur-xl shadow-[0_4px_16px_rgba(0,0,0,0.5)] py-2.5'
-          : 'bg-black/80 py-3.5 sm:py-4'
-      }`}
+      initial="hidden"
+      animate="visible"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled
+          ? 'bg-gray-950/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(238,82,83,0.15)] py-2'
+          : 'bg-black backdrop-blur-sm py-3 sm:py-4'
+        }`}
+      style={{
+        borderBottom: scrolled ? '1px solid rgba(238,82,83,0.2)' : 'none'
+      }}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+      {/* Ligne décorative animée */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-[#ee5253]/50 to-transparent" />
 
-          {/* Logo - CHANGER en Link */}
-          <Link to="/" className="flex items-center gap-2.5 cursor-pointer shrink-0">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          {/* Logo  */}
+          <Link to="/" className="flex items-center gap-2.5 cursor-pointer shrink-0 group">
             <motion.div
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover="hover"
+              whileTap="tap"
               className="flex items-center gap-2.5"
             >
-              <img
-                src={logo}
-                alt="Logo Fizanakara"
-                className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
-              />
-              <div className="flex flex-col leading-tight">
-                <h1 className="font-extrabold tracking-tight text-[#ee5253] text-lg sm:text-xl md:text-[1.38rem] lg:text-2xl">
+              <div className="relative">
+                {/* Effet de glow autour du logo */}
+                <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
+                <img
+                  src={logo}
+                  alt="Logo Fizanakara"
+                  className="relative h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 lg:h-12 lg:w-12 object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <h1 className="font-extrabold tracking-tight text-white text-xl sm:text-2xl md:text-[1.5rem] lg:text-[1.8rem] group-hover:text-[#ee5253] transition-colors duration-300">
                   FIZANAKARA
                 </h1>
-                <p className="text-xs text-gray-400 font-medium hidden lg:block">
+                <p className="text-[10px] sm:text-xs text-gray-400 font-medium hidden sm:block">
                   {language === 'mg' ? "Fikambanan'ny Zanak'Anakara" :
-                   language === 'fr' ? "Association des Descendants Anakara" :
-                   "Association of Anakara Descendants"}
+                    language === 'fr' ? "Association des Descendants Anakara" :
+                      "Association of Anakara Descendants"}
                 </p>
               </div>
             </motion.div>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center justify-center gap-5 lg:gap-8 flex-1 mx-6 lg:mx-12">
+          {/* Navigation Desktop   */}
+          <nav className="hidden md:flex items-center justify-center gap-1 lg:gap-2 flex-1 mx-4 lg:mx-8">
             {navItems.slice(1).map((item) => (
               <motion.button
                 key={item.id}
-                whileHover={{ y: -1.5 }}
-                whileTap={{ y: 0 }}
+                whileHover="hover"
+                whileTap="tap"
                 onClick={() => handleNavClick(item.path)}
-                className={`
-                  relative px-2 py-1.5 text-sm lg:text-base font-medium text-white/90 uppercase
-                  transition-colors hover:text-[#ee5253]
-                  after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-[#ee5253]/70
-                  after:scale-x-0 after:origin-right hover:after:origin-left hover:after:scale-x-100
-                  after:transition-transform after:duration-300
-                `}
+                className="relative px-3 lg:px-4 py-2"
               >
-                {getLabel(item)}
+                <span className={`text-sm lg:text-base font-medium transition-colors duration-300 uppercase ${isActive(item.path) ? 'text-[#ee5253]' : 'text-white/80 hover:text-white'
+                  }`}>
+                  {getLabel(item)}
+                </span>
+
+                {/* Indicateur de page active */}
+                {isActive(item.path) && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute -bottom-1 left-2 right-2 h-0.5 bg-[#ee5253]"
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                  />
+                )}
               </motion.button>
             ))}
           </nav>
 
-          {/* Droite : langue + burger */}
-          <div className="flex items-center gap-3 md:gap-4">
+          {/* Droite : langue + burger -   */}
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Sélecteur de langue   */}
             <div className="relative lang-dropdown-container">
               <motion.button
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.94 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className={`
                   group flex items-center gap-2 rounded-full
-                  px-3.5 py-1.5 md:px-4 md:py-2
-                  bg-black/30 border border-white/10 hover:border-white/30
-                  text-white/90 hover:text-white transition-all duration-200
+                  px-3 py-1.5 md:px-4 md:py-2
+                  bg-gray-900/80 backdrop-blur-sm border border-gray-700
+                  hover:border-[#ee5253] hover:bg-gray-900
+                  text-white transition-all duration-300
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5253]/50
+                  ${isLangOpen ? 'border-[#ee5253]' : ''}
                 `}
                 aria-label={`Langue actuelle : ${currentLang.label}`}
                 aria-expanded={isLangOpen}
               >
-                <span className="text-xl drop-shadow-sm">{currentLang.flag}</span>
-                <Globe size={18} className="opacity-70 group-hover:opacity-100 transition-opacity hidden md:block" />
-                <span className="text-sm font-medium hidden md:inline">
+                <span className="text-lg drop-shadow-sm">{currentLang.flag}</span>
+                <span className="text-sm font-medium hidden sm:inline">
                   {currentLang.code.toUpperCase()}
                 </span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''
+                  }`} />
               </motion.button>
 
               <AnimatePresence>
                 {isLangOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 4, scale: 0.97 }}
-                    transition={{ duration: 0.15 }}
-                    className={`
-                      absolute right-0 top-full mt-1.5
-                      w-fit min-w-max
-                      rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl shadow-2xl
-                      overflow-hidden z-50
-                    `}
+                    exit={{ opacity: 0, y: -5, scale: 0.95 }}
+                    transition={{ duration: 0.2, type: 'spring', stiffness: 400, damping: 25 }}
+                    className="absolute right-0 top-full mt-2 w-40 rounded-xl border border-gray-800 bg-gray-950/95 backdrop-blur-xl shadow-2xl overflow-hidden z-50"
                   >
-                    {languages.map((lang) => (
+                    {languages.map((lang, index) => (
                       <motion.button
                         key={lang.code}
-                        whileHover={{ x: 3 }}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ x: 4, backgroundColor: 'rgba(238,82,83,0.1)' }}
                         onClick={() => handleLanguageChange(lang.code)}
                         className={`
-                          flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm
-                          transition-colors duration-150
-                          hover:bg-white/8 active:bg-white/12
-                          ${language === lang.code ? 'bg-[#ee5253]/15 text-[#ee5253]' : 'text-white/90'}
+                          flex w-full items-center gap-3 px-4 py-3 text-left text-sm
+                          transition-all duration-200
+                          
+                          ${language === lang.code
+                            ? 'bg-[#ee5253]/15 text-[#ee5253] border-l-2 border-[#ee5253]'
+                            : 'text-white/80 hover:text-white'
+                          }
                         `}
                       >
-                        <span className="text-2xl min-w-8">{lang.flag}</span>
-                        <span className="flex-1 truncate pr-2">{lang.label}</span>
+                        <span className="text-2xl">{lang.flag}</span>
+                        <span className="flex-1 font-medium">{lang.label}</span>
                       </motion.button>
                     ))}
                   </motion.div>
@@ -167,42 +199,58 @@ const Header = () => {
               </AnimatePresence>
             </div>
 
-            <button
-              className="md:hidden rounded-full p-2.5 text-white/80 hover:text-[#ee5253] hover:bg-white/8 transition-colors"
+            {/* Bouton Menu Mobile */}
+            <motion.button
+              whileHover={{ scale: 1.05, backgroundColor: 'rgba(238,82,83,0.1)' }}
+              whileTap={{ scale: 0.95 }}
+              className="md:hidden rounded-full p-2.5 text-white/80 hover:text-[#ee5253] transition-all duration-300 border border-gray-800 hover:border-[#ee5253] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5253]/50"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? 'Fermer menu' : 'Ouvrir menu'}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Menu mobile */}
+      {/* Menu Mobile   */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.32, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="md:hidden overflow-hidden bg-linear-to-b from-black/95 to-black/80 border-t border-white/5"
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden overflow-hidden bg-gray-950/95 backdrop-blur-xl border-t border-gray-800/50"
           >
-            <div className="px-4 py-5 space-y-1.5">
+            <div className="px-4 py-6 space-y-2">
               {navItems.slice(1).map((item, i) => (
                 <motion.button
                   key={item.id}
-                  initial={{ opacity: 0, x: -12 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07 + 0.1 }}
+                  transition={{ delay: i * 0.08 }}
                   onClick={() => handleNavClick(item.path)}
-                  className="block w-full text-left py-3 px-4 text-lg font-bold text-white/90 hover:text-[#ee5253] hover:bg-white/5 rounded-lg transition-colors uppercase"
+                  className={`
+                    relative block w-full text-left py-3.5 px-5
+                    text-base font-semibold rounded-xl
+                    transition-all duration-300
+                    uppercase
+                    ${isActive(item.path)
+                      ? 'bg-linear-to-r from-[#ee5253]/20 to-transparent text-[#ee5253] border-l-4 border-[#ee5253]'
+                      : 'text-white/80 hover:text-white hover:bg-white/5'
+                    }
+                  `}
                 >
                   {getLabel(item)}
+
+                  {/* Effet de shine au hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-1000"
+                    style={{ pointerEvents: 'none' }}
+                  />
                 </motion.button>
               ))}
-
-              <div className="h-px bg-white/5 my-5" />
             </div>
           </motion.div>
         )}
