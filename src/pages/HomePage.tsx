@@ -4,7 +4,7 @@ import {
   Award, BookOpen, Heart as HeartIcon, Target,
   History, Star, Lightbulb, MapPin,
 } from 'lucide-react';
-import { useLocation } from 'react-router-dom'; // AJOUTER CET IMPORT
+import { useLocation } from 'react-router-dom';
 
 // Import des composants
 import Carousel from '../components/sections/HomeCarousel';
@@ -24,7 +24,7 @@ const projectIcons: Record<string, React.ComponentType<{ className?: string }>> 
 
 const HomePage = () => {
   const { language } = useLanguage();
-  const location = useLocation(); // AJOUTER CETTE LIGNE
+  const location = useLocation();
 
   // Sélectionner le contenu en fonction de la langue
   const t: Content = content[language];
@@ -32,19 +32,18 @@ const HomePage = () => {
   return (
     <div 
       className={`
-        min-h-screen 
         relative 
-        overflow-x-hidden 
+        overflow-x-hidden
         ${location.pathname === '/' ? '' : 'pt-0'}
       `}
     >
-      {/* Premium Carousel Section - Avec conteneur sécurisé */}
-      <div className="w-full overflow-hidden">
+      {/* Premium Carousel Section - CORRIGÉ POUR LE SCROLL */}
+      <div className="relative w-full h-screen">
         <Carousel slides={carouselSlides} />
       </div>
 
       {/* Stats Section */}
-      <section className="py-16 bg-linear-to-b from-white to-gray-50 overflow-hidden">
+      <section className="py-16 bg-linear-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
@@ -76,7 +75,7 @@ const HomePage = () => {
 
       {/* About Fizanakara - Premium Section */}
       <section className="py-24 bg-white relative overflow-hidden">
-        {/* Background Elements - AVEC max-w-none pour éviter le débordement */}
+        {/* Background Elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-[#ee5253]/5 to-transparent rounded-full blur-3xl max-w-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-linear-to-tr from-[#932020]/5 to-transparent rounded-full blur-3xl max-w-none"></div>
 
@@ -200,7 +199,7 @@ const HomePage = () => {
             >
               {/* Anakara Card */}
               <div className="bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-10 shadow-2xl relative overflow-hidden">
-                {/* Accent Elements - AVEC max-w-none */}
+                {/* Accent Elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-bl from-[#ee5253]/20 to-transparent rounded-full blur-2xl max-w-none"></div>
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-linear-to-tr from-[#932020]/10 to-transparent rounded-full blur-2xl max-w-none"></div>
 
@@ -310,7 +309,7 @@ const HomePage = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 bg-linear-to-b from-white to-gray-50 overflow-hidden">
+      <section className="py-20 bg-linear-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -363,7 +362,7 @@ const HomePage = () => {
       <OfficeSection />
 
       {/* Call to Action */}
-      <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white overflow-hidden">
+      <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
