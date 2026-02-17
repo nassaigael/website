@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import {
   Search,
   TrendingUp,
@@ -14,6 +15,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import NoResultsState from '../components/states/NoResultsState';
 
 const ProjectsPage = () => {
+  const location = useLocation();
   const { language } = useLanguage();
   const t = projectsData[language];
 
@@ -47,7 +49,9 @@ const ProjectsPage = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-white dark:bg-[#1e293b] pt-20 md:pt-24 pb-16 md:pb-32"
+      className={`min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-32 ${
+        location.pathname === '/projects' ? 'pt-0!' : ''
+      }`}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* HERO SECTION */}
@@ -57,9 +61,9 @@ const ProjectsPage = () => {
           transition={{ duration: 0.8 }}
           className="relative mb-16 md:mb-20"
         >
-          {/* Background Elements */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 md:w-96 md:h-96 bg-[#ee5253]/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 md:w-96 md:h-96 bg-[#932020]/5 rounded-full blur-3xl" />
+          {/* Background Elements - avec max-w-none pour éviter le débordement */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 md:w-96 md:h-96 bg-[#ee5253]/5 rounded-full blur-3xl max-w-none" />
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 md:w-96 md:h-96 bg-[#932020]/5 rounded-full blur-3xl max-w-none" />
 
           <div className="relative z-10 text-center">
             {/* Main Title */}
@@ -195,14 +199,13 @@ const ProjectsPage = () => {
           <div className="relative max-w-3xl mx-auto">
             {/* Effet de glow */}
             <div className={`absolute -inset-1 bg-linear-to-r from-[#ee5253]/20 via-[#932020]/20 to-[#ee5253]/20 rounded-2xl blur-xl transition-all duration-500 ${isSearchFocused ? 'opacity-100' : 'opacity-0'}`} />
-            
+
             {/* Conteneur principal */}
             <div className={`relative flex items-center bg-white dark:bg-gray-900 rounded-2xl shadow-lg transition-all duration-300 border-2 ${
-              isSearchFocused 
-                ? 'border-[#ee5253] shadow-xl shadow-[#ee5253]/20' 
+              isSearchFocused
+                ? 'border-[#ee5253] shadow-xl shadow-[#ee5253]/20'
                 : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
             }`}>
-              
               {/* Icône de recherche */}
               <div className="absolute left-5 top-1/2 transform -translate-y-1/2">
                 <div className={`p-1 rounded-lg transition-all duration-300 ${isSearchFocused ? 'bg-[#ee5253]/10' : ''}`}>
@@ -258,12 +261,12 @@ const ProjectsPage = () => {
               <div>
                 {!searchTerm && (
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 md:mb-12 text-center">
-                    {language === 'mg' ? 'Tetikasa rehetra' : 
-                     language === 'fr' ? 'Tous les projets' : 
-                     'All projects'}
+                    {language === 'mg' ? 'Tetikasa rehetra' :
+                      language === 'fr' ? 'Tous les projets' :
+                        'All projects'}
                   </h3>
                 )}
-                
+
                 {/* GRILLEs */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
                   {regularProjects.map((project, index) => (

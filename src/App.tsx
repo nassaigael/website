@@ -1,3 +1,4 @@
+// App.tsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/layout/Header';
@@ -13,19 +14,14 @@ import ProjectDetail from './pages/ProjectDetail';
 import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
 
-
 function App() {
   return (
     <LanguageProvider>
       <Router>
         <div className="min-h-screen flex flex-col bg-white">
           <Header />
-          <main className="grow"
-            style={{
-              paddingTop: '65px',
-              paddingBottom: 0,
-              margin: 0
-            }}>
+          {/* Un seul point de contrôle pour le padding du header */}
+          <main className="grow pt-16.25">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
@@ -35,8 +31,6 @@ function App() {
               <Route path="/news/:id" element={<NewsDetail />} />
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/projects/:id" element={<ProjectDetail />} />
-
-              {/* Redirection pour les routes inconnues */}
               <Route path="*" element={<HomePage />} />
             </Routes>
           </main>

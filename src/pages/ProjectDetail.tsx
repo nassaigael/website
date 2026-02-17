@@ -168,9 +168,7 @@ const ProjectDetail = () => {
   const config = categoryConfig[project.category];
   const status = statusConfig[project.status];
 
-  // ============================================
   // LOGOS PARTENAIRES - UNIQUEMENT ROUGE
-  // ============================================
   const getPartnerLogo = (partner: string) => {
     const logos: Record<string, { icon: JSX.Element; bg: string }> = {
       'Ministère de l\'Éducation': {
@@ -256,7 +254,7 @@ const ProjectDetail = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-white dark:bg-[#1e293b] pt-20 md:pt-24 pb-16 md:pb-20"
+      className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20"
     >
       {/* MODAL GALERIE */}
       <AnimatePresence>
