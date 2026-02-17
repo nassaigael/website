@@ -20,19 +20,25 @@ function App() {
       <Router>
         <div className="min-h-screen flex flex-col bg-white">
           <Header />
-          <main className="grow pt-20 md:pt-17.5 lg:pt-20">            <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/partners" element={<PartnersPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/news/:id" element={<NewsDetail />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/:id" element={<ProjectDetail />} />
+          <main className="grow"
+            style={{
+              paddingTop: '65px',
+              paddingBottom: 0,
+              margin: 0
+            }}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/partners" element={<PartnersPage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/news/:id" element={<NewsDetail />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
 
-            {/* Redirection pour les routes inconnues */}
-            <Route path="*" element={<HomePage />} />
-          </Routes>
+              {/* Redirection pour les routes inconnues */}
+              <Route path="*" element={<HomePage />} />
+            </Routes>
           </main>
           <Footer />
         </div>

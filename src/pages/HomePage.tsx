@@ -28,8 +28,7 @@ const HomePage = () => {
   const t: Content = content[language];
 
   return (
-    <div className="min-h-screen">
-      {/* Premium Carousel Section - Utilisation du composant séparé */}
+    <div className="min-h-screen relative" style={{ top: 0 }}>      {/* Premium Carousel Section - Utilisation du composant séparé */}
       <Carousel slides={carouselSlides} />
 
       {/* Stats Section */}
@@ -348,7 +347,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <OfficeSection/>
+      <OfficeSection />
 
       {/* Call to Action */}
       <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
