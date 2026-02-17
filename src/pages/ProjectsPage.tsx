@@ -61,7 +61,7 @@ const ProjectsPage = () => {
           transition={{ duration: 0.8 }}
           className="relative mb-16 md:mb-20"
         >
-          {/* Background Elements - avec max-w-none pour éviter le débordement */}
+          {/* Background Elements */}
           <div className="absolute -top-24 -right-24 w-64 h-64 md:w-96 md:h-96 bg-[#ee5253]/5 rounded-full blur-3xl max-w-none" />
           <div className="absolute -bottom-24 -left-24 w-64 h-64 md:w-96 md:h-96 bg-[#932020]/5 rounded-full blur-3xl max-w-none" />
 
