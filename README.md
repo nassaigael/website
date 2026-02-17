@@ -52,8 +52,6 @@ Voici une version **optimisée pour une présentation orale de 6 minutes**, avec
 
 Bonjour à toutes et à tous. Je me présente : **Gaël RAMAHANDRISOA**, étudiant en **Licence 2 Informatique à HEI Madagascar**.
 
-Aujourd'hui, je vais vous présenter **ECRIVIA**, une application que j'ai développée et qui représente pour moi bien plus qu'un simple projet technique : c'est la vitrine de qui je suis, de ce que je veux faire, et de la manière dont je souhaite mettre l'intelligence artificielle au service des humains.
-
 ---
 
 ## **PARTIE 1 – Qui je suis et ce qui me motive**
@@ -83,7 +81,7 @@ Aujourd'hui, des solutions existent comme ChatGPT, mais ce sont des **outils gé
 
 ECRIVIA est une **application web** développée avec **React.js**, connectée à un modèle d'intelligence artificielle : **Llama3**.
 
-Le principe est extrêmement simple :
+Le principe est simple :
 
 1. **L'utilisateur saisit son message brut** – quelques mots, une idée, une intention
 2. **Il choisit la langue** – parmi plus de 10 langues disponibles
