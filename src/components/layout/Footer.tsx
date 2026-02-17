@@ -125,22 +125,25 @@ const Footer = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="space-y-3 text-center md:text-left"
                     >
-                        <h3 className="text-lg font-bold text-white relative inline-block">
+                        <h3 className="text-lg font-bold text-white relative inline-block mx-auto md:mx-0">
                             {t.contact.title}
-                            <span className="absolute -bottom-1.5 left-0 w-10 h-0.5 bg-[#ee5253] hidden md:block" />
+                            <span className="absolute -bottom-1.5 left-0 right-0 md:right-auto w-10 h-0.5 bg-[#ee5253] mx-auto md:mx-0" />
                         </h3>
 
                         {/* Email */}
-                        <div className="group p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0">
-                            <div className="flex items-center gap-3 justify-center md:justify-start">
-                                <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
+                        <div className="group p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0 w-full">
+                            <div className="flex items-center gap-3 justify-start">
+                                <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300 shrink-0">
                                     <Mail className="w-3.5 h-3.5 text-white" />
                                 </div>
-                                <div className="text-left">
+                                <div className="text-left min-w-0 flex-1">
                                     <p className="text-[10px] text-[#ee5253] font-semibold uppercase tracking-wider mb-0.5">
-                                        {language === 'mg' ? 'EMAIL' : 'EMAIL'}
+                                        {language === 'mg' ? 'mailaka' : language === 'fr' ? 'email' : 'email'}
                                     </p>
-                                    <a href={`mailto:${t.contact.email}`} className="text-xs font-medium text-gray-300 hover:text-white transition-colors">
+                                    <a
+                                        href={`mailto:${t.contact.email}`}
+                                        className="text-xs font-medium text-gray-300 hover:text-white transition-colors block truncate"
+                                    >
                                         {t.contact.email}
                                     </a>
                                 </div>
@@ -148,16 +151,19 @@ const Footer = () => {
                         </div>
 
                         {/* Téléphone */}
-                        <div className="group p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0">
-                            <div className="flex items-center gap-3 justify-center md:justify-start">
-                                <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
+                        <div className="group p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0 w-full">
+                            <div className="flex items-center gap-3 justify-start">
+                                <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300 shrink-0">
                                     <Phone className="w-3.5 h-3.5 text-white" />
                                 </div>
-                                <div className="text-left">
+                                <div className="text-left min-w-0 flex-1">
                                     <p className="text-[10px] text-[#ee5253] font-semibold uppercase tracking-wider mb-0.5">
-                                        {language === 'mg' ? 'TELEFONINA' : 'TÉLÉPHONE'}
+                                        {language === 'mg' ? 'telefonina' : language === 'fr' ? 'téléphone' : 'phone'}
                                     </p>
-                                    <a href={`tel:${t.contact.phone.replace(/\D/g, '')}`} className="text-xs font-medium text-gray-300 hover:text-white transition-colors">
+                                    <a
+                                        href={`tel:${t.contact.phone.replace(/\D/g, '')}`}
+                                        className="text-xs font-medium text-gray-300 hover:text-white transition-colors block"
+                                    >
                                         {t.contact.phone}
                                     </a>
                                 </div>
@@ -199,7 +205,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* COPYRIGHT, TERMES, CONFIDENTIALITÉ - Centré sur mobile */}
+                    {/* COPYRIGHT, TERMES, CONFIDENTIALITÉ */}
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-sm">
                         {/* Copyright */}
                         <p className="text-gray-400 text-center lg:text-left order-1">
