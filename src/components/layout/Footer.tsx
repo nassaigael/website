@@ -25,7 +25,6 @@ const Footer = () => {
         <footer className="relative bg-gray-950 text-white overflow-hidden">
             {/* Éléments décoratifs d'arrière-plan */}
             <div className="absolute inset-0 pointer-events-none">
-
                 {/* Cercles flous */}
                 <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#ee5253]/10 rounded-full blur-3xl" />
                 <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#932020]/10 rounded-full blur-3xl" />
@@ -36,17 +35,16 @@ const Footer = () => {
 
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-
-                    {/* Logo & Description */}
+                    {/* Logo & Description - Centré sur mobile */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6 }}
-                        className="space-y-6"
+                        className="space-y-6 text-center md:text-left"
                     >
-                        <Link to="/" className="inline-flex items-center gap-3 group">
+                        <Link to="/" className="inline-flex items-center gap-3 group mx-auto md:mx-0">
                             <div className="relative">
                                 <div className="absolute inset-0 bg-[#ee5253] rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
                                 <img
@@ -55,7 +53,7 @@ const Footer = () => {
                                     className="relative h-14 w-14 sm:h-16 sm:w-16 object-contain"
                                 />
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col text-left">
                                 <h1 className="font-extrabold tracking-tight text-white text-2xl sm:text-3xl group-hover:text-[#ee5253] transition-colors">
                                     FIZANAKARA
                                 </h1>
@@ -65,20 +63,20 @@ const Footer = () => {
                             </div>
                         </Link>
 
-                        <div className="relative">
-                            <div className="absolute -left-2 top-0 w-1 h-full bg-[#ee5253]" />
-                            <p className="text-sm leading-relaxed text-gray-300 md:text-base italic pl-4">
+                        <div className="relative max-w-md mx-auto md:mx-0">
+                            <div className="absolute -left-2 top-0 w-1 h-full bg-[#ee5253] hidden md:block" />
+                            <p className="text-sm leading-relaxed text-gray-300 md:text-base italic pl-0 md:pl-4">
                                 "{t.organization.description}"
                             </p>
                         </div>
 
-                        <div className="flex items-start gap-3 text-sm text-gray-300 bg-gray-900/30 p-4 rounded-xl border border-gray-800/50 hover:border-[#ee5253]/30 transition-all duration-300">
+                        <div className="flex items-start gap-3 text-sm text-gray-300 bg-gray-900/30 p-4 rounded-xl border border-gray-800/50 hover:border-[#ee5253]/30 transition-all duration-300 max-w-md mx-auto md:mx-0">
                             <MapPin className="mt-1 h-5 w-5 shrink-0 text-[#ee5253]" />
-                            <span className="leading-relaxed">{t.address}</span>
+                            <span className="leading-relaxed text-left">{t.address}</span>
                         </div>
 
                         {/* Année de fondation */}
-                        <div className="flex items-center gap-2 text-sm text-gray-400">
+                        <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-gray-400">
                             <Heart className="w-4 h-4 text-[#ee5253]" />
                             <span>
                                 {language === 'mg' ? 'Niorina tamin\'ny 1970' :
@@ -88,29 +86,29 @@ const Footer = () => {
                         </div>
                     </motion.div>
 
-                    {/* LIENS RAPIDES */}
+                    {/* LIENS RAPIDES - Centré sur mobile */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="space-y-6"
+                        className="space-y-6 text-center md:text-left"
                     >
                         <h3 className="text-xl font-bold text-white relative inline-block">
                             {t.quickLinks.title}
-                            <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#ee5253]" />
+                            <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#ee5253] hidden md:block" />
                         </h3>
 
-                        <div className="space-y-3">
+                        <div className="space-y-3 max-w-sm mx-auto md:mx-0">
                             {t.quickLinks.links.map((link, i) => (
                                 <Link
                                     key={i}
                                     to={link.href}
                                     className="group flex items-center gap-3 p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] hover:bg-gray-900/50 transition-all duration-300"
                                 >
-                                    <ChevronRight className="w-4 h-4 text-[#ee5253] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
-                                    <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                                    <ChevronRight className="w-4 h-4 text-[#ee5253] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 hidden md:block" />
+                                    <span className="text-sm text-gray-300 group-hover:text-white transition-colors flex-1 md:flex-none text-left">
                                         {link.label}
                                     </span>
                                 </Link>
@@ -118,31 +116,31 @@ const Footer = () => {
                         </div>
                     </motion.div>
 
-                    {/* Contact */}
+                    {/* Contact - Centré sur mobile */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="space-y-6"
+                        className="space-y-3 text-center md:text-left"
                     >
-                        <h3 className="text-xl font-bold text-white relative inline-block">
+                        <h3 className="text-lg font-bold text-white relative inline-block">
                             {t.contact.title}
-                            <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#ee5253]" />
+                            <span className="absolute -bottom-1.5 left-0 w-10 h-0.5 bg-[#ee5253] hidden md:block" />
                         </h3>
 
                         {/* Email */}
-                        <div className="group p-5 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300">
-                            <div className="flex items-center gap-4">
-                                <div className="p-2.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
-                                    <Mail className="w-4 h-4 text-white" />
+                        <div className="group p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0">
+                            <div className="flex items-center gap-3 justify-center md:justify-start">
+                                <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
+                                    <Mail className="w-3.5 h-3.5 text-white" />
                                 </div>
-                                <div>
-                                    <p className="text-xs text-[#ee5253] font-semibold uppercase tracking-wider mb-1">
+                                <div className="text-left">
+                                    <p className="text-[10px] text-[#ee5253] font-semibold uppercase tracking-wider mb-0.5">
                                         {language === 'mg' ? 'EMAIL' : 'EMAIL'}
                                     </p>
-                                    <a href={`mailto:${t.contact.email}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                                    <a href={`mailto:${t.contact.email}`} className="text-xs font-medium text-gray-300 hover:text-white transition-colors">
                                         {t.contact.email}
                                     </a>
                                 </div>
@@ -150,16 +148,16 @@ const Footer = () => {
                         </div>
 
                         {/* Téléphone */}
-                        <div className="group p-5 bg-gray-900/30 rounded-xl border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300">
-                            <div className="flex items-center gap-4">
-                                <div className="p-2.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
-                                    <Phone className="w-4 h-4 text-white" />
+                        <div className="group p-3 bg-gray-900/30 rounded-lg border border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0">
+                            <div className="flex items-center gap-3 justify-center md:justify-start">
+                                <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300">
+                                    <Phone className="w-3.5 h-3.5 text-white" />
                                 </div>
-                                <div>
-                                    <p className="text-xs text-[#ee5253] font-semibold uppercase tracking-wider mb-1">
+                                <div className="text-left">
+                                    <p className="text-[10px] text-[#ee5253] font-semibold uppercase tracking-wider mb-0.5">
                                         {language === 'mg' ? 'TELEFONINA' : 'TÉLÉPHONE'}
                                     </p>
-                                    <a href={`tel:${t.contact.phone.replace(/\D/g, '')}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                                    <a href={`tel:${t.contact.phone.replace(/\D/g, '')}`} className="text-xs font-medium text-gray-300 hover:text-white transition-colors">
                                         {t.contact.phone}
                                     </a>
                                 </div>
@@ -201,7 +199,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* COPYRIGHT, TERMES, CONFIDENTIALITÉ */}
+                    {/* COPYRIGHT, TERMES, CONFIDENTIALITÉ - Centré sur mobile */}
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-sm">
                         {/* Copyright */}
                         <p className="text-gray-400 text-center lg:text-left order-1">
