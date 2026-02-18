@@ -12,7 +12,6 @@ import NewsDetail from './pages/NewsDetail';
 import NewsPage from './pages/NewsPage';
 import ProjectDetail from './pages/ProjectDetail';
 import ProjectsPage from './pages/ProjectsPage';
-import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -20,11 +19,9 @@ function App() {
       <Router>
         <div className="min-h-screen flex flex-col bg-white">
           <Header />
-          {/* Un seul point de contrôle pour le padding du header */}
           <main className="grow pt-16.25">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/partners" element={<PartnersPage />} />
               <Route path="/news" element={<NewsPage />} />

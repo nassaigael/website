@@ -28,13 +28,13 @@ export const navItems: NavItem[] = [
     path: '/'
   },
   {
-    id: 'about',
+    id: 'home',
     label: {
-      mg: 'mikasika',
-      fr: 'à propos',
-      en: 'about'
+      mg: 'trano',
+      fr: 'acceuil',
+      en: 'home'
     },
-    path: '/about'
+    path: '/'
   },
   {
     id: 'news',

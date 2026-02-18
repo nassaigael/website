@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import {
@@ -19,21 +18,8 @@ const HomePage = () => {
   const { language } = useLanguage();
   const location = useLocation();
 
-  // Sélectionner le contenu en fonction de la langue
 
-  // Valeurs aléatoires stables pour les animations (calculées une seule fois)
-  const [randomValues] = useState(() => ({
-    stars: [...Array(15)].map(() => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      duration: 8 + Math.random() * 10,
-      delay: Math.random() * 5
-    })),
-    circles: [
-      { scale: 1 + Math.random() * 0.5, duration: 8 + Math.random() * 5 },
-      { scale: 1 + Math.random() * 0.5, duration: 10 + Math.random() * 5 }
-    ]
-  }));
+
 
   return (
     <div
@@ -89,7 +75,7 @@ const HomePage = () => {
               y: [0, 50, 0],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/4 w-96 h-96 blur-3xl"
           />
           <motion.div
             animate={{
@@ -99,38 +85,8 @@ const HomePage = () => {
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-linear-to-r from-[#932020]/5 to-[#ee5253]/5 rounded-full blur-3xl"
           />
-
-          {/* Grille subtile */}
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
-
-          {/* Étoiles scintillantes */}
-          {randomValues.stars.map((star, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-[#ee5253]/20 rounded-full"
-              initial={{
-                x: `${star.x}%`,
-                y: `${star.y}%`,
-                scale: 0
-              }}
-              animate={{
-                x: [`${star.x}%`, `${(star.x + 20) % 100}%`, `${star.x}%`],
-                y: [`${star.y}%`, `${(star.y + 10) % 100}%`, `${star.y}%`],
-                scale: [0, 1, 0],
-                opacity: [0, 0.3, 0]
-              }}
-              transition={{
-                duration: star.duration,
-                repeat: Infinity,
-                delay: star.delay
-              }}
-            />
-          ))}
         </div>
 
-        {/* Lignes décoratives */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#ee5253]/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#932020]/30 to-transparent" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* En-tête de section */}
@@ -151,60 +107,54 @@ const HomePage = () => {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full blur-xl opacity-75" />
-                <div className="relative px-8 py-3 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full">
-                  <span className="text-white font-bold tracking-wider text-sm">
-                    {language === 'mg' ? 'FOTOTRA SY LOVA' :
-                      language === 'fr' ? 'FONDATION ET HÉRITAGE' :
-                        'FOUNDATION & HERITAGE'}
-                  </span>
-                </div>
               </div>
             </motion.div>
 
-            {/* Titre principal */}
-            <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6"
+            {/* Main Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight"
             >
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-gray-900 to-gray-600 dark:from-white dark:via-gray-300 dark:to-gray-500">
-                {language === 'mg' ? 'Ny maha-izy anay' :
-                  language === 'fr' ? 'Notre identité' :
-                    'Our identity'}
+              <span className="relative inline-block">
+                <span className="relative z-10">
+                  {
+                    language === 'mg' ? 'Ny maha-izy anay' :
+                      language === 'fr' ? 'Notre identité' :
+                        'Our identity'
+                  }                </span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 -z-10"></span>
               </span>
-            </motion.h2>
+            </motion.h1>
 
-            {/* Sous-titre */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed font-light"
-            >
-              {language === 'mg'
-                ? 'Fikambanan\'ny taranak\'i Ali Tawarath, miaro sy manandratra ny vakoka nentin-drazana'
-                : language === 'fr'
-                  ? 'Association des descendants d\'Ali Tawarath, préservant et valorisant l\'héritage ancestral'
-                  : 'Association of Ali Tawarath descendants, preserving and enhancing ancestral heritage'}
-            </motion.p>
-
-            {/* Séparateur */}
+            {/* Description */}
             <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: '100px' }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="h-1 bg-linear-to-r from-[#ee5253] to-[#932020] mx-auto mt-8 rounded-full"
-            />
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
+            >
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                {language === 'mg'
+                  ? 'Fikambanan\'ny taranak\'i Ali Tawarath, miaro sy manandratra ny vakoka nentin-drazana'
+                  : language === 'fr'
+                    ? 'Association des descendants d\'Ali Tawarath, préservant et valorisant l\'héritage ancestral'
+                    : 'Association of Ali Tawarath descendants, preserving and enhancing ancestral heritage'}              </p>
+            </motion.div>
+
+            {/* Elegant Divider */}
+            <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+            </div>
           </motion.div>
 
-          {/* Grille principale - 3 colonnes */}
+          {/* Grille principale */}
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-stretch">
 
-            {/* Carte 1 - Les Anakara (origine) */}
+            {/* Les Anakara */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -215,18 +165,16 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-linear-to-br from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-amber-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-transparent  dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-amber-200/50 dark:border-gray-700 overflow-hidden"
               >
                 {/* Éléments décoratifs */}
-                <div className="absolute inset-0 bg-linear-to-br from-amber-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -top-20 -right-20 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
                     <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
-                      className="w-16 h-16 bg-linear-to-r from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-xl"
+                      className="w-16 h-16 bg-[#ee5253] rounded-2xl flex items-center justify-center shadow-xl"
                     >
                       <Star className="w-8 h-8 text-white" />
                     </motion.div>
@@ -237,7 +185,7 @@ const HomePage = () => {
                             'The Anakara'}
                       </h3>
                       <div className="flex items-center gap-2 mt-1">
-                        <div className="w-2 h-2 bg-amber-500 rounded-full" />
+                        <div className="w-2 h-2 bg-[#ee5253] rounded-full" />
                         <span className="text-sm text-gray-500">1495</span>
                       </div>
                     </div>
@@ -252,7 +200,7 @@ const HomePage = () => {
                   </p>
 
                   <div className="bg-amber-100/50 dark:bg-gray-800 p-4 rounded-xl border border-amber-200/50 dark:border-gray-700">
-                    <p className="text-sm text-amber-800 dark:text-amber-300 italic">
+                    <p className="text-sm text-[#ee5253] italic">
                       <span className="font-bold">"</span>
                       {language === 'mg'
                         ? 'Araka ny Katibo MAHEFAMANANA MOSA, Ali Tawarath dia tonga teto Madagasikara tamin\'ny taona 1495.'
@@ -264,14 +212,14 @@ const HomePage = () => {
                   </div>
 
                   <div className="mt-6 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                    <MapPin className="w-4 h-4 text-amber-500" />
+                    <MapPin className="w-4 h-4 text-[#ee5253]" />
                     <span>Vatomasina Vohipeno, Fitovinany</span>
                   </div>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Carte 2 - Fondateurs */}
+            {/* Les Fondateurs */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -282,17 +230,17 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-linear-to-br from-emerald-50 to-teal-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-emerald-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full border-b-transparent to-teal-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-emerald-200/50 dark:border-gray-700 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-linear-to-br from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
                     <motion.div
                       whileHover={{ rotate: -360 }}
                       transition={{ duration: 0.6 }}
-                      className="w-16 h-16 bg-linear-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-xl"
+                      className="w-16 h-16 bg-[#ee5253] rounded-2xl flex items-center justify-center shadow-xl"
                     >
                       <Award className="w-8 h-8 text-white" />
                     </motion.div>
@@ -303,7 +251,7 @@ const HomePage = () => {
                             'Founders'}
                       </h3>
                       <div className="flex items-center gap-2 mt-1">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full" />
+                        <div className="w-2 h-2 bg-[#ee5253] rounded-full" />
                         <span className="text-sm text-gray-500">1970</span>
                       </div>
                     </div>
@@ -318,9 +266,9 @@ const HomePage = () => {
                       <motion.div
                         key={index}
                         whileHover={{ x: 5 }}
-                        className="flex items-center gap-3 p-3 bg-emerald-100/50 dark:bg-gray-800 rounded-xl"
+                        className="flex items-center gap-3 p-3 bg-[#ee5253] dark:bg-gray-800 rounded-xl"
                       >
-                        <div className="w-8 h-8 bg-linear-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        <div className="w-8 h-8 bg-[#ee5253] rounded-full flex items-center justify-center text-white font-bold text-sm">
                           {founder.charAt(0)}
                         </div>
                         <span className="text-gray-800 dark:text-gray-200 font-medium">{founder}</span>
@@ -330,7 +278,7 @@ const HomePage = () => {
 
                   <div className="mt-6 pt-4 border-t border-emerald-200/50 dark:border-gray-700">
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      <span className="font-semibold text-emerald-600 dark:text-emerald-400">Filoha mpitantana:</span>{' '}
+                      <span className="font-light text-[#ee5253]">Filoha mpitantana:</span>{' '}
                       Patrick RAMONJAVELO
                     </p>
                   </div>
@@ -338,7 +286,7 @@ const HomePage = () => {
               </motion.div>
             </motion.div>
 
-            {/* Carte 3 - Vision & Impact */}
+            {/* Vision & Impact */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -349,16 +297,16 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-linear-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-purple-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-transparent dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-purple-200/50 dark:border-gray-700 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-linear-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -top-20 -left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -top-20 -left-20 w-40 h-40 bg-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="w-16 h-16 bg-linear-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-xl"
+                      className="w-16 h-16 bg-[#ee5253] rounded-2xl flex items-center justify-center shadow-xl"
                     >
                       <Target className="w-8 h-8 text-white" />
                     </motion.div>
@@ -372,9 +320,9 @@ const HomePage = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-purple-100/50 dark:bg-gray-800 rounded-xl">
+                    <div className="flex items-center justify-between p-4 dark:bg-gray-800 rounded-xl">
                       <span className="text-gray-700 dark:text-gray-300">Mpikambana</span>
-                      <span className="text-3xl font-bold text-purple-600 dark:text-purple-400">10k+</span>
+                      <span className="text-3xl font-bold text-[#ee5253]">10k+</span>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
@@ -385,55 +333,23 @@ const HomePage = () => {
                         { label: 'Toamasina', icon: MapPin },
                       ].map((item, i) => (
                         <div key={i} className="flex items-center gap-2 p-2 bg-purple-50 dark:bg-gray-800/50 rounded-lg">
-                          <item.icon className="w-3 h-3 text-purple-500" />
+                          <item.icon className="w-3 h-3 text-[#ee5253]" />
                           <span className="text-xs text-gray-600 dark:text-gray-400">{item.label}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-purple-200/50 dark:border-gray-700">
+                  <div className="mt-6 pt-4 border-t dark:border-gray-700">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-500">Contact</span>
-                      <span className="text-purple-600 dark:text-purple-400 font-medium">24/7</span>
+                      <span className="font-light text-[#ee5253]">24/7</span>
                     </div>
                   </div>
                 </div>
               </motion.div>
             </motion.div>
           </div>
-
-          {/* Badge de fondation central */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", delay: 0.6 }}
-            className="mt-16 text-center"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-6 px-8 py-4 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 rounded-full border border-[#ee5253]/30 backdrop-blur-sm"
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#ee5253] rounded-full animate-pulse" />
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {language === 'mg' ? 'Niorina tamin\'ny' :
-                    language === 'fr' ? 'Fondé en' :
-                      'Founded in'}
-                </span>
-              </div>
-              <span className="text-2xl font-bold text-[#ee5253]">1970</span>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {language === 'mg' ? 'Antananarivo' :
-                    language === 'fr' ? 'Antananarivo' :
-                      'Antananarivo'}
-                </span>
-                <div className="w-3 h-3 bg-[#932020] rounded-full animate-pulse" />
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
       </section>
 
