@@ -73,7 +73,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     },
     culture: {
       label: t.categories.culture,
-      bg: 'bg-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.culture,
@@ -81,7 +81,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     },
     social: {
       label: t.categories.social,
-      bg: 'bg-[#e38282]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.social,
@@ -89,7 +89,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     },
     infrastructure: {
       label: t.categories.infrastructure,
-      bg: 'bg-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.infrastructure,
@@ -105,7 +105,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     },
     environment: {
       label: t.categories.environment,
-      bg: 'bg-[#e38282]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.environment,
@@ -147,9 +147,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
   const config = categoryConfig[project.category];
   const status = statusConfig[project.status];
 
-  // ============================================
-  // MODE FEATURED - Design Premium
-  // ============================================
+  // MODE FEATURED
   if (viewMode === 'featured') {
     return (
       <motion.article
@@ -176,7 +174,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         {/* Progress Bar */}
         {project.progress !== undefined && (
           <div className="absolute top-4 left-4 z-20">
-            <div className="flex items-center gap-2 px-3 py-1.5  bg-[#ee5253] backdrop-blur-sm rounded-full">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-gray- backdrop-blur-sm rounded-full">
               <div className="relative w-20 h-1.5 bg-gray-700 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}

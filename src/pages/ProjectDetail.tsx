@@ -96,7 +96,7 @@ const ProjectDetail = () => {
   const categoryConfig = {
     education: {
       label: t.categories.education,
-      bg: 'bg-gradient-to-r from-[#ee5253] to-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       icon: <IoMdSchool className="w-5 h-5" />,
       progressColor: 'from-[#ee5253] to-[#932020]',
@@ -105,7 +105,7 @@ const ProjectDetail = () => {
     },
     culture: {
       label: t.categories.culture,
-      bg: 'bg-gradient-to-r from-[#932020] to-[#ee5253]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       icon: <GiTheater className="w-5 h-5" />,
       progressColor: 'from-[#932020] to-[#ee5253]',
@@ -114,7 +114,7 @@ const ProjectDetail = () => {
     },
     social: {
       label: t.categories.social,
-      bg: 'bg-gradient-to-r from-[#e38282] to-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       icon: <GiHandSaw className="w-5 h-5" />,
       progressColor: 'from-[#e38282] to-[#932020]',
@@ -123,7 +123,7 @@ const ProjectDetail = () => {
     },
     infrastructure: {
       label: t.categories.infrastructure,
-      bg: 'bg-gradient-to-r from-[#932020] to-[#ee5253]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       icon: <GiCrane className="w-5 h-5" />,
       progressColor: 'from-[#932020] to-[#ee5253]',
@@ -132,7 +132,7 @@ const ProjectDetail = () => {
     },
     heritage: {
       label: t.categories.heritage,
-      bg: 'bg-gradient-to-r from-[#ee5253] to-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       icon: <GiStoneTower className="w-5 h-5" />,
       progressColor: 'from-[#ee5253] to-[#932020]',
@@ -141,7 +141,7 @@ const ProjectDetail = () => {
     },
     environment: {
       label: t.categories.environment,
-      bg: 'bg-gradient-to-r from-[#e38282] to-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
       icon: <GiForest className="w-5 h-5" />,
       progressColor: 'from-[#e38282] to-[#932020]',
@@ -153,30 +153,30 @@ const ProjectDetail = () => {
   const statusConfig = {
     ongoing: {
       label: t.statuses.ongoing,
-      bg: 'bg-gradient-to-r from-[#ee5253] to-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
-      border: 'border-white/20',
+      border: 'border-white',
       icon: <GiProgression className="w-4 h-4" />
     },
     completed: {
       label: t.statuses.completed,
-      bg: 'bg-gradient-to-r from-[#932020] to-[#ee5253]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
-      border: 'border-white/20',
+      border: 'border-white',
       icon: <GiCheckMark className="w-4 h-4" />
     },
     upcoming: {
       label: t.statuses.upcoming,
-      bg: 'bg-gradient-to-r from-[#e38282] to-[#932020]',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
-      border: 'border-white/20',
+      border: 'border-white',
       icon: <GiSandsOfTime className="w-4 h-4" />
     },
     planning: {
       label: t.statuses.planning,
-      bg: 'bg-gradient-to-r from-gray-600 to-gray-800',
+      bg: 'bg-[#ee5253]',
       text: 'text-white',
-      border: 'border-white/20',
+      border: 'border-white',
       icon: <GiGearHammer className="w-4 h-4" />
     }
   };
@@ -287,7 +287,7 @@ const ProjectDetail = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden"
+      className="min-h-screen bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
     >
       {/* Éléments décoratifs d'arrière-plan */}
       <div className="absolute inset-0 pointer-events-none">
@@ -318,7 +318,7 @@ const ProjectDetail = () => {
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: `${readProgress}%` }}
-        className="fixed top-0 left-0 h-1 bg-linear-to-r from-[#ee5253] to-[#932020] z-50"
+        className="fixed top-0 left-0 h-1 bg-[#ee5253] z-50"
       />
 
       {/* MODAL GALERIE */}
@@ -374,9 +374,9 @@ const ProjectDetail = () => {
             <FaArrowLeft className="w-4 h-4 text-[#ee5253] group-hover:scale-110 transition-transform" />
           </div>
           <span className="font-medium text-gray-300 group-hover:text-[#ee5253] transition-colors">
-            {language === 'mg' ? 'Hiverina amin\'ny tetikasa' :
-              language === 'fr' ? 'Retour aux projets' :
-                'Back to projects'}
+            {language === 'mg' ? 'Hiverina' :
+              language === 'fr' ? 'Retour' :
+                'Back'}
           </span>
         </motion.button>
 
@@ -624,7 +624,7 @@ const ProjectDetail = () => {
                       className="group relative p-6 bg-[#0f172a] rounded-2xl border border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
                     >
                       <div className="absolute top-4 right-4">
-                        <div className="w-10 h-10 bg-linear-to-br from-[#ee5253] to-[#932020] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                        <div className="w-10 h-10 bg-[#ee5253] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
                           {index + 1}
                         </div>
                       </div>
