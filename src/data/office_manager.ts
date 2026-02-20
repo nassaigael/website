@@ -20,11 +20,33 @@ export interface OfficeMember {
     twitter?: string;
   };
   order: number;
+  isKing?: boolean;
 }
 
 export const officeMembers: OfficeMember[] = [
   {
     id: 1,
+    name: 'Andriamanjato RANDRIANARIVO',
+    role: {
+      mg: 'Mpanjaka',
+      fr: 'Roi',
+      en: 'King'
+    },
+    image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&q=80', // Image royale
+    bio: {
+      mg: 'Mpanjaka nentim-paharazana mitarika sy mitahiry ny fomban-drazana Anakara. Mpanelanelana eo amin\'ny razana sy ny taranaka ankehitriny.',
+      fr: 'Roi traditionnel guidant et préservant les coutumes Anakara. Médiateur entre les ancêtres et les générations actuelles.',
+      en: 'Traditional King guiding and preserving Anakara customs. Mediator between ancestors and current generations.'
+    },
+    contacts: {
+      email: 'roi.anakara@fizanakara.mg',
+      phone: '+261 34 00 000 00'
+    },
+    order: 0, // Mis en premier
+    isKing: true
+  },
+  {
+    id: 2,
     name: 'Omar Mehri',
     role: {
       mg: 'Filoha',
@@ -46,7 +68,7 @@ export const officeMembers: OfficeMember[] = [
     order: 1
   },
   {
-    id: 2,
+    id: 3,
     name: 'Layla Samuel',
     role: {
       mg: 'Sekretera',
@@ -67,7 +89,7 @@ export const officeMembers: OfficeMember[] = [
     order: 2
   },
   {
-    id: 3,
+    id: 4,
     name: 'Draper Timothy',
     role: {
       mg: 'Mpitahiry vola',
@@ -88,7 +110,7 @@ export const officeMembers: OfficeMember[] = [
     order: 3
   },
   {
-    id: 4,
+    id: 5,
     name: 'Mariam Shah',
     role: {
       mg: 'Mpanolo-tsaina',
@@ -110,7 +132,7 @@ export const officeMembers: OfficeMember[] = [
     order: 4
   },
   {
-    id: 5,
+    id: 6,
     name: 'Jean Rakoto',
     role: {
       mg: 'Mpitantana tetikasa',
@@ -132,7 +154,7 @@ export const officeMembers: OfficeMember[] = [
     order: 5
   },
   {
-    id: 6,
+    id: 7,
     name: 'Sarah Rabe',
     role: {
       mg: 'Mpitantana fifandraisana',
@@ -154,7 +176,7 @@ export const officeMembers: OfficeMember[] = [
     order: 6
   },
   {
-    id: 7,
+    id: 8,
     name: 'Michael Rasoa',
     role: {
       mg: 'Mpanolotsaina ara-dalàna',

@@ -14,6 +14,8 @@ import {
   FaCrown,
   FaMedal
 } from 'react-icons/fa';
+
+import { GiCrown } from 'react-icons/gi';
 import { HiOutlineBadgeCheck } from 'react-icons/hi';
 import { RiShieldFlashLine, RiVipCrownLine } from 'react-icons/ri';
 import { GoVerified } from 'react-icons/go';
@@ -29,11 +31,19 @@ const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  // BADGES SELON LE RANG
-  const getRankBadge = () => {
+// BADGES SELON LE RANG
+const getRankBadge = () => {
     const role = member.role.en; 
     
-    if (role === 'President') {
+    if (member.isKing) {
+      return {
+        icon: <GiCrown className="w-4 h-4" />, // Icône de couronne spéciale
+        text: { mg: 'Mpanjaka', fr: 'Roi', en: 'King' },
+        bg: 'bg-gradient-to-r from-yellow-500 to-amber-600',
+        shadow: 'shadow-yellow-500/50',
+        border: 'border-yellow-300'
+      };
+    } else if (role === 'President') {
       return {
         icon: <FaCrown className="w-3 h-3" />,
         text: { mg: 'Filoha', fr: 'Président', en: 'President' },
