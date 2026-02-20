@@ -12,24 +12,19 @@ import Carousel from '../components/sections/HomeCarousel';
 import { carouselSlides, stats } from '../data/index';
 import OfficeSection from '../components/sections/OfficeSection';
 
-
-
 const HomePage = () => {
   const { language } = useLanguage();
   const location = useLocation();
-
-
-
 
   return (
     <div
       className={`
         relative 
-        overflow-x-hidden
+        overflow-x-hidden bg-gray-950
         ${location.pathname === '/' ? '' : 'pt-0'}
       `}
     >
-      {/* Premium Carousel Section */}
+      {/* Carousel Section */}
       <div className="relative w-full h-screen">
         <Carousel slides={carouselSlides} />
       </div>
@@ -65,7 +60,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* About Fizanakara - Section Ultra Premium */}
+      {/* About Fizanakara */}
       <section className="py-24 bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -75,7 +70,7 @@ const HomePage = () => {
               y: [0, 50, 0],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 left-1/4 w-96 h-96 blur-3xl"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 rounded-full blur-3xl"
           />
           <motion.div
             animate={{
@@ -87,7 +82,6 @@ const HomePage = () => {
           />
         </div>
 
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* En-tête de section */}
           <motion.div
@@ -95,27 +89,14 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            {/* Badge premium */}
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: "spring", delay: 0.2 }}
-              className="inline-block mb-8"
-            >
-              <div className="relative">
-                <div className="absolute inset-0 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full blur-xl opacity-75" />
-              </div>
-            </motion.div>
-
             {/* Main Title */}
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-4 leading-tight"
             >
               <span className="relative inline-block">
                 <span className="relative z-10">
@@ -123,7 +104,8 @@ const HomePage = () => {
                     language === 'mg' ? 'Ny maha-izy anay' :
                       language === 'fr' ? 'Notre identité' :
                         'Our identity'
-                  }                </span>
+                  }
+                </span>
                 <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 -z-10"></span>
               </span>
             </motion.h1>
@@ -133,27 +115,27 @@ const HomePage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
+              className="max-w-3xl mx-auto px-4"
             >
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
                 {language === 'mg'
                   ? 'Fikambanan\'ny taranak\'i Ali Tawarath, miaro sy manandratra ny vakoka nentin-drazana'
                   : language === 'fr'
                     ? 'Association des descendants d\'Ali Tawarath, préservant et valorisant l\'héritage ancestral'
-                    : 'Association of Ali Tawarath descendants, preserving and enhancing ancestral heritage'}              </p>
+                    : 'Association of Ali Tawarath descendants, preserving and enhancing ancestral heritage'}
+              </p>
             </motion.div>
 
             {/* Elegant Divider */}
-            <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
+            <div className="flex items-center justify-center gap-3 md:gap-4 mt-8">
               <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
               <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
               <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
             </div>
           </motion.div>
 
-          {/* Grille principale */}
+          {/* Grille principale - 3 colonnes */}
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-stretch">
-
             {/* Les Anakara */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -165,10 +147,8 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-transparent  dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-amber-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-amber-200/50 dark:border-gray-700 overflow-hidden"
               >
-                {/* Éléments décoratifs */}
-
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
                     <motion.div
@@ -199,7 +179,7 @@ const HomePage = () => {
                         : 'A clan within the Antemoro, descendants of Ali Tawarath who arrived in Madagascar in 1495.'}
                   </p>
 
-                  <div className="bg-amber-100/50 dark:bg-gray-800 p-4 rounded-xl border border-amber-200/50 dark:border-gray-700">
+                  <div className="bg-amber-100/50 dark:bg-gray-700 p-4 rounded-xl border border-amber-200/50 dark:border-gray-600">
                     <p className="text-sm text-[#ee5253] italic">
                       <span className="font-bold">"</span>
                       {language === 'mg'
@@ -230,11 +210,8 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full border-b-transparent to-teal-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-emerald-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-emerald-200/50 dark:border-gray-700 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
-
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
                     <motion.div
@@ -266,7 +243,7 @@ const HomePage = () => {
                       <motion.div
                         key={index}
                         whileHover={{ x: 5 }}
-                        className="flex items-center gap-3 p-3 bg-[#ee5253] dark:bg-gray-800 rounded-xl"
+                        className="flex items-center gap-3 p-3 bg-[#ee5253]/10 dark:bg-gray-700 rounded-xl"
                       >
                         <div className="w-8 h-8 bg-[#ee5253] rounded-full flex items-center justify-center text-white font-bold text-sm">
                           {founder.charAt(0)}
@@ -297,11 +274,8 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-transparent dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 shadow-2xl border border-purple-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-purple-200/50 dark:border-gray-700 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -top-20 -left-20 w-40 h-40 bg-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
-
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
                     <motion.div
@@ -320,7 +294,7 @@ const HomePage = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 dark:bg-gray-800 rounded-xl">
+                    <div className="flex items-center justify-between p-4 bg-purple-50 dark:bg-gray-700 rounded-xl">
                       <span className="text-gray-700 dark:text-gray-300">Mpikambana</span>
                       <span className="text-3xl font-bold text-[#ee5253]">10k+</span>
                     </div>
@@ -332,7 +306,7 @@ const HomePage = () => {
                         { label: 'Manakara', icon: MapPin },
                         { label: 'Toamasina', icon: MapPin },
                       ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 p-2 bg-purple-50 dark:bg-gray-800/50 rounded-lg">
+                        <div key={i} className="flex items-center gap-2 p-2 bg-purple-50 dark:bg-gray-700 rounded-lg">
                           <item.icon className="w-3 h-3 text-[#ee5253]" />
                           <span className="text-xs text-gray-600 dark:text-gray-400">{item.label}</span>
                         </div>
@@ -340,7 +314,7 @@ const HomePage = () => {
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t dark:border-gray-700">
+                  <div className="mt-6 pt-4 border-t border-purple-200/50 dark:border-gray-700">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-500">Contact</span>
                       <span className="font-light text-[#ee5253]">24/7</span>
@@ -355,23 +329,22 @@ const HomePage = () => {
 
       <OfficeSection />
 
-      {/* Call to Action */}
-      <section className="py-20 bg-linear-to-r from-gray-900 to-black text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-linear-to-r from-gray-900 to-black text-white fixed">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
+            className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">
               {language === 'mg'
                 ? 'Miaraka aminay'
                 : language === 'fr'
                   ? 'Rejoignez-nous'
                   : 'Join us'}
             </h2>
-            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            <p className="text-base text-gray-300 mb-4 max-w-2xl mx-auto">
               {language === 'mg'
                 ? 'Indro ny tanako mivelatra ho an\'ny rehetra, indrindra ho an\'ireo taranaka Anakara manerana izao tontolo izao.'
                 : language === 'fr'
@@ -379,18 +352,18 @@ const HomePage = () => {
                   : 'Here is my hand extended to all, especially to Anakara generations around the world.'
               }
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#ee5253] hover:bg-[#d94646] text-white font-bold py-4 px-8 rounded-full text-lg transition-colors"
+                className="bg-[#ee5253] hover:bg-[#d94646] text-white font-bold py-2 px-5 rounded-full text-sm transition-colors"
               >
                 {language === 'mg' ? 'Hifandray' : language === 'fr' ? 'Nous contacter' : 'Contact us'}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-transparent hover:bg-white/10 text-white font-bold py-4 px-8 rounded-full text-lg transition-colors border border-white/30"
+                className="bg-transparent hover:bg-white/10 text-white font-bold py-2 px-5 rounded-full text-sm transition-colors border border-white/30"
               >
                 {language === 'mg' ? 'Hijery vaovao' : language === 'fr' ? 'Voir les actualités' : 'See news'}
               </motion.button>

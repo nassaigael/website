@@ -30,7 +30,7 @@ export const navItems: NavItem[] = [
   {
     id: 'home',
     label: {
-      mg: 'trano',
+      mg: 'fandraisana',
       fr: 'acceuil',
       en: 'home'
     },

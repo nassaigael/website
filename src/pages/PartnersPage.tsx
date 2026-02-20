@@ -7,12 +7,12 @@ const PartnersPage = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ">
       {/* Hero section */}
       <PartnersHero />
 
-      {/* Grille des partenaires - Tous affichés directement */}
-      <section id="partners-grid" className="py-6 md:py-4 bg-white">
+      {/* Grille des partenaires */}
+      <section id="partners-grid" className="py-6 md:py-4 h-full bg-[#1e293b] overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <PartnersGrid showSearch={true} />
@@ -20,7 +20,7 @@ const PartnersPage = () => {
         </div>
       </section>
 
-      {/* Section devenir partenaire */}
+      {/* Devenir partenaire */}
       <section className="py-6 bg-linear-to-r from-gray-900 to-black text-white">
         <div className="container mx-auto px-2 sm:px-2 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>

@@ -4,7 +4,6 @@ import {
     Users,
     Globe,
     Star,
-    Search,
     X,
     Building,
     Award,
@@ -83,28 +82,8 @@ const PartnersGrid = ({
     }
 
     return (
-        <section id="partners-grid" className="py-2 md:py-4 bg-linear-to-b from-white via-gray-50/30 to-white relative overflow-hidden">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <motion.div
-                    animate={{
-                        x: [0, 100, 0],
-                        y: [0, 50, 0]
-                    }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/4 left-1/4 w-160 h-160 bg-linear-to-r from-[#ee5253]/3 to-purple-500/3 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{
-                        x: [0, -100, 0],
-                        y: [0, -50, 0]
-                    }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-1/4 right-1/4 w-160 h-160 bg-linear-to-r from-emerald-500/3 to-cyan-500/3 rounded-full blur-3xl"
-                />
-                {/* Grid Pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,#f0f0f0_1px,transparent_1px),linear-gradient(180deg,#f0f0f0_1px,transparent_1px)] bg-size-[4rem_4rem] opacity-[0.02]" />
-            </div>
+        <section id="partners-grid" className="py-2 md:py-4 bg-transparent relative overflow-hidden">
+           
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Premium Header */}
@@ -125,9 +104,8 @@ const PartnersGrid = ({
                             className="max-w-2xl mx-auto mb-16"
                         >
                             <div className="relative group">
-                                <div className="absolute -inset-1 bg-linear-to-r from-[#ee5253] to-purple-500 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+                                <div className="absolute -inset-1 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
                                 <div className="relative">
-                                    <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 w-6 h-6" />
                                     <input
                                         type="text"
                                         placeholder={
@@ -138,7 +116,7 @@ const PartnersGrid = ({
                                         }
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="w-full pl-16 pr-14 py-5 bg-white/90 backdrop-blur-xl border-2 border-white/50 rounded-2xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-400 shadow-2xl text-lg"
+                                        className="w-full pl-16 pr-14 py-5 bg-gray-700/50 backdrop-blur-xl border-2 border-white/50 rounded-2xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-400 shadow-2xl text-lg"
                                     />
                                     {searchTerm && (
                                         <motion.button
@@ -188,27 +166,19 @@ const PartnersGrid = ({
                                     onMouseLeave={() => setHoveredPartner(null)}
                                     className="group relative flex-1 min-w-75 max-w-100"
                                 >
-                                    {/* Premium Card Container */}
-                                    <div className="relative h-full bg-linear-to-br from-white to-gray-50/50 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/50">
+                                    {/* Premium Card Container - MODIFIÉ AVEC bg-[#1e293b] */}
+                                    <div className="relative h-full bg-[#1e293b] rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border border-gray-700/50">
 
                                         {/* Animated Background Layer */}
-                                        <div className="absolute inset-0 bg-linear-to-br from-transparent via-transparent to-white/30" />
+                                        <div className="absolute inset-0 bg-linear-to-br from-transparent via-transparent to-white/5" />
 
                                         {/* Card Header with Premium Effects */}
-                                        <div className="relative h-56 bg-linear-to-br from-gray-50/80 to-white/60 p-10 flex items-center justify-center overflow-hidden">
-                                            {/* Dynamic Gradient Overlay */}
+                                        <div className="relative h-56 bg-linear-to-br from-gray-800/80 to-gray-900/60 p-10 flex items-center justify-center overflow-hidden">
                                             <div className={`absolute inset-0 bg-linear-to-r ${getCategoryColor(partner.category)} opacity-0 group-hover:opacity-10 transition-opacity duration-700`} />
-
-                                            {/* Animated Rings */}
-                                            <motion.div
-                                                animate={{ rotate: 360 }}
-                                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                                className="absolute inset-0 border-2 border-[#ee5253]/5 rounded-full"
-                                            />
 
                                             {/* Partner Logo Container */}
                                             <div className="relative z-20">
-                                                <div className="relative p-6 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg">
+                                                <div className="relative p-6 bg-[#1e293b]/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-700/30">
                                                     <img
                                                         src={partner.logo}
                                                         alt={partner.name}
@@ -218,13 +188,13 @@ const PartnersGrid = ({
                                                 </div>
                                             </div>
 
-                                            {/* Category Badge - Premium */}
+                                            {/* Category Badge */}
                                             <div className="absolute top-5 left-5 z-30">
-                                                <div className="flex items-center gap-2.5 px-4 py-2.5 bg-white/95 backdrop-blur-xl rounded-full border border-white/30 shadow-xl">
+                                                <div className="flex items-center gap-2.5 px-4 py-2.5 bg-[#1e293b]/95 backdrop-blur-xl rounded-full border border-gray-700/50 shadow-xl">
                                                     <span className="text-[#ee5253]">
                                                         {getCategoryIcon(partner.category)}
                                                     </span>
-                                                    <span className="text-sm font-bold text-gray-800 tracking-wide">
+                                                    <span className="text-sm font-bold text-white tracking-wide">
                                                         {getCategoryName(partner.category)}
                                                     </span>
                                                 </div>
@@ -245,21 +215,21 @@ const PartnersGrid = ({
                                         </div>
 
                                         {/* Premium Card Content */}
-                                        <div className="relative p-8 flex flex-col grow bg-linear-to-b from-white via-white to-gray-50/30">
+                                        <div className="relative p-8 flex flex-col grow bg-linear-to-b from-[#1e293b] via-[#1e293b] to-[#1a1f2e]">
                                             {/* Partner Name with Gradient */}
-                                            <h3 className="text-2xl font-bold mb-4 bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-[#ee5253] group-hover:to-[#d32f2f] transition-all duration-500">
+                                            <h3 className="text-2xl font-bold mb-4 bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-[#ee5253] group-hover:to-[#d32f2f] transition-all duration-500">
                                                 {partner.name}
                                             </h3>
 
                                             {/* Premium Description */}
-                                            <p className="text-gray-600 mb-6 grow leading-relaxed text-base line-clamp-3">
+                                            <p className="text-gray-300 mb-6 grow leading-relaxed text-base line-clamp-3">
                                                 {getPartnerDescription(partner)}
                                             </p>
 
                                             {/* Additional Info - Premium */}
                                             <div className="space-y-3 mb-8">
                                                 {partner.location && (
-                                                    <div className="flex items-center gap-3 text-gray-500">
+                                                    <div className="flex items-center gap-3 text-gray-400">
                                                         <Globe className="w-5 h-5" />
                                                         <span className="font-medium">{partner.location}</span>
                                                     </div>
@@ -267,14 +237,14 @@ const PartnersGrid = ({
                                             </div>
 
                                             {/* Premium Action Area */}
-                                            <div className="flex items-center justify-between mt-auto pt-8 border-t border-gray-100/50">
+                                            <div className="flex items-center justify-between mt-auto pt-8 border-t border-gray-700/50">
                                                 {/* Website Link */}
                                                 {partner.website && partner.website !== '#' ? (
                                                     <a
                                                         href={partner.website}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="group/btn flex items-center gap-3 text-[#ee5253] hover:text-[#d32f2f] font-bold transition-all"
+                                                        className="group/btn flex items-center gap-3 text-[#ee5253] hover:text-[#ff6b6b] font-bold transition-all"
                                                     >
                                                         <span className="relative">
                                                             <span className="relative z-10">
@@ -285,7 +255,7 @@ const PartnersGrid = ({
                                                         <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                                     </a>
                                                 ) : (
-                                                    <span className="text-gray-400 font-medium italic">
+                                                    <span className="text-gray-500 font-medium italic">
                                                         {language === 'mg' ? 'Tsy misy tranokala' : language === 'fr' ? 'Site web bientôt disponible' : 'Website coming soon'}
                                                     </span>
                                                 )}
