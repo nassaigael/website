@@ -115,13 +115,13 @@ const ProjectsPage = () => {
                   label: { mg: 'Mbola mitohy', fr: 'En cours', en: 'Ongoing' },
                   value: stats.ongoing,
                   icon: TrendingUp,
-                  color: 'bg-[#932020]'
+                  color: 'bg-[#ee5253]'
                 },
                 {
                   label: { mg: 'Vita', fr: 'Terminés', en: 'Completed' },
                   value: stats.completed,
                   icon: Award,
-                  color: 'bg-[#e38282]'
+                  color: 'bg-[#ee5253]'
                 },
                 {
                   label: { mg: 'Mpiara-miasa', fr: 'Partenaires', en: 'Partners' },
@@ -148,7 +148,7 @@ const ProjectsPage = () => {
                         {stat.value}
                       </span>
                     </div>
-                    <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">
+                    <p className="text-xs md:text-sm text-white font-medium">
                       {typeof stat.label === 'object' ? stat.label[language] : stat.label}
                     </p>
                   </div>

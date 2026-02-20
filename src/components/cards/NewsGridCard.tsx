@@ -84,7 +84,7 @@ const NewsGridCard = ({ article, index }: NewsGridCardProps) => {
       {/* Content */}
       <div className="p-6">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-white">
             <Calendar className="w-4 h-4" />
             <span>{article.date}</span>
           </div>
@@ -99,7 +99,7 @@ const NewsGridCard = ({ article, index }: NewsGridCardProps) => {
         </p>
 
         <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
-          <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-white">
             <User className="w-4 h-4" />
             <span>{article.author}</span>
           </div>

@@ -67,7 +67,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       label: t.categories.education,
       bg: 'bg-[#ee5253]',
       text: 'text-white',
-      progressColor: 'from-[#ee5253] to-[#932020]',
+      progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.education,
       featuredIcon: featuredCategoryIcons.education
     },
@@ -75,7 +75,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       label: t.categories.culture,
       bg: 'bg-[#932020]',
       text: 'text-white',
-      progressColor: 'from-[#932020] to-[#ee5253]',
+      progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.culture,
       featuredIcon: featuredCategoryIcons.culture
     },
@@ -83,7 +83,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       label: t.categories.social,
       bg: 'bg-[#e38282]',
       text: 'text-white',
-      progressColor: 'from-[#e38282] to-[#932020]',
+      progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.social,
       featuredIcon: featuredCategoryIcons.social
     },
@@ -91,7 +91,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       label: t.categories.infrastructure,
       bg: 'bg-[#932020]',
       text: 'text-white',
-      progressColor: 'from-[#932020] to-[#ee5253]',
+      progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.infrastructure,
       featuredIcon: featuredCategoryIcons.infrastructure
     },
@@ -99,7 +99,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       label: t.categories.heritage,
       bg: 'bg-[#ee5253]',
       text: 'text-white',
-      progressColor: 'from-[#ee5253] to-[#932020]',
+      progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.heritage,
       featuredIcon: featuredCategoryIcons.heritage
     },
@@ -107,7 +107,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       label: t.categories.environment,
       bg: 'bg-[#e38282]',
       text: 'text-white',
-      progressColor: 'from-[#e38282] to-[#932020]',
+      progressColor: 'bg-[#ee5253]',
       icon: categoryIcons.environment,
       featuredIcon: featuredCategoryIcons.environment
     }
@@ -116,30 +116,30 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
   const statusConfig = {
     ongoing: {
       label: t.statuses.ongoing,
-      bg: 'bg-blue-50 dark:bg-blue-900/20',
-      text: 'text-blue-700 dark:text-blue-300',
-      border: 'border-blue-200 dark:border-blue-700',
+      bg: 'bg-[#ee5253]',
+      text: 'text-white',
+      border: 'border-white',
       icon: statusIcons.ongoing
     },
     completed: {
       label: t.statuses.completed,
-      bg: 'bg-green-50 dark:bg-green-900/20',
-      text: 'text-green-700 dark:text-green-300',
-      border: 'border-green-200 dark:border-green-700',
+      bg: 'bg-[#ee5253]',
+      text: 'text-white',
+      border: 'border-white',
       icon: statusIcons.completed
     },
     upcoming: {
       label: t.statuses.upcoming,
-      bg: 'bg-purple-50 dark:bg-purple-900/20',
-      text: 'text-purple-700 dark:text-purple-300',
-      border: 'border-purple-200 dark:border-purple-700',
+      bg: 'bg-[#ee5253]',
+      text: 'text-white',
+      border: 'border-white',
       icon: statusIcons.upcoming
     },
     planning: {
       label: t.statuses.planning,
-      bg: 'bg-gray-50 dark:bg-gray-900/20',
-      text: 'text-gray-700 dark:text-gray-300',
-      border: 'border-gray-200 dark:border-gray-700',
+      bg: 'bg-[#ee5253]',
+      text: 'text-white',
+      border: 'border-white',
       icon: statusIcons.planning
     }
   };
@@ -176,7 +176,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         {/* Progress Bar */}
         {project.progress !== undefined && (
           <div className="absolute top-4 left-4 z-20">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full">
+            <div className="flex items-center gap-2 px-3 py-1.5  bg-[#ee5253] backdrop-blur-sm rounded-full">
               <div className="relative w-20 h-1.5 bg-gray-700 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
@@ -224,11 +224,11 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
             <div className="flex flex-wrap items-center gap-4 mb-4 text-xs text-gray-200">
               <div className="flex items-center gap-1.5">
                 <FaMapMarkerAlt className="w-3.5 h-3.5" />
-                <span className="truncate max-w-24">{project.location}</span>
+                <span className="truncate max-w-24 text-white">{project.location}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <FaCalendarAlt className="w-3.5 h-3.5" />
-                <span>{project.startDate}</span>
+                <span className="text-white">{project.startDate}</span>
               </div>
             </div>
 
