@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
-import logo from "../../assets/images/logo.png";
+import logo from "../../src/assets/images/logo.png";
 
 interface ChatButtonProps {
   isOpen: boolean;

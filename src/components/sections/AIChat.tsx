@@ -3,10 +3,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { Message, FAQData, Translation, SupportedLanguage } from '../../data/chat_type';
-import ChatButton from '../ui/ChatButton';
+import ChatButton from '../../ui/ChatButton';
 import ChatHeader from '../layout/ChatHeader';
 import ChatMessages from '../states/ChatMessages';
-import ChatInput from '../ui/ChatInput';
+import ChatInput from '../../ui/ChatInput';
 import ChatSuggestions from '../states/ChatSuggestions';
 import ClearChatModal from '../states/ClearChatModal';
 
