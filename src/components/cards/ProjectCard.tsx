@@ -347,7 +347,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-3 py-1.5 bg-linear-to-r from-[#ee5253] to-[#932020] text-white text-xs font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center gap-1.5"
+              className="px-3 py-1.5 bg-[#ee5253] text-white text-xs font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center gap-1.5"
             >
               <span>{language === 'mg' ? 'Hijery' : language === 'fr' ? 'Voir' : 'View'}</span>
               <FaArrowRight className="w-2.5 h-2.5" />

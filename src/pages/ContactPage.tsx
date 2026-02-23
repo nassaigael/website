@@ -156,7 +156,7 @@ const ContactPage = () => {
                   language === 'fr' ? 'Contact' :
                     'Contact'}
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 dark:bg-[#ee5253]/20 -z-10"></span>
+              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
             </span>
           </motion.h1>
 
@@ -177,9 +177,9 @@ const ContactPage = () => {
             variants={itemVariants}
             className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16"
           >
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
             <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
           </motion.div>
         </motion.div>
 

@@ -68,11 +68,10 @@ const ProjectsPage = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-32 ${
-        location.pathname === '/projects' ? 'pt-0!' : ''
-      }`}
+      className={`min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-32 ${location.pathname === '/projects' ? 'pt-0!' : ''
+        }`}
     >
-      {/* Éléments décoratifs d'arrière-plan - Version Light premium */}
+      {/* Éléments décoratifs d'arrière-plan   */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
           animate={{
@@ -90,18 +89,14 @@ const ProjectsPage = () => {
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
         />
-        
+
         {/* Grille subtile premium */}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
-        
-        {/* Éléments géométriques décoratifs */}
-        <div className="absolute top-40 right-40 w-32 h-32 border border-[#ee5253]/10 rounded-full" />
-        <div className="absolute bottom-40 left-40 w-48 h-48 border border-[#932020]/10 rotate-45" />
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 border border-[#ee5253]/5 rounded-full" />
+
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 relative z-10">
-        {/* HERO SECTION - Version Light premium */}
+        {/* HERO SECTION  */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -109,7 +104,7 @@ const ProjectsPage = () => {
           className="relative mb-16 md:mb-20"
         >
           <div className="relative z-10 text-center">
-            {/* Main Title avec effet premium */}
+            {/* Main Title*/}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">
               <span className="relative inline-block">
                 <span className="relative z-10">
@@ -117,14 +112,7 @@ const ProjectsPage = () => {
                     language === 'fr' ? 'Nos Projets' :
                       'Our Projects'}
                 </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 dark:bg-[#ee5253]/20 -z-10"></span>
-                <motion.span
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -top-6 -right-6 text-2xl opacity-20"
-                >
-                  ✦
-                </motion.span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
               </span>
             </h1>
 
@@ -142,7 +130,7 @@ const ProjectsPage = () => {
 
             {/* Elegant Divider avec effet premium */}
             <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
-              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
               <div className="relative">
                 <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
                 <motion.div
@@ -151,10 +139,10 @@ const ProjectsPage = () => {
                   className="absolute inset-0 bg-[#ee5253]/20 rounded-full blur-sm"
                 />
               </div>
-              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
             </div>
 
-            {/* Stats Cards - Version Light premium */}
+            {/* Stats Cards   */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -166,25 +154,25 @@ const ProjectsPage = () => {
                   label: { mg: 'Tetikasa', fr: 'Projets', en: 'Projects' },
                   value: stats.total,
                   icon: Building2,
-                  gradient: 'from-blue-500 to-cyan-500'
+                  gradient: 'bg-[#ee5253]'
                 },
                 {
                   label: { mg: 'Mbola mitohy', fr: 'En cours', en: 'Ongoing' },
                   value: stats.ongoing,
                   icon: TrendingUp,
-                  gradient: 'from-emerald-500 to-green-500'
+                  gradient: 'bg-[#ee5253]'
                 },
                 {
                   label: { mg: 'Vita', fr: 'Terminés', en: 'Completed' },
                   value: stats.completed,
                   icon: Award,
-                  gradient: 'from-amber-500 to-orange-500'
+                  gradient: 'bg-[#ee5253]'
                 },
                 {
                   label: { mg: 'Mpiara-miasa', fr: 'Partenaires', en: 'Partners' },
                   value: stats.partners,
                   icon: Users,
-                  gradient: 'from-purple-500 to-pink-500'
+                  gradient: 'bg-[#ee5253]'
                 }
               ].map((stat, index) => (
                 <motion.div
@@ -208,7 +196,7 @@ const ProjectsPage = () => {
                     <p className="text-xs md:text-sm text-gray-600 dark:text-white font-medium">
                       {typeof stat.label === 'object' ? stat.label[language] : stat.label}
                     </p>
-                    
+
                     {/* Effet de brillance */}
                     <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                       <div className="absolute top-0 left-0 w-full h-full bg-linear-to-tr from-transparent via-white/10 to-transparent" />
@@ -256,7 +244,7 @@ const ProjectsPage = () => {
           </motion.div>
         )}
 
-        {/* Control Bar - Version Light premium */}
+        {/* Control Bar   */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -269,15 +257,13 @@ const ProjectsPage = () => {
               <div className="flex-1 w-full">
                 <div className="relative group">
                   <div className={`absolute -inset-1 rounded-2xl blur-lg transition-all duration-500 ${isSearchFocused ? 'opacity-100' : 'opacity-0'}`} />
-                  <div className={`relative flex items-center bg-white dark:bg-gray-800 rounded-xl border-2 transition-all duration-300 ${
-                    isSearchFocused
+                  <div className={`relative flex items-center bg-white dark:bg-gray-800 rounded-xl border-2 transition-all duration-300 ${isSearchFocused
                       ? 'border-[#ee5253] shadow-lg shadow-[#ee5253]/10'
                       : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-                  }`}>
+                    }`}>
                     <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                      <Search className={`w-5 h-5 transition-colors duration-300 ${
-                        isSearchFocused ? 'text-[#ee5253]' : 'text-gray-400'
-                      }`} />
+                      <Search className={`w-5 h-5 transition-colors duration-300 ${isSearchFocused ? 'text-[#ee5253]' : 'text-gray-400'
+                        }`} />
                     </div>
                     <input
                       type="text"
@@ -342,11 +328,10 @@ const ProjectsPage = () => {
                             setSelectedCategory(cat.id);
                             setShowFilters(false);
                           }}
-                          className={`w-full px-4 py-3 text-left transition-colors flex items-center gap-3 ${
-                            selectedCategory === cat.id
+                          className={`w-full px-4 py-3 text-left transition-colors flex items-center gap-3 ${selectedCategory === cat.id
                               ? 'bg-[#ee5253]/10 text-[#ee5253]'
                               : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-white'
-                          }`}
+                            }`}
                         >
                           <cat.icon className="w-4 h-4" />
                           <span className="text-sm">{cat.label[language]}</span>

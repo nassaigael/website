@@ -1,6 +1,6 @@
 // components/sections/PartnersHero.tsx
 import { motion } from 'framer-motion';
-import { Users, Award, TrendingUp, ChevronDown, Heart, Handshake } from 'lucide-react';
+import { Users, Award, TrendingUp, Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { partnersData, partners } from '../../data/index';
 import { Link } from 'react-router-dom';

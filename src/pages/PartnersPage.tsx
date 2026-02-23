@@ -14,8 +14,8 @@ const PartnersPage = () => {
       <PartnersHero />
 
       {/* Grille des partenaires */}
-      <section 
-        id="partners-grid" 
+      <section
+        id="partners-grid"
         className="py-16 md:py-20 bg-linear-to-b from-gray-50 to-white dark:from-[#1e293b] dark:to-[#162231] overflow-hidden relative"
       >
         {/* Éléments décoratifs */}
@@ -27,20 +27,20 @@ const PartnersPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-7xl mx-auto">
             {/* En-tête de section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight flex items-center justify-center"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                {language === 'mg' ? 'Mpiara-miasa aminay' : 
-                 language === 'fr' ? 'Nos partenaires' : 
-                 'Our partners'}
-              </h2>
-              <div className="w-24 h-1 bg-[#ee5253]/30 mx-auto rounded-full" />
-            </motion.div>
+              <span className="relative inline-block">
+                <span className="relative z-10 text-center">
+                  {language === 'mg' ? 'Mpiara-miasa aminay' :
+                    language === 'fr' ? 'Nos partenaires' :
+                      'Our partners'}                            </span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 dark:bg-[#ee5253]/20 -z-10"></span>
+              </span>
+            </motion.h2>
 
             <PartnersGrid showSearch={true} />
           </div>
@@ -69,9 +69,9 @@ const PartnersPage = () => {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="relative inline-block">
                 <span className="relative z-10">
-                  {language === 'mg' ? 'Te ho Mpanohana ve ianao?' : 
-                   language === 'fr' ? 'Devenir partenaire ?' : 
-                   'Become a partner?'}
+                  {language === 'mg' ? 'Te ho Mpanohana ve ianao?' :
+                    language === 'fr' ? 'Devenir partenaire ?' :
+                      'Become a partner?'}
                 </span>
                 <span className="absolute -bottom-2 left-0 right-0 h-3 bg-white/20 -z-10"></span>
               </span>
@@ -79,9 +79,9 @@ const PartnersPage = () => {
 
             {/* Description */}
             <p className="text-xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed">
-              {language === 'mg' ? 'Miaraha aminay hanohana sy hampiroborobo ny kolontsaina malagasy' : 
-               language === 'fr' ? 'Rejoignez-nous pour soutenir et promouvoir le patrimoine malgache' : 
-               'Join us to support and promote Malagasy heritage'}
+              {language === 'mg' ? 'Miaraha aminay hanohana sy hampiroborobo ny kolontsaina malagasy' :
+                language === 'fr' ? 'Rejoignez-nous pour soutenir et promouvoir le patrimoine malgache' :
+                  'Join us to support and promote Malagasy heritage'}
             </p>
 
             {/* Avantages en grille */}
@@ -130,9 +130,9 @@ const PartnersPage = () => {
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <Mail className="w-5 h-5" />
-                  {language === 'mg' ? 'Mifandray aminay' : 
-                   language === 'fr' ? 'Nous contacter' : 
-                   'Contact us'}
+                  {language === 'mg' ? 'Mifandray aminay' :
+                    language === 'fr' ? 'Nous contacter' :
+                      'Contact us'}
                 </span>
                 <div className="absolute inset-0 bg-linear-to-r from-gray-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.a>
@@ -145,9 +145,9 @@ const PartnersPage = () => {
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <Award className="w-5 h-5" />
-                  {language === 'mg' ? 'Jereo ny mpanohana' : 
-                   language === 'fr' ? 'Voir les partenaires' : 
-                   'View partners'}
+                  {language === 'mg' ? 'Jereo ny mpanohana' :
+                    language === 'fr' ? 'Voir les partenaires' :
+                      'View partners'}
                 </span>
               </motion.a>
             </div>
