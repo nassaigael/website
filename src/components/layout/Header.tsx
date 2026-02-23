@@ -71,7 +71,7 @@ const Header = () => {
           : 'bg-white/70 dark:bg-black/70 backdrop-blur-md py-3 sm:py-4'
       }`}
       style={{
-        borderBottom: scrolled ? '1px solid rgba(238,82,83,0.15)' : 'none'
+        borderBottom: scrolled ? 'shadow' : 'none'
       }}
     >
       {/* Ligne décorative animée avec effet de glow */}
@@ -117,7 +117,7 @@ const Header = () => {
                     <img
                       src={logo}
                       alt="Logo Fizanakara"
-                      className="relative h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 object-contain"
+                      className="relative h-8 w-8 sm:h-9 sm:w-9 lg:h-10 lg:w-10 object-contain"
                     />
                   </div>
                 </div>
@@ -125,7 +125,7 @@ const Header = () => {
               
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                  <h1 className="font-black tracking-tight text-xl sm:text-2xl md:text-[1.6rem] lg:text-[1.9rem] text-[#ee5253] transition-colors duration-300">
+                  <h1 className="font-black tracking-tight text-xl sm:text-2xl lg:text-[1.6rem] text-[#ee5253] transition-colors duration-300">
                     FIZANAKARA
                   </h1>
                 </div>
@@ -139,7 +139,7 @@ const Header = () => {
           </Link>
 
           {/* Navigation Desktop avec effet de verre */}
-          <nav className="hidden md:flex items-center justify-center gap-1 lg:gap-2 flex-1 mx-4 lg:mx-8">
+          <nav className="hidden lg:flex items-center justify-center gap-1 md lg:gap-2 flex-1 mx-4 lg:mx-8">
             <div className="relative bg-white/30 dark:bg-gray-900/30 backdrop-blur-md rounded-2xl p-1 ">
               {navItems.slice(1).map((item) => (
                 <motion.button
@@ -177,7 +177,7 @@ const Header = () => {
           </nav>
 
           {/* Droite : langue + burger - Design */}
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-2 lg:gap-3">
             {/* Sélecteur de langue - Version avec drapeaux réduits */}
             <div className="relative lang-dropdown-container">
               <motion.button
@@ -188,7 +188,7 @@ const Header = () => {
                 onHoverEnd={() => setHoveredLang(null)}
                 className={`
                   group relative flex items-center gap-3
-                  px-4 py-2 md:px-5 md:py-2.5
+                  px-4 py-2 lg:px-5 lg:py-2.5
                   bg-linear-to-r from-white/90 to-gray-50/90 
                   dark:from-gray-900/90 dark:to-gray-800/90 
                   backdrop-blur-xl
@@ -228,7 +228,7 @@ const Header = () => {
                   
                   {/* Drapeau avec ombre portée - TAILLE RÉDUITE de text-3xl à text-2xl */}
                   <div className="relative transform transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-2">
-                    <span className={`fi fi-${currentLang.countryCode} text-2xl md:text-3xl drop-shadow-2xl`}></span>
+                    <span className={`fi fi-${currentLang.countryCode} text-2xl lg:text-3xl drop-shadow-2xl`}></span>
                   </div>
                   
                   {/* Petit badge de brillance */}
@@ -335,7 +335,7 @@ const Header = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="md:hidden relative group"
+              className="lg:hidden relative group"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? 'Fermer menu' : 'Ouvrir menu'}
             >
@@ -372,7 +372,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden overflow-hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800/50 shadow-2xl"
+            className="lg:hidden overflow-hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800/50 shadow-2xl"
           >
             {/* Décoration supérieure */}
             <div className="relative h-1 bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
@@ -416,7 +416,7 @@ const Header = () => {
             </div>
             
             {/* Décoration inférieure */}
-            <div className="h-1 bg-linear-to-r from-transparent via-[#ee5253]/50 to-transparent" />
+            <div className="h-1 bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
           </motion.div>
         )}
       </AnimatePresence>
