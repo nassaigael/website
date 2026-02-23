@@ -140,7 +140,7 @@ const Header = () => {
 
           {/* Navigation Desktop avec effet de verre */}
           <nav className="hidden lg:flex items-center justify-center gap-1 md lg:gap-2 flex-1 mx-4 lg:mx-8">
-            <div className="relative bg-white/30 dark:bg-gray-900/30 backdrop-blur-md rounded-2xl p-1 ">
+            <div className="relative rounded-2xl p-1 ">
               {navItems.slice(1).map((item) => (
                 <motion.button
                   key={item.id}
