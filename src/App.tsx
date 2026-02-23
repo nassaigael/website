@@ -10,6 +10,7 @@ import NewsDetail from './pages/NewsDetail';
 import NewsPage from './pages/NewsPage';
 import ProjectDetail from './pages/ProjectDetail';
 import ProjectsPage from './pages/ProjectsPage';
+import AIChat from './components/sections/AIChat';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <AIChat />
         </div>
       </Router>
     </LanguageProvider>

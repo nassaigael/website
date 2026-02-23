@@ -140,7 +140,7 @@ const Header = () => {
 
           {/* Navigation Desktop avec effet de verre */}
           <nav className="hidden md:flex items-center justify-center gap-1 lg:gap-2 flex-1 mx-4 lg:mx-8">
-            <div className="relative bg-white/30 dark:bg-gray-900/30 backdrop-blur-md rounded-2xl p-1 border border-white/20 dark:border-gray-800/30 shadow-lg">
+            <div className="relative bg-white/30 dark:bg-gray-900/30 backdrop-blur-md rounded-2xl p-1 ">
               {navItems.slice(1).map((item) => (
                 <motion.button
                   key={item.id}
@@ -149,7 +149,7 @@ const Header = () => {
                   onClick={() => handleNavClick(item.path)}
                   className="relative px-3 lg:px-4 py-2 group/nav"
                 >
-                  <span className={`text-xs lg:text-sm font-bold tracking-wider transition-all duration-300 ${
+                  <span className={`text-xs lg:text-sm font-bold tracking-wider transition-all duration-300 uppercase ${
                     isActive(item.path) 
                       ? 'text-[#ee5253]' 
                       : 'text-gray-600 dark:text-gray-300 group-hover/nav:text-gray-900 dark:group-hover/nav:text-white'
@@ -161,7 +161,7 @@ const Header = () => {
                   {isActive(item.path) && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute -bottom-1 left-2 right-2 h-0.5 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full"
+                      className="absolute -bottom-1 left-2 right-2 h-0.5 bg-[#ee5253] rounded-full"
                       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                     />
                   )}
