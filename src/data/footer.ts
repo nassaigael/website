@@ -29,7 +29,7 @@ export const footerData = {
     quickLinks: {
       title: "Rohy Haingana",
       links: [
-        { label: "Iza moa Fizanakara", href: "/about" },
+        { label: "A propos", href: "/about" },
         { label: "Vaovao fikambanana", href: "/news" },
         { label: "Mpanohana", href: "/partners" },
         { label: "Fifandraisana", href: "/contact" },
@@ -80,11 +80,12 @@ export const footerData = {
     quickLinks: {
       title: "Liens Rapides",
       links: [
-        { label: "À propos de Fizanakara", href: "/about" },
+        { label: "Acceuil", href: "/about" },
         { label: "Actualités", href: "/news" },
-        { label: "partners", href: "/partners" },
-        { label: "Contact", href: "/contact" },
         { label: "Projets", href: "/projects" },
+        { label: "Partenaires", href: "/partners" },
+        { label: "Contact", href: "/contact" },
+
       ]
     },
     recentPosts: {

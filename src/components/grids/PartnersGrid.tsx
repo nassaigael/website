@@ -79,7 +79,7 @@ const PartnersGrid = ({
         }
     };
 
-    // Fonction pour obtenir la couleur de catégorie - Version Light
+    // Fonction pour obtenir la couleur de catégorie
     const getCategoryColor = (category: PartnerCategory) => {
         switch (category) {
             case 'foundation': return 'from-blue-500 to-cyan-500 bg-blue-50 text-blue-600';
@@ -105,7 +105,7 @@ const PartnersGrid = ({
                     transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
                     className="mb-16 md:mb-24"
                 >
-                    {/* Premium Search Bar - Version Light */}
+                    {/* Premium Search Bar */}
                     {showSearch && (
                         <motion.div
                             initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -114,7 +114,7 @@ const PartnersGrid = ({
                             className="max-w-2xl mx-auto mb-8"
                         >
                             <div className="relative group">
-                                <div className="absolute -inset-1 bg-gradient-to-r from-[#ee5253]/20 to-[#932020]/20 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+                                <div className="absolute -inset-1 bg-[#ee5253] rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
                                 <div className="relative">
                                     <input
                                         type="text"
@@ -145,7 +145,7 @@ const PartnersGrid = ({
                         </motion.div>
                     )}
 
-                    {/* Category Filters - Version Light */}
+                    {/* Category Filters */}
                     <div className="flex justify-center mb-8">
                         <div className="flex flex-wrap gap-3 justify-center">
                             {categories.map((cat, index) => {
@@ -176,7 +176,7 @@ const PartnersGrid = ({
                     </div>
                 </motion.div>
 
-                {/* Centered Partners Grid - Version Light améliorée */}
+                {/* Centered Partners Grid */}
                 <AnimatePresence mode="wait">
                     {filteredPartners.length > 0 ? (
                         <motion.div
@@ -212,17 +212,17 @@ const PartnersGrid = ({
                                         onMouseLeave={() => setHoveredPartner(null)}
                                         className="group relative flex-1 min-w-75 max-w-100"
                                     >
-                                        {/* Premium Card Container - Version Light */}
+                                        {/* Premium Card Container */}
                                         <div className="relative h-full bg-white dark:bg-[#1e293b] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-700/50">
 
                                             {/* Animated Background Layer */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-gray-50/50 dark:to-white/5" />
+                                            <div className="absolute inset-0 bg-linear-to-br from-transparent via-transparent to-gray-50/50 dark:to-white/5" />
 
-                                            {/* Card Header with Premium Effects - Version Light */}
-                                            <div className="relative h-56 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/80 dark:to-gray-900/60 p-10 flex items-center justify-center overflow-hidden">
-                                                <div className={`absolute inset-0 bg-gradient-to-r ${gradientClass} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-700`} />
+                                            {/* Card Header with Premium Effects*/}
+                                            <div className="relative h-56 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-800/80 dark:to-gray-900/60 p-10 flex items-center justify-center overflow-hidden">
+                                                <div className={`absolute inset-0 bg-linear-to-r ${gradientClass} opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-700`} />
 
-                                                {/* Partner Logo Container - Version Light */}
+                                                {/* Partner Logo Container */}
                                                 <div className="relative z-20">
                                                     <div className="relative p-6 bg-white dark:bg-[#1e293b]/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700/30">
                                                         <img
@@ -234,19 +234,19 @@ const PartnersGrid = ({
                                                     </div>
                                                 </div>
 
-                                                {/* Category Badge - Version Light */}
+                                                {/* Category Badge */}
                                                 <div className="absolute top-5 left-5 z-30">
-                                                    <div className={`flex items-center gap-2.5 px-4 py-2.5 ${bgLightClass} dark:bg-[#1e293b]/95 backdrop-blur-xl rounded-full border border-gray-200 dark:border-gray-700/50 shadow-lg`}>
-                                                        <span className={textLightClass}>
+                                                    <div className={`flex items-center gap-2.5 px-4 py-2.5 ${bgLightClass} bg-transparent dark:bg-[#1e293b]/95 backdrop-blur-xl rounded-full border border-gray-200 dark:border-gray-700/50 shadow-lg`}>
+                                                        <span className={`${textLightClass} bg-transparent dark:text-white`}>
                                                             {getCategoryIcon(partner.category)}
                                                         </span>
-                                                        <span className={`text-sm font-bold ${textLightClass} dark:text-white tracking-wide`}>
+                                                        <span className={`text-sm font-bold bg-transparent ${textLightClass} dark:text-white tracking-wide`}>
                                                             {getCategoryName(partner.category)}
                                                         </span>
                                                     </div>
                                                 </div>
 
-                                                {/* Premium Featured Badge - Version Light */}
+                                                {/* Premium Featured Badge */}
                                                 {partner.featured && (
                                                     <div className="absolute top-5 right-5 z-30">
                                                         <motion.div
@@ -260,14 +260,14 @@ const PartnersGrid = ({
                                                 )}
                                             </div>
 
-                                            {/* Premium Card Content - Version Light */}
-                                            <div className="relative p-8 flex flex-col grow bg-gradient-to-b from-white via-white to-gray-50/80 dark:from-[#1e293b] dark:via-[#1e293b] dark:to-[#1a1f2e]">
-                                                {/* Partner Name with Gradient - Version Light */}
+                                            {/* Premium Card Content */}
+                                            <div className="relative p-8 flex flex-col grow bg-linear-to-b from-white via-white to-gray-50/80 dark:from-[#1e293b] dark:via-[#1e293b] dark:to-[#1a1f2e]">
+                                                {/* Partner Name with Gradient */}
                                                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-[#ee5253] transition-colors duration-500">
                                                     {partner.name}
                                                 </h3>
 
-                                                {/* Premium Description - Version Light */}
+                                                {/* Premium Description */}
                                                 <p className="text-gray-600 dark:text-gray-300 mb-6 grow leading-relaxed text-base line-clamp-3">
                                                     {getPartnerDescription(partner)}
                                                 </p>
@@ -282,9 +282,9 @@ const PartnersGrid = ({
                                                     )}
                                                 </div>
 
-                                                {/* Premium Action Area - Version Light */}
+                                                {/* Premium Action Area */}
                                                 <div className="flex items-center justify-between mt-auto pt-8 border-t border-gray-200 dark:border-gray-700/50">
-                                                    {/* Website Link - Version Light */}
+                                                    {/* Website Link */}
                                                     {partner.website && partner.website !== '#' ? (
                                                         <a
                                                             href={partner.website}
@@ -308,16 +308,16 @@ const PartnersGrid = ({
                                                 </div>
                                             </div>
 
-                                            {/* Premium Hover Effects - Version Light */}
-                                            <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${gradientClass} transition-transform duration-700 origin-left ${hoveredPartner === partner.id ? 'scale-x-100' : 'scale-x-0'}`} />
+                                            {/* Premium Hover Effects */}
+                                            <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-linear-to-r ${gradientClass} transition-transform duration-700 origin-left ${hoveredPartner === partner.id ? 'scale-x-100' : 'scale-x-0'}`} />
 
-                                            {/* Corner Accents - Version Light */}
-                                            <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#ee5253]/30 rounded-tl-3xl" />
-                                            <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#ee5253]/30 rounded-tr-3xl" />
+                                            {/* Corner Accents */}
+                                            <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#ee5253] rounded-tl-3xl" />
+                                            <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#ee5253] rounded-tr-3xl" />
                                         </div>
 
-                                        {/* Premium Glow Effect - Version Light */}
-                                        <div className="absolute -inset-4 bg-gradient-to-r from-transparent via-[#ee5253]/10 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+                                        {/* Premium Glow Effect */}
+                                        <div className="absolute -inset-4 bg-linear-to-r from-transparent via-[#ee5253]/10 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                                     </motion.div>
                                 );
                             })}
