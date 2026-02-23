@@ -1,11 +1,11 @@
-// components/Contact.tsx
+// pages/ContactPage.tsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, CheckCircle, Users } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations, type LanguageKey } from '../data/index';
 
-const Contact: React.FC = () => {
+const ContactPage = () => {
   const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
@@ -105,7 +105,12 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="relative bg-linear-to-br from-[#1e293b] via-[#1a1f2e] to-[#0f172a] py-20 px-4 overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
+    >
+      {/* Éléments décoratifs d'arrière-plan - Version Light */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           animate={{
@@ -113,7 +118,7 @@ const Contact: React.FC = () => {
             y: [0, 50, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-20 left-20 w-96 h-96 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/5 dark:bg-[#ee5253]/5 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -121,35 +126,28 @@ const Contact: React.FC = () => {
             y: [0, -50, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-linear-to-r from-[#932020]/5 to-[#ee5253]/5 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
         />
 
-        {/* Grille subtile */}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
+        {/* Grille subtile - Version Light */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.03)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.03)_1px,transparent_1px)] bg-size-[50px_50px]" />
       </div>
 
       {/* Lignes décoratives */}
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#ee5253]/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#932020]/30 to-transparent" />
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
-        className="relative z-10 mx-auto max-w-7xl"
-      >
-        {/* Badge premium */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
         <motion.div
-          variants={itemVariants}
-          className="text-center mb-8"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="text-center mb-12"
         >
-
           {/* Main Title */}
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight"
           >
             <span className="relative inline-block">
@@ -158,40 +156,44 @@ const Contact: React.FC = () => {
                   language === 'fr' ? 'Contact' :
                     'Contact'}
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 -z-10"></span>
+              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 dark:bg-[#ee5253]/20 -z-10"></span>
             </span>
           </motion.h1>
 
           {/* Description */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            variants={itemVariants}
             className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
           >
             <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
               {language === 'mg' ? 'Eto izahay hamaly ny fanontanianao' :
                 language === 'fr' ? 'Nous sommes là pour répondre à vos questions' :
-                  "We're here to answer your questions"}            </p>
+                  "We're here to answer your questions"}
+            </p>
           </motion.div>
 
           {/* Elegant Divider */}
-          <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16"
+          >
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
             <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
-          </div>
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
+          </motion.div>
         </motion.div>
 
         {/* Grille principale */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Carte des provinces */}
+          {/* Carte des provinces - Version Light améliorée */}
           <motion.div
             variants={itemVariants}
-            className="bg-linear-to-br from-[#0f172a] to-[#1a1f2e] rounded-3xl p-8 border border-gray-800/50 shadow-2xl h-fit lg:h-full"
+            initial="hidden"
+            animate="visible"
+            className="bg-gray-50 dark:bg-[#0f172a] rounded-3xl p-8 border border-gray-200 dark:border-gray-800/50 shadow-xl dark:shadow-2xl h-fit lg:h-full"
           >
             <div className="flex items-center gap-2 mb-6">
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                 {language === 'mg' ? 'Nosy rehetra' :
                   language === 'fr' ? 'Nos antennes' :
                     'Our offices'}
@@ -204,17 +206,16 @@ const Contact: React.FC = () => {
                   key={index}
                   whileHover={{ scale: 1.02, x: 5 }}
                   onClick={() => setSelectedProvince(selectedProvince === province.name ? null : province.name)}
-                  className={`p-4 bg-[#1e293b] rounded-xl border transition-all duration-300 cursor-pointer ${selectedProvince === province.name
-                    ? 'border-[#ee5253] shadow-lg shadow-[#ee5253]/10'
-                    : 'border-gray-800/50 hover:border-[#ee5253]/30'
-                    }`}
+                  className={`p-4 bg-white dark:bg-[#1e293b] rounded-xl border transition-all duration-300 cursor-pointer ${
+                    selectedProvince === province.name
+                      ? 'border-[#ee5253] shadow-lg shadow-[#ee5253]/10 dark:shadow-[#ee5253]/10'
+                      : 'border-gray-200 dark:border-gray-800/50 hover:border-[#ee5253]/30 dark:hover:border-[#ee5253]/30'
+                  }`}
                 >
                   <div className="flex items-start gap-3">
-
                     <div className="flex-1">
-                      <h4 className="font-bold text-white flex items-center gap-2">
+                      <h4 className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         {province.name}
-                        {selectedProvince === province.name}
                       </h4>
 
                       <motion.div
@@ -223,26 +224,26 @@ const Contact: React.FC = () => {
                         className="overflow-hidden"
                       >
                         {selectedProvince === province.name && (
-                          <div className="mt-3 space-y-2 pt-2 border-t border-gray-700/50">
-                            <p className="text-xs text-gray-400 flex items-center gap-2">
+                          <div className="mt-3 space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700/50">
+                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2">
                               <Phone className="w-3 h-3 text-[#ee5253]" />
-                              <a href={`tel:${province.phone}`} className="text-white hover:text-[#ee5253] transition-colors">
+                              <a href={`tel:${province.phone}`} className="text-gray-900 dark:text-white hover:text-[#ee5253] transition-colors">
                                 {province.phone}
                               </a>
                             </p>
-                            <p className="text-xs text-gray-400 flex items-center gap-2">
+                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2">
                               <Mail className="w-3 h-3 text-[#ee5253]" />
-                              <a href={`mailto:${province.email}`} className="text-white hover:text-[#932020] transition-colors">
+                              <a href={`mailto:${province.email}`} className="text-gray-900 dark:text-white hover:text-[#932020] transition-colors">
                                 {province.email}
                               </a>
                             </p>
-                            <p className="text-xs text-gray-400 flex items-center gap-2">
+                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2">
                               <MapPin className="w-3 h-3 text-[#ee5253]" />
-                              <span className="text-white">{province.address}</span>
+                              <span className="text-gray-900 dark:text-white">{province.address}</span>
                             </p>
-                            <p className="text-xs text-gray-400 flex items-center gap-2 mt-2">
+                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2 mt-2">
                               <Users className="w-3 h-3 text-[#ee5253]" />
-                              <span className="text-white">{province.responsable}</span>
+                              <span className="text-gray-900 dark:text-white">{province.responsable}</span>
                             </p>
                           </div>
                         )}
@@ -254,10 +255,12 @@ const Contact: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* RIGHT FORM - Formulaire premium */}
+          {/* RIGHT FORM - Version Light améliorée */}
           <motion.div
             variants={itemVariants}
-            className="bg-linear-to-br from-[#0f172a] to-[#1a1f2e] rounded-3xl p-8 shadow-2xl border border-gray-800/50 h-fit lg:h-full"
+            initial="hidden"
+            animate="visible"
+            className="bg-gray-50 dark:bg-[#0f172a] rounded-3xl p-8 shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800/50 h-fit lg:h-full"
           >
             {isSuccess ? (
               <motion.div
@@ -266,13 +269,13 @@ const Contact: React.FC = () => {
                 className="flex flex-col items-center justify-center py-16 h-full"
               >
                 <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-green-500 rounded-full blur-xl opacity-50 animate-pulse" />
-                  <div className="relative w-20 h-20 bg-linear-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
+                  <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-50 animate-pulse" />
+                  <div className="relative w-20 h-20 bg-[#ee5253] rounded-full flex items-center justify-center">
                     <CheckCircle className="w-10 h-10 text-white" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">{t.form.success}</h3>
-                <p className="text-gray-400 text-center">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t.form.success}</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-center">
                   {language === 'mg' ? 'Hamaly anao haingana izahay' :
                     language === 'fr' ? 'Nous vous répondrons rapidement' :
                       "We'll get back to you soon"}
@@ -280,7 +283,7 @@ const Contact: React.FC = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5 h-full flex flex-col">
-                <h3 className="text-2xl font-bold text-white mb-6">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                   {language === 'mg' ? 'Alefaso hafatra' :
                     language === 'fr' ? 'Envoyez un message' :
                       'Send a message'}
@@ -291,7 +294,7 @@ const Contact: React.FC = () => {
                   animate={focusedField === 'name' ? { scale: 1.02 } : { scale: 1 }}
                   className="space-y-2"
                 >
-                  <label className="block text-sm font-medium text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t.form.name}
                   </label>
                   <div className="relative">
@@ -304,17 +307,8 @@ const Contact: React.FC = () => {
                       onBlur={() => setFocusedField(null)}
                       required
                       placeholder={t.form.namePlaceholder}
-                      className="w-full bg-[#1e293b] border-2 border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
+                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
                     />
-                    {focusedField === 'name' && (
-                      <motion.div
-                        layoutId="focus-indicator"
-                        className="absolute bg-[#ee5253]"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
                   </div>
                 </motion.div>
 
@@ -323,7 +317,7 @@ const Contact: React.FC = () => {
                   animate={focusedField === 'email' ? { scale: 1.02 } : { scale: 1 }}
                   className="space-y-2"
                 >
-                  <label className="block text-sm font-medium text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t.form.email}
                   </label>
                   <div className="relative">
@@ -336,7 +330,7 @@ const Contact: React.FC = () => {
                       onBlur={() => setFocusedField(null)}
                       required
                       placeholder={t.form.emailPlaceholder}
-                      className="w-full bg-[#1e293b] border-2 border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
+                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
                     />
                   </div>
                 </motion.div>
@@ -346,7 +340,7 @@ const Contact: React.FC = () => {
                   animate={focusedField === 'industry' ? { scale: 1.02 } : { scale: 1 }}
                   className="space-y-2"
                 >
-                  <label className="block text-sm font-medium text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t.form.industry}
                   </label>
                   <div className="relative">
@@ -356,17 +350,17 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('industry')}
                       onBlur={() => setFocusedField(null)}
-                      className="w-full bg-[#1e293b] border-2 border-gray-700 rounded-xl px-4 py-3 text-white focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none appearance-none"
+                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none appearance-none"
                     >
-                      <option value="" className="bg-[#1e293b]">{t.form.industryPlaceholder}</option>
+                      <option value="" className="bg-white dark:bg-[#1e293b] text-gray-500 dark:text-gray-500">{t.form.industryPlaceholder}</option>
                       {t.form.industryOptions.map((option: string, index: number) => (
-                        <option key={index} value={option} className="bg-[#1e293b]">
+                        <option key={index} value={option} className="bg-white dark:bg-[#1e293b] text-gray-900 dark:text-white">
                           {option}
                         </option>
                       ))}
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
@@ -376,9 +370,9 @@ const Contact: React.FC = () => {
                 {/* Message */}
                 <motion.div
                   animate={focusedField === 'message' ? { scale: 1.02 } : { scale: 1 }}
-                  className="space-y-2 flex-grow"
+                  className="space-y-2 grow"
                 >
-                  <label className="block text-sm font-medium text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t.form.message}
                   </label>
                   <div className="relative h-full">
@@ -391,7 +385,7 @@ const Contact: React.FC = () => {
                       required
                       rows={4}
                       placeholder={t.form.messagePlaceholder}
-                      className="w-full bg-[#1e293b] border-2 border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none resize-none h-32"
+                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none resize-none h-32"
                     />
                   </div>
                 </motion.div>
@@ -405,7 +399,7 @@ const Contact: React.FC = () => {
                   className="relative w-full overflow-hidden group mt-auto"
                 >
                   <div className="absolute inset-0 bg-[#ee5253] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative flex items-center justify-center gap-3 bg-[#ee5253] px-6 py-4 rounded-xl font-semibold text-white shadow-xl">
+                  <div className="relative flex items-center justify-center gap-3 bg-[#ee5253] px-6 py-4 rounded-xl font-semibold text-white shadow-lg dark:shadow-xl">
                     {isSubmitting ? (
                       <>
                         <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -428,9 +422,9 @@ const Contact: React.FC = () => {
             )}
           </motion.div>
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </motion.div>
   );
 };
 
-export default Contact;
+export default ContactPage;
