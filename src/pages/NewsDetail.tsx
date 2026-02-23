@@ -62,16 +62,16 @@ const NewsDetail = () => {
 
     if (!article) {
         return (
-            <div className="min-h-screen bg-[#1e293b] flex items-center justify-center px-4">
+            <div className="min-h-screen bg-white dark:bg-[#1e293b] flex items-center justify-center px-4">
                 <div className="text-center max-w-lg mx-auto">
                     <motion.div
                         animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
                         transition={{ duration: 2, repeat: Infinity }}
-                        className="text-9xl text-[#ee5253]/20 mb-6 font-bold"
+                        className="text-9xl text-[#ee5253]/10 dark:text-[#ee5253]/20 mb-6 font-bold"
                     >
                         404
                     </motion.div>
-                    <h1 className="text-4xl font-bold text-white mb-6">
+                    <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
                         {language === 'mg' ? 'Tsy hita ny vaovao' :
                             language === 'fr' ? 'Article non trouvé' :
                                 'Article not found'}
@@ -97,35 +97,40 @@ const NewsDetail = () => {
             bgColor: 'bg-[#ee5253]',
             textColor: 'text-white',
             icon: Target,
-            lightBg: 'bg-[#ee5253]'
+            lightBg: 'bg-[#ee5253]/10',
+            lightText: 'text-[#ee5253]'
         },
         project: {
             label: { mg: 'TETIKASA', fr: 'PROJET', en: 'PROJECT' },
             bgColor: 'bg-[#ee5253]',
             textColor: 'text-white',
             icon: Target,
-            lightBg: 'bg-[#ee5253]'
+            lightBg: 'bg-[#ee5253]/10',
+            lightText: 'text-[#ee5253]'
         },
         announcement: {
             label: { mg: 'FANAMBARANA', fr: 'ANNONCE', en: 'ANNOUNCEMENT' },
             bgColor: 'bg-[#ee5253]',
             textColor: 'text-white',
             icon: Award,
-            lightBg: 'bg-[#ee5253]'
+            lightBg: 'bg-[#ee5253]/10',
+            lightText: 'text-[#ee5253]'
         },
         culture: {
             label: { mg: 'KOLONTSAINA', fr: 'CULTURE', en: 'CULTURE' },
             bgColor: 'bg-[#ee5253]',
             textColor: 'text-white',
             icon: BookOpen,
-            lightBg: 'bg-[#ee5253]'
+            lightBg: 'bg-[#ee5253]/10',
+            lightText: 'text-[#ee5253]'
         },
         heritage: {
             label: { mg: 'VAKOKA', fr: 'PATRIMOINE', en: 'HERITAGE' },
             bgColor: 'bg-[#ee5253]',
             textColor: 'text-white',
             icon: Award,
-            lightBg: 'bg-[#ee5253]'
+            lightBg: 'bg-[#ee5253]/10',
+            lightText: 'text-[#ee5253]'
         }
     };
 
@@ -148,10 +153,11 @@ const NewsDetail = () => {
             case 'linkedin':
                 window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
                 break;
-            case 'email':
-                // eslint-disable-next-line react-hooks/immutability
-                window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${text}\n\n${url}`)}`;
+            case 'email': {
+                const mailtoLink = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${text}\n\n${url}`)}`;
+                window.open(mailtoLink, '_blank');
                 break;
+            }
             case 'copy':
                 navigator.clipboard.writeText(url);
                 setShowCopyAlert(true);
@@ -183,7 +189,7 @@ const NewsDetail = () => {
             animate={{ opacity: 1 }}
             className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
         >
-            {/* Éléments décoratifs d'arrière-plan */}
+            {/* Éléments décoratifs d'arrière-plan - Version Light premium */}
             <div className="absolute inset-0 pointer-events-none">
                 <motion.div
                     animate={{
@@ -191,7 +197,7 @@ const NewsDetail = () => {
                         y: [0, 50, 0],
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-20 left-20 w-96 h-96 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 rounded-full blur-3xl"
+                    className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/5 dark:bg-[#ee5253]/5 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -199,9 +205,14 @@ const NewsDetail = () => {
                         y: [0, -50, 0],
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-20 right-20 w-96 h-96 bg-linear-to-r from-[#932020]/5 to-[#ee5253]/5 rounded-full blur-3xl"
+                    className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
                 />
+                {/* Grille subtile premium */}
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
+                
+                {/* Éléments géométriques décoratifs */}
+                <div className="absolute top-40 right-40 w-32 h-32 border border-[#ee5253]/10 rounded-full" />
+                <div className="absolute bottom-40 left-40 w-48 h-48 border border-[#932020]/10 rotate-45" />
             </div>
 
             {/* Lignes décoratives */}
@@ -215,7 +226,7 @@ const NewsDetail = () => {
                 className="fixed top-0 left-0 h-1 bg-[#ee5253] z-50"
             />
 
-            {/* Copy Alert */}
+            {/* Copy Alert - Version Light premium */}
             <AnimatePresence>
                 {showCopyAlert && (
                     <motion.div
@@ -242,7 +253,7 @@ const NewsDetail = () => {
             </AnimatePresence>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Premium Header */}
+                {/* Premium Header - Version Light améliorée */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -254,10 +265,10 @@ const NewsDetail = () => {
                         whileHover={{ x: -4 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => navigate('/news')}
-                        className="group flex items-center gap-3 px-5 py-3 bg-gray-800/30 dark:bg-[#0f172a] rounded-xl dark:border dark:border-gray-800 hover:border-[#ee5253] transition-all"
+                        className="group flex items-center gap-3 px-5 py-3 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800 hover:border-[#ee5253] hover:bg-gray-50 dark:hover:bg-[#1a1f2e] transition-all"
                     >
-                        <ArrowLeft className="w-5 h-5 text-white dark:text-[#ee5253] group-hover:scale-110 transition-transform" />
-                        <span className="font-semibold text-white group-hover:text-white transition-colors">
+                        <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-[#ee5253] group-hover:scale-110 transition-transform" />
+                        <span className="font-semibold text-gray-700 dark:text-white group-hover:text-[#ee5253] transition-colors">
                             {language === 'mg' ? 'Hiverina' :
                                 language === 'fr' ? 'Retour' :
                                     'Back'}
@@ -265,16 +276,16 @@ const NewsDetail = () => {
                     </motion.button>
 
                     <motion.div variants={itemVariants} className="flex items-center gap-4">
-                        {/* Share Button */}
+                        {/* Share Button - Version Light améliorée */}
                         <div className="relative">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setShowShareMenu(!showShareMenu)}
-                                className="p-3 bg-gray-800/30 dark:bg-[#0f172a] text-white rounded-xl dark:border border-gray-800 dark:hover:border-[#ee5253] flex items-center gap-2 transition-all"
+                                className="p-3 bg-gray-100 dark:bg-[#0f172a] text-gray-700 dark:text-white rounded-xl border border-gray-200 dark:border-gray-800 hover:border-[#ee5253] hover:bg-gray-50 dark:hover:bg-[#1a1f2e] flex items-center gap-2 transition-all"
                             >
-                                <Share2 className="w-5 h-5 text-white dark:text-[#ee5253]" />
-                                <ChevronDown className={`w-4 h-4 text-white dark:text-gray-400 transition-transform ${showShareMenu ? 'rotate-180' : ''}`} />
+                                <Share2 className="w-5 h-5 text-gray-700 dark:text-[#ee5253]" />
+                                <ChevronDown className={`w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform ${showShareMenu ? 'rotate-180' : ''}`} />
                             </motion.button>
 
                             <AnimatePresence>
@@ -283,10 +294,10 @@ const NewsDetail = () => {
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        className="absolute top-full mt-2 right-0 w-16 bg-gray-800/30 dark:bg-[#0f172a] rounded-2xl shadow-2xl dark:border border-gray-800 overflow-hidden z-50"
+                                        className="absolute top-full mt-2 right-0 w-16 bg-white dark:bg-[#0f172a] rounded-2xl shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden z-50"
                                     >
-                                        <div className="p-4 border-b border-gray-800/20 dark:border-gray-800 flex items-center justify-center">
-                                            <h4 className="font-light text-[12px] text-white">
+                                        <div className="p-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-center">
+                                            <h4 className="font-light text-[12px] text-gray-500 dark:text-white">
                                                 {language === 'mg' ? 'Zaraho' : language === 'fr' ? 'Partager' : 'Share'}
                                             </h4>
                                         </div>
@@ -303,9 +314,9 @@ const NewsDetail = () => {
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ delay: index * 0.05 }}
                                                     onClick={() => shareNews(item.platform)}
-                                                    className="flex items-center gap-1w-full px-4 py-3 rounded-xl hover:bg-gray-800/10 dark:hover:bg-gray-800 transition-colors group"
+                                                    className="flex items-center gap-1 w-full px-4 py-3 rounded-xl hover:bg-[#ee5253] hover:text-white text-gray-700 dark:text-gray-300 transition-colors group"
                                                 >
-                                                    <item.icon className="w-5 h-5 text-white dark:text-[#ee5253] group-hover:scale-110 transition-transform" />
+                                                    <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                                 </motion.button>
                                             ))}
                                         </div>
@@ -318,70 +329,70 @@ const NewsDetail = () => {
 
                 {/* Main Content */}
                 <div className="lg:ml-0">
-                    {/* Article Header */}
+                    {/* Article Header - Version Light premium */}
                     <motion.header
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
                         className="mb-16"
                     >
-                        {/* Category Badge */}
+                        {/* Category Badge - Version Light améliorée */}
                         <motion.div
                             variants={itemVariants}
                             className="inline-flex items-center gap-3 mb-8"
                         >
                             <div className={`p-3 rounded-xl ${config.lightBg} border border-[#ee5253]/20`}>
-                                <Icon className="w-6 h-6 text-white" />
+                                <Icon className="w-6 h-6 text-[#ee5253]" />
                             </div>
                             <span className={`px-5 py-2.5 rounded-full font-bold text-sm tracking-wider ${config.bgColor} ${config.textColor} shadow-lg`}>
                                 {config.label[language]}
                             </span>
                         </motion.div>
 
-                        {/* Title */}
+                        {/* Title - Version Light */}
                         <motion.h1
                             variants={itemVariants}
-                            className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold dark:text-white mb-8 leading-tight"
+                            className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight"
                         >
                             {article.title[language]}
                         </motion.h1>
 
-                        {/* Meta Info */}
+                        {/* Meta Info - Version Light améliorée */}
                         <motion.div
                             variants={itemVariants}
                             className="flex flex-wrap items-center gap-6 mb-8"
                         >
-                            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-800/30 dark:bg-[#0f172a] rounded-xl dark:border border-gray-800">
-                                <Calendar className="w-5 h-5 text-white dark:text-[#ee5253]" />
-                                <span className="font-semibold text-white">{article.date}</span>
+                            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800">
+                                <Calendar className="w-5 h-5 text-[#ee5253]" />
+                                <span className="font-semibold text-gray-700 dark:text-white">{article.date}</span>
                             </div>
 
                             {article.location && (
-                                <div className="flex items-center gap-3 px-4 py-2.5 bg-[#0f172a] rounded-xl border border-gray-800">
+                                <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800">
                                     <MapPin className="w-5 h-5 text-[#ee5253]" />
-                                    <span className="font-semibold text-white">{article.location}</span>
+                                    <span className="font-semibold text-gray-700 dark:text-white">{article.location}</span>
                                 </div>
                             )}
 
-                            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-800/30 dark:bg-[#0f172a] rounded-xl dark:border border-gray-800">
-                                <User className="w-5 h-5 text-white dark:text-[#ee5253]" />
-                                <span className="font-semibold text-white">{article.author}</span>
+                            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800">
+                                <User className="w-5 h-5 text-[#ee5253]" />
+                                <span className="font-semibold text-gray-700 dark:text-white">{article.author}</span>
                             </div>
                         </motion.div>
 
-                        {/* Excerpt */}
+                        {/* Excerpt - Version Light premium */}
                         <motion.div
                             variants={itemVariants}
                             className="relative"
                         >
-                            <div className="absolute -left-8 top-0 text-6xl text-[#ee5253]/20">"</div>
-                            <p className="text-2xl sm:text-3xl text-black dark:text-white leading-relaxed font-light pl-8">
+                            <div className="absolute -left-8 top-0 text-6xl text-[#ee5253]/10 dark:text-[#ee5253]/20">"</div>
+                            <p className="text-2xl sm:text-3xl text-gray-700 dark:text-white leading-relaxed font-light pl-8">
                                 {article.excerpt[language]}
                             </p>
                         </motion.div>
                     </motion.header>
 
-                    {/* Image Gallery */}
+                    {/* Image Gallery - Version Light améliorée */}
                     <motion.div
                         variants={itemVariants}
                         initial="hidden"
@@ -390,7 +401,7 @@ const NewsDetail = () => {
                     >
                         <div 
                             ref={carouselRef}
-                            className="relative rounded-3xl overflow-hidden bg-gray-800/30 dark:bg-[#0f172a] shadow-2xl dark:border border-gray-800"
+                            className="relative rounded-3xl overflow-hidden bg-gray-100 dark:bg-[#0f172a] shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800"
                             style={{ height: '37.5rem' }}
                         >
                             <div className="relative w-full h-full flex items-center justify-center">
@@ -413,7 +424,7 @@ const NewsDetail = () => {
                                         whileHover={{ scale: 1.1, x: -4 }}
                                         whileTap={{ scale: 0.9 }}
                                         onClick={() => setCurrentImage(prev => (prev - 1 + images.length) % images.length)}
-                                        className="absolute left-8 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-[#ee5253] text-white p-3 rounded-full shadow-2xl transition-all"
+                                        className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/70 hover:bg-[#ee5253] text-gray-700 dark:text-white hover:text-white p-3 rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 transition-all"
                                     >
                                         <ChevronLeft className="w-6 h-6" />
                                     </motion.button>
@@ -422,7 +433,7 @@ const NewsDetail = () => {
                                         whileHover={{ scale: 1.1, x: 4 }}
                                         whileTap={{ scale: 0.9 }}
                                         onClick={() => setCurrentImage(prev => (prev + 1) % images.length)}
-                                        className="absolute right-8 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-[#ee5253] text-white p-3 rounded-full shadow-2xl transition-all"
+                                        className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/70 hover:bg-[#ee5253] text-gray-700 dark:text-white hover:text-white p-3 rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 transition-all"
                                     >
                                         <ChevronRight className="w-6 h-6" />
                                     </motion.button>
@@ -434,15 +445,16 @@ const NewsDetail = () => {
                                                 whileHover={{ scale: 1.2 }}
                                                 whileTap={{ scale: 0.9 }}
                                                 onClick={() => setCurrentImage(index)}
-                                                className={`w-3 h-3 rounded-full transition-all ${index === currentImage
-                                                    ? 'bg-linear-to-r from-[#ee5253] to-[#932020] scale-125 shadow-lg'
-                                                    : 'bg-gray-600 hover:bg-gray-500'
+                                                className={`w-3 h-3 rounded-full transition-all ${
+                                                    index === currentImage
+                                                        ? 'bg-[#ee5253] scale-125 shadow-lg shadow-[#ee5253]/30'
+                                                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                                                 }`}
                                             />
                                         ))}
                                     </div>
 
-                                    <div className="absolute top-8 right-8 bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/10">
+                                    <div className="absolute top-8 right-8 bg-white/90 dark:bg-black/70 backdrop-blur-sm text-gray-700 dark:text-white px-4 py-2 rounded-full text-sm font-medium border border-gray-200 dark:border-white/10">
                                         {currentImage + 1} / {images.length}
                                     </div>
                                 </>
@@ -460,7 +472,7 @@ const NewsDetail = () => {
                                         className={`shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all relative ${
                                             index === currentImage
                                                 ? 'border-[#ee5253] shadow-lg shadow-[#ee5253]/30'
-                                                : 'border-transparent hover:border-gray-600'
+                                                : 'border-transparent hover:border-gray-300 dark:hover:border-gray-600'
                                         }`}
                                     >
                                         <img 
@@ -474,7 +486,7 @@ const NewsDetail = () => {
                         )}
                     </motion.div>
 
-                    {/* Article Content */}
+                    {/* Article Content - Version Light premium */}
                     <motion.div
                         ref={contentRef}
                         variants={containerVariants}
@@ -483,9 +495,9 @@ const NewsDetail = () => {
                         className="mb-20"
                     >
                         <div className="relative">
-                            <div className="absolute -left-8 top-0 w-1 h-full bg-linear-to-b from-[#ee5253] via-[#932020] to-transparent"></div>
+                            <div className="absolute -left-8 top-0 w-1 h-full bg-linear-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent"></div>
                             
-                            <div className="space-y-8 text-black dark:text-white text-lg leading-relaxed">
+                            <div className="space-y-8 text-gray-700 dark:text-white text-lg leading-relaxed">
                                 {article.content[language].map((paragraph, index) => (
                                     <motion.p
                                         key={index}
@@ -499,21 +511,21 @@ const NewsDetail = () => {
                         </div>
                     </motion.div>
 
-                    {/* Share Footer */}
+                    {/* Share Footer - Version Light premium */}
                     <motion.div
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
-                        className="flex flex-col lg:flex-row items-center justify-between gap-8 py-10 px-8  bg-gray-800/30 dark:bg-[#0f172a] rounded-3xl shadow-2xl dark:border border-gray-800 mb-20"
+                        className="flex flex-col lg:flex-row items-center justify-between gap-8 py-10 px-8 bg-gray-100 dark:bg-[#0f172a] rounded-3xl shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800 mb-20"
                     >
                         <div className="text-center lg:text-left">
-                            <h4 className="text-2xl font-bold text-white mb-3 flex items-center gap-2">
-                                <Sparkles className="w-6 h-6  text-white dark:text-[#ee5253]" />
+                            <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                                <Sparkles className="w-6 h-6 text-[#ee5253]" />
                                 {language === 'mg' ? 'Zarao ity vaovao ity' : 
                                  language === 'fr' ? 'Partagez cet article' : 
                                  'Share this article'}
                             </h4>
-                            <p className="text-white">
+                            <p className="text-gray-600 dark:text-gray-400">
                                 {language === 'mg' ? 'Zarao amin\'ny namanao' : 
                                  language === 'fr' ? 'Partagez avec vos amis' : 
                                  'Share with your friends'}
@@ -527,23 +539,23 @@ const NewsDetail = () => {
                                     whileHover={{ scale: 1.1, y: -4 }}
                                     whileTap={{ scale: 0.9 }}
                                     onClick={() => shareNews(['facebook', 'twitter', 'linkedin', 'email'][index])}
-                                    className="p-4  bg-gray-800/40 dark:bg-[#1e293b] text-white rounded-xl dark:border border-gray-700 hover:border-[#ee5253] hover:text-[#ee5253] hover:bg-[#1e293b]/80 transition-all"
+                                    className="p-4 bg-white dark:bg-[#1e293b] text-gray-700 dark:text-white rounded-xl border border-gray-200 dark:border-gray-700 hover:border-[#ee5253] hover:text-[#ee5253] hover:bg-gray-50 dark:hover:bg-[#1e293b]/80 transition-all"
                                 >
-                                    <Icon className="w-5 h-5 text-white" />
+                                    <Icon className="w-5 h-5" />
                                 </motion.button>
                             ))}
                             <motion.button
                                 whileHover={{ scale: 1.1, y: -4 }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => shareNews('copy')}
-                                    className="p-4  bg-gray-800/40 dark:bg-[#1e293b] text-white rounded-xl dark:border border-gray-700 hover:border-[#ee5253] dark:hover:text-[#ee5253] hover:bg-[#1e293b]/55 transition-all"
+                                className="p-4 bg-white dark:bg-[#1e293b] text-gray-700 dark:text-white rounded-xl border border-gray-200 dark:border-gray-700 hover:border-[#ee5253] hover:text-[#ee5253] hover:bg-gray-50 dark:hover:bg-[#1e293b]/55 transition-all"
                             >
                                 <LinkIcon className="w-5 h-5" />
                             </motion.button>
                         </div>
                     </motion.div>
 
-                    {/* Related Articles */}
+                    {/* Related Articles - Version Light premium */}
                     {relatedArticles.length > 0 && (
                         <motion.div
                             variants={containerVariants}
@@ -554,7 +566,7 @@ const NewsDetail = () => {
                             <div className="text-center mb-16">
                                 <motion.h2
                                     variants={itemVariants}
-                                    className="text-4xl sm:text-5xl font-bold text-black dark:text-white mb-6"
+                                    className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6"
                                 >
                                     {language === 'mg' ? 'Vaovao mifandraika' :
                                         language === 'fr' ? 'Articles similaires' :
@@ -563,7 +575,7 @@ const NewsDetail = () => {
                                 
                                 <motion.p
                                     variants={itemVariants}
-                                    className="text-xl text-black black:text-white max-w-2xl mx-auto"
+                                    className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
                                 >
                                     {language === 'mg' ? 'Mijery ireo vaovao hafa mety ho liana aminao' :
                                         language === 'fr' ? 'Découvrez d\'autres articles qui pourraient vous intéresser' :
@@ -595,7 +607,7 @@ const NewsDetail = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => navigate('/news')}
-                                    className="group inline-flex items-center gap-4 px-10 py-4 bg-[#ee5253] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
+                                    className="group inline-flex items-center gap-4 px-10 py-4 bg-[#ee5253] text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all"
                                 >
                                     <Eye className="w-6 h-6" />
                                     <span>
@@ -609,7 +621,7 @@ const NewsDetail = () => {
                         </motion.div>
                     )}
 
-                    {/* Back Button */}
+                    {/* Back Button - Version Light */}
                     <motion.div
                         variants={itemVariants}
                         initial="hidden"
@@ -620,9 +632,9 @@ const NewsDetail = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => navigate('/news')}
-                            className="group inline-flex items-center gap-3 px-6 py-3 bg-gray-800/30 dark:bg-[#0f172a] hover:bg-[#1e293b] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl dark:border border-gray-800/35 transition-all"
+                            className="group inline-flex items-center gap-3 px-6 py-3 bg-gray-100 dark:bg-[#0f172a] hover:bg-gray-200 dark:hover:bg-[#1a1f2e] text-gray-700 dark:text-white font-bold rounded-2xl shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-800/35 transition-all"
                         >
-                            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform text-white dark:text-[#ee5253]" />
+                            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform text-[#ee5253]" />
                             <span>
                                 {language === 'mg' ? 'Hiverina' :
                                     language === 'fr' ? 'Retour' :
