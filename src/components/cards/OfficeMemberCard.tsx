@@ -37,7 +37,7 @@ const getRankBadge = () => {
     
     if (member.isKing) {
       return {
-        icon: <GiCrown className="w-4 h-4" />, // Icône de couronne spéciale
+        icon: <GiCrown className="w-4 h-4" />,
         text: { mg: 'Mpanjaka', fr: 'Roi', en: 'King' },
         bg: 'bg-gradient-to-r from-yellow-500 to-amber-600',
         shadow: 'shadow-yellow-500/50',
@@ -97,7 +97,7 @@ const getRankBadge = () => {
             transition={{ delay: index * 0.1 + 0.3 }}
             className={`absolute top-3 left-3 z-30 ${rankBadge.shadow}`}
           >
-            <div className={`flex items-center gap-1.5 px-3 py-1.5 ${rankBadge.bg} rounded-full shadow-xl`}>
+            <div className={`flex items-center gap-1.5 px-3 py-1.5 ${rankBadge.bg} text-white dark:textbl rounded-full shadow-xl`}>
               {rankBadge.icon}
               <span className="text-[9px] font-bold text-white uppercase tracking-wider drop-shadow-md">
                 {rankBadge.text[language]}
@@ -318,17 +318,17 @@ const getRankBadge = () => {
           
           {/* BIO */}
           <div className="relative mt-4 px-3 py-3 bg-linear-to-br from-gray-50/80 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
-            <FaQuoteRight className="absolute -left-1.5 -top-1.5 w-4 h-4 text-[#ee5253]/30 rotate-180" />
-            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed line-clamp-2 font-light italic">
+            <FaQuoteRight className="absolute -left-1.5 -top-1.5 w-4 h-4 text-[#ee5253] rotate-180" />
+            <p className="text-black0 dark:text-gray-300 text-xs leading-relaxed line-clamp-2 font-light italic">
               "{member.bio[language]}"
             </p>
-            <FaQuoteRight className="absolute -right-1.5 -bottom-1.5 w-4 h-4 text-[#ee5253]/30" />
+            <FaQuoteRight className="absolute -right-1.5 -bottom-1.5 w-4 h-4 text-[#ee5253]" />
           </div>
           
           {/* LIEN DE PROFIL - POPUP */}
           <button
             onClick={() => setIsProfileOpen(true)}
-            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-linear-to-r from-[#ee5253] to-[#932020] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden cursor-pointer"
+            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-[#ee5253] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden cursor-pointer"
           >
             <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/link:translate-y-0 transition-transform duration-500" />
             <RiShieldFlashLine className="w-3.5 h-3.5 relative z-10 group-hover/link:animate-pulse" />

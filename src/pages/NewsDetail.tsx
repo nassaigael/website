@@ -161,7 +161,6 @@ const NewsDetail = () => {
         setShowShareMenu(false);
     };
 
-    // Variants d'animation
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -182,7 +181,7 @@ const NewsDetail = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
+            className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
         >
             {/* Éléments décoratifs d'arrière-plan */}
             <div className="absolute inset-0 pointer-events-none">
@@ -255,10 +254,10 @@ const NewsDetail = () => {
                         whileHover={{ x: -4 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => navigate('/news')}
-                        className="group flex items-center gap-3 px-5 py-3 bg-[#0f172a] rounded-xl border border-gray-800 hover:border-[#ee5253] transition-all"
+                        className="group flex items-center gap-3 px-5 py-3 bg-gray-800/30 dark:bg-[#0f172a] rounded-xl dark:border dark:border-gray-800 hover:border-[#ee5253] transition-all"
                     >
-                        <ArrowLeft className="w-5 h-5 text-[#ee5253] group-hover:scale-110 transition-transform" />
-                        <span className="font-semibold text-gray-300 group-hover:text-white transition-colors">
+                        <ArrowLeft className="w-5 h-5 text-white dark:text-[#ee5253] group-hover:scale-110 transition-transform" />
+                        <span className="font-semibold text-white group-hover:text-white transition-colors">
                             {language === 'mg' ? 'Hiverina' :
                                 language === 'fr' ? 'Retour' :
                                     'Back'}
@@ -272,10 +271,10 @@ const NewsDetail = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setShowShareMenu(!showShareMenu)}
-                                className="p-3 bg-[#0f172a] text-white rounded-xl border border-gray-800 hover:border-[#ee5253] flex items-center gap-2 transition-all"
+                                className="p-3 bg-gray-800/30 dark:bg-[#0f172a] text-white rounded-xl dark:border border-gray-800 dark:hover:border-[#ee5253] flex items-center gap-2 transition-all"
                             >
-                                <Share2 className="w-5 h-5 text-[#ee5253]" />
-                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showShareMenu ? 'rotate-180' : ''}`} />
+                                <Share2 className="w-5 h-5 text-white dark:text-[#ee5253]" />
+                                <ChevronDown className={`w-4 h-4 text-white dark:text-gray-400 transition-transform ${showShareMenu ? 'rotate-180' : ''}`} />
                             </motion.button>
 
                             <AnimatePresence>
@@ -284,20 +283,19 @@ const NewsDetail = () => {
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        className="absolute top-full mt-2 right-0 w-64 bg-[#0f172a] rounded-2xl shadow-2xl border border-gray-800 overflow-hidden z-50"
+                                        className="absolute top-full mt-2 right-0 w-16 bg-gray-800/30 dark:bg-[#0f172a] rounded-2xl shadow-2xl dark:border border-gray-800 overflow-hidden z-50"
                                     >
-                                        <div className="p-4 border-b border-gray-800">
-                                            <h4 className="font-bold text-white">
+                                        <div className="p-4 border-b border-gray-800/20 dark:border-gray-800 flex items-center justify-center">
+                                            <h4 className="font-light text-[12px] text-white">
                                                 {language === 'mg' ? 'Zaraho' : language === 'fr' ? 'Partager' : 'Share'}
                                             </h4>
                                         </div>
                                         <div className="p-2">
                                             {[
-                                                { icon: Facebook, label: 'Facebook', platform: 'facebook' },
-                                                { icon: Twitter, label: 'Twitter', platform: 'twitter' },
-                                                { icon: Linkedin, label: 'LinkedIn', platform: 'linkedin' },
-                                                { icon: Mail, label: 'Email', platform: 'email' },
-                                                { icon: LinkIcon, label: language === 'mg' ? 'Hakana rohy' : language === 'fr' ? 'Copier le lien' : 'Copy link', platform: 'copy' }
+                                                { icon: Facebook, platform: 'facebook' },
+                                                { icon: Linkedin, platform: 'linkedin' },
+                                                { icon: Mail, platform: 'email' },
+                                                { icon: LinkIcon, platform: 'copy' }
                                             ].map((item, index) => (
                                                 <motion.button
                                                     key={item.platform}
@@ -305,10 +303,9 @@ const NewsDetail = () => {
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ delay: index * 0.05 }}
                                                     onClick={() => shareNews(item.platform)}
-                                                    className="flex items-center gap-3 w-full px-4 py-3 rounded-xl hover:bg-gray-800 transition-colors group"
+                                                    className="flex items-center gap-1w-full px-4 py-3 rounded-xl hover:bg-gray-800/10 dark:hover:bg-gray-800 transition-colors group"
                                                 >
-                                                    <item.icon className="w-5 h-5 text-[#ee5253] group-hover:scale-110 transition-transform" />
-                                                    <span className="text-sm text-gray-300 group-hover:text-white font-medium">{item.label}</span>
+                                                    <item.icon className="w-5 h-5 text-white dark:text-[#ee5253] group-hover:scale-110 transition-transform" />
                                                 </motion.button>
                                             ))}
                                         </div>
@@ -344,7 +341,7 @@ const NewsDetail = () => {
                         {/* Title */}
                         <motion.h1
                             variants={itemVariants}
-                            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight"
+                            className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold dark:text-white mb-8 leading-tight"
                         >
                             {article.title[language]}
                         </motion.h1>
@@ -354,8 +351,8 @@ const NewsDetail = () => {
                             variants={itemVariants}
                             className="flex flex-wrap items-center gap-6 mb-8"
                         >
-                            <div className="flex items-center gap-3 px-4 py-2.5 bg-[#0f172a] rounded-xl border border-gray-800">
-                                <Calendar className="w-5 h-5 text-[#ee5253]" />
+                            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-800/30 dark:bg-[#0f172a] rounded-xl dark:border border-gray-800">
+                                <Calendar className="w-5 h-5 text-white dark:text-[#ee5253]" />
                                 <span className="font-semibold text-white">{article.date}</span>
                             </div>
 
@@ -366,8 +363,8 @@ const NewsDetail = () => {
                                 </div>
                             )}
 
-                            <div className="flex items-center gap-3 px-4 py-2.5 bg-[#0f172a] rounded-xl border border-gray-800">
-                                <User className="w-5 h-5 text-[#ee5253]" />
+                            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-800/30 dark:bg-[#0f172a] rounded-xl dark:border border-gray-800">
+                                <User className="w-5 h-5 text-white dark:text-[#ee5253]" />
                                 <span className="font-semibold text-white">{article.author}</span>
                             </div>
                         </motion.div>
@@ -378,7 +375,7 @@ const NewsDetail = () => {
                             className="relative"
                         >
                             <div className="absolute -left-8 top-0 text-6xl text-[#ee5253]/20">"</div>
-                            <p className="text-2xl sm:text-3xl text-white leading-relaxed font-light pl-8">
+                            <p className="text-2xl sm:text-3xl text-black dark:text-white leading-relaxed font-light pl-8">
                                 {article.excerpt[language]}
                             </p>
                         </motion.div>
@@ -393,7 +390,7 @@ const NewsDetail = () => {
                     >
                         <div 
                             ref={carouselRef}
-                            className="relative rounded-3xl overflow-hidden bg-[#0f172a] shadow-2xl border border-gray-800"
+                            className="relative rounded-3xl overflow-hidden bg-gray-800/30 dark:bg-[#0f172a] shadow-2xl dark:border border-gray-800"
                             style={{ height: '37.5rem' }}
                         >
                             <div className="relative w-full h-full flex items-center justify-center">
@@ -488,7 +485,7 @@ const NewsDetail = () => {
                         <div className="relative">
                             <div className="absolute -left-8 top-0 w-1 h-full bg-linear-to-b from-[#ee5253] via-[#932020] to-transparent"></div>
                             
-                            <div className="space-y-8 text-white text-lg leading-relaxed">
+                            <div className="space-y-8 text-black dark:text-white text-lg leading-relaxed">
                                 {article.content[language].map((paragraph, index) => (
                                     <motion.p
                                         key={index}
@@ -507,11 +504,11 @@ const NewsDetail = () => {
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
-                        className="flex flex-col lg:flex-row items-center justify-between gap-8 py-10 px-8 bg-[#0f172a] rounded-3xl shadow-2xl border border-gray-800 mb-20"
+                        className="flex flex-col lg:flex-row items-center justify-between gap-8 py-10 px-8  bg-gray-800/30 dark:bg-[#0f172a] rounded-3xl shadow-2xl dark:border border-gray-800 mb-20"
                     >
                         <div className="text-center lg:text-left">
                             <h4 className="text-2xl font-bold text-white mb-3 flex items-center gap-2">
-                                <Sparkles className="w-6 h-6 text-[#ee5253]" />
+                                <Sparkles className="w-6 h-6  text-white dark:text-[#ee5253]" />
                                 {language === 'mg' ? 'Zarao ity vaovao ity' : 
                                  language === 'fr' ? 'Partagez cet article' : 
                                  'Share this article'}
@@ -530,7 +527,7 @@ const NewsDetail = () => {
                                     whileHover={{ scale: 1.1, y: -4 }}
                                     whileTap={{ scale: 0.9 }}
                                     onClick={() => shareNews(['facebook', 'twitter', 'linkedin', 'email'][index])}
-                                    className="p-4 bg-[#1e293b] text-white rounded-xl border border-gray-700 hover:border-[#ee5253] hover:text-[#ee5253] hover:bg-[#1e293b]/80 transition-all"
+                                    className="p-4  bg-gray-800/40 dark:bg-[#1e293b] text-white rounded-xl dark:border border-gray-700 hover:border-[#ee5253] hover:text-[#ee5253] hover:bg-[#1e293b]/80 transition-all"
                                 >
                                     <Icon className="w-5 h-5 text-white" />
                                 </motion.button>
@@ -539,7 +536,7 @@ const NewsDetail = () => {
                                 whileHover={{ scale: 1.1, y: -4 }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => shareNews('copy')}
-                                className="p-4 bg-[#1e293b] text-gray-300 rounded-xl border border-gray-700 hover:border-[#ee5253] hover:text-[#ee5253] hover:bg-[#1e293b]/80 transition-all"
+                                    className="p-4  bg-gray-800/40 dark:bg-[#1e293b] text-white rounded-xl dark:border border-gray-700 hover:border-[#ee5253] dark:hover:text-[#ee5253] hover:bg-[#1e293b]/55 transition-all"
                             >
                                 <LinkIcon className="w-5 h-5" />
                             </motion.button>
@@ -557,7 +554,7 @@ const NewsDetail = () => {
                             <div className="text-center mb-16">
                                 <motion.h2
                                     variants={itemVariants}
-                                    className="text-4xl sm:text-5xl font-bold text-white mb-6"
+                                    className="text-4xl sm:text-5xl font-bold text-black dark:text-white mb-6"
                                 >
                                     {language === 'mg' ? 'Vaovao mifandraika' :
                                         language === 'fr' ? 'Articles similaires' :
@@ -566,7 +563,7 @@ const NewsDetail = () => {
                                 
                                 <motion.p
                                     variants={itemVariants}
-                                    className="text-xl text-white max-w-2xl mx-auto"
+                                    className="text-xl text-black black:text-white max-w-2xl mx-auto"
                                 >
                                     {language === 'mg' ? 'Mijery ireo vaovao hafa mety ho liana aminao' :
                                         language === 'fr' ? 'Découvrez d\'autres articles qui pourraient vous intéresser' :
@@ -598,7 +595,7 @@ const NewsDetail = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => navigate('/news')}
-                                    className="group inline-flex items-center gap-4 px-10 py-4 bg-gradient-to-r from-[#ee5253] to-[#932020] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
+                                    className="group inline-flex items-center gap-4 px-10 py-4 bg-[#ee5253] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl transition-all"
                                 >
                                     <Eye className="w-6 h-6" />
                                     <span>
@@ -623,9 +620,9 @@ const NewsDetail = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => navigate('/news')}
-                            className="group inline-flex items-center gap-3 px-12 py-5 bg-[#0f172a] hover:bg-[#1e293b] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl border border-gray-800 transition-all"
+                            className="group inline-flex items-center gap-3 px-6 py-3 bg-gray-800/30 dark:bg-[#0f172a] hover:bg-[#1e293b] text-white font-bold rounded-2xl shadow-2xl hover:shadow-3xl dark:border border-gray-800/35 transition-all"
                         >
-                            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform text-[#ee5253]" />
+                            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform text-white dark:text-[#ee5253]" />
                             <span>
                                 {language === 'mg' ? 'Hiverina' :
                                     language === 'fr' ? 'Retour' :

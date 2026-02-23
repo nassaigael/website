@@ -131,7 +131,7 @@ const OfficeSection = () => {
               <span className="relative z-10">
                 {language === 'mg' ? 'Birao' : language === 'fr' ? 'Bureau' : 'Office'}
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 z-10"></span>
+              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] z-10"></span>
             </span>
           </h1>
 
@@ -142,7 +142,7 @@ const OfficeSection = () => {
             transition={{ delay: 0.4 }}
             className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+            <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-gray-300 leading-relaxed font-light">
               {language === 'mg' ? 'Ireo olona manolo-tena hitarika sy hampandroso ny fikambanana' :
                 language === 'fr' ? 'Des personnes dévouées à diriger et faire progresser l\'association' :
                   'Dedicated individuals leading and advancing the association'}
@@ -151,9 +151,9 @@ const OfficeSection = () => {
 
           {/* Elegant Divider */}
           <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]"></div>
             <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]"></div>
           </div>
 
         </motion.div>
@@ -174,9 +174,9 @@ const OfficeSection = () => {
                 className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center transition-all duration-300 ${currentSlide === 0
                   ? 'opacity-50 cursor-not-allowed'
                   : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
-                  }`}
+                  }`} 
               >
-                <FaChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                <FaChevronLeft className="w-4 h-4 md:w-5 md:h-5  dark:text-white text-black" />
               </motion.button>
 
               <motion.button
@@ -189,7 +189,7 @@ const OfficeSection = () => {
                   : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
                   }`}
               >
-                <FaChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                <FaChevronRight className="w-4 h-4 md:w-5 md:h-5 dark:text-white text-black" />
               </motion.button>
             </>
           )}

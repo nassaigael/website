@@ -1,10 +1,8 @@
-// App.tsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
-// Pages
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import PartnersPage from './pages/PartnersPage';

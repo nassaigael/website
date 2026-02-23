@@ -46,7 +46,7 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
             return {
                 icon: <FaCrown className="w-3 h-3" />,
                 text: { mg: 'Filoha', fr: 'Président', en: 'President' },
-                bg: 'bg-gradient-to-r from-[#ee5253] to-[#932020]',
+                bg: 'bg-[#ee5253]',
                 description: {
                     mg: 'Mpitarika ny fikambanana',
                     fr: 'Leader de l\'association',
@@ -57,7 +57,7 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
             return {
                 icon: <FaMedal className="w-3 h-3" />,
                 text: { mg: 'Sekretera', fr: 'Secrétaire', en: 'Secretary' },
-                bg: 'bg-gradient-to-r from-[#4299e1] to-[#2b6cb0]',
+                bg: 'bg-[#ee5253]',
                 description: {
                     mg: 'Mpitantana ny raharaha',
                     fr: 'Gestionnaire des affaires',
@@ -68,7 +68,7 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
             return {
                 icon: <RiVipCrownLine className="w-3 h-3" />,
                 text: { mg: 'Mpitahiry vola', fr: 'Trésorier', en: 'Treasurer' },
-                bg: 'bg-gradient-to-r from-[#ee5253] to-[#932020]',
+                bg: 'bg-[#ee5253]',
                 description: {
                     mg: 'Mpitantana ny vola',
                     fr: 'Gestionnaire financier',
@@ -196,13 +196,13 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                                 {/* DISCOURS */}
                                 <div className="flex-1 cursor-auto">
                                     <div className="relative">
-                                        <FaQuoteLeft className="absolute -top-2 -left-2 w-6 h-6 text-[#ee5253]/20" />
+                                        <FaQuoteLeft className="absolute -top-2 -left-2 w-6 h-6 text-[#ee5253]" />
                                         <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
                                             <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed italic">
                                                 "{speech[language]}"
                                             </p>
                                             <div className="mt-4 flex items-center justify-end gap-2">
-                                                <div className="h-px w-12 bg-linear-to-r from-[#ee5253] to-[#4299e1]" />
+                                                <div className="h-px w-12 bg-[#ee5253]" />
                                                 <span className="text-sm font-medium text-gray-900 dark:text-white">{member.name}</span>
                                             </div>
                                         </div>

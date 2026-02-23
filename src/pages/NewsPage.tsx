@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Search,
@@ -21,27 +21,8 @@ const NewsPage = () => {
     const { language } = useLanguage();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string>('all');
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [showFilters, setShowFilters] = useState(false);
     const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'featured'>('newest');
-
-    // Déterminer automatiquement le mode d'affichage selon l'appareil
-    useEffect(() => {
-        const checkDevice = () => {
-            if (window.innerWidth < 768) {
-                setViewMode('grid');
-            } else {
-                setViewMode('list');
-            }
-        };
-
-        checkDevice();
-        window.addEventListener('resize', checkDevice);
-
-        return () => {
-            window.removeEventListener('resize', checkDevice);
-        };
-    }, []);
 
     const categories = [
         {
@@ -140,7 +121,7 @@ const NewsPage = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-linear-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-24 pb-32"
+            className="min-h-screen bg-linear-to-b from-white to-gray-50/50 dark:from-gray-950 dark:to-gray-900 pt-8 pb-32"
         >
             {/* Animated Background */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -170,16 +151,6 @@ const NewsPage = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.6 }}
-                        className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
-                    >
-
-                    </motion.p>
-
                     {/* Main Title */}
                     <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
                         <span className="relative">
@@ -188,7 +159,7 @@ const NewsPage = () => {
                                     language === 'fr' ? 'actualités' :
                                         'Latest news'}
                             </span>
-                            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253]/20 -z-10"></span>
+                            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253] -z-10"></span>
                         </span>
                     </h1>
 
@@ -206,13 +177,13 @@ const NewsPage = () => {
                         </p>
                     </motion.div>
                     <div className="flex items-center justify-center gap-4 mb-16">
-                        <div className="w-12 h-0.5 bg-[#ee5253]/30"></div>
+                        <div className="w-12 h-0.5 bg-[#ee5253]"></div>
                         <div className="w-4 h-4 border-2 border-[#ee5253] rotate-45"></div>
-                        <div className="w-12 h-0.5 bg-[#ee5253]/30"></div>
+                        <div className="w-12 h-0.5 bg-[#ee5253]"></div>
                     </div>
                 </motion.div>
 
-                {/* Featured Articles Carousel */}
+                {/* Featured Articles - Section spéciale pour les articles mis en avant */}
                 {featuredArticles.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -220,13 +191,17 @@ const NewsPage = () => {
                         transition={{ delay: 0.8 }}
                         className="mb-16"
                     >
+                        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+                            {language === 'mg' ? 'Vaovao Voavoatra' :
+                             language === 'fr' ? 'Actualités à la une' :
+                             'Featured News'}
+                        </h2>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {featuredArticles.map((article, index) => (
                                 <NewsCard
                                     key={article.id}
                                     article={article}
                                     index={index}
-                                    viewMode="featured"
                                 />
                             ))}
                         </div>
@@ -254,7 +229,7 @@ const NewsPage = () => {
                                     }
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 text-white"
+                                    className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-300/50 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-500 dark:placeholder-gray-400 text-black dark:text-white"
                                 />
                                 {searchTerm && (
                                     <motion.button
@@ -271,12 +246,12 @@ const NewsPage = () => {
                             </div>
                         </div>
 
-                        {/* Sort Dropdown seulement */}
+                        {/* Sort Dropdown */}
                         <div className="relative">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                className="flex items-center gap-2 px-4 py-3 bg-gray-800/30 dark:bg-gray-800 rounded-xl dark:hover:bg-gray-700 transition-colors"
                                 onClick={() => setShowFilters(!showFilters)}
                             >
                                 <Filter className="w-4 h-4 text-white" />
@@ -285,7 +260,7 @@ const NewsPage = () => {
                                         sortBy === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
                                             (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
                                 </span>
-                                <ChevronDown className="w-4 h-4 text-white" />
+                                <ChevronDown className={`w-4 h-4 text-white transition-transform duration-300 ${showFilters ? 'rotate-180' : ''}`} />
                             </motion.button>
 
                             <AnimatePresence>
@@ -305,7 +280,7 @@ const NewsPage = () => {
                                                 }}
                                                 className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
                                                     ? 'bg-[#ee5253]/10 text-[#ee5253]'
-                                                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-white'
+                                                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-white'
                                                     }`}
                                             >
                                                 {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
@@ -341,7 +316,7 @@ const NewsPage = () => {
                                             onClick={() => setSelectedCategory(cat.id)}
                                             className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
                                                 ? `bg-linear-to-r ${cat.color} text-white shadow-lg`
-                                                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-white'
+                                                : 'bg-gray-800/30 dark:bg-gray-800 dark:hover:bg-gray-700 text-white'
                                                 }`}
                                         >
                                             <Icon className="w-4 h-4" />
@@ -356,25 +331,21 @@ const NewsPage = () => {
                     </motion.div>
                 </motion.div>
 
-                {/* Articles Grid/List */}
+                {/* All Articles - TOUS AVEC LE MÊME DESIGN FEATURED */}
                 <AnimatePresence mode="wait">
                     {filteredArticles.length > 0 ? (
                         <motion.div
-                            key={`${viewMode}-${selectedCategory}`}
+                            key={`featured-${selectedCategory}`}
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
-                            className={viewMode === 'grid'
-                                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-                                : "flex flex-col gap-6"
-                            }
+                            className="grid grid-cols-1 gap-8"
                         >
                             {regularArticles.map((article, index) => (
                                 <NewsCard
                                     key={article.id}
                                     article={article}
                                     index={index}
-                                    viewMode={viewMode}
                                 />
                             ))}
                         </motion.div>

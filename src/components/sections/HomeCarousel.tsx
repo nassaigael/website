@@ -6,7 +6,6 @@ import {
   Play,
   Pause,
   ChevronRight as ChevronRightIcon,
-  Sparkles
 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { Slide } from '../../data/index';

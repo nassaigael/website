@@ -5,10 +5,8 @@ import {
 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
-// Import des composants
 import Carousel from '../components/sections/HomeCarousel';
 
-// Import des données
 import { carouselSlides, stats } from '../data/index';
 import OfficeSection from '../components/sections/OfficeSection';
 
@@ -106,7 +104,7 @@ const HomePage = () => {
                         'Our identity'
                   }
                 </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 -z-10"></span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] -z-10"></span>
               </span>
             </motion.h1>
 
@@ -117,7 +115,7 @@ const HomePage = () => {
               transition={{ delay: 0.4 }}
               className="max-w-3xl mx-auto px-4"
             >
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+              <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-gray-300 leading-relaxed font-light">
                 {language === 'mg'
                   ? 'Fikambanan\'ny taranak\'i Ali Tawarath, miaro sy manandratra ny vakoka nentin-drazana'
                   : language === 'fr'
@@ -128,9 +126,9 @@ const HomePage = () => {
 
             {/* Elegant Divider */}
             <div className="flex items-center justify-center gap-3 md:gap-4 mt-8">
-              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]"></div>
               <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
-              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]"></div>
             </div>
           </motion.div>
 
@@ -166,7 +164,7 @@ const HomePage = () => {
                       </h3>
                       <div className="flex items-center gap-2 mt-1">
                         <div className="w-2 h-2 bg-[#ee5253] rounded-full" />
-                        <span className="text-sm text-gray-500">1495</span>
+                        <span className="text-sm text-black dark:text-gray-600 ">1495</span>
                       </div>
                     </div>
                   </div>
@@ -263,7 +261,7 @@ const HomePage = () => {
               </motion.div>
             </motion.div>
 
-            {/* Vision & Impact */}
+            {/* Présence */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

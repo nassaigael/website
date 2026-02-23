@@ -53,7 +53,7 @@ const ProjectsPage = () => {
         location.pathname === '/projects' ? 'pt-0!' : ''
       }`}
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 ">
         {/* HERO SECTION */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -74,7 +74,7 @@ const ProjectsPage = () => {
                     language === 'fr' ? 'Nos Projets' :
                       'Our Projects'}
                 </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 -z-10"></span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] -z-10"></span>
               </span>
             </h1>
 
@@ -92,9 +92,9 @@ const ProjectsPage = () => {
 
             {/* Elegant Divider */}
             <div className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16">
-              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]"></div>
               <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
-              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]/30"></div>
+              <div className="w-8 md:w-12 h-0.5 bg-[#ee5253]"></div>
             </div>
 
             {/* Stats Cards */}
@@ -148,7 +148,7 @@ const ProjectsPage = () => {
                         {stat.value}
                       </span>
                     </div>
-                    <p className="text-xs md:text-sm text-white font-medium">
+                    <p className="text-xs md:text-sm text-black dark:text-white font-medium">
                       {typeof stat.label === 'object' ? stat.label[language] : stat.label}
                     </p>
                   </div>

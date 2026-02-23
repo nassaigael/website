@@ -40,7 +40,7 @@ export interface Project {
   contactPerson: string;
   website?: string;
   featured?: boolean;
-  progress?: number; 
+  progress?: number;
 }
 
 export const projectsData = {
@@ -147,8 +147,11 @@ export const projects: Project[] = [
     partners: ['Ministère de l\'Éducation', 'UNICEF Madagascar', 'Entreprises Locales'],
     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
-      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80'
+      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80',
+      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80',
+      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80',
+
+
     ],
     objectives: {
       mg: [

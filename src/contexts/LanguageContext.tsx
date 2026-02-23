@@ -24,16 +24,13 @@ interface LanguageProviderProps {
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState<Language>(() => {
-    // Récupérer la langue sauvegardée ou utiliser 'mg' par défaut
     const saved = localStorage.getItem('fizanakara-language');
-    return (saved && ['mg', 'fr', 'en'].includes(saved)) ? saved as Language : 'mg';
+    return (saved && ['mg', 'fr', 'en'].includes(saved)) ? saved as Language : 'fr';
   });
 
   useEffect(() => {
-    // Sauvegarder la langue dans localStorage
     localStorage.setItem('fizanakara-language', language);
     
-    // Optionnel: Mettre à jour l'attribut lang sur l'élément html
     document.documentElement.lang = language;
   }, [language]);
 

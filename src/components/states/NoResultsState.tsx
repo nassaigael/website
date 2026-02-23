@@ -86,7 +86,7 @@ const NoResultsState = ({
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="w-48 h-48 mx-auto mb-8 relative"
       >
-        <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-2xl opacity-20" />
+        <div className="absolute inset-0 dark:bg-[#ee5253] rounded-full blur-2xl opacity-20" />
         <Search className="w-48 h-48 text-gray-300 dark:text-gray-700" />
       </motion.div>
 
