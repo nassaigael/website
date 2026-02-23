@@ -54,8 +54,6 @@ const Header = () => {
 
   const currentLang = languages.find((l) => l.code === language)!;
 
-
-
   const isActive = (path: string) => {
     if (path === '/' && activePath === '/') return true;
     if (path !== '/' && activePath.startsWith(path)) return true;
@@ -66,10 +64,11 @@ const Header = () => {
     <motion.header
       initial="hidden"
       animate="visible"
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled
-          ? 'bg-gray-950/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(238,82,83,0.15)] py-2'
-          : 'bg-black backdrop-blur-sm py-3 sm:py-4'
-        }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl shadow-[0_8px_32px_rgba(238,82,83,0.1)] dark:shadow-[0_8px_32px_rgba(238,82,83,0.15)] py-2'
+          : 'bg-white/80 dark:bg-black/80 backdrop-blur-sm py-3 sm:py-4'
+      }`}
       style={{
         borderBottom: scrolled ? '1px solid rgba(238,82,83,0.2)' : 'none'
       }}
@@ -79,7 +78,7 @@ const Header = () => {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo  */}
+          {/* Logo - Version Light */}
           <Link to="/" className="flex items-center gap-2.5 cursor-pointer shrink-0 group">
             <motion.div
               whileHover="hover"
@@ -87,8 +86,8 @@ const Header = () => {
               className="flex items-center gap-2.5"
             >
               <div className="relative">
-                {/* Effet de glow autour du logo */}
-                <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
+                {/* Effet de glow autour du logo - Version Light */}
+                <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition-opacity duration-500" />
                 <img
                   src={logo}
                   alt="Logo Fizanakara"
@@ -96,10 +95,10 @@ const Header = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <h1 className="font-extrabold tracking-tight text-white text-xl sm:text-2xl md:text-[1.5rem] lg:text-[1.8rem] group-hover:text-[#ee5253] transition-colors duration-300">
+                <h1 className="font-extrabold tracking-tight text-gray-900 dark:text-white text-xl sm:text-2xl md:text-[1.5rem] lg:text-[1.8rem] group-hover:text-[#ee5253] transition-colors duration-300">
                   FIZANAKARA
                 </h1>
-                <p className="text-[10px] sm:text-xs text-gray-400 font-medium hidden sm:block">
+                <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 font-medium hidden sm:block">
                   {language === 'mg' ? "Fikambanan'ny Zanak'Anakara" :
                     language === 'fr' ? "Association des Descendants Anakara" :
                       "Association of Anakara Descendants"}
@@ -108,7 +107,7 @@ const Header = () => {
             </motion.div>
           </Link>
 
-          {/* Navigation Desktop   */}
+          {/* Navigation Desktop - Version Light */}
           <nav className="hidden md:flex items-center justify-center gap-1 lg:gap-2 flex-1 mx-4 lg:mx-8">
             {navItems.slice(1).map((item) => (
               <motion.button
@@ -118,8 +117,11 @@ const Header = () => {
                 onClick={() => handleNavClick(item.path)}
                 className="relative px-3 lg:px-4 py-2"
               >
-                <span className={`text-sm lg:text-base font-medium transition-colors duration-300 uppercase ${isActive(item.path) ? 'text-[#ee5253]' : 'text-white/80 hover:text-white'
-                  }`}>
+                <span className={`text-sm lg:text-base font-medium transition-colors duration-300 uppercase ${
+                  isActive(item.path) 
+                    ? 'text-[#ee5253]' 
+                    : 'text-gray-600 dark:text-white/80 hover:text-gray-900 dark:hover:text-white'
+                }`}>
                   {getLabel(item)}
                 </span>
 
@@ -135,9 +137,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Droite : langue + burger -   */}
+          {/* Droite : langue + burger - Version Light */}
           <div className="flex items-center gap-2 md:gap-3">
-            {/* Sélecteur de langue   */}
+            {/* Sélecteur de langue - Version Light */}
             <div className="relative lang-dropdown-container">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -146,9 +148,9 @@ const Header = () => {
                 className={`
                   group flex items-center gap-2 rounded-full
                   px-3 py-1.5 md:px-4 md:py-2
-                  bg-gray-900/80 backdrop-blur-sm border border-gray-700
-                  hover:border-[#ee5253] hover:bg-gray-900
-                  text-white transition-all duration-300
+                  bg-gray-100 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700
+                  hover:border-[#ee5253] hover:bg-gray-200 dark:hover:bg-gray-900
+                  text-gray-700 dark:text-white transition-all duration-300
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5253]/50
                   ${isLangOpen ? 'border-[#ee5253]' : ''}
                 `}
@@ -159,8 +161,7 @@ const Header = () => {
                 <span className="text-sm font-medium hidden sm:inline">
                   {currentLang.code.toUpperCase()}
                 </span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''
-                  }`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} />
               </motion.button>
 
               <AnimatePresence>
@@ -170,7 +171,7 @@ const Header = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -5, scale: 0.95 }}
                     transition={{ duration: 0.2, type: 'spring', stiffness: 400, damping: 25 }}
-                    className="absolute right-0 top-full mt-2 w-40 rounded-xl border border-gray-800 bg-gray-950/95 backdrop-blur-xl shadow-2xl overflow-hidden z-50"
+                    className="absolute right-0 top-full mt-2 w-40 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950/95 backdrop-blur-xl shadow-2xl overflow-hidden z-50"
                   >
                     {languages.map((lang, index) => (
                       <motion.button
@@ -183,10 +184,9 @@ const Header = () => {
                         className={`
                           flex w-full items-center gap-3 px-4 py-3 text-left text-sm
                           transition-all duration-200
-                          
                           ${language === lang.code
                             ? 'bg-[#ee5253]/15 text-[#ee5253] border-l-2 border-[#ee5253]'
-                            : 'text-white/80 hover:text-white'
+                            : 'text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white'
                           }
                         `}
                       >
@@ -199,11 +199,11 @@ const Header = () => {
               </AnimatePresence>
             </div>
 
-            {/* Bouton Menu Mobile */}
+            {/* Bouton Menu Mobile - Version Light */}
             <motion.button
               whileHover={{ scale: 1.05, backgroundColor: 'rgba(238,82,83,0.1)' }}
               whileTap={{ scale: 0.95 }}
-              className="md:hidden rounded-full p-2.5 text-white/80 hover:text-[#ee5253] transition-all duration-300 border border-gray-800 hover:border-[#ee5253] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5253]/50"
+              className="md:hidden rounded-full p-2.5 text-gray-600 dark:text-white/80 hover:text-[#ee5253] transition-all duration-300 border border-gray-200 dark:border-gray-800 hover:border-[#ee5253] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5253]/50"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? 'Fermer menu' : 'Ouvrir menu'}
             >
@@ -213,7 +213,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Menu Mobile   */}
+      {/* Menu Mobile - Version Light */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -221,7 +221,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden overflow-hidden bg-gray-950/95 backdrop-blur-xl border-t border-gray-800/50"
+            className="md:hidden overflow-hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800/50"
           >
             <div className="px-4 py-6 space-y-2">
               {navItems.slice(1).map((item, i) => (
@@ -238,7 +238,7 @@ const Header = () => {
                     uppercase
                     ${isActive(item.path)
                       ? 'bg-linear-to-r from-[#ee5253]/20 to-transparent text-[#ee5253] border-l-4 border-[#ee5253]'
-                      : 'text-white/80 hover:text-white hover:bg-white/5'
+                      : 'text-gray-700 dark:text-white/80 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
                     }
                   `}
                 >
@@ -246,7 +246,7 @@ const Header = () => {
 
                   {/* Effet de shine au hover */}
                   <motion.div
-                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-1000"
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 dark:via-white/5 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-1000"
                     style={{ pointerEvents: 'none' }}
                   />
                 </motion.button>

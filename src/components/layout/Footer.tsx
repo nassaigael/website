@@ -24,9 +24,9 @@ const Footer = () => {
 
     return (
         <footer className="relative bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white overflow-hidden">
-            {/* Éléments décoratifs d'arrière-plan - Version Light */}
+            {/* Éléments décoratifs d'arrière-plan */}
             <div className="absolute inset-0 pointer-events-none">
-                {/* Cercles flous - Version Light */}
+                {/* Cercles flous */}
                 <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#ee5253]/10 dark:bg-[#ee5253]/10 rounded-full blur-3xl" />
                 <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#932020]/10 dark:bg-[#932020]/10 rounded-full blur-3xl" />
                 
@@ -34,12 +34,12 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.03)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.03)_1px,transparent_1px)] bg-size-[50px_50px] dark:opacity-0" />
             </div>
 
-            {/* Ligne décorative supérieure - Version Light */}
+            {/* Ligne décorative supérieure */}
             <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#ee5253]/50 to-transparent" />
 
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20">
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-                    {/* Logo & Description - Version Light */}
+                    {/* Logo & Description */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -79,7 +79,7 @@ const Footer = () => {
                             <span className="leading-relaxed text-left">{t.address}</span>
                         </div>
 
-                        {/* Année de fondation - Version Light */}
+                        {/* Année de fondation */}
                         <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-gray-500 dark:text-gray-400">
                             <Heart className="w-4 h-4 text-[#ee5253]" />
                             <span>
@@ -90,7 +90,7 @@ const Footer = () => {
                         </div>
                     </motion.div>
 
-                    {/* LIENS RAPIDES - Version Light */}
+                    {/* LIENS RAPIDES */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -120,7 +120,7 @@ const Footer = () => {
                         </div>
                     </motion.div>
 
-                    {/* Contact - Version Light */}
+                    {/* Contact */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -134,7 +134,7 @@ const Footer = () => {
                             <span className="absolute -bottom-1.5 left-0 right-0 md:right-auto w-10 h-0.5 bg-[#ee5253] mx-auto md:mx-0" />
                         </h3>
 
-                        {/* Email - Version Light */}
+                        {/* Email */}
                         <div className="group p-3 bg-gray-100 dark:bg-gray-900/30 rounded-lg border border-gray-200 dark:border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0 w-full">
                             <div className="flex items-center gap-3 justify-start">
                                 <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 dark:shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300 shrink-0">
@@ -154,7 +154,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        {/* Téléphone - Version Light */}
+                        {/* Téléphone */}
                         <div className="group p-3 bg-gray-100 dark:bg-gray-900/30 rounded-lg border border-gray-200 dark:border-gray-800/50 hover:border-[#ee5253] transition-all duration-300 max-w-sm mx-auto md:mx-0 w-full">
                             <div className="flex items-center gap-3 justify-start">
                                 <div className="p-1.5 bg-[#ee5253] rounded-lg shadow-lg shadow-[#ee5253]/20 dark:shadow-[#ee5253]/20 group-hover:scale-110 transition-transform duration-300 shrink-0">
@@ -176,7 +176,7 @@ const Footer = () => {
                     </motion.div>
                 </div>
 
-                {/* RÉSEAUX SOCIAUX & COPYRIGHT - Version Light */}
+                {/* RÉSEAUX SOCIAUX & COPYRIGHT */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -185,7 +185,7 @@ const Footer = () => {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800"
                 >
-                    {/* Réseaux sociaux - Version Light */}
+                    {/* Réseaux sociaux */}
                     <div className="text-center mb-8">
                         <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-5">
                             {t.socialMedia.title}
@@ -209,14 +209,14 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* COPYRIGHT, TERMES, CONFIDENTIALITÉ - Version Light */}
+                    {/* COPYRIGHT, TERMES, CONFIDENTIALITÉ */}
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-sm">
-                        {/* Copyright - Version Light */}
+                        {/* Copyright */}
                         <p className="text-gray-500 dark:text-gray-400 text-center lg:text-left order-1">
                             {t.copyright.text}
                         </p>
 
-                        {/* Developed by Gaël - Version Light */}
+                        {/* Developed by Gaël */}
                         <div className="flex items-center gap-2 order-3">
                             <span className="text-xs text-gray-400 dark:text-gray-500">
                                 {language === 'mg' ? 'Namboarin\'i' :
@@ -228,7 +228,7 @@ const Footer = () => {
                             </span>
                         </div>
 
-                        {/* Termes et Confidentialité - Version Light */}
+                        {/* Termes et Confidentialité */}
                         <div className="flex items-center gap-4 order-2">
                             {t.copyright.links && (
                                 <>
