@@ -285,7 +285,7 @@ Le site supporte trois langues :
 
 ## 👨‍💻 Développement
 
-Ce site a été développé par **[Gaël RAMAHANDRISOA](https://www.linkedin.com/in/ga%C3%ABl-ramahandrisoa-8b027b351/)**.
+Ce site a été développé par **[Gaël RAMAHANDRISOA](https://www.linkedin.com/in/nassaigael/)**.
 
 ### **Compétences mises en œuvre**
 - **Architecture React/TypeScript** moderne et scalable
@@ -297,9 +297,9 @@ Ce site a été développé par **[Gaël RAMAHANDRISOA](https://www.linkedin.com
 - **Typage strict** TypeScript
 
 ### **Contact du développeur**
-- **LinkedIn**: [Gaël RAMAHANDRISOA](https://www.linkedin.com/in/ga%C3%ABl-ramahandrisoa-8b027b351/)
+- **LinkedIn**: [Gaël RAMAHANDRISOA](https://www.linkedin.com/in/nassaigael/)
 - **Email**: gael.ramahandrisoa@email.com
-- **Portfolio**: [gael-dev.com](https://gael-dev.com)
+- **Portfolio**: [gael-dev.com](https://nassaigael.github.io)
 
 ---
 
@@ -333,8 +333,6 @@ Ce projet est sous licence **MIT** - voir le fichier [LICENSE](LICENSE) pour plu
 - **MARSON Evariste**, **TSARAMONINA Jean Abraham**, **RANDRIAMAMPIONONA Franciscain** - Fondateurs
 - **Tous les membres** de l'association FIZANAKARA
 - **La communauté Anakara** à Madagascar et dans le monde
-- **Google** pour l'API Gemini
-- **La communauté open source** pour les outils et bibliothèques
 
 ---
 
@@ -348,7 +346,7 @@ Ce projet est sous licence **MIT** - voir le fichier [LICENSE](LICENSE) pour plu
 ---
 
 <div align="center">
-  <img src="![alt text](https://github.com/nassaigael/website/blob/master/src/assets/images/logo.png)" alt="FIZANAKARA Logo" width="100"/>
+  <img src="/src/assets/images/logo.png" alt="FIZANAKARA Logo" width="100"/>
   
   **FIZANAKARA** — *Préserver le passé, construire l'avenir*
   
