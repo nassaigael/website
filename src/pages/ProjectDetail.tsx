@@ -1,7 +1,7 @@
 // pages/ProjectDetail.tsx
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type JSX } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectCard from '../components/cards/ProjectCard';
 import { projects, projectsData, getRelatedProjects } from '../data/projects';
@@ -23,7 +23,6 @@ import {
   FaHandshake,
   FaUserTie,
   FaImage,
-  FaShare,
   FaCopy,
   FaFacebookF,
   FaTwitter,
@@ -33,7 +32,6 @@ import {
 import { GiProgression, GiCheckMark, GiSandsOfTime, GiGearHammer, GiTheater, GiHandSaw, GiCrane, GiStoneTower, GiForest } from 'react-icons/gi';
 import { IoMdSchool } from 'react-icons/io';
 import { MdAgriculture, MdWaterDrop } from 'react-icons/md';
-import { HiOutlineSparkles } from 'react-icons/hi';
 import { FiShare2 } from 'react-icons/fi';
 
 const ProjectDetail = () => {
@@ -885,7 +883,7 @@ const ProjectDetail = () => {
 
                         {/* Effet de brillance au hover */}
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-transparent via-white/10 to-transparent" />
+                          <div className="absolute top-0 left-0 w-full h-full bg-linear-to-tr from-transparent via-white/10 to-transparent" />
                         </div>
                       </div>
                     </motion.div>
@@ -907,7 +905,7 @@ const ProjectDetail = () => {
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                       {language === 'mg' ? 'Zava-bita' : language === 'fr' ? 'Réalisations' : 'Achievements'}
                     </h3>
-                    <div className="flex-1 h-px bg-gradient-to-r from-emerald-500/30 to-transparent ml-4" />
+                    <div className="flex-1 h-px bg-linear-to-r from-emerald-500/30 to-transparent ml-4" />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -918,7 +916,7 @@ const ProjectDetail = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
                         whileHover={{ x: 4 }}
-                        className="flex items-start gap-4 p-5 bg-gradient-to-r from-emerald-50 to-white dark:from-emerald-500/10 dark:to-transparent rounded-xl border border-emerald-200 dark:border-emerald-500/20 shadow-md hover:shadow-lg transition-all duration-300"
+                        className="flex items-start gap-4 p-5 bg-linear-to-r from-emerald-50 to-white dark:from-emerald-500/10 dark:to-transparent rounded-xl border border-emerald-200 dark:border-emerald-500/20 shadow-md hover:shadow-lg transition-all duration-300"
                       >
                         <div className="relative">
                           <div className="absolute inset-0 bg-emerald-500 rounded-full blur-sm opacity-30" />
@@ -950,13 +948,13 @@ const ProjectDetail = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                     {language === 'mg' ? 'Daty Manan-danja' : language === 'fr' ? 'Dates Importantes' : 'Key Dates'}
                   </h3>
-                  <div className="flex-1 h-px bg-gradient-to-r from-amber-500/30 to-transparent ml-4" />
+                  <div className="flex-1 h-px bg-linear-to-r from-amber-500/30 to-transparent ml-4" />
                 </div>
 
                 {/* Timeline design */}
                 <div className="relative">
                   {/* Ligne de timeline */}
-                  <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent" />
+                  <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent" />
                   
                   <div className="space-y-6">
                     {/* Date de début */}
@@ -1107,7 +1105,7 @@ const ProjectDetail = () => {
             </div>
           )}
 
-          {/* ===== PARTENAIRES AMÉLIORÉS - Premium Light ===== */}
+          {/* ===== PARTENAIRES t ===== */}
           {activeTab === 'partners' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1174,7 +1172,7 @@ const ProjectDetail = () => {
 
                         {/* Effet de brillance */}
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-transparent via-white/10 to-transparent" />
+                          <div className="absolute top-0 left-0 w-full h-full bg-linear-to-tr from-transparent via-white/10 to-transparent" />
                         </div>
                       </div>
                     </motion.div>
