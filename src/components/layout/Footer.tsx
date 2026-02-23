@@ -217,7 +217,9 @@ const Footer = () => {
                         </p>
 
                         {/* Developed by Gaël */}
-                        <div className="flex items-center gap-2 order-3">
+                        <div 
+                        className="flex items-center gap-2 order-3"
+                        >
                             <span className="text-xs text-gray-400 dark:text-gray-500">
                                 {language === 'mg' ? 'Namboarin\'i' :
                                     language === 'fr' ? 'Développé par' :

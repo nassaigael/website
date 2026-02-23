@@ -1,3 +1,4 @@
+// data/navigation.ts
 export type Language = 'mg' | 'fr' | 'en';
 
 export interface NavItem {
@@ -11,10 +12,10 @@ export interface NavItem {
 }
 
 export interface LanguageOption {
-  name: unknown;
   code: Language;
   label: string;
-  flag: string;
+  flag: string; 
+  countryCode: string; 
 }
 
 export const navItems: NavItem[] = [
@@ -48,7 +49,7 @@ export const navItems: NavItem[] = [
   {
     id: 'projects',
     label: {
-      mg: 'tetikasa ',
+      mg: 'tetikasa',
       fr: 'projet',
       en: 'projects'
     },
@@ -76,15 +77,21 @@ export const navItems: NavItem[] = [
 
 export const languages: LanguageOption[] = [
   {
-    code: 'mg', label: 'MG', flag: '🇲🇬',
-    name: undefined
+    code: 'mg',
+    label: 'MG',
+    flag: '🇲🇬',
+    countryCode: 'mg'
   },
   {
-    code: 'fr', label: 'FR', flag: '🇫🇷',
-    name: undefined
+    code: 'fr',
+    label: 'FR',
+    flag: '🇫🇷',
+    countryCode: 'fr' 
   },
   {
-    code: 'en', label: 'EN', flag: '🇺🇸',
-    name: undefined
+    code: 'en',
+    label: 'EN ',
+    flag: '🇺🇸',
+    countryCode: 'us' 
   }
 ];

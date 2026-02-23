@@ -17,8 +17,7 @@ const HomePage = () => {
   return (
     <div
       className={`
-        relative 
-        overflow-x-hidden bg-gray-950
+        relative overflow-x-hidden min-h-screen
         ${location.pathname === '/' ? '' : 'pt-0'}
       `}
     >
