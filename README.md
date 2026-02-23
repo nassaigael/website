@@ -1,7 +1,7 @@
 # 🇲🇬 FIZANAKARA - Site Web Officiel de l'Association
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/9e5b5b5b-5b5b-5b5b-5b5b-5b5b5b5b5b5b" alt="FIZANAKARA Logo" width="200"/>
+  <img src="/src/assets/images/logo.png" alt="FIZANAKARA Logo" width="200"/>
   
   ### *Fikambanan'ny Zanak'Anakara — Association des Descendants d'Ali Tawarath*
   
@@ -299,7 +299,7 @@ Ce site a été développé par **[Gaël RAMAHANDRISOA](https://www.linkedin.com
 ### **Contact du développeur**
 - **LinkedIn**: [Gaël RAMAHANDRISOA](https://www.linkedin.com/in/nassaigael/)
 - **Email**: gael.ramahandrisoa@email.com
-- **Portfolio**: [gael-dev.com](https://nassaigael.github.io)
+- **Portfolio**: [nassaigael.github.io](https://nassaigael.github.io)
 
 ---
 
