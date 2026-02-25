@@ -29,7 +29,7 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
           <div className="flex items-start gap-2 max-w-[85%] sm:max-w-[80%]">
             {/* Avatar pour le bot */}
             {msg.sender === 'bot' && (
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-linear-to-br from-[#ee5253]/20 to-[#932020]/20 flex items-center justify-center shrink-0 border border-[#ee5253]/30">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white to-[#932020]/20 flex items-center justify-center shrink-0 border-2 border-[#ee5253]">
                 <img 
                   src={logo} 
                   alt="FIZANAKARA" 
@@ -42,7 +42,7 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
             <div 
               className={`rounded-2xl p-3 sm:p-4 ${
                 msg.sender === 'user' 
-                  ? 'bg-linear-to-br from-[#ee5253] to-[#932020] text-white rounded-br-none shadow-lg shadow-[#ee5253]/20' 
+                  ? 'bg-[#ee5253] text-white rounded-br-none shadow-lg shadow-[#ee5253]/20' 
                   : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-bl-none shadow-lg border border-gray-100 dark:border-gray-700'
               }`}
             >

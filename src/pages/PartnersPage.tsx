@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import PartnersHero from '../components/sections/PartnersHero';
-import PartnersGrid from '../components/grids/PartnersGrid';
+import PartnersGrid from '../components/cards/PartnersCard';
 import { Star, Users, Award, Mail } from 'lucide-react';
 
 const PartnersPage = () => {
@@ -38,7 +38,7 @@ const PartnersPage = () => {
                   {language === 'mg' ? 'Mpiara-miasa aminay' :
                     language === 'fr' ? 'Nos partenaires' :
                       'Our partners'}                            </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 dark:bg-[#ee5253]/20 -z-10"></span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
               </span>
             </motion.h2>
 

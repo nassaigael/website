@@ -1,3 +1,5 @@
+import president from "../assets/images/offices/president.jpg";
+
 export interface OfficeMember {
   id: number;
   name: string;
@@ -47,13 +49,13 @@ export const officeMembers: OfficeMember[] = [
   },
   {
     id: 2,
-    name: 'Omar Mehri',
+    name: 'Patrick RAMONJAVELO',
     role: {
       mg: 'Filoha',
       fr: 'Président',
       en: 'President'
     },
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
+    image: president,
     bio: {
       mg: 'Lorem Ipsum dia lahatsoratra fanontana sy fanoratana. Omar dia nitondra ny fikambanana hatramin\'ny 2010.',
       fr: 'Lorem Ipsum est simplement un texte factice de l\'industrie de l\'impression et de la composition. Omar dirige l\'association depuis 2010.',

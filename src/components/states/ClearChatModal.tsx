@@ -45,7 +45,7 @@ const ClearChatModal: React.FC<ClearChatModalProps> = ({
           >
             <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
               {/* Header */}
-              <div className="bg-linear-to-r from-red-500 to-red-600 p-4 text-white">
+              <div className="bg-[#ee5253] p-4 text-white">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-white/20 rounded-full">
@@ -88,7 +88,7 @@ const ClearChatModal: React.FC<ClearChatModalProps> = ({
                     onConfirm();
                     onClose();
                   }}
-                  className="flex-1 px-4 py-3 bg-linear-to-r from-red-500 to-red-600 text-white rounded-xl font-medium text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="flex-1 px-4 py-3 bg-[#ee5253] text-white rounded-xl font-medium text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   <Trash2 size={16} />
                   {confirmText}

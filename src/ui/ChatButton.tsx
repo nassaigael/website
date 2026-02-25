@@ -17,12 +17,12 @@ const ChatButton: React.FC<ChatButtonProps> = ({ isOpen, onClick }) => {
       className="fixed bottom-4 right-4 z-50 group sm:bottom-6 sm:right-6"
     >
       {/* Glow effect */}
-      <div className="absolute inset-0 bg-linear-to-r from-[#ee5253] to-[#932020] rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
       
       {/* Bouton principal */}
-      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-linear-to-br from-[#ee5253] to-[#932020] text-white shadow-2xl flex items-center justify-center border-2 border-white/20 group-hover:border-white/40 transition-all">
+      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white text-white shadow-2xl flex items-center justify-center border-4 border-[#ee5253] group-hover:border-white/40 transition-all">
         {isOpen ? (
-          <X size={24} className="sm:w-7 sm:h-7" />
+          <X size={24} className="sm:w-7 sm:h-7 text-[#ee5253]" />
         ) : (
           <div className="relative">
             <img 

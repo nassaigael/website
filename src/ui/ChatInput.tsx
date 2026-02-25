@@ -53,7 +53,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           whileTap={{ scale: 0.95 }}
           onClick={handleSendClick}
           disabled={isLoading || !inputValue.trim()}
-          className="mr-2 p-2 bg-linear-to-br from-[#ee5253] to-[#932020] text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all"
+          className="mr-2 p-2 bg-[#ee5253] text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all"
         >
           <Send size={18} />
         </motion.button>

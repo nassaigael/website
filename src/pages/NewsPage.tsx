@@ -26,7 +26,6 @@ const NewsPage = () => {
     const [showFilters, setShowFilters] = useState(false);
     const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'featured'>('newest');
 
-    // Déterminer automatiquement le mode d'affichage selon l'appareil
     useEffect(() => {
         const checkDevice = () => {
             if (window.innerWidth < 768) {
@@ -83,7 +82,6 @@ const NewsPage = () => {
         }
     ];
 
-    // Fonction pour convertir la date malgache en Date object
     const parseMalagasyDate = (dateStr: string): Date => {
         const months: { [key: string]: string } = {
             'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04', 'mai': '05', 'juin': '06',
@@ -161,12 +159,12 @@ const NewsPage = () => {
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                     className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
                 />
-                {/* Grille subtile pour le mode clair */}
+                {/* Grille subtile */}
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px] dark:opacity-50" />
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Hero Section - Version Light améliorée */}
+                {/* Hero Section */}
                 <motion.div
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -181,7 +179,7 @@ const NewsPage = () => {
                                     language === 'fr' ? 'actualités' :
                                         'Latest news'}
                             </span>
-                            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253]/20 dark:bg-[#ee5253]/20 -z-10"></span>
+                            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
                         </span>
                     </h1>
 
@@ -199,9 +197,9 @@ const NewsPage = () => {
                         </p>
                     </motion.div>
                     <div className="flex items-center justify-center gap-4 mb-16">
-                        <div className="w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
+                        <div className="w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
                         <div className="w-4 h-4 border-2 border-[#ee5253] rotate-45"></div>
-                        <div className="w-12 h-0.5 bg-[#ee5253]/30 dark:bg-[#ee5253]/30"></div>
+                        <div className="w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
                     </div>
                 </motion.div>
 

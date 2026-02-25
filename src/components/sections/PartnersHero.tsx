@@ -88,10 +88,8 @@ const PartnersHero = () => {
                 />
             </div>
 
-            {/* Animated Gradient Overlay */}
             <div className="absolute inset-0 bg-linear-to-br from-white/90 via-white/80 to-gray-50/90 dark:from-black/90 dark:via-black/80 dark:to-gray-900/90" />
 
-            {/* Floating Elements avec couleurs adaptatives */}
             <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ee5253]/10 dark:bg-[#ee5253]/10 rounded-full blur-3xl animate-pulse" />
             <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
             <div className="absolute top-1/3 right-1/3 w-40 h-40 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }} />
@@ -115,7 +113,7 @@ const PartnersHero = () => {
                             <span className="relative z-10">
                                 {t.title}
                             </span>
-                            <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]/20 dark:bg-[#ee5253]/20 -z-10"></span>
+                            <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
                         </span>
                     </motion.h1>
 
@@ -158,7 +156,6 @@ const PartnersHero = () => {
                                 >
                                     {/* Card Background */}
                                     <div className="relative bg-white dark:bg-black/40 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-2xl overflow-hidden">
-                                        {/* Animated Gradient Border */}
                                         <div className={`absolute inset-0 bg-linear-to-r ${stat.colors.light.gradient} opacity-0 group-hover:opacity-10 dark:opacity-0 dark:group-hover:opacity-20 transition-opacity duration-500`} />
 
                                         {/* Icon Container */}
@@ -177,7 +174,7 @@ const PartnersHero = () => {
                                         </div>
 
                                         {/* Hover Effect Line */}
-                                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-linear-to-r from-transparent via-[#ee5253]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-linear-to-r from-transparent via-[#ee5253] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
                                 </motion.div>
                             );
@@ -199,7 +196,7 @@ const PartnersHero = () => {
                                 }}
                                 whileTap={{ scale: 0.97 }}
                                 onClick={scrollToPartners}
-                                className="group relative overflow-hidden bg-[#ee5253] text-white font-bold py-4 px-8 md:py-5 md:px-14 rounded-full text-lg md:text-xl transition-all duration-300 shadow-xl hover:shadow-2xl"
+                                className="group relative overflow-hidden bg-[#ee5253] text-white font-bold py-4 px-8 md:py-5 md:px-14 rounded-full text-lg md:text-xl transition-all duration-300 shadow-xl hover:shadow-2xl cursor-pointer"
                             >
                                 {/* Button Content */}
                                 <span className="relative z-10 flex items-center justify-center gap-3 md:gap-4">

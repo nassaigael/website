@@ -31,7 +31,7 @@ const Footer = () => {
                 <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#932020]/10 dark:bg-[#932020]/10 rounded-full blur-3xl" />
                 
                 {/* Grille subtile pour le mode light */}
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.03)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.03)_1px,transparent_1px)] bg-size-[50px_50px] dark:opacity-0" />
+                <div className="absolute inset-0 dark:bg-[linear-gradient(90deg,rgba(238,82,83,0.03)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.03)_1px,transparent_1px)] bg-size-[50px_50px] dark:opacity-0" />
             </div>
 
             {/* Ligne décorative supérieure */}
@@ -50,7 +50,7 @@ const Footer = () => {
                     >
                         <Link to="/" className="inline-flex items-center gap-3 group mx-auto md:mx-0">
                             <div className="relative">
-                                <div className="absolute inset-0 bg-[#ee5253] rounded-2xl blur-lg opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition-opacity duration-500" />
+                                <div className="absolute inset-0 dark:bg-[#ee5253] rounded-2xl blur-lg opacity-0 group-hover:opacity-30 dark:group-hover:opacity-40 transition-opacity duration-500" />
                                 <img
                                     src={logo}
                                     alt="Logo Fizanakara"
@@ -58,7 +58,7 @@ const Footer = () => {
                                 />
                             </div>
                             <div className="flex flex-col text-left">
-                                <h1 className="font-extrabold tracking-tight text-gray-900 dark:text-white text-2xl sm:text-3xl group-hover:text-[#ee5253] transition-colors">
+                                <h1 className="font-extrabold tracking-tight text-[#ee5253] text-2xl sm:text-3xl  transition-colors">
                                     FIZANAKARA
                                 </h1>
                                 <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">

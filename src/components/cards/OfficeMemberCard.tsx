@@ -1,3 +1,4 @@
+// src/components/cards/OfficeMemberCard.tsx
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -89,7 +90,7 @@ const getRankBadge = () => {
         onHoverEnd={() => setIsHovered(false)}
         className="group relative w-full bg-linear-to-br from-white via-white to-gray-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800/50 rounded-2xl overflow-hidden shadow-2xl hover:shadow-4xl border border-gray-200/50 dark:border-gray-800/50 transition-all duration-700 perspective-1000"
       >
-        {/* BADGE DE RANG PREMIUM */}
+        {/* BADGE DE RANG */}
         {rankBadge && (
           <motion.div 
             initial={{ x: -20, opacity: 0 }}
@@ -122,38 +123,39 @@ const getRankBadge = () => {
         </div>
 
         {/* IMAGE CONTAINER */}
-        <div className="relative h-80 overflow-hidden">
+        <div className="relative h-80 overflow-hidden bg-gray-100 dark:bg-gray-800">
           {!imageLoaded && (
             <div className="absolute inset-0 bg-linear-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 animate-shimmer" />
           )}
           
-          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent z-10" />
+          {/* Overlay léger pour la lisibilité */}
+          <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent z-10" />
           
           <motion.div
             animate={{ 
-              scale: isHovered ? 1.15 : 1.05,
-              rotate: isHovered ? 2 : 0
+              scale: isHovered ? 1.1 : 1,
+              rotate: isHovered ? 1 : 0
             }}
             transition={{ duration: 0.8 }}
-            className="w-full h-full"
+            className="w-full h-full flex items-center justify-center"
           >
             <img
               src={member.image}
               alt={member.name}
               onLoad={() => setImageLoaded(true)}
-              className={`w-full h-full object-cover transition-all duration-1500 ${
+              className={`w-full h-full object-contain transition-all duration-1500 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
+              style={{ objectPosition: 'center' }}
             />
           </motion.div>
           
-          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 via-40% to-transparent opacity-90" />
-          <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(238,82,83,0.15),transparent_70%)]" />
+          {/* Overlays subtils */}
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(238,82,83,0.1),transparent_70%)]" />
           
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15)_0.5px,transparent_0.5px)] bg-size-[16px_16px] opacity-20 pointer-events-none" />
-          
-          {/* CONTACT ICONS */}
+          {/* CONTACT ICONS*/}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ 
@@ -260,27 +262,28 @@ const getRankBadge = () => {
               rotate: isHovered ? 0 : -45
             }}
             transition={{ duration: 0.6 }}
-            className="absolute bottom-3 right-3 text-white/40"
+            className="absolute bottom-3 right-3 text-white/40 z-10"
           >
             <FaQuoteRight className="w-10 h-10" />
           </motion.div>
 
+          {/* Effet de brillance au survol */}
           <motion.div 
             animate={{ 
               x: isHovered ? '100%' : '-100%'
             }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none"
+            className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none z-10"
           />
         </div>
 
-        {/* CONTENT */}
-        <div className="relative p-5 text-center bg-linear-to-b from-white via-white to-gray-50/80 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800/80">
+        {/* CONTENT*/}
+        <div className="relative p-5 text-center bg-linear-to-b from-white/50 via-white/50 to-gray-50/40 dark:from-gray-900/50 dark:via-gray-900/50 dark:to-gray-800/40 backdrop-blur-sm">
           
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
           <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-[#ee5253] shadow-lg shadow-[#ee5253]/50" />
           
-          {/* AVATAR */}
+          {/* AVATAR - */}
           <div className="absolute -top-10 left-1/2 -translate-x-1/2">
             <div className="relative">
               <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-lg opacity-50 animate-pulse-slow" />
@@ -316,19 +319,19 @@ const getRankBadge = () => {
             </div>
           </div>
           
-          {/* BIO */}
-          <div className="relative mt-4 px-3 py-3 bg-linear-to-br from-gray-50/80 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
-            <FaQuoteRight className="absolute -left-1.5 -top-1.5 w-4 h-4 text-[#ee5253] rotate-180" />
-            <p className="text-black0 dark:text-gray-300 text-xs leading-relaxed line-clamp-2 font-light italic">
+          {/* BIO - Avec fond très transparent */}
+          <div className="relative mt-4 px-3 py-3 bg-linear-to-br from-gray-50/40 to-white/30 dark:from-gray-800/30 dark:to-gray-900/20 rounded-xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+            <FaQuoteRight className="absolute -left-1.5 -top-1.5 w-4 h-4 text-[#ee5253] rotate-180 opacity-70" />
+            <p className="text-black dark:text-gray-300 text-xs leading-relaxed line-clamp-2 font-light italic">
               "{member.bio[language]}"
             </p>
-            <FaQuoteRight className="absolute -right-1.5 -bottom-1.5 w-4 h-4 text-[#ee5253]" />
+            <FaQuoteRight className="absolute -right-1.5 -bottom-1.5 w-4 h-4 text-[#ee5253] opacity-70" />
           </div>
           
-          {/* LIEN DE PROFIL - POPUP */}
+          {/* LIEN DE PROFIL - Avec transparence */}
           <button
             onClick={() => setIsProfileOpen(true)}
-            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-[#ee5253] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden cursor-pointer"
+            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-[#ee5253]/60 hover:bg-[#ee5253] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden cursor-pointer backdrop-blur-sm"
           >
             <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/link:translate-y-0 transition-transform duration-500" />
             <RiShieldFlashLine className="w-3.5 h-3.5 relative z-10 group-hover/link:animate-pulse" />
@@ -341,9 +344,10 @@ const getRankBadge = () => {
           </button>
         </div>
 
-        {/* BORDURE DYNAMIQUE */}
+        {/* BORDURE DYNAMIQUE - Au survol */}
         <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#ee5253]/30 transition-all duration-700 pointer-events-none" />
         
+        {/* Lignes décoratives */}
         <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#ee5253]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#932020]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       </motion.div>

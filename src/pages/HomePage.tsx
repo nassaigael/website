@@ -131,7 +131,7 @@ const HomePage = () => {
             </div>
           </motion.div>
 
-          {/* Grille principale - 3 colonnes */}
+          {/* Grille principale */}
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-stretch">
             {/* Les Anakara */}
             <motion.div
@@ -252,8 +252,10 @@ const HomePage = () => {
 
                   <div className="mt-6 pt-4 border-t border-emerald-200/50 dark:border-gray-700">
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      <span className="font-light text-[#ee5253]">Filoha mpitantana:</span>{' '}
-                      Patrick RAMONJAVELO
+                      <span className="font-light text-[#ee5253]">
+                        {language === 'fr' ? 'Président' : language === 'mg' ? 'Filoha' : "President"} : 
+                      </span>
+                      {' '}Patrick RAMONJAVELO
                     </p>
                   </div>
                 </div>

@@ -67,14 +67,13 @@ const Header = () => {
       animate="visible"
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
         scrolled
-          ? 'bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(238,82,83,0.3)] dark:shadow-[0_20px_40px_-15px_rgba(238,82,83,0.2)] py-2'
-          : 'bg-white/70 dark:bg-black/70 backdrop-blur-md py-3 sm:py-4'
+          ? 'bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl dark:shadow-[0_20px_40px_-15px_rgba(238,82,83,0.2)] py-2'
+          : 'bg-white dark:bg-black/70 backdrop-blur-md py-3 sm:py-4'
       }`}
       style={{
         borderBottom: scrolled ? 'shadow' : 'none'
       }}
     >
-      {/* Ligne décorative animée avec effet de glow */}
       <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-[#ee5253] to-transparent opacity-50" />
       
       {/* Éléments décoratifs d'arrière-plan */}
@@ -99,7 +98,7 @@ const Header = () => {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo avec effet premium */}
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 cursor-pointer shrink-0 group">
             <motion.div
               whileHover="hover"
@@ -107,11 +106,10 @@ const Header = () => {
               className="flex items-center gap-2.5"
             >
               <div className="relative">
-                {/* Effet de glow multiple */}
                 <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
                 <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-700" />
                 
-                {/* Conteneur du logo avec bordure brillante */}
+                {/* Conteneur du logo */}
                 <div className="relative p-0.5">
                   <div className=" bg-transparent rounded-full p-1">
                     <img
@@ -176,9 +174,9 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Droite : langue + burger - Design */}
+          {/* langue + burger - Design */}
           <div className="flex items-center gap-2 lg:gap-3">
-            {/* Sélecteur de langue - Version avec drapeaux réduits */}
+            {/* Sélecteur de langue */}
             <div className="relative lang-dropdown-container">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -354,10 +352,6 @@ const Header = () => {
                     <Menu size={24} className="text-gray-700 dark:text-gray-300 group-hover:text-[#ee5253] transition-colors" />
                   }
                 </motion.div>
-                
-                {/* Points décoratifs */}
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#ee5253] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#932020] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </motion.button>
           </div>

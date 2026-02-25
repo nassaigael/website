@@ -5,9 +5,11 @@ import {
 import type { LucideIcon } from 'lucide-react';
 
 import slideOne from "../assets/images/homepage/slideOne.jpg";
-import slideTwo from "../assets/images/homepage/slideTwo.jpg";
+// import slideTwo from "../assets/images/homepage/slideTwo.jpg";
 import slideThree from "../assets/images/homepage/slideThree.jpg";
-import slideFour from "../assets/images/homepage/slideFour.jpg";
+// import slideFour from "../assets/images/homepage/slideFour.jpg";
+import slideFive from "../assets/images/slides/slideFive.jpg";
+import slideSix from "../assets/images/slides/slideSix.jpg";
 
 
 export interface Slide {
@@ -95,7 +97,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: slideTwo,
+        image: slideSix,
         overlay: "rgba(30, 30, 40, 0.75)",
         title: {
             mg: "VAKOKA NENTIN-DRAZANA",
@@ -133,7 +135,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: slideFour,
+        image: slideFive,
         overlay: "rgba(25, 20, 30, 0.8)",
         title: {
             mg: "FANABEAZANA SY FAMPIROBOROBOANA",
@@ -192,7 +194,6 @@ export const stats: Stat[] = [
     }
 ];
 
-// Données de contenu par langue
 export const content: Record<'mg' | 'fr' | 'en', Content> = {
     mg: {
         about: {
