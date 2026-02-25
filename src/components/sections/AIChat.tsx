@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
-import type { Message, FAQData, Translation, SupportedLanguage } from '../../data/chat_type';
+import type { Message, FAQData, Translation, SupportedLanguage } from '../../types/chat_type';
 import ChatButton from '../../ui/ChatButton';
 import ChatHeader from '../layout/ChatHeader';
 import ChatMessages from '../states/ChatMessages';
@@ -143,9 +143,9 @@ const AIChat = () => {
   // Message de bienvenue si aucun historique
   useEffect(() => {
     if (messages.length === 0) {
-      setMessages([{ 
-        id: 0, 
-        text: t.welcome, 
+      setMessages([{
+        id: 0,
+        text: t.welcome,
         sender: 'bot',
         timestamp: new Date()
       }]);
@@ -171,28 +171,28 @@ const AIChat = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const findLocalAnswer = (question: string): string | null => {
     if (!faqData) return null;
-    
+
     const lowerQuestion = question.toLowerCase();
     const words = lowerQuestion.split(' ').filter(w => w.length > 2);
     const langFAQs = faqData.faq.filter(f => f.language === language);
-    
+
     let bestMatch: { answer: string; score: number } | null = null;
 
     for (const faq of langFAQs) {
       let score = 0;
-      
+
       for (const keyword of faq.keywords) {
         if (lowerQuestion.includes(keyword.toLowerCase())) {
           score += 10;
         }
       }
-      
+
       for (const word of words) {
         if (faq.question.toLowerCase().includes(word)) {
           score += 3;
         }
       }
-      
+
       if (score > (bestMatch?.score || 0)) {
         bestMatch = { answer: faq.answer, score };
       }
@@ -212,7 +212,7 @@ const AIChat = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             contents: [{
-              parts: [{ 
+              parts: [{
                 text: `Tu es un assistant pour l'association FIZANAKARA. 
                 Réponds en ${language === 'mg' ? 'malgache' : language === 'fr' ? 'français' : 'anglais'} de façon amicale et précise.
                 
@@ -222,7 +222,7 @@ const AIChat = () => {
                 - Fais des listes avec des tirets (-)
                 - Sépare les idées avec des paragraphes
                 
-                Question: ${question}` 
+                Question: ${question}`
               }]
             }]
           })
@@ -241,18 +241,18 @@ const AIChat = () => {
   // Formatage du texte
   const formatMessageText = (text: string): string => {
     if (!text) return '';
-    
+
     let formatted = text
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#ee5253] dark:text-[#ff6b6b]">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em class="italic text-gray-700 dark:text-gray-300">$1</em>')
       .replace(/^[-•]\s+(.*?)$/gm, '<span class="flex items-start gap-2 my-1"><span class="text-[#ee5253] font-bold">•</span><span>$1</span></span>')
       .replace(/\n/g, '<br/>');
-    
+
     formatted = formatted.replace(
-      /((?:<span class="flex items-start gap-2 my-1">.*?<\/span>\s*)+)/g, 
+      /((?:<span class="flex items-start gap-2 my-1">.*?<\/span>\s*)+)/g,
       '<div class="my-3 space-y-1">$1</div>'
     );
-    
+
     return formatted;
   };
 
@@ -266,7 +266,7 @@ const AIChat = () => {
       sender: 'user',
       timestamp: new Date()
     };
-    
+
     setMessages(prev => [...prev, userMessage]);
     const currentQuestion = inputValue;
     setInputValue('');
@@ -303,9 +303,9 @@ const AIChat = () => {
 
   // Effacer la conversation
   const handleClearChat = () => {
-    setMessages([{ 
-      id: 0, 
-      text: t.welcome, 
+    setMessages([{
+      id: 0,
+      text: t.welcome,
       sender: 'bot',
       timestamp: new Date()
     }]);
@@ -323,7 +323,7 @@ const AIChat = () => {
   return (
     <>
       <ChatButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
-      
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -336,7 +336,7 @@ const AIChat = () => {
                        bg-white dark:bg-gray-900 rounded-3xl shadow-2xl 
                        border border-gray-200 dark:border-gray-800 
                        overflow-hidden flex flex-col"
-            style={{ 
+            style={{
               height: isMinimized ? 'auto' : 'min(600px, calc(100vh - 120px))',
               maxHeight: '90vh'
             }}

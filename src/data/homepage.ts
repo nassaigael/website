@@ -4,12 +4,10 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-import slideOne from "../assets/images/homepage/slideOne.jpg";
-// import slideTwo from "../assets/images/homepage/slideTwo.jpg";
-import slideThree from "../assets/images/homepage/slideThree.jpg";
-// import slideFour from "../assets/images/homepage/slideFour.jpg";
-import slideFive from "../assets/images/slides/slideFive.jpg";
-import slideSix from "../assets/images/slides/slideSix.jpg";
+import slideOne from "../assets/images/slides/slideOne.jpg";
+import slideTwo from "../assets/images/slides/slideTwo.jpg";
+import slideThree from "../assets/images/slides/slideThree.jpg";
+import slideFour from "../assets/images/slides/slideFour.jpg";
 
 
 export interface Slide {
@@ -97,7 +95,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: slideSix,
+        image: slideTwo,
         overlay: "rgba(30, 30, 40, 0.75)",
         title: {
             mg: "VAKOKA NENTIN-DRAZANA",
@@ -135,7 +133,7 @@ export const carouselSlides: Slide[] = [
         }
     },
     {
-        image: slideFive,
+        image: slideFour,
         overlay: "rgba(25, 20, 30, 0.8)",
         title: {
             mg: "FANABEAZANA SY FAMPIROBOROBOANA",

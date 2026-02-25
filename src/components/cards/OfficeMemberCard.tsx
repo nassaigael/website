@@ -290,7 +290,7 @@ const getRankBadge = () => {
               <div className="relative w-20 h-20 rounded-full border-4 border-white dark:border-gray-900 shadow-2xl overflow-hidden bg-linear-to-br from-[#ee5253] to-[#932020] p-0.5">
                 <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/30">
                   <img 
-                    src={member.image} 
+                    src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover"
                   />

@@ -2,7 +2,7 @@
 import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import logo from "../../assets/images/logo.png";
-import type { Message } from '../../data/chat_type';
+import type { Message } from '../../types/chat_type';
 
 interface ChatMessagesProps {
   messages: Message[];
@@ -30,30 +30,29 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
             {/* Avatar pour le bot */}
             {msg.sender === 'bot' && (
               <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white to-[#932020]/20 flex items-center justify-center shrink-0 border-2 border-[#ee5253]">
-                <img 
-                  src={logo} 
-                  alt="FIZANAKARA" 
+                <img
+                  src={logo}
+                  alt="FIZANAKARA"
                   className="w-4 h-4 sm:w-5 sm:h-5 object-contain rounded-full"
                 />
               </div>
             )}
-            
+
             {/* Bulle de message */}
-            <div 
-              className={`rounded-2xl p-3 sm:p-4 ${
-                msg.sender === 'user' 
-                  ? 'bg-[#ee5253] text-white rounded-br-none shadow-lg shadow-[#ee5253]/20' 
+            <div
+              className={`rounded-2xl p-3 sm:p-4 ${msg.sender === 'user'
+                  ? 'bg-[#ee5253] text-white rounded-br-none shadow-lg shadow-[#ee5253]/20'
                   : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-bl-none shadow-lg border border-gray-100 dark:border-gray-700'
-              }`}
+                }`}
             >
               <div className="flex items-center gap-1 sm:gap-2 mb-1">
                 <span className="text-[8px] sm:text-[10px] opacity-50">
                   {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
-              
+
               {/* Message formaté */}
-              <div 
+              <div
                 className="text-xs sm:text-sm leading-relaxed prose prose-sm max-w-none dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: formatMessageText(msg.text) }}
               />
@@ -61,7 +60,7 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
           </div>
         </motion.div>
       ))}
-      
+
       {/* Indicateur de frappe */}
       {isLoading && (
         <motion.div
@@ -71,9 +70,9 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
         >
           <div className="flex items-start gap-2">
             <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-linear-to-br from-[#ee5253]/20 to-[#932020]/20 flex items-center justify-center border border-[#ee5253]/30">
-              <img 
-                src={logo} 
-                alt="FIZANAKARA" 
+              <img
+                src={logo}
+                alt="FIZANAKARA"
                 className="w-4 h-4 sm:w-5 sm:h-5 object-contain rounded-full"
               />
             </div>
@@ -90,7 +89,7 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
           </div>
         </motion.div>
       )}
-      
+
       <div ref={ref} />
     </div>
   );
