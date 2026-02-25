@@ -335,11 +335,11 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 {/* Sous-titre premium */}
                 <motion.div custom={0} variants={textVariants}>
                   <div className="inline-flex items-center gap-2 mb-6">
-                    <div className="w-12 h-px bg-[#ee5253]" />
-                    <span className="text-[#ee5253] font-light tracking-[0.3em] text-sm uppercase">
+                    <div className="w-12 h-px bg-[#e78484]" />
+                    <span className="text-[#f68b8b] font-bold tracking-[0.3em] text-sm uppercase">
                       {currentSlideData.subtitle[language]}
                     </span>
-                    <div className="w-12 h-px bg-[#ee5253]" />
+                    <div className="w-12 h-px  bg-[#e78484]" />
                   </div>
                 </motion.div>
 
@@ -420,11 +420,11 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         </motion.div>
       </AnimatePresence>
 
-      {/* Contrôles premium */}
+      {/* Contrôles premium - Version responsive avec centrage mobile */}
       <div className="absolute bottom-12 left-0 right-0 z-30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between max-w-6xl mx-auto">
-            {/* Indicateurs de slide avec miniatures */}
+            {/* Indicateurs de slide avec miniatures - cachés sur mobile */}
             <div className="hidden lg:flex items-center gap-6">
               {slides.map((slide, index) => (
                 <motion.button
@@ -460,8 +460,8 @@ const HomeCarousel: React.FC<CarouselProps> = ({
               ))}
             </div>
 
-            {/* Contrôles de navigation */}
-            <div className="flex items-center gap-4 ml-auto">
+            {/* Contrôles de navigation - centrés sur mobile, à droite sur desktop */}
+            <div className="flex items-center gap-4 lg:ml-auto mx-auto lg:mx-0">
               {showPlayPause && (
                 <motion.button
                   whileHover={{ scale: 1.1 }}
@@ -470,13 +470,13 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   className="relative group"
                 >
                   <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity" />
-                  <div className="relative w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300">
-                    {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300">
+                    {isPlaying ? <Pause size={18} className="sm:w-5 sm:h-5" /> : <Play size={18} className="sm:w-5 sm:h-5" />}
                   </div>
                 </motion.button>
               )}
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <motion.button
                   whileHover={{ scale: 1.1, x: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -484,17 +484,17 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   className="relative group"
                 >
                   <div className="absolute inset-0 bg-white/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300">
-                    <ChevronLeft size={20} />
+                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300">
+                    <ChevronLeft size={18} className="sm:w-5 sm:h-5" />
                   </div>
                 </motion.button>
 
-                <div className="px-6 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
-                  <span className="text-white font-mono text-lg">
+                <div className="px-4 sm:px-6 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
+                  <span className="text-white font-mono text-base sm:text-lg">
                     {(currentSlide + 1).toString().padStart(2, '0')}
                   </span>
-                  <span className="text-white/50 mx-2">/</span>
-                  <span className="text-white/50 font-mono text-lg">
+                  <span className="text-white/50 mx-1 sm:mx-2">/</span>
+                  <span className="text-white/50 font-mono text-base sm:text-lg">
                     {slides.length.toString().padStart(2, '0')}
                   </span>
                 </div>
@@ -506,8 +506,8 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   className="relative group"
                 >
                   <div className="absolute inset-0 bg-white/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300">
-                    <ChevronRight size={20} />
+                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300">
+                    <ChevronRight size={18} className="sm:w-5 sm:h-5" />
                   </div>
                 </motion.button>
               </div>
