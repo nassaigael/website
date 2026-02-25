@@ -475,7 +475,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   onClick={() => goToSlide(index)}
                   className="group relative"
                 >
-                  <div className={`relative w-18 h-12 rounded-full overflow-hidden border-2 transition-all duration-300 group ${index === currentSlide
+                  <div className={`relative w-1 h-12 rounded-full overflow-hidden border-2 transition-all duration-300 group ${index === currentSlide
                       ? 'border-[#ee5253] shadow-2xl shadow-[#ee5253]/30 scale-110'
                       : 'border-white/20 hover:border-white/40'
                     }`}>
