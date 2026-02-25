@@ -47,14 +47,28 @@ const HomeCarousel: React.FC<CarouselProps> = ({
   const [direction, setDirection] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const dragStartTime = useRef<number>(0);
+  const dragStartX = useRef<number>(0);
 
   const [particles] = useState(generateParticles);
 
+  // Détecter le mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current && isHovering) {
+      if (containerRef.current && isHovering && !isMobile) {
         const rect = containerRef.current.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -64,7 +78,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [isHovering]);
+  }, [isHovering, isMobile]);
 
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -94,10 +108,28 @@ const HomeCarousel: React.FC<CarouselProps> = ({
     setCurrentSlide(index);
   };
 
+  // Gestion améliorée du drag pour éviter les conflits avec le scroll
+  const handleDragStart = (_event: MouseEvent | TouchEvent | PointerEvent) => {
+    dragStartTime.current = Date.now();
+    if ('touches' in _event) {
+      dragStartX.current = _event.touches[0].clientX;
+    } else {
+      dragStartX.current = _event.clientX;
+    }
+  };
+
   const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const dragDuration = Date.now() - dragStartTime.current;
+    const dragDistance = Math.abs(info.offset.x);
+
+    // Ne pas déclencher le swipe si c'est probablement un scroll
+    if (dragDuration > 300 || dragDistance < 30) {
+      return;
+    }
+
     const swipeThreshold = 50;
-    if (Math.abs(info.offset.x) > swipeThreshold) {
-      if (info.offset.x > 0) {
+    if (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > 0.5) {
+      if (info.offset.x > 0 || info.velocity.x > 0.5) {
         prevSlide();
       } else {
         nextSlide();
@@ -241,41 +273,45 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         ))}
       </div>
 
-      {/* Éléments décoratifs flottants */}
-      <motion.div
-        animate={{
-          opacity: [0.3, 0.5, 0.3],
-          scale: [0.8, 1.2, 0.8],
-        }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-        }}
-        className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/10 rounded-full blur-3xl"
-        style={{
-          x: mousePosition.x * 30,
-          y: mousePosition.y * 30,
-        }}
-      />
-      <motion.div
-        animate={{
-          opacity: [0.3, 0.5, 0.3],
-          scale: [0.8, 1.2, 0.8],
-        }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          times: [0, 0.5, 1],
-        }}
-        className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/10 rounded-full blur-3xl"
-        style={{
-          x: mousePosition.x * -30,
-          y: mousePosition.y * -30,
-        }}
-      />
+      {/* Éléments décoratifs flottants - désactivés sur mobile */}
+      {!isMobile && (
+        <>
+          <motion.div
+            animate={{
+              opacity: [0.3, 0.5, 0.3],
+              scale: [0.8, 1.2, 0.8],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.5, 1],
+            }}
+            className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/10 rounded-full blur-3xl"
+            style={{
+              x: mousePosition.x * 30,
+              y: mousePosition.y * 30,
+            }}
+          />
+          <motion.div
+            animate={{
+              opacity: [0.3, 0.5, 0.3],
+              scale: [0.8, 1.2, 0.8],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.5, 1],
+            }}
+            className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/10 rounded-full blur-3xl"
+            style={{
+              x: mousePosition.x * -30,
+              y: mousePosition.y * -30,
+            }}
+          />
+        </>
+      )}
 
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
@@ -286,19 +322,24 @@ const HomeCarousel: React.FC<CarouselProps> = ({
           animate="center"
           exit="exit"
           className="absolute inset-0"
-          drag="x"
+          drag={isMobile ? "x" : false}
           dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.2}
+          dragElastic={0.1}
+          dragMomentum={false}
+          onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
+          style={{ touchAction: isMobile ? 'pan-y' : 'auto' }}
         >
-          {/* Image avec parallaxe */}
+          {/* Image avec parallaxe - désactivé sur mobile */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
               className="absolute inset-0"
-              animate={{
+              animate={!isMobile ? {
                 scale: 1.1,
                 x: mousePosition.x * -20,
                 y: mousePosition.y * -20,
+              } : {
+                scale: 1.1,
               }}
               transition={{ type: 'spring', stiffness: 100, damping: 30 }}
             >
@@ -310,7 +351,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
               />
             </motion.div>
 
-            {/* Overlay  */}
+            {/* Overlay */}
             <motion.div
               className="absolute inset-0"
               animate={{
@@ -327,7 +368,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
           {/* Contenu principal */}
           <div className="relative h-full flex items-center justify-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 animate="visible"
                 className="max-w-6xl mx-auto text-center"
@@ -335,11 +376,11 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 {/* Sous-titre premium */}
                 <motion.div custom={0} variants={textVariants}>
                   <div className="inline-flex items-center gap-2 mb-6">
-                    <div className="w-12 h-px bg-[#e78484]" />
-                    <span className="text-[#f68b8b] font-bold tracking-[0.3em] text-sm uppercase">
+                    <div className="w-12 h-px bg-[#ee5253]" />
+                    <span className="text-[#ee5253] font-light tracking-[0.3em] text-sm uppercase">
                       {currentSlideData.subtitle[language]}
                     </span>
-                    <div className="w-12 h-px  bg-[#e78484]" />
+                    <div className="w-12 h-px bg-[#ee5253]" />
                   </div>
                 </motion.div>
 
@@ -387,8 +428,8 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                     <span className="relative z-10 flex items-center gap-3">
                       <span>
                         {language === 'mg' ? 'Hijery bebe kokoa' :
-                         language === 'fr' ? 'Découvrir' :
-                         'Discover'}
+                          language === 'fr' ? 'Découvrir' :
+                            'Discover'}
                       </span>
                       <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </span>
@@ -408,8 +449,8 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                     <span className="flex items-center gap-3">
                       <span>
                         {language === 'mg' ? 'Mifandray' :
-                         language === 'fr' ? 'Nous rejoindre' :
-                         'Join us'}
+                          language === 'fr' ? 'Nous rejoindre' :
+                            'Join us'}
                       </span>
                     </span>
                   </motion.button>
@@ -420,7 +461,7 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         </motion.div>
       </AnimatePresence>
 
-      {/* Contrôles premium - Version responsive avec centrage mobile */}
+      {/* Contrôles premium */}
       <div className="absolute bottom-12 left-0 right-0 z-30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between max-w-6xl mx-auto">
@@ -434,21 +475,22 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   onClick={() => goToSlide(index)}
                   className="group relative"
                 >
-                  <div className={`relative w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
-                    index === currentSlide
+                  <div className={`relative w-18 h-12 rounded-full overflow-hidden border-2 transition-all duration-300 group ${index === currentSlide
                       ? 'border-[#ee5253] shadow-2xl shadow-[#ee5253]/30 scale-110'
                       : 'border-white/20 hover:border-white/40'
-                  }`}>
+                    }`}>
                     <img
                       src={slide.image}
-                      alt=""
-                      className="w-full h-full object-cover"
+                      alt={`Slide ${index + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     {index === currentSlide && (
                       <div className="absolute inset-0 bg-[#ee5253]/20 backdrop-blur-sm" />
                     )}
+                    {/* Overlay au hover */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
-                  
+
                   {/* Indicateur actif */}
                   {index === currentSlide && (
                     <motion.div
