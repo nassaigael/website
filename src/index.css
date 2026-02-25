@@ -1,6 +1,12 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 
 :root {
+  /* === POLICES PREMIUM === */
+  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-secondary: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+  
   /* === COULEURS PRINCIPALES === */
   --color-primary: #ee5253;    
   --color-secondary: #ffffff;  
@@ -11,54 +17,123 @@
   --color-text: #000000;       
   --color-accent: #ee5253;     
   
-  
   /* === COULEURS DE SURFACE === */
   --color-surface-light: #f8fafc; 
   --color-surface-dark: #1e293b;
   --color-border: #e2e8f0;
-  
-  /* === POLICES === */
-  --font-family-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-family-serif: 'Georgia', 'Times New Roman', serif;
-  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
-  --font-family-malagasy: 'Arial', sans-serif;
-  }
-
-/* === STYLES DE BASE === */
-body {
-  font-family: var(--font-family-sans);
-  color: rgb(var(--color-text));
-  background-color: rgb(var(--color-background));
-  line-height: var(--line-height-normal);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-normal);
-  overflow-x: hidden;
 }
 
-
+/* === STYLES DE BASE === */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #ffffff;
-  color: #000000;
-  font-family: system-ui;
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
+/* === TYPOGRAPHIE === */
+
+/* Style premium pour tous les titres */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Accent sur les mots importants */
+h1 strong, h2 strong, h3 strong {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-style: italic;
+}
+
+/* Style pour les paragraphes */
+p {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* Style pour les textes plus légers (sous-titres, métadonnées) */
+.text-light {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
+/* Style pour les citations */
+blockquote, .quote {
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-primary);
+}
+
+/* Style pour les boutons et éléments interactifs */
+button, .button, .btn {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Style pour la navigation */
+nav, .nav-link {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Style pour les petits textes (copyright, légendes) */
+small, .small, .copyright, .caption {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  opacity: 0.7;
+}
+
+/* Style pour les textes avec accentuation */
+.text-accent {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+/* Style pour les cartes et composants */
+.card-title {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.card-text {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* === STYLES DE BASE === */
 img, video {
   max-width: 100%;
   height: auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-}
-
-html, body {
-  overflow-x: hidden;
-}
-
+/* Pour les grands éléments décoratifs */
 .absolute.-top-40.-right-40 {
   max-width: none;
 }
