@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import type { Slide } from '../../data/index';
+import { Link } from 'react-router-dom';
 
 interface CarouselProps {
   slides: Slide[];
@@ -376,11 +377,11 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 {/* Sous-titre premium */}
                 <motion.div custom={0} variants={textVariants}>
                   <div className="inline-flex items-center gap-2 mb-6">
-                    <div className="w-12 h-px bg-[#ee5253]" />
-                    <span className="text-[#ee5253] font-light tracking-[0.3em] text-sm uppercase">
+                    <div className="w-12 h-px bg-[#ffffff]" />
+                    <span className="text-[#ffffff] font-light tracking-[0.3em] text-sm uppercase">
                       {currentSlideData.subtitle[language]}
                     </span>
-                    <div className="w-12 h-px bg-[#ee5253]" />
+                    <div className="w-12 h-px bg-[#ffffff]" />
                   </div>
                 </motion.div>
 
@@ -413,53 +414,61 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 >
                   {currentSlideData.description[language]}
                 </motion.p>
-
-                {/* Boutons CTA premium */}
-                <motion.div
-                  custom={3}
-                  variants={textVariants}
-                  className="flex flex-col sm:flex-row gap-6 justify-center"
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group relative overflow-hidden px-10 py-5 bg-[#ee5253] text-white font-bold rounded-full text-lg shadow-2xl hover:shadow-[#ee5253]/30 transition-all duration-500"
-                  >
-                    <span className="relative z-10 flex items-center gap-3">
-                      <span>
-                        {language === 'mg' ? 'Hijery bebe kokoa' :
-                          language === 'fr' ? 'Découvrir' :
-                            'Discover'}
-                      </span>
-                      <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                    </span>
-                    <motion.div
-                      className="absolute inset-0 bg-linear-to-r from-[#d32f2f] to-[#ff6b6b]"
-                      initial={{ x: '100%' }}
-                      whileHover={{ x: 0 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </motion.button>
-
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group backdrop-blur-xl bg-white/10 border-2 border-white/30 text-white font-bold px-10 py-5 rounded-full text-lg hover:border-white/50 hover:bg-white/20 transition-all duration-500"
-                  >
-                    <span className="flex items-center gap-3">
-                      <span>
-                        {language === 'mg' ? 'Mifandray' :
-                          language === 'fr' ? 'Nous rejoindre' :
-                            'Join us'}
-                      </span>
-                    </span>
-                  </motion.button>
-                </motion.div>
               </motion.div>
             </div>
           </div>
         </motion.div>
       </AnimatePresence>
+
+      {/* BOUTONS CTA FIXES - TOUJOURS VISIBLES */}
+      <div className="absolute left-0 right-0 z-40 pointer-events-none" style={{ bottom: '160px' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center max-w-6xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pointer-events-auto">
+              {/* Bouton Découvrir */}
+              <Link to="/projects">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative overflow-hidden px-8 py-4 sm:px-10 sm:py-5 bg-[#ee5253] text-white font-bold rounded-full text-base sm:text-lg shadow-2xl hover:shadow-[#ee5253]/30 transition-all duration-500"
+                >
+                  <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                    <span>
+                      {language === 'mg' ? 'Hijery tetikasa' :
+                       language === 'fr' ? 'Découvrir nos projets' :
+                       'Discover our projects'}
+                    </span>
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-linear-to-r from-[#d32f2f] to-[#ff6b6b]"
+                    initial={{ x: '100%' }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </motion.button>
+              </Link>
+
+              {/* Bouton Nous rejoindre / Contact */}
+              <Link to="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group backdrop-blur-xl bg-white/10 border-2 border-white/30 text-white font-bold px-8 py-4 sm:px-10 sm:py-5 rounded-full text-base sm:text-lg hover:border-white/50 hover:bg-white/20 transition-all duration-500"
+                >
+                  <span className="flex items-center gap-2 sm:gap-3">
+                    <span>
+                      {language === 'mg' ? 'Mifandraisa' :
+                       language === 'fr' ? 'Nous contacter' :
+                       'Contact us'}
+                    </span>
+                  </span>
+                </motion.button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Contrôles premium */}
       <div className="absolute bottom-12 left-0 right-0 z-30">
@@ -475,10 +484,11 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   onClick={() => goToSlide(index)}
                   className="group relative"
                 >
-                  <div className={`relative w-1 h-12 rounded-full overflow-hidden border-2 transition-all duration-300 group ${index === currentSlide
+                  <div className={`relative w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
+                    index === currentSlide
                       ? 'border-[#ee5253] shadow-2xl shadow-[#ee5253]/30 scale-110'
                       : 'border-white/20 hover:border-white/40'
-                    }`}>
+                  }`}>
                     <img
                       src={slide.image}
                       alt={`Slide ${index + 1}`}
@@ -487,8 +497,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                     {index === currentSlide && (
                       <div className="absolute inset-0 bg-[#ee5253]/20 backdrop-blur-sm" />
                     )}
-                    {/* Overlay au hover */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
 
                   {/* Indicateur actif */}
