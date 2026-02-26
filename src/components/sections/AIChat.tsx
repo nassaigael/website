@@ -1,8 +1,7 @@
-// src/components/chat/AIChat.tsx
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
-import type { Message, FAQData, Translation, SupportedLanguage } from '../../types/chat_type';
+import type { Message, FAQData } from '../../types/chat_type';
 import ChatButton from '../../ui/ChatButton';
 import ChatHeader from '../layout/ChatHeader';
 import ChatMessages from '../states/ChatMessages';
@@ -10,80 +9,19 @@ import ChatInput from '../../ui/ChatInput';
 import ChatSuggestions from '../states/ChatSuggestions';
 import ClearChatModal from '../states/ClearChatModal';
 
-// Constantes
-const GEMINI_API_KEY = 'AIzaSyBTI1WOYl7aJkN8wJZ45QDS1enRBQp5Azg';
-const STORAGE_KEY = 'fizanakara-chat-history';
+import { translations } from '../../config/chatTranslations';
+import { getRandomSuggestions } from '../../config/chatSuggestions';
+import { formalMessages, errorMessages } from '../../config/chatMessages';
+import { formatMessageText, enhanceFAQFormatting } from '../../config/chatFormatter';
+import { STORAGE_KEY, TYPING_DELAY } from '../../types/chatConstants';
 
-// Traductions
-const translations: Record<SupportedLanguage, Translation> = {
-  mg: {
-    title: "Mpanampy AI FIZANAKARA",
-    placeholder: "Soraty eto ny fanontanianao...",
-    welcome: "Salama 👋! Mpanampy AI an'ny FIZANAKARA aho. Ahoana no ahafahako manampy anao anio?",
-    thinking: "Misaina kely...",
-    error: "Miala tsiny fa nisy olana. Azafady andramo indray.",
-    suggestions: "Fanontaniana mahazatra",
-    typeHere: "Soraty eto...",
-    clearChat: "Fafao ny resaka",
-    clearConfirm: "Hafafao ny resaka rehetra?",
-    clearTitle: "Fafana ny resaka",
-    clearMessage: "Tena te-hamafa ny resaka rehetra ve ianao? Tsy azo averina intsony ity hetsika ity.",
-    cancel: "Aza"
-  },
-  fr: {
-    title: "Assistant IA FIZANAKARA",
-    placeholder: "Tapez votre question ici...",
-    welcome: "Bonjour 👋! Je suis l'assistant IA de FIZANAKARA. Comment puis-je vous aider aujourd'hui ?",
-    thinking: "Réflexion en cours...",
-    error: "Désolé, une erreur est survenue. Veuillez réessayer.",
-    suggestions: "Questions fréquentes",
-    typeHere: "Tapez ici...",
-    clearChat: "Effacer la conversation",
-    clearConfirm: "Effacer toutes les conversations ?",
-    clearTitle: "Effacer la conversation",
-    clearMessage: "Êtes-vous sûr de vouloir effacer toute la conversation ? Cette action est irréversible.",
-    cancel: "Annuler"
-  },
-  en: {
-    title: "FIZANAKARA AI Assistant",
-    placeholder: "Type your question here...",
-    welcome: "Hello 👋! I'm the FIZANAKARA AI assistant. How can I help you today?",
-    thinking: "Thinking...",
-    error: "Sorry, an error occurred. Please try again.",
-    suggestions: "Common questions",
-    typeHere: "Type here...",
-    clearChat: "Clear chat",
-    clearConfirm: "Clear all conversations?",
-    clearTitle: "Clear conversation",
-    clearMessage: "Are you sure you want to clear the entire conversation? This action cannot be undone.",
-    cancel: "Cancel"
-  }
-};
-
-// Suggestions de questions
-const suggestionsList = {
-  mg: [
-    "Inona ny FIZANAKARA?",
-    "Iza i Ali Tawarath?",
-    "Inona avy ny tetikasa?",
-    "Ahoana no miditra ho mpikambana?",
-    "Taiza no misy anareo?"
-  ],
-  fr: [
-    "Qu'est-ce que FIZANAKARA ?",
-    "Qui est Ali Tawarath ?",
-    "Quels sont les projets ?",
-    "Comment devenir membre ?",
-    "Où êtes-vous situés ?"
-  ],
-  en: [
-    "What is FIZANAKARA?",
-    "Who is Ali Tawarath?",
-    "What are the projects?",
-    "How to become a member?",
-    "Where are you located?"
-  ]
-};
+// Type pour les messages parsés du localStorage
+interface StoredMessage {
+  id: number;
+  text: string;
+  sender: 'user' | 'bot';
+  timestamp: string;
+}
 
 const AIChat = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -92,24 +30,28 @@ const AIChat = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [faqData, setFaqData] = useState<FAQData | null>(null);
-  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [, setShowSuggestions] = useState(true);
   const [showClearModal, setShowClearModal] = useState(false);
+  const [currentSuggestions, setCurrentSuggestions] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { language } = useLanguage();
   const [nextId, setNextId] = useState(1);
 
-  const t: Translation = translations[language as SupportedLanguage] || translations.fr;
-  const currentSuggestions = suggestionsList[language as SupportedLanguage] || suggestionsList.fr;
+  const t = translations[language as keyof typeof translations] || translations.fr;
+
+  // Initialiser les suggestions aléatoires
+  useEffect(() => {
+    setCurrentSuggestions(getRandomSuggestions(language, 4));
+  }, [language]);
 
   // Charger l'historique depuis le localStorage
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        const parsed = JSON.parse(saved);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        setMessages(parsed.map((msg: any) => ({
+        const parsed = JSON.parse(saved) as StoredMessage[];
+        setMessages(parsed.map((msg: StoredMessage) => ({
           ...msg,
           timestamp: new Date(msg.timestamp)
         })));
@@ -131,11 +73,11 @@ const AIChat = () => {
   useEffect(() => {
     fetch('/docs/faq-data.json')
       .then(res => res.json())
-      .then(data => {
+      .then((data: FAQData) => {
         setFaqData(data);
         console.log("✅ FAQ chargée:", data.faq.length, "entrées");
       })
-      .catch(err => {
+      .catch((err: Error) => {
         console.error('❌ Erreur chargement FAQ:', err);
       });
   }, []);
@@ -167,9 +109,8 @@ const AIChat = () => {
     }
   }, [isOpen, isMinimized]);
 
-  // Recherche locale
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const findLocalAnswer = (question: string): string | null => {
+  // Recherche locale dans la FAQ
+  const findLocalAnswer = useCallback((question: string): string | null => {
     if (!faqData) return null;
 
     const lowerQuestion = question.toLowerCase();
@@ -193,67 +134,23 @@ const AIChat = () => {
         }
       }
 
+      const questionWords = faq.question.toLowerCase().split(' ').filter(w => w.length > 2);
+      const commonWords = words.filter(w => questionWords.includes(w));
+      if (commonWords.length > 1) {
+        score += commonWords.length * 2;
+      }
+
       if (score > (bestMatch?.score || 0)) {
         bestMatch = { answer: faq.answer, score };
       }
     }
 
     return bestMatch && bestMatch.score > 5 ? bestMatch.answer : null;
-  };
+  }, [faqData, language]);
 
-  // Appel Gemini
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const callGeminiAPI = async (question: string): Promise<string> => {
-    try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{
-              parts: [{
-                text: `Tu es un assistant pour l'association FIZANAKARA. 
-                Réponds en ${language === 'mg' ? 'malgache' : language === 'fr' ? 'français' : 'anglais'} de façon amicale et précise.
-                
-                Instructions de formatage :
-                - Utilise **gras** pour les mots importants
-                - Utilise *italique* pour les concepts clés
-                - Fais des listes avec des tirets (-)
-                - Sépare les idées avec des paragraphes
-                
-                Question: ${question}`
-              }]
-            }]
-          })
-        }
-      );
-
-      if (!response.ok) throw new Error(`API error: ${response.status}`);
-      const data = await response.json();
-      return data.candidates[0].content.parts[0].text;
-    } catch (error) {
-      console.error("Erreur Gemini:", error);
-      throw error;
-    }
-  };
-
-  // Formatage du texte
-  const formatMessageText = (text: string): string => {
-    if (!text) return '';
-
-    let formatted = text
-      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#ee5253] dark:text-[#ff6b6b]">$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em class="italic text-gray-700 dark:text-gray-300">$1</em>')
-      .replace(/^[-•]\s+(.*?)$/gm, '<span class="flex items-start gap-2 my-1"><span class="text-[#ee5253] font-bold">•</span><span>$1</span></span>')
-      .replace(/\n/g, '<br/>');
-
-    formatted = formatted.replace(
-      /((?:<span class="flex items-start gap-2 my-1">.*?<\/span>\s*)+)/g,
-      '<div class="my-3 space-y-1">$1</div>'
-    );
-
-    return formatted;
+  // Simuler un délai pour un effet de chargement stylé
+  const simulateTypingDelay = (): Promise<void> => {
+    return new Promise(resolve => setTimeout(resolve, TYPING_DELAY));
   };
 
   // Envoyer un message
@@ -271,12 +168,22 @@ const AIChat = () => {
     const currentQuestion = inputValue;
     setInputValue('');
     setIsLoading(true);
-    setShowSuggestions(false);
     setNextId(prev => prev + 1);
 
     try {
+      await simulateTypingDelay();
+      
       const localAnswer = findLocalAnswer(currentQuestion);
-      const botResponse = localAnswer || await callGeminiAPI(currentQuestion);
+      
+      let botResponse: string;
+      
+      if (localAnswer) {
+        botResponse = enhanceFAQFormatting(localAnswer);
+        console.log("✅ Réponse trouvée dans la FAQ");
+      } else {
+        botResponse = formalMessages[language as keyof typeof formalMessages] || formalMessages.fr;
+        console.log("ℹ️ Question hors FAQ - message formel envoyé");
+      }
 
       const botMessage: Message = {
         id: nextId + 1,
@@ -287,11 +194,19 @@ const AIChat = () => {
 
       setMessages(prev => [...prev, botMessage]);
       setNextId(prev => prev + 2);
-    } catch (error) {
+      
+      // Changer les suggestions APRÈS chaque question
+      const newSuggestions = getRandomSuggestions(language, 4);
+      setCurrentSuggestions(newSuggestions);
+      
+    } catch (error: unknown) {
       console.error("Erreur:", error);
+      
+      const errorMessage = errorMessages[language as keyof typeof errorMessages] || errorMessages.fr;
+
       setMessages(prev => [...prev, {
         id: nextId + 1,
-        text: t.error,
+        text: errorMessage,
         sender: 'bot',
         timestamp: new Date()
       }]);
@@ -299,7 +214,7 @@ const AIChat = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [inputValue, isLoading, nextId, findLocalAnswer, callGeminiAPI, t.error]);
+  }, [inputValue, isLoading, nextId, findLocalAnswer, language]);
 
   // Effacer la conversation
   const handleClearChat = () => {
@@ -311,6 +226,7 @@ const AIChat = () => {
     }]);
     setNextId(1);
     localStorage.removeItem(STORAGE_KEY);
+    setCurrentSuggestions(getRandomSuggestions(language, 4));
     setShowSuggestions(true);
     setShowClearModal(false);
   };
@@ -359,15 +275,14 @@ const AIChat = () => {
                   ref={messagesEndRef}
                 />
 
-                {showSuggestions && messages.length < 2 && (
-                  <div className="px-4">
-                    <ChatSuggestions
-                      suggestions={currentSuggestions}
-                      suggestionsText={t.suggestions}
-                      onSuggestionClick={handleSuggestionClick}
-                    />
-                  </div>
-                )}
+                {/* 4 suggestions aléatoires */}
+                <div className="px-4 pb-2">
+                  <ChatSuggestions
+                    suggestions={currentSuggestions}
+                    suggestionsText={t.suggestions}
+                    onSuggestionClick={handleSuggestionClick}
+                  />
+                </div>
 
                 <ChatInput
                   inputValue={inputValue}
@@ -384,7 +299,6 @@ const AIChat = () => {
         )}
       </AnimatePresence>
 
-      {/* Modale de confirmation */}
       <ClearChatModal
         isOpen={showClearModal}
         onClose={() => setShowClearModal(false)}

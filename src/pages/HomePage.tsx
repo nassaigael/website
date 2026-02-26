@@ -18,7 +18,7 @@ const HomePage = () => {
     <div
       className={`
         relative overflow-x-hidden min-h-screen
-        ${location.pathname === '/' ? '' : 'pt-0'}
+        ${location.pathname === '/' ? '' : 'pt-0'} bg-white dark:bg-[#1e293b]
       `}
     >
       {/* Carousel Section */}

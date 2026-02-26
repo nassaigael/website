@@ -3,39 +3,39 @@
     {
       "id": "identity",
       "question": "Qu'est-ce que FIZANAKARA ?",
-      "answer": "FIZANAKARA (Fikambanan'ny Zanak'Anakara) est l'association des descendants d'Ali Tawarath, représentant le groupe ethnique Anakara. Fondée en 1970 à Antananarivo, elle compte plus de 10 000 membres à Madagascar et dans la diaspora. L'association œuvre pour la préservation du patrimoine culturel, la promotion de l'éducation et le développement communautaire.",
-      "keywords": ["fizanakara", "association", "c'est quoi", "définition", "présentation", "organisation"],
+      "answer": "FIZANAKARA (Fikambanan'ny Zanak'Anakara) est l'association des descendants d'Ali Tawarath, représentant le groupe ethnique Anakara. Fondée en **1970** à Antananarivo, elle compte plus de **10 000 membres** à Madagascar et dans la diaspora. L'association œuvre pour la **préservation du patrimoine culturel**, la **promotion de l'éducation** et le **développement communautaire**.",
+      "keywords": ["fizanakara", "association", "c'est quoi", "définition", "présentation", "organisation", "à propos", "qui sommes nous"],
       "language": "fr",
       "category": "general"
     },
     {
       "id": "identity-mg",
       "question": "Inona ny FIZANAKARA ?",
-      "answer": "FIZANAKARA (Fikambanan'ny Zanak'Anakara) dia fikambanan'ny taranak'i Ali Tawarath, izay misolo tena ny vondrom-poko Anakara. Niorina tamin'ny taona 1970 tao Antananarivo izy io ary manana mpikambana maherin'ny 10.000 eto Madagasikara sy any ivelany. Ny tanjon'ny fikambanana dia ny fiarovana ny vakoka, fampivoarana ny fanabeazana ary ny fanohanana ny fiarahamonina.",
-      "keywords": ["fizanakara", "fikambanana", "inona", "famaritana", "fanazavana"],
+      "answer": "FIZANAKARA (Fikambanan'ny Zanak'Anakara) dia fikambanan'ny taranak'i **Ali Tawarath**, izay misolo tena ny vondrom-poko **Anakara**. Niorina tamin'ny taona **1970** tao Antananarivo izy io ary manana mpikambana **maherin'ny 10.000** eto Madagasikara sy any ivelany. Ny tanjon'ny fikambanana dia ny **fiarovana ny vakoka**, **fampivoarana ny fanabeazana** ary ny **fanohanana ny fiarahamonina**.",
+      "keywords": ["fizanakara", "fikambanana", "inona", "famaritana", "fanazavana", "momba"],
       "language": "mg",
       "category": "general"
     },
     {
       "id": "identity-en",
       "question": "What is FIZANAKARA?",
-      "answer": "FIZANAKARA (Fikambanan'ny Zanak'Anakara) is the association of Ali Tawarath's descendants, representing the Anakara ethnic group. Founded in 1970 in Antananarivo, it has more than 10,000 members in Madagascar and the diaspora. The association works to preserve cultural heritage, promote education, and support community development.",
-      "keywords": ["fizanakara", "what is", "definition", "association", "organization"],
+      "answer": "FIZANAKARA (Fikambanan'ny Zanak'Anakara) is the association of **Ali Tawarath's descendants**, representing the **Anakara** ethnic group. Founded in **1970** in Antananarivo, it has more than **10,000 members** in Madagascar and the diaspora. The association works to **preserve cultural heritage**, **promote education**, and **support community development**.",
+      "keywords": ["fizanakara", "what is", "definition", "association", "organization", "about"],
       "language": "en",
       "category": "general"
     },
     {
       "id": "history",
       "question": "Quelle est l'histoire des Anakara ?",
-      "answer": "Les Anakara sont un sous-groupe de l'ethnie Antemoro (ou Antaimoro), l'un des 18 groupes ethniques majeurs de Madagascar. Ils sont étroitement liés aux Antalaotra. Ils descendent d'Ali Tawarath, une figure ancestrale fondatrice arrivée à Madagascar en 1495 selon le Katibo MAHEFAMANANA MOSA. Leur berceau historique est la région de Vatomasina, dans le district de Vohipeno (région Fitovinany). Leur culture est un mélange unique d'influences africaines, arabes et austronésiennes.",
-      "keywords": ["histoire", "origine", "ali tawarath", "1495", "antemoro", "antaimoro", "vatomasina", "vohipeno"],
+      "answer": "Les **Anakara** sont un sous-groupe de l'ethnie **Antemoro** (ou Antaimoro), l'un des 18 groupes ethniques majeurs de Madagascar. Ils sont étroitement liés aux **Antalaotra**. Ils descendent d'**Ali Tawarath**, une figure ancestrale fondatrice arrivée à Madagascar en **1495** selon le **Katibo MAHEFAMANANA MOSA**. Leur berceau historique est la région de **Vatomasina**, dans le district de **Vohipeno** (région Fitovinany). Leur culture est un mélange unique d'influences **africaines, arabes et austronésiennes**.",
+      "keywords": ["histoire", "origine", "ali tawarath", "1495", "antemoro", "antaimoro", "vatomasina", "vohipeno", "antalaotra"],
       "language": "fr",
       "category": "history"
     },
     {
       "id": "history-mg",
       "question": "Inona ny tantaran'ny Anakara ?",
-      "answer": "Ny Anakara dia vondrona iray ao anatin'ny foko Antemoro (na Antaimoro), izay iray amin'ireo foko 18 lehibe eto Madagasikara. Misy fifandraisana akaiky amin'ny Antalaotra izy ireo. Taranak'i Ali Tawarath izy ireo, izay tonga teto Madagasikara tamin'ny taona 1495 araka ny Katibo MAHEFAMANANA MOSA. Ny tanindrazany dia ny faritr'i Vatomasina, distrikan'i Vohipeno (faritra Fitovinany). Ny kolontsainy dia fifangaroan'ny fitaoman'ny Afrikana, Arabo ary Aostraziana.",
+      "answer": "Ny **Anakara** dia vondrona iray ao anatin'ny foko **Antemoro** (na Antaimoro), izay iray amin'ireo foko 18 lehibe eto Madagasikara. Misy fifandraisana akaiky amin'ny **Antalaotra** izy ireo. Taranak'i **Ali Tawarath** izy ireo, izay tonga teto Madagasikara tamin'ny taona **1495** araka ny **Katibo MAHEFAMANANA MOSA**. Ny tanindrazany dia ny faritr'i **Vatomasina**, distrikan'i **Vohipeno** (faritra Fitovinany). Ny kolontsainy dia fifangaroan'ny fitaoman'ny **Afrikana, Arabo ary Aostraziana**.",
       "keywords": ["tantara", "fiaviana", "ali tawarath", "1495", "antemoro", "antaimoro", "vatomasina", "vohipeno"],
       "language": "mg",
       "category": "history"
@@ -43,7 +43,7 @@
     {
       "id": "history-en",
       "question": "What is the history of the Anakara?",
-      "answer": "The Anakara are a subgroup of the Antemoro (or Antaimoro) ethnic group, one of the 18 major ethnic groups of Madagascar. They are closely related to the Antalaotra. They descend from Ali Tawarath, a founding ancestral figure who arrived in Madagascar in 1495 according to the Katibo MAHEFAMANANA MOSA. Their historical homeland is the Vatomasina region, in the Vohipeno district (Fitovinany region). Their culture is a unique blend of African, Arab and Austronesian influences.",
+      "answer": "The **Anakara** are a subgroup of the **Antemoro** (or Antaimoro) ethnic group, one of the 18 major ethnic groups of Madagascar. They are closely related to the **Antalaotra**. They descend from **Ali Tawarath**, a founding ancestral figure who arrived in Madagascar in **1495** according to the **Katibo MAHEFAMANANA MOSA**. Their historical homeland is the **Vatomasina** region, in the **Vohipeno** district (Fitovinany region). Their culture is a unique blend of **African, Arab and Austronesian** influences.",
       "keywords": ["history", "origin", "ali tawarath", "1495", "antemoro", "antaimoro", "vatomasina", "vohipeno"],
       "language": "en",
       "category": "history"
@@ -51,226 +51,234 @@
     {
       "id": "mission",
       "question": "Quelle est la mission de FIZANAKARA ?",
-      "answer": "La mission de FIZANAKARA repose sur trois piliers fondamentaux :\n\n1) Fiarovana (Protection) : sauvegarder les objets sacrés (vakoka), les traditions ancestrales (fomba-drazana) et le patrimoine culturel.\n\n2) Fampahafantarana (Promotion) : faire connaître et diffuser la valeur et la richesse de l'identité Anakara à travers des événements, des publications et des ateliers.\n\n3) Fanohanana (Soutien) : soutenir les membres individuellement pour favoriser leur épanouissement personnel, leur éducation et leur développement professionnel.",
-      "keywords": ["mission", "objectifs", "rôle", "pilier", "fiarovana", "fampahafantarana", "fanohanana"],
+      "answer": "La mission de FIZANAKARA repose sur **trois piliers fondamentaux** :\n\n✨ **Fiarovana** (Protection) : sauvegarder les objets sacrés (**vakoka**), les traditions ancestrales (**fomba-drazana**) et le patrimoine culturel.\n\n📢 **Fampahafantarana** (Promotion) : faire connaître et diffuser la valeur et la richesse de l'identité Anakara à travers des événements, des publications et des ateliers.\n\n🤝 **Fanohanana** (Soutien) : soutenir les membres individuellement pour favoriser leur épanouissement personnel, leur éducation et leur développement professionnel.",
+      "keywords": ["mission", "objectifs", "rôle", "pilier", "fiarovana", "fampahafantarana", "fanohanana", "but"],
       "language": "fr",
       "category": "mission"
     },
     {
       "id": "vision",
       "question": "Quelle est la vision de FIZANAKARA ?",
-      "answer": "La vision de FIZANAKARA est : 'Hampitoetra maharitra mandrakizay ireo vakoka sy kolotsaina sarobidy nomen'Andriamanitra azy ireo' ce qui signifie 'Établir pour l'éternité le patrimoine et la culture précieuse que Dieu leur a donnés'.",
-      "keywords": ["vision", "philosophie", "idéal", "objectif long terme"],
+      "answer": "La vision de FIZANAKARA est :\n\n> **'Hampitoetra maharitra mandrakizay ireo vakoka sy kolotsaina sarobidy nomen'Andriamanitra azy ireo'**\n\nCe qui signifie : **'Établir pour l'éternité le patrimoine et la culture précieuse que Dieu leur a donnés'**.",
+      "keywords": ["vision", "philosophie", "idéal", "objectif long terme", "ambition"],
+      "language": "fr",
+      "category": "mission"
+    },
+    {
+      "id": "values",
+      "question": "Quelles sont les valeurs de FIZANAKARA ?",
+      "answer": "Les **cinq valeurs fondamentales** de FIZANAKARA sont :\n\n🤲 **Firaisankina** (Unité) : la solidarité entre les membres\n⚖️ **Fahamarinana** (Intégrité) : la conduite juste et loyale\n🙏 **Fahajenana** (Respect) : le respect des ancêtres et des traditions\n🎵 **Fiorenana** (Harmonie) : la collaboration et le dialogue\n🛡️ **Fanaperana** (Préservation) : la protection de l'héritage ancestral",
+      "keywords": ["valeurs", "principes", "firaisankina", "fahamarinana", "fahajenana", "fiorenana", "fanaperana"],
       "language": "fr",
       "category": "mission"
     },
     {
       "id": "projects",
       "question": "Quels sont les projets de FIZANAKARA ?",
-      "answer": "Les projets phares de FIZANAKARA incluent :\n\n• 'Voninahitra ho an'ny Fahaizana' : cérémonie de reconnaissance et remise de diplômes aux jeunes membres ayant réussi leurs études.\n\n• 'Cartable iray, Fahazavana iray' (Un Cartable, Une Lumière) : distribution de cartables et de fournitures scolaires aux élèves défavorisés dans les régions où vit la communauté Anakara.\n\n• 'Vakoka Velona' (Patrimoine Vivant) : sauvegarde du patrimoine immatériel à travers des enquêtes de terrain, collecte de témoignages et formation des jeunes.\n\n• Ateliers 'Mahafantatra ny niaviana' (Connaître ses Origines) : sessions de formation pour transmettre l'histoire du peuple Anakara aux jeunes générations.",
-      "keywords": ["projets", "programmes", "actions", "réalisations", "vakoka velona", "cartable", "voninahitra"],
+      "answer": "Les **projets phares** de FIZANAKARA incluent :\n\n🎓 **'Voninahitra ho an'ny Fahaizana'** : cérémonie de reconnaissance et remise de diplômes aux jeunes membres ayant réussi leurs études.\n\n📚 **'Cartable iray, Fahazavana iray'** (Un Cartable, Une Lumière) : distribution de cartables et de fournitures scolaires aux élèves défavorisés dans les régions où vit la communauté Anakara.\n\n🏛️ **'Vakoka Velona'** (Patrimoine Vivant) : sauvegarde du patrimoine immatériel à travers des enquêtes de terrain, collecte de témoignages et formation des jeunes.\n\n🌍 Ateliers **'Mahafantatra ny niaviana'** (Connaître ses Origines) : sessions de formation pour transmettre l'histoire du peuple Anakara aux jeunes générations.",
+      "keywords": ["projets", "programmes", "actions", "réalisations", "vakoka velona", "cartable", "voninahitra", "mahafantatra ny niaviana"],
       "language": "fr",
       "category": "projects"
     },
     {
       "id": "projects-mg",
       "question": "Inona avy ny tetikasan'ny FIZANAKARA ?",
-      "answer": "Ireto ny tetikasa lehibe ataon'ny FIZANAKARA :\n\n• 'Voninahitra ho an'ny Fahaizana' : lanonana fanomezana mari-pankasitrahana ho an'ireo tanora nahavita fianarana.\n\n• 'Cartable iray, Fahazavana iray' : fanomezana kitapo sy fitaovam-pianarana ho an'ireo mpianatra sahirana any amin'ny faritra misy ny Anakara.\n\n• 'Vakoka Velona' : fiarovana ny vakoka tsy azo tsapain-tanana amin'ny alalan'ny fanangonana tantara am-bava sy fanofanana ny tanora.\n\n• Atrikasa 'Mahafantatra ny niaviana' : fotoam-piofanana ho an'ny tanora mba hampitana ny tantaran'ny Anakara.",
-      "keywords": ["tetikasa", "programme", "vakoka velona", "cartable", "voninahitra"],
+      "answer": "Ireto ny **tetikasa lehibe** ataon'ny FIZANAKARA :\n\n🎓 **'Voninahitra ho an'ny Fahaizana'** : lanonana fanomezana mari-pankasitrahana ho an'ireo tanora nahavita fianarana.\n\n📚 **'Cartable iray, Fahazavana iray'** : fanomezana kitapo sy fitaovam-pianarana ho an'ireo mpianatra sahirana any amin'ny faritra misy ny Anakara.\n\n🏛️ **'Vakoka Velona'** : fiarovana ny vakoka tsy azo tsapain-tanana amin'ny alalan'ny fanangonana tantara am-bava sy fanofanana ny tanora.\n\n🌍 Atrikasa **'Mahafantatra ny niaviana'** : fotoam-piofanana ho an'ny tanora mba hampitana ny tantaran'ny Anakara.",
+      "keywords": ["tetikasa", "programme", "vakoka velona", "cartable", "voninahitra", "mahafantatra ny niaviana"],
       "language": "mg",
       "category": "projects"
     },
     {
       "id": "projects-en",
       "question": "What are FIZANAKARA's projects?",
-      "answer": "FIZANAKARA's flagship projects include:\n\n• 'Voninahitra ho an'ny Fahaizana' : recognition ceremony and diploma presentation for young members who have successfully completed their studies.\n\n• 'Cartable iray, Fahazavana iray' (One Bag, One Light) : distribution of school supplies to underprivileged students in Anakara communities.\n\n• 'Vakoka Velona' (Living Heritage) : preservation of intangible heritage through field surveys, oral history collection and youth training.\n\n• 'Mahafantatra ny niaviana' (Know Your Origins) workshops : training sessions to transmit Anakara history to younger generations.",
-      "keywords": ["projects", "programs", "actions", "vakoka velona", "cartable"],
+      "answer": "FIZANAKARA's **flagship projects** include:\n\n🎓 **'Voninahitra ho an'ny Fahaizana'** : recognition ceremony and diploma presentation for young members who have successfully completed their studies.\n\n📚 **'Cartable iray, Fahazavana iray'** (One Bag, One Light) : distribution of school supplies to underprivileged students in Anakara communities.\n\n🏛️ **'Vakoka Velona'** (Living Heritage) : preservation of intangible heritage through field surveys, oral history collection and youth training.\n\n🌍 **'Mahafantatra ny niaviana'** (Know Your Origins) workshops : training sessions to transmit Anakara history to younger generations.",
+      "keywords": ["projects", "programs", "actions", "vakoka velona", "cartable", "voninahitra", "know your origins"],
       "language": "en",
       "category": "projects"
     },
     {
       "id": "president",
       "question": "Qui est le président de FIZANAKARA ?",
-      "answer": "Le président actuel de FIZANAKARA est Patrick RAMONJAVELO. Il est à la tête de l'association et œuvre pour le développement et la pérennité des actions de FIZANAKARA. Sa citation emblématique est : 'Ravin'aviavy Ragnandria, tsara gn'avy, tsara gn'eviana', un proverbe malgache signifiant 'Bonnes origines, bon avenir'.",
-      "keywords": ["président", "patrick ramonjavelo", "dirigeant", "leader", "citation"],
+      "answer": "Le président actuel de FIZANAKARA est **Patrick RAMONJAVELO**. Il est à la tête de l'association et œuvre pour le développement et la pérennité des actions de FIZANAKARA. Sa citation emblématique est :\n\n> **'Ravin'aviavy Ragnandria, tsara gn'avy, tsara gn'eviana'**\n\nUn proverbe malgache signifiant **'Bonnes origines, bon avenir'**.",
+      "keywords": ["président", "patrick ramonjavelo", "dirigeant", "leader", "citation", "ravin'aviavy"],
       "language": "fr",
       "category": "governance"
     },
     {
       "id": "president-mg",
       "question": "Iza no filohan'ny FIZANAKARA ?",
-      "answer": "Patrick RAMONJAVELO no filohan'ny FIZANAKARA amin'izao fotoana izao. Izy no mitarika ny fikambanana ary miasa ho an'ny fivoarana sy ny faharetan'ny asan'ny FIZANAKARA. Ny teny nindramany dia : 'Ravin'aviavy Ragnandria, tsara gn'avy, tsara gn'eviana', izay midika hoe 'Ny fiaviana tsara dia mitondra ho amin'ny hoavy tsara'.",
-      "keywords": ["filoha", "patrick ramonjavelo", "mpitarika"],
+      "answer": "**Patrick RAMONJAVELO** no filohan'ny FIZANAKARA amin'izao fotoana izao. Izy no mitarika ny fikambanana ary miasa ho an'ny fivoarana sy ny faharetan'ny asan'ny FIZANAKARA. Ny teny nindramany dia :\n\n> **'Ravin'aviavy Ragnandria, tsara gn'avy, tsara gn'eviana'**\n\nIzay midika hoe **'Ny fiaviana tsara dia mitondra ho amin'ny hoavy tsara'**.",
+      "keywords": ["filoha", "patrick ramonjavelo", "mpitarika", "ravin'aviavy"],
       "language": "mg",
       "category": "governance"
     },
     {
       "id": "founders",
       "question": "Qui sont les fondateurs de FIZANAKARA ?",
-      "answer": "FIZANAKARA a été fondée en 1970 à Antananarivo par trois personnes principales :\n\n• MARSON Evariste\n• TSARAMONINA Jean Abraham\n• RANDRIAMAMPIONONA Franciscain\n\nCes visionnaires ont créé l'association pour rassembler la communauté Anakara vivant loin de leur terre ancestrale et préserver leur patrimoine culturel.",
-      "keywords": ["fondateurs", "créateurs", "1970", "marson", "tsaramonina", "randriamampionona"],
+      "answer": "FIZANAKARA a été fondée en **1970** à Antananarivo par **trois personnes principales** :\n\n👤 **MARSON Evariste**\n👤 **TSARAMONINA Jean Abraham**\n👤 **RANDRIAMAMPIONONA Franciscain**\n\nCes **visionnaires** ont créé l'association pour rassembler la communauté Anakara vivant loin de leur terre ancestrale et préserver leur patrimoine culturel.",
+      "keywords": ["fondateurs", "créateurs", "1970", "marson", "tsaramonina", "randriamampionona", "histoire association"],
       "language": "fr",
       "category": "history"
     },
     {
       "id": "contact",
       "question": "Comment contacter FIZANAKARA ?",
-      "answer": "Vous pouvez contacter FIZANAKARA par plusieurs moyens :\n\n📧 Email : contact@fizanakara.mg\n\n📞 Téléphone Antananarivo : (+261) 38 90 065 67\n📞 Téléphone Toamasina : (+261) 34 21 787 64\n\n🌐 Site web : www.fizanakara.mg (formulaire de contact disponible)\n\n📍 Siège social : Antananarivo, Madagascar\n📍 Adresse postale : À venir via le formulaire de contact",
-      "keywords": ["contact", "email", "téléphone", "adresse", "joindre", "coordonnées"],
+      "answer": "Vous pouvez contacter FIZANAKARA par plusieurs moyens :\n\n📧 **Email** : contact@fizanakara.mg\n\n📞 **Téléphone Antananarivo** : (+261) 38 90 065 67\n📞 **Téléphone Toamasina** : (+261) 34 21 787 64\n\n🌐 **Site web** : www.fizanakara.mg (formulaire de contact disponible)\n\n📍 **Siège social** : Antananarivo, Madagascar\n\n🕒 **Permanence** : Lundi au Vendredi, 9h - 17h",
+      "keywords": ["contact", "email", "téléphone", "adresse", "joindre", "coordonnées", "appeler", "écrire"],
       "language": "fr",
       "category": "contact"
     },
     {
       "id": "contact-mg",
       "question": "Ahoana no ifandraisana amin'ny FIZANAKARA ?",
-      "answer": "Afaka mifandray amin'ny FIZANAKARA amin'ny fomba maro ianao :\n\n📧 Mailaka : contact@fizanakara.mg\n\n📞 Telefaona Antananarivo : (+261) 38 90 065 67\n📞 Telefaona Toamasina : (+261) 34 21 787 64\n\n🌐 Tranonkala : www.fizanakara.mg (misy formulaire de contact)\n\n📍 Foibe : Antananarivo, Madagasikara",
-      "keywords": ["fifandraisana", "mailaka", "telefaona", "adiresy"],
+      "answer": "Afaka mifandray amin'ny FIZANAKARA amin'ny fomba maro ianao :\n\n📧 **Mailaka** : contact@fizanakara.mg\n\n📞 **Telefaona Antananarivo** : (+261) 38 90 065 67\n📞 **Telefaona Toamasina** : (+261) 34 21 787 64\n\n🌐 **Tranonkala** : www.fizanakara.mg (misy formulaire de contact)\n\n📍 **Foibe** : Antananarivo, Madagasikara\n\n🕒 **Ora fiasana** : Alatsinainy ka hatramin'ny Zoma, 9h - 17h",
+      "keywords": ["fifandraisana", "mailaka", "telefaona", "adiresy", "hifandray"],
       "language": "mg",
+      "category": "contact"
+    },
+    {
+      "id": "contact-en",
+      "question": "How to contact FIZANAKARA?",
+      "answer": "You can contact FIZANAKARA through several means:\n\n📧 **Email**: contact@fizanakara.mg\n\n📞 **Phone Antananarivo**: (+261) 38 90 065 67\n📞 **Phone Toamasina**: (+261) 34 21 787 64\n\n🌐 **Website**: www.fizanakara.mg (contact form available)\n\n📍 **Headquarters**: Antananarivo, Madagascar\n\n🕒 **Office hours**: Monday to Friday, 9am - 5pm",
+      "keywords": ["contact", "email", "phone", "address", "reach", "call"],
+      "language": "en",
       "category": "contact"
     },
     {
       "id": "locations",
       "question": "Où sont situées les antennes de FIZANAKARA ?",
-      "answer": "FIZANAKARA est active dans six villes de Madagascar :\n\n1. Antananarivo (siège social et bureau principal)\n2. Vatomasina (berceau historique du peuple Anakara)\n3. Manakara\n4. Fianarantsoa\n5. Mahajanga\n6. Toamasina\n\nCette présence couvre les principales zones de migration et d'installation des Anakara à travers l'île.",
-      "keywords": ["antennes", "localisation", "villes", "régions", "adresse", "antananarivo", "vatomasina", "manakara", "fianarantsoa", "mahajanga", "toamasina"],
+      "answer": "FIZANAKARA est active dans **six villes de Madagascar** :\n\n1️⃣ **Antananarivo** (siège social et bureau principal)\n2️⃣ **Vatomasina** (berceau historique du peuple Anakara)\n3️⃣ **Manakara**\n4️⃣ **Fianarantsoa**\n5️⃣ **Mahajanga**\n6️⃣ **Toamasina**\n\nCette présence couvre les principales zones de migration et d'installation des Anakara à travers l'île.",
+      "keywords": ["antennes", "localisation", "villes", "régions", "adresse", "antananarivo", "vatomasina", "manakara", "fianarantsoa", "mahajanga", "toamasina", "où"],
       "language": "fr",
       "category": "contact"
     },
     {
       "id": "locations-mg",
       "question": "Aiza no misy ny sampan'ny FIZANAKARA ?",
-      "answer": "Miasa any amin'ny tanàna enina eto Madagasikara ny FIZANAKARA :\n\n1. Antananarivo (foibe sy birao lehibe)\n2. Vatomasina (tanindrazan'ny Anakara)\n3. Manakara\n4. Fianarantsoa\n5. Mahajanga\n6. Toamasina\n\nIreo no faritra misy ny Anakara mipetraka.",
-      "keywords": ["sampana", "toerana", "tanàna", "antananarivo", "vatomasina", "manakara", "fianarantsoa", "mahajanga", "toamasina"],
+      "answer": "Miasa any amin'ny **tanàna enina** eto Madagasikara ny FIZANAKARA :\n\n1️⃣ **Antananarivo** (foibe sy birao lehibe)\n2️⃣ **Vatomasina** (tanindrazan'ny Anakara)\n3️⃣ **Manakara**\n4️⃣ **Fianarantsoa**\n5️⃣ **Mahajanga**\n6️⃣ **Toamasina**\n\nIreo no faritra misy ny Anakara mipetraka.",
+      "keywords": ["sampana", "toerana", "tanàna", "antananarivo", "vatomasina", "manakara", "fianarantsoa", "mahajanga", "toamasina", "aiza"],
       "language": "mg",
       "category": "contact"
     },
     {
       "id": "members",
       "question": "Combien de membres compte FIZANAKARA ?",
-      "answer": "FIZANAKARA compte plus de 10 000 membres (mahery ny 10.000). Ces membres sont répartis à travers Madagascar (particulièrement dans les six villes où l'association est active) et dans la diaspora à travers le monde (notamment en France, à La Réunion, et dans d'autres pays). L'association est ouverte à tous les descendants d'Anakara, sans distinction de génération, de lieu de résidence ou de classe sociale.",
-      "keywords": ["membres", "effectif", "nombre", "adhérents", "10000", "diaspora"],
+      "answer": "FIZANAKARA compte **plus de 10 000 membres** (mahery ny 10.000). Ces membres sont répartis :\n\n🇲🇬 **À Madagascar** : dans les six villes où l'association est active\n🌍 **Dans la diaspora** : notamment en **France**, à **La Réunion**, et dans d'autres pays\n\nL'association est ouverte à **tous les descendants d'Anakara**, sans distinction de génération, de lieu de résidence ou de classe sociale.",
+      "keywords": ["membres", "effectif", "nombre", "adhérents", "10000", "diaspora", "combien"],
       "language": "fr",
       "category": "demographics"
     },
     {
-      "id": "events-2025",
-      "question": "Quels événements FIZANAKARA a-t-elle organisés en 2025 ?",
-      "answer": "En 2025, FIZANAKARA a organisé deux événements majeurs :\n\n🗓️ 5 mai 2025 : SAKANDRO 2025 - Rassemblement annuel pour renforcer la fraternité et l'unité des membres, connecter la nouvelle génération à ses racines et poursuivre la mission de protection culturelle.\n\n🗓️ 14 mai 2025 : Lancement officiel du site web www.fizanakara.mg - Mise en ligne de la plateforme numérique officielle pour diffuser l'information, centraliser les connaissances culturelles et unir la communauté à l'ère numérique.",
-      "keywords": ["événements", "2025", "sakandro", "site web", "actualités", "lancement"],
-      "language": "fr",
-      "category": "events"
-    },
-    {
-      "id": "events-2025-mg",
-      "question": "Inona ny hetsika nataon'ny FIZANAKARA tamin'ny 2025 ?",
-      "answer": "Tamin'ny taona 2025, dia nisy hetsika roa lehibe nataon'ny FIZANAKARA :\n\n🗓️ 5 Mey 2025 : SAKANDRO 2025 - Fihaonambe isan-taona mba hanamafisana ny fifandraisan'ny mpikambana sy hampitana ny kolontsaina amin'ny taranaka vaovao.\n\n🗓️ 14 Mey 2025 : Fanombohana ofisialy ny tranonkala www.fizanakara.mg - Fampidirana ny sehatra nomerika ofisialy mba hizarana vaovao sy hitahirizana ny fahalalana momba ny kolontsaina.",
-      "keywords": ["hetsika", "2025", "sakandro", "tranonkala", "vaovao"],
-      "language": "mg",
-      "category": "events"
-    },
-    {
-      "id": "glossary-vakoka",
-      "question": "Que signifie le mot 'Vakoka' ?",
-      "answer": "'Vakoka' signifie patrimoine, objets sacrés ou de valeur historique et culturelle en malgache. C'est un concept central pour FIZANAKARA, qui a un projet nommé 'Vakoka Velona' (Patrimoine Vivant) dédié à la sauvegarde du patrimoine immatériel. Les vakoka peuvent inclure des objets physiques (comme des artefacts historiques) mais aussi des traditions orales, des chants, des danses et des savoir-faire ancestraux.",
-      "keywords": ["glossaire", "vocabulaire", "vakoka", "définition", "mot", "patrimoine"],
-      "language": "fr",
-      "category": "glossary"
-    },
-    {
-      "id": "glossary-kolontsaina",
-      "question": "Que signifie le mot 'Kolontsaina' ?",
-      "answer": "'Kolontsaina' (ou 'kolotsaina') signifie culture en malgache. Dans le contexte de FIZANAKARA, cela englobe l'ensemble des traditions, coutumes, valeurs et pratiques culturelles du peuple Anakara transmises de génération en génération.",
-      "keywords": ["glossaire", "kolontsaina", "culture", "définition"],
-      "language": "fr",
-      "category": "glossary"
-    },
-    {
-      "id": "glossary-fomba-drazana",
-      "question": "Que signifie 'Fomba-drazana' ?",
-      "answer": "'Fomba-drazana' signifie coutumes ancestrales en malgache. Ce terme désigne les traditions héritées des ancêtres (razana) qui régissent la vie sociale, les cérémonies et les rituels du peuple Anakara.",
-      "keywords": ["glossaire", "fomba-drazana", "coutumes", "traditions", "ancêtres"],
-      "language": "fr",
-      "category": "glossary"
-    },
-    {
-      "id": "ali-tawarath",
-      "question": "Qui était Ali Tawarath ?",
-      "answer": "Ali Tawarath est l'ancêtre fondateur du peuple Anakara. Selon le Katibo MAHEFAMANANA MOSA (un manuscrit historique), il est arrivé à Madagascar en 1495, venant probablement d'Arabie ou d'Afrique de l'Est en tant que commerçant ou navigateur. Il est considéré comme la figure ancestrale à l'origine du clan Anakara au sein de l'ethnie Antemoro. Il a introduit des éléments culturels, dont probablement l'écriture arabo-malgache (Sorabe).",
-      "keywords": ["ali tawarath", "ancêtre", "fondateur", "histoire", "1495"],
-      "language": "fr",
-      "category": "history"
-    },
-    {
-      "id": "katibo",
-      "question": "Qu'est-ce que le Katibo MAHEFAMANANA MOSA ?",
-      "answer": "Le Katibo MAHEFAMANANA MOSA est un manuscrit historique (Sorabe) qui relate l'histoire des Antemoro et notamment l'arrivée d'Ali Tawarath à Madagascar en 1495. Les Sorabe sont des textes écrits en malgache utilisant l'alphabet arabe, traditionnellement détenus par les familles de scribes (katibo) chez les Antemoro.",
-      "keywords": ["katibo", "mahefamanana mosa", "manuscrit", "sorabe", "histoire", "écriture"],
-      "language": "fr",
-      "category": "history"
-    },
-    {
-      "id": "sakandro",
-      "question": "Qu'est-ce que le Sakandro ?",
-      "answer": "Le Sakandro est le grand rassemblement annuel de FIZANAKARA qui réunit tous les descendants Anakara. Il a généralement lieu en août à Vatomasina Vohipeno. Au programme : cérémonies traditionnelles, ateliers d'écriture Anakara, conférences sur l'histoire, et festivités culturelles. C'est un moment clé pour renforcer les liens communautaires et transmettre le patrimoine aux jeunes générations.",
-      "keywords": ["sakandro", "rassemblement", "événement", "fête", "tradition"],
-      "language": "fr",
-      "category": "events"
-    },
-    {
-      "id": "antemoro",
-      "question": "Qui sont les Antemoro ?",
-      "answer": "Les Antemoro (ou Antaimoro) sont l'un des 18 groupes ethniques majeurs de Madagascar, principalement installés sur la côte sud-est de l'île. Ils sont réputés pour leur connaissance de l'écriture arabo-malgache (Sorabe) et leurs traditions de scribes et de devins (mpanandro). Les Anakara constituent un sous-groupe des Antemoro.",
-      "keywords": ["antemoro", "antaimoro", "ethnie", "peuple", "sud-est"],
-      "language": "fr",
-      "category": "history"
-    },
-    {
-      "id": "sorabe",
-      "question": "Qu'est-ce que le Sorabe ?",
-      "answer": "Le Sorabe est un système d'écriture arabo-malgache utilisé traditionnellement par les Antemoro et leurs sous-groupes comme les Anakara. Il utilise l'alphabet arabe adapté pour transcrire la langue malgache. Les textes en Sorabe (appelés aussi katibo) contiennent des récits historiques, généalogiques, des formules magiques et des savoirs traditionnels.",
-      "keywords": ["sorabe", "écriture", "alphabet", "manuscrit", "arabo-malgache"],
-      "language": "fr",
-      "category": "culture"
-    },
-    {
-      "id": "values",
-      "question": "Quelles sont les valeurs de FIZANAKARA ?",
-      "answer": "Les valeurs fondamentales de FIZANAKARA sont :\n\n• Firaisankina (Unité) : la solidarité entre les membres\n• Fahamarinana (Intégrité) : la conduite juste et loyale\n• Fahajenana (Respect) : le respect des ancêtres et des traditions\n• Fiorenana (Harmonie) : la collaboration et le dialogue\n• Fanaperana (Préservation) : la protection de l'héritage ancestral",
-      "keywords": ["valeurs", "principes", "firaisankina", "fahamarinana", "fahajenana", "fiorenana"],
-      "language": "fr",
-      "category": "mission"
-    },
-    {
-      "id": "president-citation",
-      "question": "Quelle est la citation du président Patrick RAMONJAVELO ?",
-      "answer": "La citation emblématique du président Patrick RAMONJAVELO est : 'Ravin'aviavy Ragnandria, tsara gn'avy, tsara gn'eviana'. C'est un proverbe malgache qui signifie 'Bonnes origines, bon avenir'. Il exprime la conviction que la fierté et la connaissance des racines sont essentielles pour construire un avenir prospère. Il ajoute : 'Ko indro ny tanako mivelatra ho an'ireo izay vonona hanampy ahy mba hahatratrarana ny tanjona...' (Et voici ma main tendue à ceux qui sont prêts à m'aider à atteindre les objectifs).",
-      "keywords": ["citation", "patrick ramonjavelo", "proverbe", "parole", "ravin'aviavy"],
-      "language": "fr",
-      "category": "governance"
-    },
-    {
       "id": "adhesion",
       "question": "Comment devenir membre de FIZANAKARA ?",
-      "answer": "Pour devenir membre de FIZANAKARA, vous pouvez :\n\n1. Contacter l'association via le formulaire sur le site web www.fizanakara.mg\n2. Envoyer un email à contact@fizanakara.mg\n3. Vous rendre dans l'une des antennes (Antananarivo, Vatomasina, Manakara, Fianarantsoa, Mahajanga, Toamasina)\n\nLes conditions d'adhésion : être descendant Anakara ou partager les valeurs de l'association, accepter les statuts et s'acquitter d'une cotisation annuelle.",
-      "keywords": ["adhésion", "devenir membre", "inscription", "rejoindre", "cotisation"],
+      "answer": "Pour devenir membre de FIZANAKARA, vous pouvez :\n\n1️⃣ Contacter l'association via le **formulaire** sur le site web www.fizanakara.mg\n2️⃣ Envoyer un **email** à contact@fizanakara.mg\n3️⃣ Vous rendre dans **l'une des antennes** (Antananarivo, Vatomasina, Manakara, Fianarantsoa, Mahajanga, Toamasina)\n\n**Conditions d'adhésion** :\n- Être descendant Anakara ou partager les valeurs de l'association\n- Accepter les statuts\n- S'acquitter d'une **cotisation annuelle**",
+      "keywords": ["adhésion", "devenir membre", "inscription", "rejoindre", "cotisation", "comment"],
       "language": "fr",
       "category": "membership"
     },
     {
       "id": "adhesion-mg",
       "question": "Ahoana no ahafahana miditra ho mpikambana amin'ny FIZANAKARA ?",
-      "answer": "Mba hiditra ho mpikambana ao amin'ny FIZANAKARA dia afaka :\n\n1. Mifandray amin'ny fikambanana amin'ny alalan'ny formulaire ao amin'ny tranonkala www.fizanakara.mg\n2. Mandefa mailaka any amin'ny contact@fizanakara.mg\n3. Mankany amin'ny sampana iray (Antananarivo, Vatomasina, Manakara, Fianarantsoa, Mahajanga, Toamasina)\n\nNy fepetra : maha-taranaka Anakara na manaiky ny soatoavin'ny fikambanana, manaiky ny sata, ary mandoa ny saram-pikambana isan-taona.",
-      "keywords": ["fidirana", "mpikambana", "fisoratana anarana"],
+      "answer": "Mba hiditra ho mpikambana ao amin'ny FIZANAKARA dia afaka :\n\n1️⃣ Mifandray amin'ny fikambanana amin'ny alalan'ny **formulaire** ao amin'ny tranonkala www.fizanakara.mg\n2️⃣ Mandefa **mailaka** any amin'ny contact@fizanakara.mg\n3️⃣ Mankany amin'ny **sampana iray** (Antananarivo, Vatomasina, Manakara, Fianarantsoa, Mahajanga, Toamasina)\n\nNy **fepetra** :\n- Maha-taranaka Anakara na manaiky ny soatoavin'ny fikambanana\n- Manaiky ny sata\n- Mandoa ny **saram-pikambana isan-taona**",
+      "keywords": ["fidirana", "mpikambana", "fisoratana anarana", "ahoana"],
       "language": "mg",
       "category": "membership"
     },
     {
       "id": "diaspora",
       "question": "Comment les membres de la diaspora peuvent-ils participer ?",
-      "answer": "Les membres de la diaspora peuvent participer à la vie de FIZANAKARA de plusieurs façons :\n\n• En restant informés via le site web et les réseaux sociaux\n• En assistant aux événements majeurs comme le Sakandro (qui peut être l'occasion de voyages)\n• En contribuant financièrement aux projets de l'association\n• En partageant leurs compétences et expertises avec la communauté\n• En aidant à promouvoir la culture Anakara dans leur pays de résidence",
-      "keywords": ["diaspora", "étranger", "france", "réunion", "participation", "distance"],
+      "answer": "Les membres de la diaspora peuvent participer à la vie de FIZANAKARA de plusieurs façons :\n\n🌐 En restant **informés** via le site web et les réseaux sociaux\n✈️ En assistant aux **événements majeurs** comme le Sakandro\n💰 En **contribuant financièrement** aux projets de l'association\n🧠 En **partageant leurs compétences et expertises** avec la communauté\n🎭 En aidant à **promouvoir la culture Anakara** dans leur pays de résidence",
+      "keywords": ["diaspora", "étranger", "france", "réunion", "participation", "distance", "expatrié"],
       "language": "fr",
       "category": "membership"
+    },
+    {
+      "id": "events-2025",
+      "question": "Quels événements FIZANAKARA a-t-elle organisés en 2025 ?",
+      "answer": "En **2025**, FIZANAKARA a organisé deux événements majeurs :\n\n🗓️ **5 mai 2025** : **SAKANDRO 2025** - Rassemblement annuel pour renforcer la fraternité et l'unité des membres, connecter la nouvelle génération à ses racines et poursuivre la mission de protection culturelle.\n\n🗓️ **14 mai 2025** : **Lancement officiel du site web** www.fizanakara.mg - Mise en ligne de la plateforme numérique officielle pour diffuser l'information, centraliser les connaissances culturelles et unir la communauté à l'ère numérique.",
+      "keywords": ["événements", "2025", "sakandro", "site web", "actualités", "lancement", "nouveautés"],
+      "language": "fr",
+      "category": "events"
+    },
+    {
+      "id": "events-2025-mg",
+      "question": "Inona ny hetsika nataon'ny FIZANAKARA tamin'ny 2025 ?",
+      "answer": "Tamin'ny taona **2025**, dia nisy hetsika roa lehibe nataon'ny FIZANAKARA :\n\n🗓️ **5 Mey 2025** : **SAKANDRO 2025** - Fihaonambe isan-taona mba hanamafisana ny fifandraisan'ny mpikambana sy hampitana ny kolontsaina amin'ny taranaka vaovao.\n\n🗓️ **14 Mey 2025** : **Fanombohana ofisialy ny tranonkala** www.fizanakara.mg - Fampidirana ny sehatra nomerika ofisialy mba hizarana vaovao sy hitahirizana ny fahalalana momba ny kolontsaina.",
+      "keywords": ["hetsika", "2025", "sakandro", "tranonkala", "vaovao"],
+      "language": "mg",
+      "category": "events"
+    },
+    {
+      "id": "sakandro",
+      "question": "Qu'est-ce que le Sakandro ?",
+      "answer": "Le **Sakandro** est le grand **rassemblement annuel** de FIZANAKARA qui réunit tous les descendants Anakara. Il a généralement lieu en **août** à **Vatomasina Vohipeno**. Au programme :\n\n🪘 **Cérémonies traditionnelles**\n✍️ **Ateliers d'écriture Anakara**\n📚 **Conférences sur l'histoire**\n🎉 **Festivités culturelles**\n\nC'est un **moment clé** pour renforcer les liens communautaires et transmettre le patrimoine aux jeunes générations.",
+      "keywords": ["sakandro", "rassemblement", "événement", "fête", "tradition", "annuel", "août", "vatomasina"],
+      "language": "fr",
+      "category": "events"
+    },
+    {
+      "id": "glossary-vakoka",
+      "question": "Que signifie le mot 'Vakoka' ?",
+      "answer": "**'Vakoka'** signifie **patrimoine**, **objets sacrés** ou de **valeur historique et culturelle** en malgache. C'est un concept central pour FIZANAKARA, qui a un projet nommé **'Vakoka Velona'** (Patrimoine Vivant) dédié à la sauvegarde du patrimoine immatériel. Les vakoka peuvent inclure :\n\n🏺 Des **objets physiques** (artefacts historiques)\n📜 Des **traditions orales**\n🎵 Des **chants et danses**\n🔧 Des **savoir-faire ancestraux**",
+      "keywords": ["glossaire", "vocabulaire", "vakoka", "définition", "mot", "patrimoine", "signification"],
+      "language": "fr",
+      "category": "glossary"
+    },
+    {
+      "id": "glossary-kolontsaina",
+      "question": "Que signifie le mot 'Kolontsaina' ?",
+      "answer": "**'Kolontsaina'** (ou 'kolotsaina') signifie **culture** en malgache. Dans le contexte de FIZANAKARA, cela englobe l'ensemble des :\n\n📿 **Traditions**\n⚖️ **Coutumes**\n💫 **Valeurs**\n🎭 **Pratiques culturelles**\n\ndu peuple Anakara transmises de génération en génération.",
+      "keywords": ["glossaire", "kolontsaina", "culture", "définition", "signification"],
+      "language": "fr",
+      "category": "glossary"
+    },
+    {
+      "id": "glossary-fomba-drazana",
+      "question": "Que signifie 'Fomba-drazana' ?",
+      "answer": "**'Fomba-drazana'** signifie **coutumes ancestrales** en malgache. Ce terme désigne les traditions héritées des ancêtres (**razana**) qui régissent :\n\n👥 La **vie sociale**\n🎊 Les **cérémonies**\n🙏 Les **rituels**\n\ndu peuple Anakara.",
+      "keywords": ["glossaire", "fomba-drazana", "coutumes", "traditions", "ancêtres", "signification"],
+      "language": "fr",
+      "category": "glossary"
+    },
+    {
+      "id": "ali-tawarath",
+      "question": "Qui était Ali Tawarath ?",
+      "answer": "**Ali Tawarath** est l'**ancêtre fondateur** du peuple Anakara. Selon le **Katibo MAHEFAMANANA MOSA** (un manuscrit historique), il est arrivé à Madagascar en **1495**, venant probablement d'**Arabie** ou d'**Afrique de l'Est** en tant que commerçant ou navigateur. Il est considéré comme la figure ancestrale à l'origine du clan Anakara au sein de l'ethnie Antemoro. Il a introduit des éléments culturels, dont probablement l'écriture arabo-malgache (**Sorabe**).",
+      "keywords": ["ali tawarath", "ancêtre", "fondateur", "histoire", "1495", "origine"],
+      "language": "fr",
+      "category": "history"
+    },
+    {
+      "id": "katibo",
+      "question": "Qu'est-ce que le Katibo MAHEFAMANANA MOSA ?",
+      "answer": "Le **Katibo MAHEFAMANANA MOSA** est un **manuscrit historique** (**Sorabe**) qui relate l'histoire des Antemoro et notamment l'arrivée d'**Ali Tawarath** à Madagascar en **1495**. Les **Sorabe** sont des textes écrits en malgache utilisant l'alphabet arabe, traditionnellement détenus par les familles de scribes (**katibo**) chez les Antemoro.",
+      "keywords": ["katibo", "mahefamanana mosa", "manuscrit", "sorabe", "histoire", "écriture", "document"],
+      "language": "fr",
+      "category": "history"
+    },
+    {
+      "id": "antemoro",
+      "question": "Qui sont les Antemoro ?",
+      "answer": "Les **Antemoro** (ou Antaimoro) sont l'un des **18 groupes ethniques majeurs** de Madagascar, principalement installés sur la **côte sud-est** de l'île. Ils sont réputés pour :\n\n✍️ Leur connaissance de l'écriture **arabo-malgache** (Sorabe)\n📜 Leurs traditions de **scribes** et de **devins** (mpanandro)\n\nLes **Anakara** constituent un **sous-groupe** des Antemoro.",
+      "keywords": ["antemoro", "antaimoro", "ethnie", "peuple", "sud-est", "scribe", "mpanandro"],
+      "language": "fr",
+      "category": "history"
+    },
+    {
+      "id": "sorabe",
+      "question": "Qu'est-ce que le Sorabe ?",
+      "answer": "Le **Sorabe** est un **système d'écriture arabo-malgache** utilisé traditionnellement par les Antemoro et leurs sous-groupes comme les Anakara. Il utilise l'**alphabet arabe adapté** pour transcrire la langue malgache. Les textes en Sorabe (appelés aussi **katibo**) contiennent :\n\n📖 Des **récits historiques**\n👪 Des **généalogies**\n✨ Des **formules magiques**\n🧠 Des **savoirs traditionnels**",
+      "keywords": ["sorabe", "écriture", "alphabet", "manuscrit", "arabo-malgache", "katibo"],
+      "language": "fr",
+      "category": "culture"
+    },
+    {
+      "id": "president-citation",
+      "question": "Quelle est la citation du président Patrick RAMONJAVELO ?",
+      "answer": "La citation emblématique du président **Patrick RAMONJAVELO** est :\n\n> **'Ravin'aviavy Ragnandria, tsara gn'avy, tsara gn'eviana'**\n\nC'est un proverbe malgache qui signifie **'Bonnes origines, bon avenir'**. Il exprime la conviction que la fierté et la connaissance des racines sont essentielles pour construire un avenir prospère.\n\nIl ajoute :\n> **'Ko indro ny tanako mivelatra ho an'ireo izay vonona hanampy ahy mba hahatratrarana ny tanjona...'**\n\n(Et voici ma main tendue à ceux qui sont prêts à m'aider à atteindre les objectifs)",
+      "keywords": ["citation", "patrick ramonjavelo", "proverbe", "parole", "ravin'aviavy", "fame"],
+      "language": "fr",
+      "category": "governance"
     }
   ]
 }

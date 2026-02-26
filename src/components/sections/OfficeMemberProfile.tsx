@@ -42,7 +42,18 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
     const getRankBadge = () => {
         const role = member.role.en;
 
-        if (role === 'President') {
+        if (member.isKing) {
+            return {
+                icon: <FaCrown className="w-3 h-3" />,
+                text: { mg: 'Mpanjaka', fr: 'Roi', en: 'King' },
+                bg: 'bg-[#ee5253]',
+                description: {
+                    mg: 'Mpanjaka nentim-paharazana',
+                    fr: 'Roi traditionnel',
+                    en: 'Traditional King'
+                }
+            };
+        } else if (role === 'President') {
             return {
                 icon: <FaCrown className="w-3 h-3" />,
                 text: { mg: 'Filoha', fr: 'Président', en: 'President' },
@@ -85,7 +96,13 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
     const getSpeech = () => {
         const role = member.role.en;
 
-        if (role === 'President') {
+        if (member.isKing) {
+            return {
+                mg: `Mitondra sy mitahiry ny fomban-drazana Anakara. Mpanelanelana eo amin'ny razana sy ny taranaka ankehitriny.`,
+                fr: `Je guide et préserve les coutumes Anakara. Je suis le médiateur entre les ancêtres et les générations actuelles.`,
+                en: `I guide and preserve Anakara customs. I am the mediator between ancestors and current generations.`
+            };
+        } else if (role === 'President') {
             return {
                 mg: `Miarahaba anareo rehetra. Ny tanjona dia ny hampandroso ny fiarahamonina sy hitahiry ny kolontsaina.`,
                 fr: `Je suis honoré de diriger cette association. Notre mission est de développer notre communauté tout en préservant notre patrimoine culturel.`,
@@ -149,23 +166,30 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                         {/* CONTENU RESPONSIVE */}
                         <div className="flex flex-col lg:flex-row">
                             
-                            {/* COLONNE GAUCHE - PHOTO */}
-                            <div className="relative w-full lg:w-2/5 h-75 sm:h-87.5 lg:h-125 overflow-hidden">
-                                {/* Image */}
+                            {/* COLONNE GAUCHE - PHOTO avec corps entier visible */}
+                            <div className="relative w-full lg:w-2/5 h-100 sm:h-125 lg:h-150 overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                {/* Placeholder de chargement */}
                                 {!imageLoaded && (
                                     <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
                                 )}
+                                
+                                {/* Image avec corps entier visible */}
                                 <img
                                     src={member.image}
                                     alt={member.name}
                                     onLoad={() => setImageLoaded(true)}
-                                    className={`w-full h-full object-cover transition-opacity duration-500 ${
+                                    className={`w-full h-full transition-opacity duration-500 ${
                                         imageLoaded ? 'opacity-100' : 'opacity-0'
                                     }`}
+                                    style={{ 
+                                        objectFit: 'contain', // Change de 'cover' à 'contain' pour voir tout le corps
+                                        objectPosition: 'center center',
+                                        backgroundColor: '#f3f4f6' // Fond gris clair pour les espaces vides
+                                    }}
                                 />
                                 
-                                {/* Overlay dégradé */}
-                                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
+                                {/* Overlay dégradé plus léger pour mieux voir l'image */}
+                                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
                                 
                                 {/* Contenu overlay - visible seulement sur mobile/tablet */}
                                 <div className="absolute bottom-4 left-4 right-4 text-white lg:hidden">
@@ -180,7 +204,7 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                                 </div>
                             </div>
 
-                            {/* COLONNE DROITE - INFOS */}
+                            {/* COLONNE DROITE - INFOS (Desktop) */}
                             <div className="hidden lg:flex lg:w-3/5 p-6 lg:p-8 flex-col">
                                 <div className="mb-6">
                                     {rankBadge && (

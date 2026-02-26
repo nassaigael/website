@@ -1,5 +1,3 @@
-import imageBureau from "../assets/images/contact.png";
-import nobleImage from "../assets/images/nobleImage.png";
 
 export interface TimelineEvent {
     year: number;
@@ -288,7 +286,7 @@ export const bureauMembers: BureauMember[] = [
             fr: 'Président',
             en: 'President'
         },
-        image: imageBureau,
+        image: "",
         description: {
             mg: 'Filoha mpitantana ny Fikambanana Fizanakara nanomboka tamin\'ny 2015.',
             fr: 'Président directeur de l\'Association Fizanakara depuis 2015.',
@@ -310,7 +308,7 @@ export const bureauMembers: BureauMember[] = [
             fr: 'Fondateur',
             en: 'Founder'
         },
-        image: imageBureau,
+        image: "",
         description: {
             mg: 'Iray amin\'ireo mpanorina ny Fizanakara tamin\'ny 1970.',
             fr: 'Un des fondateurs de Fizanakara en 1970.',
@@ -330,7 +328,7 @@ export const bureauMembers: BureauMember[] = [
             fr: 'Fondateur',
             en: 'Founder'
         },
-        image: imageBureau,
+        image: "",
         description: {
             mg: 'Mpanorina ary mpanohana mavitrika ny fikambanana.',
             fr: 'Fondateur et soutien actif de l\'association.',
@@ -350,7 +348,7 @@ export const bureauMembers: BureauMember[] = [
             fr: 'Fondateur',
             en: 'Founder'
         },
-        image: imageBureau,
+        image: "",
         description: {
             mg: 'Mpanorina ary mpandrindra ara-panabeazana.',
             fr: 'Fondateur et coordinateur éducatif.',
@@ -370,7 +368,7 @@ export const bureauMembers: BureauMember[] = [
             fr: 'Secrétaire Générale',
             en: 'General Secretary'
         },
-        image: imageBureau,
+        image: "",
         description: {
             mg: 'Sekretera jeneraly nanomboka tamin\'ny 2018.',
             fr: 'Secrétaire générale depuis 2018.',
@@ -392,7 +390,7 @@ export const bureauMembers: BureauMember[] = [
             fr: 'Trésorier',
             en: 'Treasurer'
         },
-        image: imageBureau,
+        image: "",
         description: {
             mg: 'Mpitantana ny tetibola nanomboka tamin\'ny 2019.',
             fr: 'Trésorier depuis 2019.',
@@ -417,7 +415,7 @@ export const nobleFigures: NobleFigure[] = [
             en: 'Ancestor of Anakara'
         },
         period: '15ème siècle',
-        image: nobleImage,
+        image: "",
         description: {
             mg: 'Razan\'ny foko Anakara izay tonga teto Madagasikara tamin\'ny taona 1495 avy any Arabia.',
             fr: 'Ancêtre du peuple Anakara arrivé à Madagascar en 1495 depuis l\'Arabie.',
@@ -450,7 +448,7 @@ export const nobleFigures: NobleFigure[] = [
             en: 'Noble'
         },
         period: '18ème siècle',
-        image: nobleImage,
+        image: "",
         description: {
             mg: 'Andriambaventy nentim-paharazana izay nanjaka tamin\'ny faritra Vatomasina.',
             fr: 'Noble traditionnelle qui régnait sur la région de Vatomasina.',
@@ -483,7 +481,7 @@ export const nobleFigures: NobleFigure[] = [
             en: 'Culture Guardian'
         },
         period: '19ème siècle',
-        image: nobleImage,
+        image: "",
         description: {
             mg: 'Mpiahy ny kolontsaina sy ny fomban-drazana nentim-paharazana.',
             fr: 'Gardien de la culture et des traditions ancestrales.',
@@ -516,7 +514,7 @@ export const nobleFigures: NobleFigure[] = [
             en: 'Guide'
         },
         period: '20ème siècle',
-        image: nobleImage,
+        image: "",
         description: {
             mg: 'Mpitari-dalana ara-panahy sy ara-kolontsaina ho an\'ny taranaka.',
             fr: 'Guide spirituel et culturel pour les générations.',
