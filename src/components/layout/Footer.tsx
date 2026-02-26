@@ -216,18 +216,21 @@ const Footer = () => {
                             {t.copyright.text}
                         </p>
 
-                        {/* Developed by Gaël */}
-                        <div 
-                        className="flex items-center gap-2 order-3"
-                        >
+                        {/* Developed by Gaël avec lien GitHub */}
+                        <div className="flex items-center gap-2 order-3">
                             <span className="text-xs text-gray-400 dark:text-gray-500">
                                 {language === 'mg' ? 'Namboarin\'i' :
                                     language === 'fr' ? 'Développé par' :
                                         'Developed by'}
                             </span>
-                            <span className="text-sm font-medium text-gray-800 dark:text-white hover:text-[#ee5253] transition-colors cursor-default">
+                            <a
+                                href="https://www.linkedin.com/in/nassaigael/" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-gray-800 dark:text-white hover:text-[#ee5253] transition-colors cursor-pointer"
+                            >
                                 Gaël RAMAHANDRISOA
-                            </span>
+                            </a>
                         </div>
 
                         {/* Termes et Confidentialité */}
