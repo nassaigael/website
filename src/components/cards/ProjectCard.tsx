@@ -30,7 +30,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
   const status = statusConfig[project.status];
   const featuredText = getFeaturedText(language);
 
-  // MODE FEATURED
+  // MODE FEATURED - AGRANDI
   if (viewMode === 'featured') {
     return (
       <motion.article
@@ -38,23 +38,23 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         transition={{ ...animations.featured.transition, delay: index * 0.1 }}
         className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-gray-900 to-black shadow-2xl hover:shadow-3xl transition-all duration-500 h-full flex flex-col"
       >
-        {/* Featured Badge */}
+        {/* Featured Badge - Agrandi */}
         {project.featured && (
-          <div className="absolute top-4 right-4 z-20">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-[#ee5253] rounded-full shadow-lg">
-              <FaStar className="w-3.5 h-3.5 text-white" />
-              <span className="text-[10px] font-bold text-white tracking-wider">
+          <div className="absolute top-6 right-6 z-20">
+            <div className="flex items-center gap-2 px-4 py-2 bg-[#ee5253] rounded-full shadow-lg">
+              <FaStar className="w-4 h-4 text-white" />
+              <span className="text-xs font-bold text-white tracking-wider">
                 {featuredText}
               </span>
             </div>
           </div>
         )}
 
-        {/* Progress Bar */}
+        {/* Progress Bar - Ajusté */}
         {project.progress !== undefined && (
-          <div className="absolute top-4 left-4 z-20">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-gray- backdrop-blur-sm rounded-full">
-              <div className="relative w-20 h-1.5 bg-gray-700 rounded-full overflow-hidden">
+          <div className="absolute top-6 left-6 z-20">
+            <div className="flex items-center gap-2 px-4 py-2 bg-transparent backdrop-blur-sm rounded-full">
+              <div className="relative w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${project.progress}%` }}
@@ -62,14 +62,15 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
                   className={`absolute h-full bg-linear-to-r ${config.progressColor} rounded-full`}
                 />
               </div>
-              <span className="text-xs font-bold text-white">{project.progress}%</span>
+              <span className="text-sm font-bold text-white">{project.progress}%</span>
             </div>
           </div>
         )}
 
-        <div className="relative h-80 overflow-hidden shrink-0">
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent z-10" />
+        {/* Conteneur d'image - Agrandi à h-96 (384px) au lieu de h-80 (320px) */}
+        <div className="relative h-96 overflow-hidden shrink-0">
+          {/* Gradient Overlay - Plus prononcé */}
+          <div className="absolute inset-0 bg-linear-to-t from-black via-black/80 to-transparent z-10" />
 
           {/* Image */}
           <img
@@ -78,45 +79,49 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
 
-          {/* Content */}
-          <div className="absolute bottom-0 left-0 right-0 z-20 p-6">
-            {/* Category et Status */}
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className={`px-3 py-1.5 rounded-full ${config.bg} ${config.text} font-bold text-xs tracking-wider flex items-center gap-1.5 shadow-lg`}>
+          {/* Content - Plus d'espace et textes agrandis */}
+          <div className="absolute bottom-0 left-0 right-0 z-20 p-8">
+            {/* Category et Status - Agrandis */}
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <span className={`px-4 py-2 rounded-full ${config.bg} ${config.text} font-bold text-sm tracking-wider flex items-center gap-2 shadow-lg`}>
                 {config.featuredIcon} {config.label}
               </span>
-              <span className={`px-2.5 py-1 rounded-full ${status.bg} ${status.text} border ${status.border} text-[10px] font-medium flex items-center gap-1 shadow-md`}>
+              <span className={`px-3 py-1.5 rounded-full ${status.bg} ${status.text} border ${status.border} text-xs font-medium flex items-center gap-1.5 shadow-md`}>
                 {status.icon} {status.label}
               </span>
             </div>
 
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
+            {/* Titre - Agrandi */}
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
               {project.title[language]}
             </h3>
 
-            <p className="text-gray-200 mb-3 text-sm line-clamp-2">
+            {/* Excerpt - Agrandi */}
+            <p className="text-gray-200 mb-4 text-base line-clamp-3">
               {project.excerpt[language]}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 mb-4 text-xs text-gray-200">
-              <div className="flex items-center gap-1.5">
-                <FaMapMarkerAlt className="w-3.5 h-3.5" />
-                <span className="truncate max-w-24 text-white">{project.location}</span>
+            {/* Meta info - Agrandie */}
+            <div className="flex flex-wrap items-center gap-6 mb-6 text-sm text-gray-200">
+              <div className="flex items-center gap-2">
+                <FaMapMarkerAlt className="w-4 h-4" />
+                <span className="truncate max-w-32 text-white">{project.location}</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <FaCalendarAlt className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-2">
+                <FaCalendarAlt className="w-4 h-4" />
                 <span className="text-white">{project.startDate}</span>
               </div>
             </div>
 
+            {/* Bouton - Agrandi */}
             <Link to={`/projects/${project.id}`}>
               <motion.button
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#ee5253] hover:bg-[#932020] text-white text-xs font-semibold rounded-lg hover:shadow-xl transition-all duration-300 group/btn"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-[#ee5253] hover:bg-[#932020] text-white text-sm font-semibold rounded-xl hover:shadow-xl transition-all duration-300 group/btn"
               >
                 <span>{projectsData[language].cta}</span>
-                <FaArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                <FaArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
               </motion.button>
             </Link>
           </div>
@@ -125,7 +130,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     );
   }
 
-  // MODE GRID
+  // MODE GRID - Inchangé
   return (
     <motion.article
       {...animations.grid}
