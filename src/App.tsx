@@ -11,7 +11,6 @@ import NewsPage from './pages/NewsPage';
 import ProjectDetail from './pages/ProjectDetail';
 import ProjectsPage from './pages/ProjectsPage';
 import AIChat from './components/sections/AIChat';
-// import CookieConsent from './ui/CookieConsent';
 // import { CookieProvider } from './contexts/CookieContext';
 
 function App() {
