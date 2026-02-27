@@ -171,12 +171,13 @@ const OfficeSection = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={prevSlide}
                 disabled={currentSlide === 0}
-                className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center transition-all duration-300 ${currentSlide === 0
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
-                  }`} 
+                className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center transition-all duration-300 ${
+                  currentSlide === 0
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
+                }`}
               >
-                <FaChevronLeft className="w-4 h-4 md:w-5 md:h-5  dark:text-white text-black" />
+                <FaChevronLeft className="w-4 h-4 md:w-5 md:h-5 dark:text-white text-black" />
               </motion.button>
 
               <motion.button
@@ -184,10 +185,11 @@ const OfficeSection = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={nextSlide}
                 disabled={currentSlide === totalSlides - 1}
-                className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center transition-all duration-300 ${currentSlide === totalSlides - 1
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
-                  }`}
+                className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center transition-all duration-300 ${
+                  currentSlide === totalSlides - 1
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
+                }`}
               >
                 <FaChevronRight className="w-4 h-4 md:w-5 md:h-5 dark:text-white text-black" />
               </motion.button>
@@ -225,31 +227,40 @@ const OfficeSection = () => {
           </motion.div>
         </div>
 
-        {/* PAGINATION DOTS */}
-        {totalSlides > 1 && (
-          <div className="flex justify-center items-center gap-3 mt-10 px-4 overflow-x-auto py-2">
-            {Array.from({ length: totalSlides }).map((_, index) => {
-              const slideStartIndex = index * itemsPerPage;
-              const slideMember = members[slideStartIndex];
+        {/* MINIATURES - Afficher tous les membres */}
+        {members.length > 1 && (
+          <div className="flex justify-center items-center gap-3 mt-10 px-4 overflow-x-auto py-2 scrollbar-thin scrollbar-thumb-[#ee5253]/30 scrollbar-track-transparent">
+            {members.map((member, index) => {
+              // Vérifier si ce membre est dans le slide actuel
+              const isInCurrentSlide = index >= validCurrentIndex && 
+                index < validCurrentIndex + itemsPerPage;
+              
+              // La miniature est active si le membre est dans le slide actuel
+              const isActive = isInCurrentSlide;
 
               return (
                 <motion.button
-                  key={index}
+                  key={member.id}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => goToSlide(index)}
-                  className={`relative rounded-full overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl ${currentSlide === index
-                    ? 'w-14 h-14 md:w-16 md:h-16 ring-4 ring-[#ee5253] ring-offset-2 ring-offset-white dark:ring-offset-gray-900'
-                    : 'w-10 h-10 md:w-12 md:h-12 opacity-70 hover:opacity-100'
-                    }`}
+                  onClick={() => {
+                    // Calculer le slide qui contient ce membre
+                    const slideIndex = Math.floor(index / itemsPerPage);
+                    goToSlide(slideIndex);
+                  }}
+                  className={`relative rounded-full overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl ${
+                    isActive
+                      ? 'w-14 h-14 md:w-16 md:h-16 ring-4 ring-[#ee5253] ring-offset-2 ring-offset-white dark:ring-offset-gray-900 scale-110'
+                      : 'w-10 h-10 md:w-12 md:h-12 opacity-60 hover:opacity-100'
+                  }`}
                 >
                   <img
-                    src={slideMember?.image}
-                    alt={`Slide ${index + 1}`}
+                    src={member.image}
+                    alt={member.name}
                     className="w-full h-full object-cover"
                   />
-                  {currentSlide === index && (
-                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
+                  {isActive && (
+                    <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
                   )}
                 </motion.button>
               );
@@ -257,6 +268,7 @@ const OfficeSection = () => {
           </div>
         )}
 
+        {/* Indicateur de swipe pour mobile */}
         {isMobile && totalSlides > 1 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
