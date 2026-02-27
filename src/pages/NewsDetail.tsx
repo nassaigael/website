@@ -6,8 +6,6 @@ import {
     User,
     ArrowLeft,
     Share2,
-    ChevronLeft,
-    ChevronRight,
     Facebook,
     Twitter,
     Linkedin,
@@ -20,6 +18,11 @@ import {
     ChevronDown,
     ExternalLink,
     Sparkles,
+    Camera,
+    X,
+    Grid,
+    ChevronLeft,
+    ChevronRight,
 } from 'lucide-react';
 import { newsArticles, getRelatedArticles } from '../data/index';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -30,13 +33,14 @@ const NewsDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { language } = useLanguage();
-    const [currentImage, setCurrentImage] = useState(0);
     const [showShareMenu, setShowShareMenu] = useState(false);
     const [showCopyAlert, setShowCopyAlert] = useState(false);
     const [readProgress, setReadProgress] = useState(0);
-    const [isImageLoading, setIsImageLoading] = useState(true);
+    const [selectedImage] = useState<string | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+    const [galleryImageIndex, setGalleryImageIndex] = useState(0);
     const contentRef = useRef<HTMLDivElement>(null);
-    const carouselRef = useRef<HTMLDivElement>(null);
 
     const article = newsArticles.find(a => a.id === parseInt(id || '0'));
     const relatedArticles = article ? getRelatedArticles(article.id) : [];
@@ -59,6 +63,19 @@ const NewsDetail = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Gérer le overflow du body
+    useEffect(() => {
+        if (isModalOpen || isGalleryOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isModalOpen, isGalleryOpen]);
 
     if (!article) {
         return (
@@ -136,7 +153,9 @@ const NewsDetail = () => {
 
     const config = categoryConfig[article.category];
     const Icon = config.icon;
-    const images = article.gallery ? [article.image, ...article.gallery] : [article.image];
+
+    // Créer un tableau d'images pour la galerie
+    const galleryImages = article.gallery ? [article.image, ...article.gallery] : [article.image];
 
     const shareNews = (platform: string) => {
         const url = window.location.href;
@@ -167,6 +186,23 @@ const NewsDetail = () => {
         setShowShareMenu(false);
     };
 
+    const openGallery = (index: number = 0) => {
+        setGalleryImageIndex(index);
+        setIsGalleryOpen(true);
+    };
+
+    const closeGallery = () => {
+        setIsGalleryOpen(false);
+    };
+
+    const nextImage = () => {
+        setGalleryImageIndex((prev) => (prev + 1) % galleryImages.length);
+    };
+
+    const prevImage = () => {
+        setGalleryImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    };
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -189,7 +225,185 @@ const NewsDetail = () => {
             animate={{ opacity: 1 }}
             className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
         >
-            {/* Éléments décoratifs d'arrière-plan - Version Light premium */}
+            {/* Galerie Premium - Nouvelle page */}
+            <AnimatePresence>
+                {isGalleryOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-50 bg-black"
+                    >
+                        {/* Fond avec particules animées */}
+                        <div className="absolute inset-0 overflow-hidden">
+                            <motion.div
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.3, 0.5, 0.3],
+                                    rotate: [0, 90, 0],
+                                }}
+                                transition={{ duration: 10, repeat: Infinity }}
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+                                style={{
+                                    background: 'radial-gradient(circle, rgba(238,82,83,0.15) 0%, transparent 70%)',
+                                }}
+                            />
+
+                            {/* Grille décorative */}
+                            <div className="absolute inset-0" style={{
+                                backgroundImage: `radial-gradient(circle at 1px 1px, rgba(238,82,83,0.1) 1px, transparent 0)`,
+                                backgroundSize: '50px 50px'
+                            }} />
+                        </div>
+
+                        {/* Bouton fermer */}
+                        <motion.button
+                            initial={{ scale: 0, rotate: -180 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            exit={{ scale: 0, rotate: 180 }}
+                            onClick={closeGallery}
+                            className="absolute top-6 right-6 z-50 p-4 bg-white/10 backdrop-blur-md hover:bg-[#ee5253] text-white rounded-2xl shadow-2xl transition-all duration-300 border border-white/20"
+                        >
+                            <X className="w-6 h-6" />
+                        </motion.button>
+
+                        {/* Image principale */}
+                        <div className="relative h-full flex items-center justify-center px-4 lg:px-20">
+                            <motion.div
+                                key={galleryImageIndex}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.3 }}
+                                className="relative max-w-7xl w-full"
+                            >
+                                <img
+                                    src={galleryImages[galleryImageIndex]}
+                                    alt={`Gallery ${galleryImageIndex + 1}`}
+                                    className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+                                />
+                            </motion.div>
+
+                            {/* Navigation flèches */}
+                            {galleryImages.length > 1 && (
+                                <>
+                                    <motion.button
+                                        whileHover={{ scale: 1.1, x: -4 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={prevImage}
+                                        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 p-4 bg-white/10 backdrop-blur-md hover:bg-[#ee5253] text-white rounded-full shadow-2xl transition-all duration-300 border border-white/20"
+                                    >
+                                        <ChevronLeft className="w-6 h-6" />
+                                    </motion.button>
+
+                                    <motion.button
+                                        whileHover={{ scale: 1.1, x: 4 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={nextImage}
+                                        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 p-4 bg-white/10 backdrop-blur-md hover:bg-[#ee5253] text-white rounded-full shadow-2xl transition-all duration-300 border border-white/20"
+                                    >
+                                        <ChevronRight className="w-6 h-6" />
+                                    </motion.button>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Barre d'informations - CORRIGÉE */}
+                        <motion.div
+                            initial={{ y: 100, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent pt-20 pb-8 px-4"
+                        >
+                            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
+                                {/* Compteur */}
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 rounded-full bg-[#ee5253] flex items-center justify-center text-white font-bold text-lg">
+                                        {galleryImageIndex + 1}
+                                    </div>
+                                    <span className="text-white/60 text-lg">
+                                        / {galleryImages.length}
+                                    </span>
+                                </div>
+
+                                {/* Miniatures */}
+                                <div className="flex gap-2 overflow-x-auto pb-2 max-w-full scrollbar-thin scrollbar-thumb-[#ee5253] scrollbar-track-transparent">
+                                    {galleryImages.map((img, idx) => (
+                                        <motion.button
+                                            key={idx}
+                                            whileHover={{ y: -4, scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onClick={() => setGalleryImageIndex(idx)}
+                                            className={`relative flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${idx === galleryImageIndex
+                                                    ? 'border-[#ee5253] shadow-xl shadow-[#ee5253]/30 scale-110'
+                                                    : 'border-white/20 hover:border-white/40'
+                                                }`}
+                                        >
+                                            <img
+                                                src={img}
+                                                alt={`Thumbnail ${idx + 1}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                            {idx === galleryImageIndex && (
+                                                <div className="absolute inset-0 bg-[#ee5253]/20" />
+                                            )}
+                                        </motion.button>
+                                    ))}
+                                </div>
+
+                                {/* Titre - CORRIGÉ avec galleryImageIndex */}
+                                <p className="text-white/80 text-sm max-w-md text-center lg:text-right">
+                                    {galleryImageIndex === 0
+                                        ? (language === 'mg' ? 'Sary fototra' :
+                                            language === 'fr' ? 'Image principale' :
+                                                'Main image')
+                                        : (language === 'mg' ? `Sary ${galleryImageIndex}` :
+                                            language === 'fr' ? `Photo ${galleryImageIndex}` :
+                                                `Photo ${galleryImageIndex}`)
+                                    }
+                                </p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Modale d'image simple (pour compatibilité) */}
+            <AnimatePresence>
+                {isModalOpen && selectedImage && !isGalleryOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setIsModalOpen(false)}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25 }}
+                            className="relative max-w-6xl max-h-[90vh] mx-4"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <img
+                                src={selectedImage}
+                                alt="Gallery"
+                                className="max-w-full max-h-[90vh] object-contain rounded-2xl"
+                            />
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="absolute -top-4 -right-4 p-3 bg-[#ee5253] text-white rounded-full shadow-xl hover:bg-[#932020] transition-colors"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Éléments décoratifs d'arrière-plan */}
             <div className="absolute inset-0 pointer-events-none">
                 <motion.div
                     animate={{
@@ -207,10 +421,7 @@ const NewsDetail = () => {
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                     className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
                 />
-                {/* Grille subtile premium */}
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
-                
-                {/* Éléments géométriques décoratifs */}
                 <div className="absolute top-40 right-40 w-32 h-32 border border-[#ee5253]/10 rounded-full" />
                 <div className="absolute bottom-40 left-40 w-48 h-48 border border-[#932020]/10 rotate-45" />
             </div>
@@ -226,7 +437,7 @@ const NewsDetail = () => {
                 className="fixed top-0 left-0 h-1 bg-[#ee5253] z-50"
             />
 
-            {/* Copy Alert - Version Light premium */}
+            {/* Copy Alert */}
             <AnimatePresence>
                 {showCopyAlert && (
                     <motion.div
@@ -236,10 +447,7 @@ const NewsDetail = () => {
                         className="fixed bottom-8 right-8 z-50"
                     >
                         <div className="bg-[#ee5253] text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3">
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 0.5 }}
-                            >
+                            <motion.div animate={{ rotate: 360 }} transition={{ duration: 0.5 }}>
                                 <LinkIcon className="w-5 h-5" />
                             </motion.div>
                             <span className="font-semibold">
@@ -253,7 +461,7 @@ const NewsDetail = () => {
             </AnimatePresence>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                {/* Premium Header - Version Light améliorée */}
+                {/* Header */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -276,7 +484,7 @@ const NewsDetail = () => {
                     </motion.button>
 
                     <motion.div variants={itemVariants} className="flex items-center gap-4">
-                        {/* Share Button - Version Light améliorée */}
+                        {/* Share Button */}
                         <div className="relative">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
@@ -329,14 +537,14 @@ const NewsDetail = () => {
 
                 {/* Main Content */}
                 <div className="lg:ml-0">
-                    {/* Article Header - Version Light premium */}
+                    {/* Article Header */}
                     <motion.header
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
                         className="mb-16"
                     >
-                        {/* Category Badge - Version Light améliorée */}
+                        {/* Category Badge */}
                         <motion.div
                             variants={itemVariants}
                             className="inline-flex items-center gap-3 mb-8"
@@ -349,7 +557,7 @@ const NewsDetail = () => {
                             </span>
                         </motion.div>
 
-                        {/* Title - Version Light */}
+                        {/* Title */}
                         <motion.h1
                             variants={itemVariants}
                             className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight"
@@ -357,7 +565,7 @@ const NewsDetail = () => {
                             {article.title[language]}
                         </motion.h1>
 
-                        {/* Meta Info - Version Light améliorée */}
+                        {/* Meta Info */}
                         <motion.div
                             variants={itemVariants}
                             className="flex flex-wrap items-center gap-6 mb-8"
@@ -380,7 +588,7 @@ const NewsDetail = () => {
                             </div>
                         </motion.div>
 
-                        {/* Excerpt - Version Light premium */}
+                        {/* Excerpt */}
                         <motion.div
                             variants={itemVariants}
                             className="relative"
@@ -392,101 +600,97 @@ const NewsDetail = () => {
                         </motion.div>
                     </motion.header>
 
-                    {/* Image Gallery - Version Light améliorée */}
+                    {/* Image principale de l'article */}
                     <motion.div
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
-                        className="mb-20"
+                        className="mb-12"
                     >
-                        <div 
-                            ref={carouselRef}
-                            className="relative rounded-3xl overflow-hidden bg-gray-100 dark:bg-[#0f172a] shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800"
-                            style={{ height: '37.5rem' }}
-                        >
-                            <div className="relative w-full h-full flex items-center justify-center">
-                                {isImageLoading && (
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="w-12 h-12 border-4 border-[#ee5253]/30 border-t-[#ee5253] rounded-full animate-spin" />
-                                    </div>
-                                )}
-                                <img
-                                    src={images[currentImage]}
-                                    alt={`${article.title[language]} - Image ${currentImage + 1}`}
-                                    className="max-w-full max-h-full object-contain"
-                                    onLoad={() => setIsImageLoading(false)}
-                                />
-                            </div>
+                        <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800 group flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+                            <img
+                                src={article.image}
+                                alt={article.title[language]}
+                                className="w-[70%] h-80 object-contain"
+                            />
 
-                            {images.length > 1 && (
-                                <>
-                                    <motion.button
-                                        whileHover={{ scale: 1.1, x: -4 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        onClick={() => setCurrentImage(prev => (prev - 1 + images.length) % images.length)}
-                                        className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/70 hover:bg-[#ee5253] text-gray-700 dark:text-white hover:text-white p-3 rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 transition-all"
-                                    >
-                                        <ChevronLeft className="w-6 h-6" />
-                                    </motion.button>
-
-                                    <motion.button
-                                        whileHover={{ scale: 1.1, x: 4 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        onClick={() => setCurrentImage(prev => (prev + 1) % images.length)}
-                                        className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/70 hover:bg-[#ee5253] text-gray-700 dark:text-white hover:text-white p-3 rounded-full shadow-2xl border border-gray-200 dark:border-gray-700 transition-all"
-                                    >
-                                        <ChevronRight className="w-6 h-6" />
-                                    </motion.button>
-
-                                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-                                        {images.map((_, index) => (
-                                            <motion.button
-                                                key={index}
-                                                whileHover={{ scale: 1.2 }}
-                                                whileTap={{ scale: 0.9 }}
-                                                onClick={() => setCurrentImage(index)}
-                                                className={`w-3 h-3 rounded-full transition-all ${
-                                                    index === currentImage
-                                                        ? 'bg-[#ee5253] scale-125 shadow-lg shadow-[#ee5253]/30'
-                                                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                                                }`}
-                                            />
-                                        ))}
-                                    </div>
-
-                                    <div className="absolute top-8 right-8 bg-white/90 dark:bg-black/70 backdrop-blur-sm text-gray-700 dark:text-white px-4 py-2 rounded-full text-sm font-medium border border-gray-200 dark:border-white/10">
-                                        {currentImage + 1} / {images.length}
-                                    </div>
-                                </>
+                            {/* Bouton pour ouvrir la galerie complète */}
+                            {galleryImages.length > 1 && (
+                                <motion.button
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                    onClick={() => openGallery(0)}
+                                    className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-md hover:bg-[#ee5253] text-white rounded-xl transition-all duration-300 border border-white/20"
+                                >
+                                    <Grid className="w-4 h-4" />
+                                    <span className="text-sm font-medium">
+                                        {language === 'mg' ? 'Jereo ny sary rehetra' :
+                                            language === 'fr' ? 'Voir toutes les photos' :
+                                                'View all photos'}
+                                    </span>
+                                    <span className="px-2 py-0.5 bg-white/20 rounded-full text-xs">
+                                        {galleryImages.length}
+                                    </span>
+                                </motion.button>
                             )}
                         </div>
+                    </motion.div>
 
-                        {images.length > 1 && (
-                            <div className="flex gap-4 mt-8 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[#ee5253]/20 scrollbar-track-transparent">
-                                {images.map((img, index) => (
+                    {/* Aperçu de la galerie (miniatures) */}
+                    {galleryImages.length > 1 && (
+                        <motion.div
+                            variants={itemVariants}
+                            initial="hidden"
+                            animate="visible"
+                            className="mb-16"
+                        >
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-3">
+                                    <Camera className="w-5 h-5 text-[#ee5253]" />
+                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                                        {language === 'mg' ? "Sary mampiseho" :
+                                            language === 'fr' ? "Aperçu de la galerie" :
+                                                "Gallery preview"}
+                                    </h3>
+                                </div>
+                                <button
+                                    onClick={() => openGallery(0)}
+                                    className="text-sm text-[#ee5253] hover:text-[#932020] transition-colors flex items-center gap-1"
+                                >
+                                    {language === 'mg' ? "Jereo daholo" :
+                                        language === 'fr' ? "Voir tout" :
+                                            "View all"}
+                                    <ChevronRight className="w-4 h-4" />
+                                </button>
+                            </div>
+
+                            <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+                                {galleryImages.slice(0, 6).map((image, index) => (
                                     <motion.button
                                         key={index}
-                                        whileHover={{ scale: 1.05, y: -4 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() => setCurrentImage(index)}
-                                        className={`shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all relative ${
-                                            index === currentImage
-                                                ? 'border-[#ee5253] shadow-lg shadow-[#ee5253]/30'
-                                                : 'border-transparent hover:border-gray-300 dark:hover:border-gray-600'
-                                        }`}
+                                        whileHover={{ y: -4, scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onClick={() => openGallery(index)}
+                                        className="relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                                     >
-                                        <img 
-                                            src={img} 
-                                            alt={`Thumbnail ${index + 1}`} 
-                                            className="w-full h-full object-cover" 
+                                        <img
+                                            src={image}
+                                            alt={`Preview ${index + 1}`}
+                                            className="w-full h-full object-cover"
                                         />
+                                        {index === 5 && galleryImages.length > 6 && (
+                                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white font-bold text-lg">
+                                                +{galleryImages.length - 5}
+                                            </div>
+                                        )}
                                     </motion.button>
                                 ))}
                             </div>
-                        )}
-                    </motion.div>
+                        </motion.div>
+                    )}
 
-                    {/* Article Content - Version Light premium */}
+                    {/* Article Content */}
                     <motion.div
                         ref={contentRef}
                         variants={containerVariants}
@@ -496,7 +700,7 @@ const NewsDetail = () => {
                     >
                         <div className="relative">
                             <div className="absolute -left-8 top-0 w-1 h-full bg-linear-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent"></div>
-                            
+
                             <div className="space-y-8 text-gray-700 dark:text-white text-lg leading-relaxed">
                                 {article.content[language].map((paragraph, index) => (
                                     <motion.p
@@ -511,7 +715,7 @@ const NewsDetail = () => {
                         </div>
                     </motion.div>
 
-                    {/* Share Footer - Version Light premium */}
+                    {/* Share Footer */}
                     <motion.div
                         variants={itemVariants}
                         initial="hidden"
@@ -521,17 +725,17 @@ const NewsDetail = () => {
                         <div className="text-center lg:text-left">
                             <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                                 <Sparkles className="w-6 h-6 text-[#ee5253]" />
-                                {language === 'mg' ? 'Zarao ity vaovao ity' : 
-                                 language === 'fr' ? 'Partagez cet article' : 
-                                 'Share this article'}
+                                {language === 'mg' ? 'Zarao ity vaovao ity' :
+                                    language === 'fr' ? 'Partagez cet article' :
+                                        'Share this article'}
                             </h4>
                             <p className="text-gray-600 dark:text-gray-400">
-                                {language === 'mg' ? 'Zarao amin\'ny namanao' : 
-                                 language === 'fr' ? 'Partagez avec vos amis' : 
-                                 'Share with your friends'}
+                                {language === 'mg' ? 'Zarao amin\'ny namanao' :
+                                    language === 'fr' ? 'Partagez avec vos amis' :
+                                        'Share with your friends'}
                             </p>
                         </div>
-                        
+
                         <div className="flex gap-3">
                             {[Facebook, Twitter, Linkedin, Mail].map((Icon, index) => (
                                 <motion.button
@@ -555,7 +759,7 @@ const NewsDetail = () => {
                         </div>
                     </motion.div>
 
-                    {/* Related Articles - Version Light premium */}
+                    {/* Related Articles */}
                     {relatedArticles.length > 0 && (
                         <motion.div
                             variants={containerVariants}
@@ -572,7 +776,7 @@ const NewsDetail = () => {
                                         language === 'fr' ? 'Articles similaires' :
                                             'Related articles'}
                                 </motion.h2>
-                                
+
                                 <motion.p
                                     variants={itemVariants}
                                     className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
@@ -621,7 +825,7 @@ const NewsDetail = () => {
                         </motion.div>
                     )}
 
-                    {/* Back Button - Version Light */}
+                    {/* Back Button */}
                     <motion.div
                         variants={itemVariants}
                         initial="hidden"
