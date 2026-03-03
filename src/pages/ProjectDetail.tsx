@@ -1084,7 +1084,9 @@ const ProjectDetail = () => {
                             <div className="text-3xl font-bold text-[#ee5253]">
                               {project.progress}%
                             </div>
-                            <div className="text-xs text-gray-500">complété</div>
+                            <div className="text-xs text-gray-500">
+                              {language === 'mg' ? 'Fandrosoana ankehitriny' : language === 'fr' ? 'Progression actuelle' : 'Current progress'}
+                            </div>
                           </div>
                         </div>
                         <p className="text-gray-700 dark:text-gray-300 font-medium">
@@ -1114,7 +1116,9 @@ const ProjectDetail = () => {
                           <div className={`text-xl font-bold ${status.lightText}`}>
                             {status.label}
                           </div>
-                          <div className="text-xs text-gray-500">statut actuel</div>
+                          <div className="text-xs text-gray-500">
+                            {language === 'mg' ? 'Toerana ankehitriny' : language === 'fr' ? 'Statut actuel' : 'Current status'}
+                          </div>
                         </div>
                       </div>
                       <p className="text-gray-700 dark:text-gray-300 font-medium">

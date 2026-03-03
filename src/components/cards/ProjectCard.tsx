@@ -30,7 +30,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
   const status = statusConfig[project.status];
   const featuredText = getFeaturedText(language);
 
-  // MODE FEATURED - AGRANDI
+  // MODE FEATURED
   if (viewMode === 'featured') {
     return (
       <motion.article
@@ -38,7 +38,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
         transition={{ ...animations.featured.transition, delay: index * 0.1 }}
         className="group relative overflow-hidden rounded-3xl bg-linear-to-br from-gray-900 to-black shadow-2xl hover:shadow-3xl transition-all duration-500 h-full flex flex-col"
       >
-        {/* Featured Badge - Agrandi */}
+        {/* Featured Badge */}
         {project.featured && (
           <div className="absolute top-6 right-6 z-20">
             <div className="flex items-center gap-2 px-4 py-2 bg-[#ee5253] rounded-full shadow-lg">
@@ -50,7 +50,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
           </div>
         )}
 
-        {/* Progress Bar - Ajusté */}
+        {/* Progress Bar */}
         {project.progress !== undefined && (
           <div className="absolute top-6 left-6 z-20">
             <div className="flex items-center gap-2 px-4 py-2 bg-transparent backdrop-blur-sm rounded-full">
@@ -67,9 +67,9 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
           </div>
         )}
 
-        {/* Conteneur d'image - Agrandi à h-96 (384px) au lieu de h-80 (320px) */}
+        {/* Conteneur d'image */}
         <div className="relative h-96 overflow-hidden shrink-0">
-          {/* Gradient Overlay - Plus prononcé */}
+          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-linear-to-t from-black via-black/80 to-transparent z-10" />
 
           {/* Image */}
@@ -79,29 +79,29 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
 
-          {/* Content - Plus d'espace et textes agrandis */}
+          {/* Content */}
           <div className="absolute bottom-0 left-0 right-0 z-20 p-8">
-            {/* Category et Status - Agrandis */}
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className={`px-4 py-2 rounded-full ${config.bg} ${config.text} font-bold text-sm tracking-wider flex items-center gap-2 shadow-lg`}>
+            {/* Category et Status - CORRIGÉ : ajout de flex-wrap et espacement */}
+            <div className="flex flex-wrap items-center gap-3 mb-4 max-w-[90%]">
+              <span className={`px-4 py-2 rounded-full ${config.bg} ${config.text} font-bold text-sm tracking-wider flex items-center gap-2 shadow-lg whitespace-nowrap`}>
                 {config.featuredIcon} {config.label}
               </span>
-              <span className={`px-3 py-1.5 rounded-full ${status.bg} ${status.text} border ${status.border} text-xs font-medium flex items-center gap-1.5 shadow-md`}>
+              <span className={`px-3 py-1.5 rounded-full ${status.bg} ${status.text} border ${status.border} text-xs font-medium flex items-center gap-1.5 shadow-md whitespace-nowrap`}>
                 {status.icon} {status.label}
               </span>
             </div>
 
-            {/* Titre - Agrandi */}
+            {/* Titre */}
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
               {project.title[language]}
             </h3>
 
-            {/* Excerpt - Agrandi */}
+            {/* Excerpt */}
             <p className="text-gray-200 mb-4 text-base line-clamp-3">
               {project.excerpt[language]}
             </p>
 
-            {/* Meta info - Agrandie */}
+            {/* Meta info */}
             <div className="flex flex-wrap items-center gap-6 mb-6 text-sm text-gray-200">
               <div className="flex items-center gap-2">
                 <FaMapMarkerAlt className="w-4 h-4" />
@@ -113,7 +113,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
               </div>
             </div>
 
-            {/* Bouton - Agrandi */}
+            {/* Bouton */}
             <Link to={`/projects/${project.id}`}>
               <motion.button
                 whileHover={{ x: 5 }}
@@ -130,25 +130,22 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
     );
   }
 
-  // MODE GRID - Inchangé
+  // MODE GRID - CORRIGÉ
   return (
     <motion.article
       {...animations.grid}
       transition={{ ...animations.grid.transition, delay: index * 0.1 }}
       className={cardClasses.container}
     >
-      {/* Category Badge */}
-      <div className="absolute top-4 left-4 z-10">
-        <span className={`px-3 py-1.5 rounded-lg ${config.bg} ${config.text} font-bold text-xs tracking-wide`}>
-          <span className="flex items-center gap-1.5">
-            {config.icon} {config.label}
-          </span>
+      {/* Zone des badges - CORRIGÉ : meilleure organisation */}
+      <div className="absolute top-4 left-4 z-10 flex flex-col gap-2 max-w-[calc(100%-3rem)]">
+        {/* Category Badge */}
+        <span className={`px-3 py-1.5 rounded-lg ${config.bg} ${config.text} font-bold text-xs tracking-wide inline-flex items-center gap-1.5 shadow-lg w-fit`}>
+          {config.icon} {config.label}
         </span>
-      </div>
 
-      {/* Status Badge */}
-      <div className="absolute top-16 left-4 z-10">
-        <span className={`px-2.5 py-1 rounded-lg ${status.bg} ${status.text} border ${status.border} text-[10px] font-medium flex items-center gap-1 shadow-md`}>
+        {/* Status Badge */}
+        <span className={`px-2.5 py-1 rounded-lg ${status.bg} ${status.text} border ${status.border} text-[10px] font-medium inline-flex items-center gap-1 shadow-md w-fit`}>
           {status.icon} {status.label}
         </span>
       </div>
