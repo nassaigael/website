@@ -104,11 +104,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   }, [slides.length]);
 
-  const goToSlide = (index: number) => {
-    setDirection(index > currentSlide ? 1 : -1);
-    setCurrentSlide(index);
-  };
-
   // Gestion améliorée du drag pour éviter les conflits avec le scroll
   const handleDragStart = (_event: MouseEvent | TouchEvent | PointerEvent) => {
     dragStartTime.current = Date.now();
@@ -470,48 +465,11 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         </div>
       </div>
 
-      {/* Contrôles premium */}
+      {/* Contrôles de navigation - CENTRÉS sur tous les écrans */}
       <div className="absolute bottom-12 left-0 right-0 z-30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between max-w-6xl mx-auto">
-            {/* Indicateurs de slide avec miniatures - cachés sur mobile */}
-            <div className="hidden lg:flex items-center gap-6">
-              {slides.map((slide, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ scale: 1.1, y: -4 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => goToSlide(index)}
-                  className="group relative"
-                >
-                  <div className={`relative w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'border-[#ee5253] shadow-2xl shadow-[#ee5253]/30 scale-110'
-                      : 'border-white/20 hover:border-white/40'
-                  }`}>
-                    <img
-                      src={slide.image}
-                      alt={`Slide ${index + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    {index === currentSlide && (
-                      <div className="absolute inset-0 bg-[#ee5253]/20 backdrop-blur-sm" />
-                    )}
-                  </div>
-
-                  {/* Indicateur actif */}
-                  {index === currentSlide && (
-                    <motion.div
-                      layoutId="activeThumb"
-                      className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#ee5253] rounded-full"
-                    />
-                  )}
-                </motion.button>
-              ))}
-            </div>
-
-            {/* Contrôles de navigation - centrés sur mobile, à droite sur desktop */}
-            <div className="flex items-center gap-4 lg:ml-auto mx-auto lg:mx-0">
+          <div className="flex justify-center max-w-6xl mx-auto">
+            <div className="flex items-center gap-4">
               {showPlayPause && (
                 <motion.button
                   whileHover={{ scale: 1.1 }}
