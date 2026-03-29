@@ -335,7 +335,7 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
               className="lg:hidden relative group"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? 'Fermer menu' : 'Ouvrir menu'}
+              aria-label={isMenuOpen ? 'Fermer menu' : 'Ouvrir menu'} 
             >
               {/* Effet de glow */}
               <div className="absolute inset-0 bg-[#ee5253] rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />

@@ -351,9 +351,9 @@ const ProjectDetail = () => {
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
         />
-        
+
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
-        
+
         <div className="absolute top-40 right-40 w-32 h-32 border border-[#ee5253]/10 rounded-full" />
         <div className="absolute bottom-40 left-40 w-48 h-48 border border-[#932020]/10 rotate-45" />
         <div className="absolute top-1/3 left-1/4 w-64 h-64 border border-[#ee5253]/5 rounded-full" />
@@ -588,13 +588,13 @@ const ProjectDetail = () => {
         >
           <div className="relative">
             <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent" />
-            
+
             <div className="relative bg-white/50 dark:bg-[#0f172a]/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-200 dark:border-gray-800 shadow-lg">
               <div className="flex flex-wrap lg:flex-nowrap items-center justify-between gap-2">
                 {tabs.map((tab, index) => {
                   const isActive = activeTab === tab.id;
                   const Icon = tab.icon;
-                  
+
                   return (
                     <motion.button
                       key={tab.id}
@@ -610,7 +610,7 @@ const ProjectDetail = () => {
                         className="absolute inset-0 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         layoutId={`tab-hover-${tab.id}`}
                       />
-                      
+
                       {isActive && (
                         <motion.div
                           layoutId="active-tab"
@@ -620,12 +620,12 @@ const ProjectDetail = () => {
                           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                       )}
-                      
+
                       <div className={`
                         relative z-10 flex items-center justify-center gap-3 px-6 py-4
                         transition-all duration-300
-                        ${isActive 
-                          ? 'text-white' 
+                        ${isActive
+                          ? 'text-white'
                           : 'text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
                         }
                       `}>
@@ -637,12 +637,12 @@ const ProjectDetail = () => {
                         >
                           <Icon className="w-5 h-5" />
                         </motion.div>
-                        
+
                         {/* Label - toujours visible */}
                         <span className="font-medium text-sm lg:text-base">
                           {tab.label[language]}
                         </span>
-                        
+
                         {!isActive && (
                           <motion.div
                             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-[#ee5253] group-hover:w-8 transition-all duration-300"
@@ -655,7 +655,7 @@ const ProjectDetail = () => {
                 })}
               </div>
             </div>
-            
+
             <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-[#ee5253]/30 rounded-tl-lg" />
             <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-[#ee5253]/30 rounded-tr-lg" />
             <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-[#ee5253]/30 rounded-bl-lg" />
@@ -680,25 +680,25 @@ const ProjectDetail = () => {
                 className="relative group"
               >
                 <div className="absolute -inset-4 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
+
                 <div className="relative bg-white dark:bg-[#0f172a] rounded-3xl shadow-2xl dark:shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
                   <div className="relative h-16 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 border-b border-gray-200 dark:border-gray-800">
                     <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-                    
+
                     <div className="flex items-center h-full px-8">
                       <div className="flex items-center gap-3">
                         <div className="p-2 bg-[#ee5253] rounded-lg shadow-lg">
                           <FaChartBar className="w-5 h-5 text-white" />
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                          {language === 'mg' ? 'Famintinana ny tetikasa' : 
-                           language === 'fr' ? 'Aperçu du projet' : 
-                           'Project Overview'}
+                          {language === 'mg' ? 'Famintinana ny tetikasa' :
+                            language === 'fr' ? 'Aperçu du projet' :
+                              'Project Overview'}
                         </h3>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="p-8">
                     <div className="flex flex-wrap gap-3 mb-8 pb-6 border-b border-gray-200 dark:border-gray-800">
                       <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
@@ -707,7 +707,7 @@ const ProjectDetail = () => {
                           {language === 'mg' ? 'Nanomboka' : language === 'fr' ? 'Début' : 'Started'}: {project.startDate}
                         </span>
                       </div>
-                      
+
                       {project.endDate && (
                         <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
                           <FaCheckCircle className="w-4 h-4 text-[#ee5253]" />
@@ -716,7 +716,7 @@ const ProjectDetail = () => {
                           </span>
                         </div>
                       )}
-                      
+
                       <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
                         <FaMapMarkerAlt className="w-4 h-4 text-[#ee5253]" />
                         <span className="text-sm text-gray-700 dark:text-gray-300">{project.location}</span>
@@ -735,10 +735,10 @@ const ProjectDetail = () => {
                           <div className="absolute -left-4 top-0 text-4xl font-bold text-[#ee5253] select-none">
                             {String(index + 1).padStart(2, '0')}
                           </div>
-                          
+
                           <div className="relative pl-8">
                             <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent rounded-full" />
-                            
+
                             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                               {paragraph}
                             </p>
@@ -747,7 +747,7 @@ const ProjectDetail = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#ee5253]/20 rounded-tl-3xl" />
                   <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-[#ee5253]/20 rounded-tr-3xl" />
                   <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-[#ee5253]/20 rounded-bl-3xl" />
@@ -784,7 +784,7 @@ const ProjectDetail = () => {
                           alt={`Galerie ${index + 1}`}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        
+
                         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                             <span className="text-white text-sm font-medium">
@@ -817,18 +817,18 @@ const ProjectDetail = () => {
                       <FaBullseye className="w-8 h-8 text-white" />
                     </div>
                   </div>
-                  
+
                   <div>
                     <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
                       {language === 'mg' ? 'Tanjona' : language === 'fr' ? 'Objectifs' : 'Objectives'}
                     </h3>
                     <p className="text-gray-500 dark:text-gray-400 mt-1">
-                      {language === 'mg' ? 'Tanjona fototra amin\'ity tetikasa ity' : 
-                       language === 'fr' ? 'Objectifs principaux de ce projet' : 
-                       'Main objectives of this project'}
+                      {language === 'mg' ? 'Tanjona fototra amin\'ity tetikasa ity' :
+                        language === 'fr' ? 'Objectifs principaux de ce projet' :
+                          'Main objectives of this project'}
                     </p>
                   </div>
-                  
+
                   <div className="flex-1 h-px bg-linear-to-r from-[#ee5253]/30 to-transparent ml-4" />
                 </div>
 
@@ -844,7 +844,7 @@ const ProjectDetail = () => {
                     >
                       <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#ee5253] to-[#932020] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                        
+
                         <div className="p-8">
                           <div className="absolute top-6 right-6">
                             <div className="relative">
@@ -859,7 +859,7 @@ const ProjectDetail = () => {
                             <div className={`p-4 ${config.lightBg} rounded-xl shadow-lg`}>
                               <FaBullseye className={`w-7 h-7 ${config.lightText}`} />
                             </div>
-                            
+
                             <div className="flex-1 pr-16">
                               <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed font-medium">
                                 {objective}
@@ -891,18 +891,18 @@ const ProjectDetail = () => {
                         <FaCheckCircle className="w-8 h-8 text-white" />
                       </div>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
                         {language === 'mg' ? 'Zava-bita' : language === 'fr' ? 'Réalisations' : 'Achievements'}
                       </h3>
                       <p className="text-gray-500 dark:text-gray-400 mt-1">
-                        {language === 'mg' ? 'Ireo zava-bita efa tratra' : 
-                         language === 'fr' ? 'Les réussites déjà accomplies' : 
-                         'Accomplishments already achieved'}
+                        {language === 'mg' ? 'Ireo zava-bita efa tratra' :
+                          language === 'fr' ? 'Les réussites déjà accomplies' :
+                            'Accomplishments already achieved'}
                       </p>
                     </div>
-                    
+
                     <div className="flex-1 h-px bg-linear-to-r from-[#ee5253]/30 to-transparent ml-4" />
                   </div>
 
@@ -923,15 +923,15 @@ const ProjectDetail = () => {
                               <FaCheckCircle className="w-5 h-5" />
                             </div>
                           </div>
-                          
+
                           <div className="flex-1">
                             <p className="text-gray-800 dark:text-gray-200 text-base font-medium">
                               {achievement}
                             </p>
                             <p className="text-[#ee5253] text-sm mt-2">
-                              ✓ {language === 'mg' ? 'Vita soa aman-tsara' : 
-                                 language === 'fr' ? 'Réalisé avec succès' : 
-                                 'Successfully completed'}
+                              ✓ {language === 'mg' ? 'Vita soa aman-tsara' :
+                                language === 'fr' ? 'Réalisé avec succès' :
+                                  'Successfully completed'}
                             </p>
                           </div>
                         </div>
@@ -961,7 +961,7 @@ const ProjectDetail = () => {
 
                 <div className="relative">
                   <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent" />
-                  
+
                   <div className="space-y-6">
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
@@ -976,7 +976,7 @@ const ProjectDetail = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex-1 bg-white dark:bg-[#0f172a] rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-md">
                         <p className="font-semibold text-gray-900 dark:text-white text-lg">
                           {language === 'mg' ? 'Daty nanombohana' : language === 'fr' ? 'Date de début' : 'Start date'}
@@ -1003,7 +1003,7 @@ const ProjectDetail = () => {
                             </div>
                           </div>
                         </div>
-                        
+
                         <div className="flex-1 bg-white dark:bg-[#0f172a] rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-md">
                           <p className="font-semibold text-gray-900 dark:text-white text-lg">
                             {language === 'mg' ? 'Daty farany' : language === 'fr' ? 'Date de fin' : 'End date'}
@@ -1054,7 +1054,13 @@ const ProjectDetail = () => {
                           <div className="text-3xl font-bold text-[#ee5253]">
                             {project.partners.length}
                           </div>
-                          <div className="text-xs text-gray-500">partenaires</div>
+                          <div className="text-xs text-gray-500">
+                            {
+                              language === 'mg' ? 'Mpiara-miasa' :
+                                language === 'fr' ? 'Partenaires' :
+                                  'Partners'
+                            }
+                          </div>
                         </div>
                       </div>
                       <p className="text-gray-700 dark:text-gray-300 font-medium">
@@ -1107,8 +1113,8 @@ const ProjectDetail = () => {
                     <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                       <div className="flex items-center gap-4 mb-4">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-[#ee5253] rounded-xl blur-md opacity-30" />
-                            <div className="relative p-3 bg-[#ee5253] rounded-xl text-white">
+                          <div className="absolute inset-0 bg-[#ee5253] rounded-xl blur-md opacity-30" />
+                          <div className="relative p-3 bg-[#ee5253] rounded-xl text-white">
                             {status.icon}
                           </div>
                         </div>
@@ -1124,7 +1130,7 @@ const ProjectDetail = () => {
                       <p className="text-gray-700 dark:text-gray-300 font-medium">
                         {language === 'mg' ? 'Toerana' : language === 'fr' ? 'Statut' : 'Status'}
                       </p>
-                      
+
                       <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#ee5253]/10 rounded-full">
                         <span className={`w-2 h-2 rounded-full ${status.lightText}`} />
                         <span className={`text-xs font-medium ${status.lightText}`}>{status.label}</span>
@@ -1165,7 +1171,7 @@ const ProjectDetail = () => {
                     >
                       <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                         <div className={`absolute top-0 left-0 right-0 h-1 bg-linear-to-r ${logo.bg.replace('/10', '')}`} />
-                        
+
                         <div className="p-6 text-center">
                           <div className="relative mb-4">
                             <div className={`absolute inset-0 ${logo.bg} rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />

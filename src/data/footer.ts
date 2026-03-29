@@ -29,7 +29,7 @@ export const footerData = {
     quickLinks: {
       title: "Rohy Haingana",
       links: [
-        { label: "A propos", href: "/about" },
+        { label: "Fandraisana", href: "/" },
         { label: "Vaovao fikambanana", href: "/news" },
         { label: "Mpanohana", href: "/partners" },
         { label: "Fifandraisana", href: "/contact" },

@@ -2,11 +2,14 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa';
+import { qrcode } from 'vite-plugin-qrcode'
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    qrcode()          // ← C’est ce qui affiche le QR code
+    ,
     VitePWA({
       registerType: 'autoUpdate', // Met à jour le service worker automatiquement
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'], // Fichiers statiques à mettre en cache
@@ -56,4 +59,7 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    host: true,       // expose sur le réseau (remplace --host)
+  }
 })

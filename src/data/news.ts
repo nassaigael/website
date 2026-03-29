@@ -1,3 +1,9 @@
+import  mars_1  from "../assets/images/news/mars_1.jpeg";
+import  mars_2  from "../assets/images/news/mars_2.jpeg";
+import  mars_3  from "../assets/images/news/mars_3.jpeg";
+import  mars_4 from "../assets/images/news/eight_mars.jpeg";
+
+
 export interface NewsArticle {
   id: number;
   date: string;
@@ -24,7 +30,56 @@ export interface NewsArticle {
   featured?: boolean;
 }
 
+
+
 export const newsArticles: NewsArticle[] = [
+  {
+    id: 9,
+    date: "08 Martsa 2025",
+    title: {
+      mg: "Fandraisan'anjaran'ny Vehivavy FIZANAKARA tamin'ny Defilen'ny Andron'ny Vehivavy Maneran-tany",
+      fr: "Participation des Femmes de FIZANAKARA au Défilé de la Journée Internationale de la Femme",
+      en: "FIZANAKARA Women's Participation in the International Women's Day Parade"
+    },
+    excerpt: {
+      mg: "Ny vehivavy mpikambana ao amin'ny FIZANAKARA dia nandray anjara tamim-pahavitrihana tamin'ny defile lehibe natao tao Anosy, Antananarivo, ho fankalazana ny Andron'ny Vehivavy Maneran-tany.",
+      fr: "Les femmes membres de FIZANAKARA ont activement participé au grand défilé organisé à Anosy, Antananarivo, pour célébrer la Journée Internationale des Droits des Femmes.",
+      en: "The women members of FIZANAKARA actively participated in the great parade organized in Anosy, Antananarivo, to celebrate International Women's Rights Day."
+    },
+    content: {
+      mg: [
+        "Ny 8 Martsa 2025, ny vehivavy mpikambana ao amin'ny Fikambanana FIZANAKARA dia nandray anjara tamim-pireharehana tamin'ny defile lehibe natao tao amin'ny kianja Anosy, Antananarivo.",
+        "Io hetsika io dia natao hankalazana ny Andron'ny Vehivavy Maneran-tany, niaraka tamin'ny vehivavy avy amin'ny fikambanana sy orinasa maro hafa.",
+        "Nanao akanjo nentim-paharazana sy nentin-drazana ny vehivavin'ny FIZANAKARA, naneho ny maha-izy azy sy ny herin'ny vehivavy amin'ny fiarahamonina.",
+        "Ity fandraisana anjara ity dia porofon'ny fanoloran-tenan'ny FIZANAKARA amin'ny fampiroboroboana ny zom-pahafahan'ny vehivavy sy ny fitovian-jo.",
+        "Naneho ny fanohanan'ny FIZANAKARA ny vehivavy amin'ny sehatra rehetra izany, na eo amin'ny kolontsaina, ny fanabeazana, na ny fandraharahana."
+      ],
+      fr: [
+        "Le 8 mars 2025, les femmes membres de l'Association FIZANAKARA ont fièrement participé au grand défilé organisé sur la place d'Anosy, à Antananarivo.",
+        "Cet événement a été organisé pour célébrer la Journée Internationale des Droits des Femmes, aux côtés de femmes issues de nombreuses autres associations et entreprises.",
+        "Les femmes de FIZANAKARA portaient des tenues traditionnelles et ancestrales, mettant en valeur leur identité et la force des femmes dans la société.",
+        "Cette participation témoigne de l'engagement de FIZANAKARA en faveur de la promotion des droits des femmes et de l'égalité des chances.",
+        "Cela démontre le soutien de FIZANAKARA aux femmes dans tous les domaines, que ce soit dans la culture, l'éducation ou les affaires."
+      ],
+      en: [
+        "On March 8, 2025, the women members of the FIZANAKARA Association proudly participated in the grand parade organized at Anosy Square, Antananarivo.",
+        "This event was held to celebrate International Women's Rights Day, alongside women from many other associations and companies.",
+        "The FIZANAKARA women wore traditional and ancestral outfits, showcasing their identity and the strength of women in society.",
+        "This participation demonstrates FIZANAKARA's commitment to promoting women's rights and equal opportunities.",
+        "It shows FIZANAKARA's support for women in all areas, whether in culture, education, or business."
+      ]
+    },
+    category: "event",
+    image: mars_1,
+    gallery: [
+      mars_2,
+      mars_3,
+      mars_4
+    ],
+    location: "Anosy, Antananarivo",
+    author: "Département Communication FIZANAKARA",
+    featured: true
+  },
   {
     id: 1,
     date: "14 Mey 2025",
