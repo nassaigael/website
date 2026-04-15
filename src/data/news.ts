@@ -1,7 +1,7 @@
-import  mars_1  from "../assets/images/news/mars_1.jpeg";
-import  mars_2  from "../assets/images/news/mars_2.jpeg";
-import  mars_3  from "../assets/images/news/mars_3.jpeg";
-import  mars_4 from "../assets/images/news/eight_mars.jpeg";
+import mars_1 from "../assets/images/news/mars_1.jpeg";
+import mars_2 from "../assets/images/news/mars_2.jpeg";
+import mars_3 from "../assets/images/news/mars_3.jpeg";
+import mars_4 from "../assets/images/news/eight_mars.jpeg";
 
 
 export interface NewsArticle {

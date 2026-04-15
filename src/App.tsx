@@ -3,13 +3,13 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
-import HomePage from './pages/HomePage';
-import ContactPage from './pages/ContactPage';
-import PartnersPage from './pages/PartnersPage';
-import NewsDetail from './pages/NewsDetail';
-import NewsPage from './pages/NewsPage';
-import ProjectDetail from './pages/ProjectDetail';
-import ProjectsPage from './pages/ProjectsPage';
+import HomePage from './pages/Home';
+import ContactPage from './pages/Contact';
+import PartnersPage from './pages/Partners';
+import NewsDetail from './pages/details/News';
+import NewsPage from './pages/News';
+import ProjectDetail from './pages/details/Project';
+import ProjectsPage from './pages/Projects';
 import AIChat from './components/sections/AIChat';
 // import { CookieProvider } from './contexts/CookieContext';
 

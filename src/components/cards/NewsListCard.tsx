@@ -53,7 +53,7 @@ const NewsListCard = ({ article, index }: NewsListCardProps) => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       whileHover={{ x: 4 }}
-      className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300"
+      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-200 transition-all duration-300"
     >
       <div className="flex flex-col md:flex-row">
         {/* Image */}
@@ -74,7 +74,7 @@ const NewsListCard = ({ article, index }: NewsListCardProps) => {
 
         {/* Content */}
         <div className="md:w-3/5 p-6 md:p-8">
-          <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               <span>{article.date}</span>
@@ -91,11 +91,11 @@ const NewsListCard = ({ article, index }: NewsListCardProps) => {
             </div>
           </div>
 
-          <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-[#ee5253] transition-colors">
+          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#ee5253] transition-colors">
             {article.title[language]}
           </h3>
 
-          <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-2 leading-relaxed">
+          <p className="text-gray-600 mb-6 line-clamp-2 leading-relaxed">
             {article.excerpt[language]}
           </p>
 

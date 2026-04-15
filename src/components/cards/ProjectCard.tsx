@@ -21,11 +21,11 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) => {
   const { language } = useLanguage();
-  
+
   // Récupérer les configurations
   const categoryConfig = getCategoryConfig(language);
   const statusConfig = getStatusConfig(language);
-  
+
   const config = categoryConfig[project.category];
   const status = statusConfig[project.status];
   const featuredText = getFeaturedText(language);
@@ -190,11 +190,11 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
       <div className={cardClasses.content}>
         {/* Date et Location */}
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-gray-600 ">
             <FaCalendarAlt className="w-4 h-4" />
             <span>{project.startDate}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-gray-600 ">
             <FaMapMarkerAlt className="w-4 h-4" />
             <span className="truncate max-w-20">{project.location}</span>
           </div>
@@ -212,7 +212,7 @@ const ProjectCard = ({ project, index, viewMode = 'grid' }: ProjectCardProps) =>
 
         {/* Footer */}
         <div className={cardClasses.footer}>
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-gray-600 ">
             <FaUsers className="w-4 h-4" />
             <span>{project.partners.length}</span>
           </div>

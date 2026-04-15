@@ -7,29 +7,24 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Conversion des couleurs hex en RGB
                 primary: {
-                    DEFAULT: 'rgb(238, 82, 83)', // #ee5253
+                    DEFAULT: 'rgb(238, 82, 83)',
                     light: 'rgb(241, 113, 114)',
-                    dark: 'rgb(190, 66, 67)',
                 },
-                secondary: 'rgb(255, 255, 255)', // #ffffff
-                tertiary: 'rgb(0, 0, 0)',        // #000000
+                secondary: 'rgb(255, 255, 255)',
+                tertiary: 'rgb(0, 0, 0)',
 
-                // Ou avec la syntaxe CSS variable
                 'custom-primary': 'rgb(var(--color-primary))',
                 'custom-secondary': 'rgb(var(--color-secondary))',
                 'custom-tertiary': 'rgb(var(--color-tertiary))',
                 'custom-text': 'rgb(var(--color-text))',
                 'custom-background': 'rgb(var(--color-background))',
 
-                // Les couleurs d'état
                 success: 'rgb(var(--color-success))',
                 warning: 'rgb(var(--color-warning))',
                 error: 'rgb(var(--color-error))',
                 info: 'rgb(var(--color-info))',
                 'surface-light': 'rgb(var(--color-surface-light))',
-                'surface-dark': 'rgb(var(--color-surface-dark))',
                 border: 'rgb(var(--color-border))',
             },
             fontFamily: {

@@ -38,7 +38,6 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
         };
     }, [isOpen]);
 
-    // BADGE SELON LE RANG
     const getRankBadge = () => {
         const role = member.role.en;
 
@@ -92,7 +91,6 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
 
     const rankBadge = getRankBadge();
 
-    // DISCOURS PERSONNALISÉ
     const getSpeech = () => {
         const role = member.role.en;
 
@@ -148,9 +146,8 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                         exit={{ scale: 0.9, y: 30, opacity: 0 }}
                         transition={{ duration: 0.4, type: "spring", damping: 25 }}
                         onClick={(e) => e.stopPropagation()}
-                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-2xl shadow-2xl"
+                        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white  rounded-2xl shadow-2xl"
                     >
-                        {/* BOUTON FERMER */}
                         <motion.button
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
@@ -158,40 +155,33 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                             onClick={onClose}
                             whileHover={{ scale: 1.1, backgroundColor: '#ee5253' }}
                             whileTap={{ scale: 0.9 }}
-                            className="absolute top-3 right-3 z-20 w-9 h-9 bg-white dark:bg-gray-800 hover:bg-[#ee5253] text-gray-600 dark:text-gray-300 hover:text-white rounded-xl shadow-lg flex items-center justify-center transition-all duration-300 border border-gray-200 dark:border-gray-700 cursor-pointer"
+                            className="absolute top-3 right-3 z-20 w-9 h-9 bg-white  hover:bg-[#ee5253] text-gray-600  hover:text-white rounded-xl shadow-lg flex items-center justify-center transition-all duration-300 border border-gray-200  cursor-pointer"
                         >
                             <FaTimes className="w-4 h-4" />
                         </motion.button>
 
-                        {/* CONTENU RESPONSIVE */}
                         <div className="flex flex-col lg:flex-row">
-                            
-                            {/* COLONNE GAUCHE - PHOTO avec corps entier visible */}
-                            <div className="relative w-full lg:w-2/5 h-100 sm:h-125 lg:h-150 overflow-hidden bg-gray-100 dark:bg-gray-800">
-                                {/* Placeholder de chargement */}
+
+                            <div className="relative w-full lg:w-2/5 h-100 sm:h-125 lg:h-150 overflow-hidden bg-gray-100 ">
                                 {!imageLoaded && (
-                                    <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
+                                    <div className="absolute inset-0 bg-gray-200  animate-pulse" />
                                 )}
-                                
-                                {/* Image avec corps entier visible */}
+
                                 <img
                                     src={member.image}
                                     alt={member.name}
                                     onLoad={() => setImageLoaded(true)}
-                                    className={`w-full h-full transition-opacity duration-500 ${
-                                        imageLoaded ? 'opacity-100' : 'opacity-0'
-                                    }`}
-                                    style={{ 
-                                        objectFit: 'contain', // Change de 'cover' à 'contain' pour voir tout le corps
+                                    className={`w-full h-full transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'
+                                        }`}
+                                    style={{
+                                        objectFit: 'contain',
                                         objectPosition: 'center center',
-                                        backgroundColor: '#f3f4f6' // Fond gris clair pour les espaces vides
+                                        backgroundColor: '#f3f4f6'
                                     }}
                                 />
-                                
-                                {/* Overlay dégradé plus léger pour mieux voir l'image */}
+
                                 <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
-                                
-                                {/* Contenu overlay - visible seulement sur mobile/tablet */}
+
                                 <div className="absolute bottom-4 left-4 right-4 text-white lg:hidden">
                                     {rankBadge && (
                                         <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 ${rankBadge.bg} rounded-full text-xs font-bold text-white mb-2`}>
@@ -204,7 +194,6 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                                 </div>
                             </div>
 
-                            {/* COLONNE DROITE - INFOS (Desktop) */}
                             <div className="hidden lg:flex lg:w-3/5 p-6 lg:p-8 flex-col">
                                 <div className="mb-6">
                                     {rankBadge && (
@@ -213,139 +202,132 @@ const OfficeMemberProfile = ({ member, isOpen, onClose }: OfficeMemberProfilePro
                                             <span>{rankBadge.text[language]}</span>
                                         </div>
                                     )}
-                                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{member.name}</h2>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">{rankBadge?.description[language]}</p>
+                                    <h2 className="text-3xl font-bold text-gray-900  mb-2">{member.name}</h2>
+                                    <p className="text-sm text-gray-600 ">{rankBadge?.description[language]}</p>
                                 </div>
 
-                                {/* DISCOURS */}
                                 <div className="flex-1 cursor-auto">
                                     <div className="relative">
                                         <FaQuoteLeft className="absolute -top-2 -left-2 w-6 h-6 text-[#ee5253]" />
-                                        <div className="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-                                            <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed italic">
+                                        <div className="bg-gray-50 /50 p-6 rounded-xl border border-gray-200 ">
+                                            <p className="text-gray-700  text-base leading-relaxed italic">
                                                 "{speech[language]}"
                                             </p>
                                             <div className="mt-4 flex items-center justify-end gap-2">
                                                 <div className="h-px w-12 bg-[#ee5253]" />
-                                                <span className="text-sm font-medium text-gray-900 dark:text-white">{member.name}</span>
+                                                <span className="text-sm font-medium text-gray-900 ">{member.name}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* CONTACT ICONS */}
-                                <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-800">
-                                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                                <div className="mt-6 pt-4 border-t border-gray-200 ">
+                                    <p className="text-xs font-semibold text-gray-500  uppercase tracking-wider mb-3">
                                         {language === 'mg' ? 'FIFANDRAISANA' : language === 'fr' ? 'CONTACT' : 'CONTACT'}
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         {member.contacts.facebook && (
                                             <a href={member.contacts.facebook} target="_blank" rel="noopener noreferrer"
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#1877f2] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#1877f2] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaFacebookF className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.linkedin && (
                                             <a href={member.contacts.linkedin} target="_blank" rel="noopener noreferrer"
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#0077b5] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#0077b5] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaLinkedinIn className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.twitter && (
                                             <a href={member.contacts.twitter} target="_blank" rel="noopener noreferrer"
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#1da1f2] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#1da1f2] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaTwitter className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.phone && (
                                             <a href={`tel:${member.contacts.phone}`}
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#10b981] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#10b981] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaPhoneAlt className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.email && (
                                             <a href={`mailto:${member.contacts.email}`}
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#ea4335] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#ea4335] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaEnvelope className="w-4 h-4" />
                                             </a>
                                         )}
                                     </div>
                                 </div>
 
-                                {/* EMAIL DIRECT */}
                                 {member.contacts.email && (
                                     <div className="mt-4 p-3 bg-linear-to-r from-[#ee5253]/5 to-[#4299e1]/5 rounded-lg border border-[#ee5253]/20 cursor-auto">
                                         <div className="flex items-center gap-3">
                                             <IoMdMail className="w-5 h-5 text-[#ee5253]" />
-                                            <span className="text-sm text-gray-700 dark:text-gray-300 truncate">{member.contacts.email}</span>
+                                            <span className="text-sm text-gray-700  truncate">{member.contacts.email}</span>
                                         </div>
                                     </div>
                                 )}
                             </div>
 
-                            {/* VERSION MOBILE/TABLET - INFOS EN BAS */}
-                            <div className="lg:hidden p-5 bg-white dark:bg-gray-900">
-                                {/* DISCOURS MOBILE */}
+                            <div className="lg:hidden p-5 bg-white ">
                                 <div className="mb-5">
                                     <div className="relative">
                                         <FaQuoteLeft className="absolute -top-2 -left-2 w-5 h-5 text-[#ee5253]/20" />
-                                        <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                                            <p className="text-gray-700 dark:text-gray-300 text-sm italic">
+                                        <div className="bg-gray-50 /50 p-4 rounded-lg border border-gray-200 ">
+                                            <p className="text-gray-700  text-sm italic">
                                                 "{speech[language]}"
                                             </p>
                                             <div className="mt-3 flex items-center justify-end gap-2">
                                                 <div className="h-px w-10 bg-linear-to-r from-[#ee5253] to-[#4299e1]" />
-                                                <span className="text-xs font-medium text-gray-900 dark:text-white">{member.name}</span>
+                                                <span className="text-xs font-medium text-gray-900 ">{member.name}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* CONTACT ICONS MOBILE */}
                                 <div className="mb-4">
-                                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                                    <p className="text-xs font-semibold text-gray-500  uppercase tracking-wider mb-2">
                                         {language === 'mg' ? 'FIFANDRAISANA' : language === 'fr' ? 'CONTACT' : 'CONTACT'}
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         {member.contacts.facebook && (
                                             <a href={member.contacts.facebook} target="_blank" rel="noopener noreferrer"
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#1877f2] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#1877f2] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaFacebookF className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.linkedin && (
                                             <a href={member.contacts.linkedin} target="_blank" rel="noopener noreferrer"
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#0077b5] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#0077b5] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaLinkedinIn className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.twitter && (
                                             <a href={member.contacts.twitter} target="_blank" rel="noopener noreferrer"
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#1da1f2] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#1da1f2] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaTwitter className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.phone && (
                                             <a href={`tel:${member.contacts.phone}`}
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#10b981] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#10b981] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaPhoneAlt className="w-4 h-4" />
                                             </a>
                                         )}
                                         {member.contacts.email && (
                                             <a href={`mailto:${member.contacts.email}`}
-                                                className="w-9 h-9 bg-gray-100 dark:bg-gray-800 hover:bg-[#ea4335] text-gray-600 dark:text-gray-400 hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
+                                                className="w-9 h-9 bg-gray-100  hover:bg-[#ea4335] text-gray-600  hover:text-white rounded-lg flex items-center justify-center transition-all duration-300">
                                                 <FaEnvelope className="w-4 h-4" />
                                             </a>
                                         )}
                                     </div>
                                 </div>
 
-                                {/* EMAIL MOBILE */}
                                 {member.contacts.email && (
                                     <div className="p-3 bg-linear-to-r from-[#ee5253]/5 to-[#4299e1]/5 rounded-lg border border-[#ee5253]/20">
                                         <div className="flex items-center gap-3">
                                             <IoMdMail className="w-4 h-4 text-[#ee5253]" />
-                                            <span className="text-xs text-gray-700 dark:text-gray-300 truncate">{member.contacts.email}</span>
+                                            <span className="text-xs text-gray-700  truncate">{member.contacts.email}</span>
                                         </div>
                                     </div>
                                 )}

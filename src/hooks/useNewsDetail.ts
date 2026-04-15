@@ -50,7 +50,7 @@ export const useNewsDetail = () => {
     };
 
     const closeGallery = () => setIsGalleryOpen(false);
-    
+
     const nextImage = () => setGalleryImageIndex((prev) => (prev + 1) % galleryImages.length);
     const prevImage = () => setGalleryImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
 

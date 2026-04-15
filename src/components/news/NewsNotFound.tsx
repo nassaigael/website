@@ -9,16 +9,16 @@ export const NewsNotFound = ({ onBack }: NewsNotFoundProps) => {
     const { language } = useLanguage();
 
     return (
-        <div className="min-h-screen bg-white dark:bg-[#1e293b] flex items-center justify-center px-4">
+        <div className="min-h-screen bg-white  flex items-center justify-center px-4">
             <div className="text-center max-w-lg mx-auto">
                 <motion.div
                     animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="text-9xl text-[#ee5253]/10 dark:text-[#ee5253]/20 mb-6 font-bold"
+                    className="text-9xl text-[#ee5253]/10 /20 mb-6 font-bold"
                 >
                     404
                 </motion.div>
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                <h1 className="text-4xl font-bold text-gray-900  mb-6">
                     {language === 'mg' ? 'Tsy hita ny vaovao' :
                         language === 'fr' ? 'Article non trouvé' :
                             'Article not found'}

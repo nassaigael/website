@@ -16,21 +16,21 @@ export const NewsMetaInfo = ({ date, location, author }: NewsMetaInfoProps) => {
             }}
             className="flex flex-wrap items-center gap-6 mb-8"
         >
-            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800">
+            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100  rounded-xl border border-gray-200 ">
                 <Calendar className="w-5 h-5 text-[#ee5253]" />
-                <span className="font-semibold text-gray-700 dark:text-white">{date}</span>
+                <span className="font-semibold text-gray-700 ">{date}</span>
             </div>
 
             {location && (
-                <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800">
+                <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100  rounded-xl border border-gray-200 ">
                     <MapPin className="w-5 h-5 text-[#ee5253]" />
-                    <span className="font-semibold text-gray-700 dark:text-white">{location}</span>
+                    <span className="font-semibold text-gray-700 ">{location}</span>
                 </div>
             )}
 
-            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800">
+            <div className="flex items-center gap-3 px-4 py-2.5 bg-gray-100  rounded-xl border border-gray-200 ">
                 <User className="w-5 h-5 text-[#ee5253]" />
-                <span className="font-semibold text-gray-700 dark:text-white">{author}</span>
+                <span className="font-semibold text-gray-700 ">{author}</span>
             </div>
         </motion.div>
     );

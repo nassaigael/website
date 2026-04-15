@@ -12,8 +12,8 @@ export const formatMessageText = (text: string): string => {
   if (!text) return '';
 
   const formatted = text
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#ee5253] dark:text-[#ff6b6b]">$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em class="italic text-gray-700 dark:text-gray-300">$1</em>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#ee5253] ">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em class="italic text-gray-700 ">$1</em>')
     .replace(/contact@fizanakara\.mg/g, '📧 <strong class="text-[#ee5253]">contact@fizanakara.mg</strong>')
     .replace(/\(\+261\)\s*\d{2}\s*\d{2}\s*\d{3}\s*\d{2}/g, '📞 <strong class="text-[#ee5253]">$&</strong>')
     .replace(/www\.fizanakara\.mg/g, '🌐 <strong class="text-[#ee5253]">www.fizanakara.mg</strong>');

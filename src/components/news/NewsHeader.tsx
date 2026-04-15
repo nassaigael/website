@@ -34,10 +34,10 @@ export const NewsHeader = ({
                 whileHover={{ x: -4 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onBack}
-                className="group flex items-center gap-3 px-5 py-3 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800 hover:border-[#ee5253] hover:bg-gray-50 dark:hover:bg-[#1a1f2e] transition-all"
+                className="group flex items-center gap-3 px-5 py-3 bg-gray-100  rounded-xl border border-gray-200  hover:border-[#ee5253] hover:bg-gray-50  transition-all"
             >
-                <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-[#ee5253] group-hover:scale-110 transition-transform" />
-                <span className="font-semibold text-gray-700 dark:text-white group-hover:text-[#ee5253] transition-colors">
+                <ArrowLeft className="w-5 h-5 text-gray-700  group-hover:scale-110 transition-transform" />
+                <span className="font-semibold text-gray-700  group-hover:text-[#ee5253] transition-colors">
                     {language === 'mg' ? 'Hiverina' :
                         language === 'fr' ? 'Retour' :
                             'Back'}

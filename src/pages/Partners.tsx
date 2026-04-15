@@ -9,19 +9,19 @@ const PartnersPage = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#1e293b]">
+    <div className="min-h-screen bg-white ">
       {/* Hero section */}
       <PartnersHero />
 
       {/* Grille des partenaires */}
       <section
         id="partners-grid"
-        className="py-16 md:py-20 bg-linear-to-b from-gray-50 to-white dark:from-[#1e293b] dark:to-[#162231] overflow-hidden relative"
+        className="py-16 md:py-20 bg-linear-to-b from-gray-50 to-white overflow-hidden relative"
       >
         {/* Éléments décoratifs */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-64 h-64 bg-[#ee5253]/5 dark:bg-[#ee5253]/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-0 w-64 h-64 bg-[#ee5253]/5 /5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#932020]/5  rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -31,14 +31,14 @@ const PartnersPage = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight flex items-center justify-center"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900  mb-6 md:mb-8 leading-tight flex items-center justify-center"
             >
               <span className="relative inline-block">
                 <span className="relative z-10 text-center">
                   {language === 'mg' ? 'Mpiara-miasa aminay' :
                     language === 'fr' ? 'Nos partenaires' :
                       'Our partners'}                            </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
+                <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]  -z-10"></span>
               </span>
             </motion.h2>
 

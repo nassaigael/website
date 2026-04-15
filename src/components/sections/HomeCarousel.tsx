@@ -16,7 +16,6 @@ interface CarouselProps {
   autoPlayInterval?: number;
 }
 
-// Générer les particules en dehors du composant
 const generateParticles = () => {
   if (typeof window === 'undefined') {
     return [...Array(20)].map(() => ({
@@ -56,7 +55,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
 
   const [particles] = useState(generateParticles);
 
-  // Détecter le mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -104,7 +102,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   }, [slides.length]);
 
-  // Gestion améliorée du drag pour éviter les conflits avec le scroll
   const handleDragStart = (_event: MouseEvent | TouchEvent | PointerEvent) => {
     dragStartTime.current = Date.now();
     if ('touches' in _event) {
@@ -118,7 +115,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
     const dragDuration = Date.now() - dragStartTime.current;
     const dragDistance = Math.abs(info.offset.x);
 
-    // Ne pas déclencher le swipe si c'est probablement un scroll
     if (dragDuration > 300 || dragDistance < 30) {
       return;
     }
@@ -231,7 +227,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         </motion.div>
       </AnimatePresence>
 
-      {/* Particules de fond */}
       <div className="absolute inset-0 pointer-events-none">
         {particles.map((particle, i) => (
           <motion.div
@@ -269,7 +264,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         ))}
       </div>
 
-      {/* Éléments décoratifs flottants - désactivés sur mobile */}
       {!isMobile && (
         <>
           <motion.div
@@ -326,7 +320,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
           onDragEnd={handleDragEnd}
           style={{ touchAction: isMobile ? 'pan-y' : 'auto' }}
         >
-          {/* Image avec parallaxe - désactivé sur mobile */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
               className="absolute inset-0"
@@ -347,7 +340,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
               />
             </motion.div>
 
-            {/* Overlay */}
             <motion.div
               className="absolute inset-0"
               animate={{
@@ -361,7 +353,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
             />
           </div>
 
-          {/* Contenu principal */}
           <div className="relative h-full flex items-center justify-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
@@ -369,7 +360,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 animate="visible"
                 className="max-w-6xl mx-auto text-center"
               >
-                {/* Sous-titre premium */}
                 <motion.div custom={0} variants={textVariants}>
                   <div className="inline-flex items-center gap-2 mb-6">
                     <div className="w-12 h-px bg-[#ffffff]" />
@@ -380,7 +370,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   </div>
                 </motion.div>
 
-                {/* Titre principal avec effet de révélation */}
                 <motion.h1
                   custom={1}
                   variants={textVariants}
@@ -401,7 +390,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   ))}
                 </motion.h1>
 
-                {/* Description avec animation */}
                 <motion.p
                   custom={2}
                   variants={textVariants}
@@ -415,12 +403,10 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         </motion.div>
       </AnimatePresence>
 
-      {/* BOUTONS CTA FIXES - TOUJOURS VISIBLES */}
       <div className="absolute left-0 right-0 z-40 pointer-events-none" style={{ bottom: '160px' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center max-w-6xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pointer-events-auto">
-              {/* Bouton Découvrir */}
               <Link to="/projects">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -430,8 +416,8 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                     <span>
                       {language === 'mg' ? 'Hijery tetikasa' :
-                       language === 'fr' ? 'Découvrir nos projets' :
-                       'Discover our projects'}
+                        language === 'fr' ? 'Découvrir nos projets' :
+                          'Discover our projects'}
                     </span>
                     <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
                   </span>
@@ -444,7 +430,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                 </motion.button>
               </Link>
 
-              {/* Bouton Nous rejoindre / Contact */}
               <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -454,8 +439,8 @@ const HomeCarousel: React.FC<CarouselProps> = ({
                   <span className="flex items-center gap-2 sm:gap-3">
                     <span>
                       {language === 'mg' ? 'Mifandraisa' :
-                       language === 'fr' ? 'Nous contacter' :
-                       'Contact us'}
+                        language === 'fr' ? 'Nous contacter' :
+                          'Contact us'}
                     </span>
                   </span>
                 </motion.button>
@@ -465,7 +450,6 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         </div>
       </div>
 
-      {/* Contrôles de navigation - CENTRÉS sur tous les écrans */}
       <div className="absolute bottom-12 left-0 right-0 z-30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center max-w-6xl mx-auto">
@@ -524,10 +508,9 @@ const HomeCarousel: React.FC<CarouselProps> = ({
         </div>
       </div>
 
-      {/* Barre de progression premium */}
       {isPlaying && (
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-[#ee5253] via-[#932020] to-[#ee5253]"
+          className="absolute bottom-0 left-0 right-0 h-1 bg-[#ee5253]"
           initial={{ scaleX: 0, originX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: autoPlayInterval / 1000, ease: "linear", repeat: Infinity }}

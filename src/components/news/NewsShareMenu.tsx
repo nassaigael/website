@@ -31,10 +31,10 @@ export const NewsShareMenu = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowShareMenu(!showShareMenu)}
-                className="p-3 bg-gray-100 dark:bg-[#0f172a] text-gray-700 dark:text-white rounded-xl border border-gray-200 dark:border-gray-800 hover:border-[#ee5253] hover:bg-gray-50 dark:hover:bg-[#1a1f2e] flex items-center gap-2 transition-all"
+                className="p-3 bg-gray-100  text-gray-700  rounded-xl border border-gray-200  hover:border-[#ee5253] hover:bg-gray-50  flex items-center gap-2 transition-all"
             >
-                <Share2 className="w-5 h-5 text-gray-700 dark:text-[#ee5253]" />
-                <ChevronDown className={`w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform ${showShareMenu ? 'rotate-180' : ''}`} />
+                <Share2 className="w-5 h-5 text-gray-700 " />
+                <ChevronDown className={`w-4 h-4 text-gray-500  transition-transform ${showShareMenu ? 'rotate-180' : ''}`} />
             </motion.button>
 
             <AnimatePresence>
@@ -43,10 +43,10 @@ export const NewsShareMenu = ({
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        className="absolute top-full mt-2 right-0 w-16 bg-white dark:bg-[#0f172a] rounded-2xl shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden z-50"
+                        className="absolute top-full mt-2 right-0 w-16 bg-white  rounded-2xl shadow-xl   border border-gray-200  overflow-hidden z-50"
                     >
-                        <div className="p-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-center">
-                            <h4 className="font-light text-[12px] text-gray-500 dark:text-white">
+                        <div className="p-4 border-b border-gray-100  flex items-center justify-center">
+                            <h4 className="font-light text-[12px] text-gray-500 ">
                                 {language === 'mg' ? 'Zaraho' : language === 'fr' ? 'Partager' : 'Share'}
                             </h4>
                         </div>
@@ -58,7 +58,7 @@ export const NewsShareMenu = ({
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.05 }}
                                     onClick={() => onShare(item.platform)}
-                                    className="flex items-center gap-1 w-full px-4 py-3 rounded-xl hover:bg-[#ee5253] hover:text-white text-gray-700 dark:text-gray-300 transition-colors group"
+                                    className="flex items-center gap-1 w-full px-4 py-3 rounded-xl hover:bg-[#ee5253] hover:text-white text-gray-700  transition-colors group"
                                 >
                                     <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                 </motion.button>

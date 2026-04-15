@@ -1,16 +1,16 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, LinkIcon } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useNewsDetail } from '../hooks/useNewsDetail';
-import { categoryConfig } from '../config/newsCategoryConfig';
-import { shareNews } from '../utils/shareUtils';
-import { NewsNotFound } from '../components/news/NewsNotFound';
-import { NewsHeader } from '../components/news/NewsHeader';
-import { NewsMetaInfo } from '../components/news/NewsMetaInfo';
-import { NewsGallery } from '../components/news/NewsGallery';
-import { NewsGalleryModal } from '../components/news/NewsGalleryModal';
-import { NewsContent } from '../components/news/NewsContent';
-import NewsCard from '../components/cards/NewsCard';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { useNewsDetail } from '../../hooks/useNewsDetail';
+import { categoryConfig } from '../../config/newsCategoryConfig';
+import { shareNews } from '../../utils/shareUtils';
+import { NewsNotFound } from '../../components/news/NewsNotFound';
+import { NewsHeader } from '../../components/news/NewsHeader';
+import { NewsMetaInfo } from '../../components/news/NewsMetaInfo';
+import { NewsGallery } from '../../components/news/NewsGallery';
+import { NewsGalleryModal } from '../../components/news/NewsGalleryModal';
+import { NewsContent } from '../../components/news/NewsContent';
+import NewsCard from '../../components/cards/NewsCard';
 
 const NewsDetail = () => {
     const { language } = useLanguage();
@@ -65,7 +65,7 @@ const NewsDetail = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
+            className="min-h-screen bg-white  pb-16 md:pb-20 relative overflow-hidden pt-8"
         >
             {/* Galerie Modale */}
             <NewsGalleryModal
@@ -139,7 +139,7 @@ const NewsDetail = () => {
                             </span>
                         </motion.div>
 
-                        <motion.h1 variants={itemVariants} className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
+                        <motion.h1 variants={itemVariants} className="text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900  mb-8 leading-tight">
                             {article.title[language]}
                         </motion.h1>
 
@@ -151,7 +151,7 @@ const NewsDetail = () => {
 
                         <motion.div variants={itemVariants} className="relative">
                             <div className="absolute -left-8 top-0 text-6xl text-[#ee5253]/10">"</div>
-                            <p className="text-2xl sm:text-3xl text-gray-700 dark:text-white leading-relaxed font-light pl-8">
+                            <p className="text-2xl sm:text-3xl text-gray-700  leading-relaxed font-light pl-8">
                                 {article.excerpt[language]}
                             </p>
                         </motion.div>
@@ -176,10 +176,10 @@ const NewsDetail = () => {
                     {relatedArticles.length > 0 && (
                         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="mb-16">
                             <div className="text-center mb-16">
-                                <motion.h2 variants={itemVariants} className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                                <motion.h2 variants={itemVariants} className="text-4xl sm:text-5xl font-bold text-gray-900  mb-6">
                                     {language === 'mg' ? 'Vaovao mifandraika' : language === 'fr' ? 'Articles similaires' : 'Related articles'}
                                 </motion.h2>
-                                <motion.p variants={itemVariants} className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                                <motion.p variants={itemVariants} className="text-xl text-gray-600  max-w-2xl mx-auto">
                                     {language === 'mg' ? 'Mijery ireo vaovao hafa mety ho liana aminao' :
                                         language === 'fr' ? 'Découvrez d\'autres articles qui pourraient vous intéresser' :
                                             'Discover other articles you might be interested in'}
@@ -202,7 +202,7 @@ const NewsDetail = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => navigate('/news')}
-                            className="group inline-flex items-center gap-3 px-6 py-3 bg-gray-100 dark:bg-[#0f172a] hover:bg-gray-200 dark:hover:bg-[#1a1f2e] text-gray-700 dark:text-white font-bold rounded-2xl shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-800/35 transition-all"
+                            className="group inline-flex items-center gap-3 px-6 py-3 bg-gray-100  hover:bg-gray-200  text-gray-700  font-bold rounded-2xl shadow-lg hover:shadow-xl border border-gray-200 /35 transition-all"
                         >
                             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform text-[#ee5253]" />
                             <span>{language === 'mg' ? 'Hiverina' : language === 'fr' ? 'Retour' : 'Back'}</span>

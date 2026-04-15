@@ -134,7 +134,7 @@ export const footerData = {
       links: [
         { label: "About Fizanakara", href: "/about" },
         { label: "News", href: "/news" },
-        { label: "partners", href: "/partners" },
+        { label: "Partners", href: "/partners" },
         { label: "Contact", href: "/contact" },
         { label: "Projects", href: "/projects" },
       ]

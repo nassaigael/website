@@ -34,7 +34,7 @@ const ClearChatModal: React.FC<ClearChatModalProps> = ({
             onClick={onClose}
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-100"
           />
-          
+
           {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -43,7 +43,7 @@ const ClearChatModal: React.FC<ClearChatModalProps> = ({
             transition={{ type: 'spring', duration: 0.3 }}
             className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-101 w-[90%] sm:w-100"
           >
-            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+            <div className="bg-white  rounded-2xl shadow-2xl border border-gray-200  overflow-hidden">
               {/* Header */}
               <div className="bg-[#ee5253] p-4 text-white">
                 <div className="flex items-center justify-between">
@@ -63,21 +63,21 @@ const ClearChatModal: React.FC<ClearChatModalProps> = ({
                   </motion.button>
                 </div>
               </div>
-              
+
               {/* Body */}
               <div className="p-6">
-                <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                <p className="text-gray-700  text-sm leading-relaxed">
                   {message}
                 </p>
               </div>
-              
+
               {/* Footer */}
               <div className="px-6 pb-6 flex gap-3">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={onClose}
-                  className="flex-1 px-4 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl font-medium text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  className="flex-1 px-4 py-3 bg-gray-100  text-gray-700  rounded-xl font-medium text-sm hover:bg-gray-200  transition-colors"
                 >
                   {cancelText}
                 </motion.button>

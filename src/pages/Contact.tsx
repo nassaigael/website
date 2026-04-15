@@ -108,7 +108,7 @@ const ContactPage = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
+      className="min-h-screen bg-white  pb-16 md:pb-20 relative overflow-hidden pt-15"
     >
       {/* Éléments décoratifs d'arrière-plan - Version Light */}
       <div className="absolute inset-0 pointer-events-none">
@@ -118,7 +118,7 @@ const ContactPage = () => {
             y: [0, 50, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/5 dark:bg-[#ee5253]/5 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/5 /5 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -126,7 +126,7 @@ const ContactPage = () => {
             y: [0, -50, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5  rounded-full blur-3xl"
         />
 
         {/* Grille subtile - Version Light */}
@@ -148,7 +148,7 @@ const ContactPage = () => {
           {/* Main Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900  mb-6 md:mb-8 leading-tight"
           >
             <span className="relative inline-block">
               <span className="relative z-10">
@@ -156,7 +156,7 @@ const ContactPage = () => {
                   language === 'fr' ? 'Contact' :
                     'Contact'}
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
+              <span className="absolute -bottom-2 left-0 right-0 h-2 md:h-3 bg-[#ee5253]  -z-10"></span>
             </span>
           </motion.h1>
 
@@ -165,7 +165,7 @@ const ContactPage = () => {
             variants={itemVariants}
             className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600  leading-relaxed font-light">
               {language === 'mg' ? 'Eto izahay hamaly ny fanontanianao' :
                 language === 'fr' ? 'Nous sommes là pour répondre à vos questions' :
                   "We're here to answer your questions"}
@@ -177,9 +177,9 @@ const ContactPage = () => {
             variants={itemVariants}
             className="flex items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16"
           >
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] "></div>
             <div className="w-3 h-3 md:w-4 md:h-4 border-2 border-[#ee5253] rotate-45"></div>
-            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
+            <div className="w-8 md:w-12 h-0.5 bg-[#ee5253] "></div>
           </motion.div>
         </motion.div>
 
@@ -190,10 +190,10 @@ const ContactPage = () => {
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="bg-gray-50 dark:bg-[#0f172a] rounded-3xl p-8 border border-gray-200 dark:border-gray-800/50 shadow-xl dark:shadow-2xl h-fit lg:h-full"
+            className="bg-gray-50  rounded-3xl p-8 border border-gray-200  shadow-xl   h-fit lg:h-full"
           >
             <div className="flex items-center gap-2 mb-6">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-xl font-bold text-gray-900 ">
                 {language === 'mg' ? 'Nosy rehetra' :
                   language === 'fr' ? 'Nos antennes' :
                     'Our offices'}
@@ -206,15 +206,14 @@ const ContactPage = () => {
                   key={index}
                   whileHover={{ scale: 1.02, x: 5 }}
                   onClick={() => setSelectedProvince(selectedProvince === province.name ? null : province.name)}
-                  className={`p-4 bg-white dark:bg-[#1e293b] rounded-xl border transition-all duration-300 cursor-pointer ${
-                    selectedProvince === province.name
-                      ? 'border-[#ee5253] shadow-lg shadow-[#ee5253]/10 dark:shadow-[#ee5253]/10'
-                      : 'border-gray-200 dark:border-gray-800/50 hover:border-[#ee5253]/30 dark:hover:border-[#ee5253]/30'
-                  }`}
+                  className={`p-4 bg-white  rounded-xl border transition-all duration-300 cursor-pointer ${selectedProvince === province.name
+                    ? 'border-[#ee5253] shadow-lg shadow-[#ee5253]/10 '
+                    : 'border-gray-200  hover:border-[#ee5253]/30 '
+                    }`}
                 >
                   <div className="flex items-start gap-3">
                     <div className="flex-1">
-                      <h4 className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                      <h4 className="font-bold text-gray-900  flex items-center gap-2">
                         {province.name}
                       </h4>
 
@@ -224,26 +223,26 @@ const ContactPage = () => {
                         className="overflow-hidden"
                       >
                         {selectedProvince === province.name && (
-                          <div className="mt-3 space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700/50">
-                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                          <div className="mt-3 space-y-2 pt-2 border-t border-gray-200  ">
+                            <p className="text-xs text-gray-600  flex items-center gap-2">
                               <Phone className="w-3 h-3 text-[#ee5253]" />
-                              <a href={`tel:${province.phone}`} className="text-gray-900 dark:text-white hover:text-[#ee5253] transition-colors">
+                              <a href={`tel:${province.phone}`} className="text-gray-900  hover:text-[#ee5253] transition-colors">
                                 {province.phone}
                               </a>
                             </p>
-                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                            <p className="text-xs text-gray-600  flex items-center gap-2">
                               <Mail className="w-3 h-3 text-[#ee5253]" />
-                              <a href={`mailto:${province.email}`} className="text-gray-900 dark:text-white hover:text-[#932020] transition-colors">
+                              <a href={`mailto:${province.email}`} className="text-gray-900  hover:text-[#932020] transition-colors">
                                 {province.email}
                               </a>
                             </p>
-                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                            <p className="text-xs text-gray-600  flex items-center gap-2">
                               <MapPin className="w-3 h-3 text-[#ee5253]" />
-                              <span className="text-gray-900 dark:text-white">{province.address}</span>
+                              <span className="text-gray-900 ">{province.address}</span>
                             </p>
-                            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2 mt-2">
+                            <p className="text-xs text-gray-600  flex items-center gap-2 mt-2">
                               <Users className="w-3 h-3 text-[#ee5253]" />
-                              <span className="text-gray-900 dark:text-white">{province.responsable}</span>
+                              <span className="text-gray-900 ">{province.responsable}</span>
                             </p>
                           </div>
                         )}
@@ -260,7 +259,7 @@ const ContactPage = () => {
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="bg-gray-50 dark:bg-[#0f172a] rounded-3xl p-8 shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800/50 h-fit lg:h-full"
+            className="bg-gray-50  rounded-3xl p-8 shadow-xl   border border-gray-200  h-fit lg:h-full"
           >
             {isSuccess ? (
               <motion.div
@@ -274,8 +273,8 @@ const ContactPage = () => {
                     <CheckCircle className="w-10 h-10 text-white" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t.form.success}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-center">
+                <h3 className="text-2xl font-bold text-gray-900  mb-2">{t.form.success}</h3>
+                <p className="text-gray-600  text-center">
                   {language === 'mg' ? 'Hamaly anao haingana izahay' :
                     language === 'fr' ? 'Nous vous répondrons rapidement' :
                       "We'll get back to you soon"}
@@ -283,7 +282,7 @@ const ContactPage = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5 h-full flex flex-col">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                <h3 className="text-2xl font-bold text-gray-900  mb-6">
                   {language === 'mg' ? 'Alefaso hafatra' :
                     language === 'fr' ? 'Envoyez un message' :
                       'Send a message'}
@@ -294,7 +293,7 @@ const ContactPage = () => {
                   animate={focusedField === 'name' ? { scale: 1.02 } : { scale: 1 }}
                   className="space-y-2"
                 >
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 ">
                     {t.form.name}
                   </label>
                   <div className="relative">
@@ -307,7 +306,7 @@ const ContactPage = () => {
                       onBlur={() => setFocusedField(null)}
                       required
                       placeholder={t.form.namePlaceholder}
-                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
+                      className="w-full bg-white  border-2 border-gray-300  rounded-xl px-4 py-3 text-gray-900  placeholder-gray-500  focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
                     />
                   </div>
                 </motion.div>
@@ -317,7 +316,7 @@ const ContactPage = () => {
                   animate={focusedField === 'email' ? { scale: 1.02 } : { scale: 1 }}
                   className="space-y-2"
                 >
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 ">
                     {t.form.email}
                   </label>
                   <div className="relative">
@@ -330,7 +329,7 @@ const ContactPage = () => {
                       onBlur={() => setFocusedField(null)}
                       required
                       placeholder={t.form.emailPlaceholder}
-                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
+                      className="w-full bg-white  border-2 border-gray-300  rounded-xl px-4 py-3 text-gray-900  placeholder-gray-500  focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none"
                     />
                   </div>
                 </motion.div>
@@ -340,7 +339,7 @@ const ContactPage = () => {
                   animate={focusedField === 'industry' ? { scale: 1.02 } : { scale: 1 }}
                   className="space-y-2"
                 >
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 ">
                     {t.form.industry}
                   </label>
                   <div className="relative">
@@ -350,17 +349,17 @@ const ContactPage = () => {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('industry')}
                       onBlur={() => setFocusedField(null)}
-                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none appearance-none"
+                      className="w-full bg-white  border-2 border-gray-300  rounded-xl px-4 py-3 text-gray-900  focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none appearance-none"
                     >
-                      <option value="" className="bg-white dark:bg-[#1e293b] text-gray-500 dark:text-gray-500">{t.form.industryPlaceholder}</option>
+                      <option value="" className="bg-white  text-gray-500 ">{t.form.industryPlaceholder}</option>
                       {t.form.industryOptions.map((option: string, index: number) => (
-                        <option key={index} value={option} className="bg-white dark:bg-[#1e293b] text-gray-900 dark:text-white">
+                        <option key={index} value={option} className="bg-white  text-gray-900 ">
                           {option}
                         </option>
                       ))}
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
@@ -372,7 +371,7 @@ const ContactPage = () => {
                   animate={focusedField === 'message' ? { scale: 1.02 } : { scale: 1 }}
                   className="space-y-2 grow"
                 >
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700 ">
                     {t.form.message}
                   </label>
                   <div className="relative h-full">
@@ -385,7 +384,7 @@ const ContactPage = () => {
                       required
                       rows={4}
                       placeholder={t.form.messagePlaceholder}
-                      className="w-full bg-white dark:bg-[#1e293b] border-2 border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none resize-none h-32"
+                      className="w-full bg-white  border-2 border-gray-300  rounded-xl px-4 py-3 text-gray-900  placeholder-gray-500  focus:border-[#ee5253] focus:ring-2 focus:ring-[#ee5253]/20 transition-all outline-none resize-none h-32"
                     />
                   </div>
                 </motion.div>
@@ -399,7 +398,7 @@ const ContactPage = () => {
                   className="relative w-full overflow-hidden group mt-auto"
                 >
                   <div className="absolute inset-0 bg-[#ee5253] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative flex items-center justify-center gap-3 bg-[#ee5253] px-6 py-4 rounded-xl font-semibold text-white shadow-lg dark:shadow-xl">
+                  <div className="relative flex items-center justify-center gap-3 bg-[#ee5253] px-6 py-4 rounded-xl font-semibold text-white shadow-lg ">
                     {isSubmitting ? (
                       <>
                         <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

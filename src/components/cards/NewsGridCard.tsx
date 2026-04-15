@@ -53,7 +53,7 @@ const NewsGridCard = ({ article, index }: NewsGridCardProps) => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       whileHover={{ y: -12, scale: 1.02 }}
-      className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300"
+      className="group relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl border border-gray-200 transition-all duration-300"
     >
       {/* Category Badge */}
       <div className="absolute top-4 left-4 z-10">
@@ -90,15 +90,15 @@ const NewsGridCard = ({ article, index }: NewsGridCardProps) => {
           </div>
         </div>
 
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-[#ee5253] transition-colors">
+        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#ee5253] transition-colors">
           {article.title[language]}
         </h3>
 
-        <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 leading-relaxed text-sm">
+        <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed text-sm">
           {article.excerpt[language]}
         </p>
 
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
           <div className="flex items-center gap-2 text-sm text-white">
             <User className="w-4 h-4" />
             <span>{article.author}</span>

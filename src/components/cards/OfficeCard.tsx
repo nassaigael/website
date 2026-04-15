@@ -1,15 +1,14 @@
-// src/components/cards/OfficeMemberCard.tsx
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { type OfficeMember } from '../../data/office_manager';
 import OfficeMemberProfile from '../sections/OfficeMemberProfile';
 
-import { 
-  FaFacebookF, 
-  FaLinkedinIn, 
-  FaPhoneAlt, 
-  FaEnvelope, 
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaPhoneAlt,
+  FaEnvelope,
   FaTwitter,
   FaQuoteRight,
   FaCrown,
@@ -21,21 +20,20 @@ import { HiOutlineBadgeCheck } from 'react-icons/hi';
 import { RiShieldFlashLine, RiVipCrownLine } from 'react-icons/ri';
 import { GoVerified } from 'react-icons/go';
 
-interface OfficeMemberCardProps {
+interface OfficeCardProps {
   member: OfficeMember;
   index: number;
 }
 
-const OfficeMemberCard = ({ member, index }: OfficeMemberCardProps) => {
+const OfficeMemberCard = ({ member, index }: OfficeCardProps) => {
   const { language } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-// BADGES SELON LE RANG
-const getRankBadge = () => {
-    const role = member.role.en; 
-    
+  const getRankBadge = () => {
+    const role = member.role.en;
+
     if (member.isKing) {
       return {
         icon: <GiCrown className="w-4 h-4" />,
@@ -76,29 +74,28 @@ const getRankBadge = () => {
       <motion.div
         initial="hidden"
         animate="visible"
-        whileHover={{ 
+        whileHover={{
           y: -12,
           scale: 1.02,
-          transition: { 
-            duration: 0.4, 
-            type: "spring", 
-            stiffness: 300, 
-            damping: 20 
+          transition: {
+            duration: 0.4,
+            type: "spring",
+            stiffness: 300,
+            damping: 20
           }
         }}
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className="group relative w-full bg-linear-to-br from-white via-white to-gray-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800/50 rounded-2xl overflow-hidden shadow-2xl hover:shadow-4xl border border-gray-200/50 dark:border-gray-800/50 transition-all duration-700 perspective-1000"
+        className="group relative w-full bg-linear-to-br from-white via-white to-gray-50/50 rounded-2xl overflow-hidden shadow-2xl hover:shadow-4xl border border-gray-200/50 transition-all duration-700 perspective-1000"
       >
-        {/* BADGE DE RANG */}
         {rankBadge && (
-          <motion.div 
+          <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: index * 0.1 + 0.3 }}
             className={`absolute top-3 left-3 z-30 ${rankBadge.shadow}`}
           >
-            <div className={`flex items-center gap-1.5 px-3 py-1.5 ${rankBadge.bg} text-white dark:textbl rounded-full shadow-xl`}>
+            <div className={`flex items-center gap-1.5 px-3 py-1.5 ${rankBadge.bg} text-white rounded-full shadow-xl`}>
               {rankBadge.icon}
               <span className="text-[9px] font-bold text-white uppercase tracking-wider drop-shadow-md">
                 {rankBadge.text[language]}
@@ -107,7 +104,6 @@ const getRankBadge = () => {
           </motion.div>
         )}
 
-        {/* BADGE VERIFIED */}
         <div className="absolute top-3 right-3 z-30">
           <motion.div
             initial={{ scale: 0 }}
@@ -116,23 +112,21 @@ const getRankBadge = () => {
             className="relative"
           >
             <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-md animate-pulse" />
-            <div className="relative w-7 h-7 bg-linear-to-br from-[#ee5253] to-[#932020] rounded-full flex items-center justify-center shadow-xl border border-white/30">
+            <div className="relative w-7 h-7 bg-[#ee5253] rounded-full flex items-center justify-center shadow-xl border border-white/30">
               <GoVerified className="w-3.5 h-3.5 text-white" />
             </div>
           </motion.div>
         </div>
 
-        {/* IMAGE CONTAINER */}
-        <div className="relative h-80 overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <div className="relative h-80 overflow-hidden bg-gray-100">
           {!imageLoaded && (
-            <div className="absolute inset-0 bg-linear-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 animate-shimmer" />
+            <div className="absolute inset-0 bg-linear-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer" />
           )}
-          
-          {/* Overlay léger pour la lisibilité */}
+
           <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent z-10" />
-          
+
           <motion.div
-            animate={{ 
+            animate={{
               scale: isHovered ? 1.1 : 1,
               rotate: isHovered ? 1 : 0
             }}
@@ -143,27 +137,24 @@ const getRankBadge = () => {
               src={member.image}
               alt={member.name}
               onLoad={() => setImageLoaded(true)}
-              className={`w-full h-full object-contain transition-all duration-1500 ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`w-full h-full object-contain transition-all duration-1500 ${imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
               style={{ objectPosition: 'center' }}
             />
           </motion.div>
-          
-          {/* Overlays subtils */}
+
           <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent opacity-80" />
           <div className="absolute inset-0 bg-linear-to-b from-black/10 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(238,82,83,0.1),transparent_70%)]" />
-          
-          {/* CONTACT ICONS*/}
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ 
-              opacity: isHovered ? 1 : 0, 
-              y: isHovered ? 0 : 30 
+            animate={{
+              opacity: isHovered ? 1 : 0,
+              y: isHovered ? 0 : 30
             }}
-            transition={{ 
-              duration: 0.5, 
+            transition={{
+              duration: 0.5,
               delay: isHovered ? 0.2 : 0,
               type: "spring",
               stiffness: 200,
@@ -171,7 +162,6 @@ const getRankBadge = () => {
             }}
             className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20"
           >
-            {/* FACEBOKK */}
             {member.contacts.facebook && (
               <motion.a
                 href={member.contacts.facebook}
@@ -179,7 +169,7 @@ const getRankBadge = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, y: -6, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative w-10 h-10 bg-gray-200 hover:bg-[#1877f2] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
+                className="relative w-10 h-10 bg-gray-200 hover:bg-[#1877f2] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
               >
                 <FaFacebookF className="w-3.5 h-3.5 relative z-10" />
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-[8px] font-medium rounded-lg opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
@@ -187,8 +177,7 @@ const getRankBadge = () => {
                 </span>
               </motion.a>
             )}
-            
-            {/* LINKEDIN */}
+
             {member.contacts.linkedin && (
               <motion.a
                 href={member.contacts.linkedin}
@@ -196,7 +185,7 @@ const getRankBadge = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, y: -6, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative w-10 h-10 bg-gray-200 hover:bg-[#0077b5] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
+                className="relative w-10 h-10 bg-gray-200 hover:bg-[#0077b5] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
               >
                 <FaLinkedinIn className="w-3.5 h-3.5 relative z-10" />
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-[8px] font-medium rounded-lg opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
@@ -204,8 +193,7 @@ const getRankBadge = () => {
                 </span>
               </motion.a>
             )}
-            
-            {/* TWITTER */}
+
             {member.contacts.twitter && (
               <motion.a
                 href={member.contacts.twitter}
@@ -213,7 +201,7 @@ const getRankBadge = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, y: -6, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative w-10 h-10 bg-gray-200 hover:bg-[#1da1f2] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
+                className="relative w-10 h-10 bg-gray-200 hover:bg-[#1da1f2] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
               >
                 <FaTwitter className="w-3.5 h-3.5 relative z-10" />
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-[8px] font-medium rounded-lg opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
@@ -221,14 +209,13 @@ const getRankBadge = () => {
                 </span>
               </motion.a>
             )}
-            
-            {/* PHONE */}
+
             {member.contacts.phone && (
               <motion.a
                 href={`tel:${member.contacts.phone}`}
                 whileHover={{ scale: 1.2, y: -6, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative w-10 h-10 bg-gray-200 hover:bg-[#10b981] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
+                className="relative w-10 h-10 bg-gray-200 hover:bg-[#10b981] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
               >
                 <FaPhoneAlt className="w-3.5 h-3.5 relative z-10" />
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-[8px] font-medium rounded-lg opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
@@ -236,14 +223,13 @@ const getRankBadge = () => {
                 </span>
               </motion.a>
             )}
-            
-            {/* EMAIL */}
+
             {member.contacts.email && (
               <motion.a
                 href={`mailto:${member.contacts.email}`}
                 whileHover={{ scale: 1.2, y: -6, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
-                className="relative w-10 h-10 bg-gray-200 hover:bg-[#ea4335] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
+                className="relative w-10 h-10 bg-gray-200 hover:bg-[#ea4335] text-gray-700 hover:text-white rounded-xl flex items-center justify-center border border-gray-300   hover:border-white/80 transition-all duration-300 shadow-lg group/icon"
               >
                 <FaEnvelope className="w-3.5 h-3.5 relative z-10" />
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-[8px] font-medium rounded-lg opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
@@ -253,10 +239,9 @@ const getRankBadge = () => {
             )}
           </motion.div>
 
-          {/* QUOTE ICON */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.3, rotate: -45 }}
-            animate={{ 
+            animate={{
               opacity: isHovered ? 0.15 : 0,
               scale: isHovered ? 1.2 : 0.3,
               rotate: isHovered ? 0 : -45
@@ -267,9 +252,8 @@ const getRankBadge = () => {
             <FaQuoteRight className="w-10 h-10" />
           </motion.div>
 
-          {/* Effet de brillance au survol */}
-          <motion.div 
-            animate={{ 
+          <motion.div
+            animate={{
               x: isHovered ? '100%' : '-100%'
             }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
@@ -277,26 +261,24 @@ const getRankBadge = () => {
           />
         </div>
 
-        {/* CONTENT*/}
-        <div className="relative p-5 text-center bg-linear-to-b from-white/50 via-white/50 to-gray-50/40 dark:from-gray-900/50 dark:via-gray-900/50 dark:to-gray-800/40 backdrop-blur-sm">
-          
+        <div className="relative p-5 text-center bg-linear-to-b from-white/50 via-white/50 to-gray-50/40   backdrop-blur-sm">
+
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
           <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-[#ee5253] shadow-lg shadow-[#ee5253]/50" />
-          
-          {/* AVATAR - */}
+
           <div className="absolute -top-10 left-1/2 -translate-x-1/2">
             <div className="relative">
               <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-lg opacity-50 animate-pulse-slow" />
-              <div className="relative w-20 h-20 rounded-full border-4 border-white dark:border-gray-900 shadow-2xl overflow-hidden bg-linear-to-br from-[#ee5253] to-[#932020] p-0.5">
+              <div className="relative w-20 h-20 rounded-full border-4 border-white  shadow-2xl overflow-hidden bg-linear-to-br from-[#ee5253] to-[#932020] p-0.5">
                 <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/30">
-                  <img 
+                  <img
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
-              <motion.div 
+              <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="absolute -inset-2 border border-[#ee5253]/30 rounded-full border-dashed"
@@ -304,10 +286,9 @@ const getRankBadge = () => {
             </div>
           </div>
 
-          {/* NOM */}
           <div className="mt-10 mb-1">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
-              <span className="bg-linear-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            <h3 className="text-xl font-bold text-gray-900  tracking-tight">
+              <span className="bg-linear-to-r from-gray-900 to-gray-700  bg-clip-text text-transparent">
                 {member.name}
               </span>
             </h3>
@@ -318,41 +299,36 @@ const getRankBadge = () => {
               </p>
             </div>
           </div>
-          
-          {/* BIO - Avec fond très transparent */}
-          <div className="relative mt-4 px-3 py-3 bg-linear-to-br from-gray-50/40 to-white/30 dark:from-gray-800/30 dark:to-gray-900/20 rounded-xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+
+          <div className="relative mt-4 px-3 py-3 bg-linear-to-br from-gray-50/40 to-white/30 rounded-xl border border-gray-200/50 backdrop-blur-sm">
             <FaQuoteRight className="absolute -left-1.5 -top-1.5 w-4 h-4 text-[#ee5253] rotate-180 opacity-70" />
-            <p className="text-black dark:text-gray-300 text-xs leading-relaxed line-clamp-2 font-light italic">
+            <p className="text-black  text-xs leading-relaxed line-clamp-2 font-light italic">
               "{member.bio[language]}"
             </p>
             <FaQuoteRight className="absolute -right-1.5 -bottom-1.5 w-4 h-4 text-[#ee5253] opacity-70" />
           </div>
-          
-          {/* LIEN DE PROFIL - Avec transparence */}
+
           <button
             onClick={() => setIsProfileOpen(true)}
-            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-[#ee5253]/60 hover:bg-[#ee5253] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden cursor-pointer backdrop-blur-sm"
+            className="relative inline-flex items-center gap-2 px-5 py-2.5 mt-4 bg-[#ee5253] hover:bg-[#ee5253] text-white font-semibold rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 group/link overflow-hidden cursor-pointer backdrop-blur-sm"
           >
             <span className="absolute inset-0 bg-white/20 translate-y-full group-hover/link:translate-y-0 transition-transform duration-500" />
             <RiShieldFlashLine className="w-3.5 h-3.5 relative z-10 group-hover/link:animate-pulse" />
             <span className="text-[10px] tracking-wider relative z-10">
-              {language === 'mg' ? 'PROFIL' : 
-               language === 'fr' ? 'PROFIL' : 
-               'PROFILE'}
+              {language === 'mg' ? 'PROFIL' :
+                language === 'fr' ? 'PROFIL' :
+                  'PROFILE'}
             </span>
             <span className="relative z-10 transform group-hover/link:translate-x-1 transition-transform duration-300">→</span>
           </button>
         </div>
 
-        {/* BORDURE DYNAMIQUE - Au survol */}
-        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#ee5253]/30 transition-all duration-700 pointer-events-none" />
-        
-        {/* Lignes décoratives */}
-        <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#ee5253]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#932020]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#ee5253] transition-all duration-700 pointer-events-none" />
+
+        <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#ee5253] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-[#932020] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       </motion.div>
 
-      {/* POPUP DE PROFIL */}
       <OfficeMemberProfile
         member={member}
         isOpen={isProfileOpen}

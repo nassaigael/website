@@ -15,7 +15,6 @@ import { formalMessages, errorMessages } from '../../config/chatMessages';
 import { formatMessageText, enhanceFAQFormatting } from '../../config/chatFormatter';
 import { STORAGE_KEY, TYPING_DELAY } from '../../types/chatConstants';
 
-// Type pour les messages parsés du localStorage
 interface StoredMessage {
   id: number;
   text: string;
@@ -40,12 +39,10 @@ const AIChat = () => {
 
   const t = translations[language as keyof typeof translations] || translations.fr;
 
-  // Initialiser les suggestions aléatoires
   useEffect(() => {
     setCurrentSuggestions(getRandomSuggestions(language, 4));
   }, [language]);
 
-  // Charger l'historique depuis le localStorage
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -62,27 +59,23 @@ const AIChat = () => {
     }
   }, []);
 
-  // Sauvegarder l'historique
   useEffect(() => {
     if (messages.length > 0) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
     }
   }, [messages]);
 
-  // Charger les données FAQ
   useEffect(() => {
     fetch('/docs/faq-data.json')
       .then(res => res.json())
       .then((data: FAQData) => {
         setFaqData(data);
-        console.log("✅ FAQ chargée:", data.faq.length, "entrées");
       })
       .catch((err: Error) => {
         console.error('❌ Erreur chargement FAQ:', err);
       });
   }, []);
 
-  // Message de bienvenue si aucun historique
   useEffect(() => {
     if (messages.length === 0) {
       setMessages([{
@@ -95,12 +88,10 @@ const AIChat = () => {
     }
   }, [language, messages.length, t.welcome]);
 
-  // Scroll automatique
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Focus input
   useEffect(() => {
     if (isOpen && !isMinimized) {
       setTimeout(() => {
@@ -109,7 +100,6 @@ const AIChat = () => {
     }
   }, [isOpen, isMinimized]);
 
-  // Recherche locale dans la FAQ
   const findLocalAnswer = useCallback((question: string): string | null => {
     if (!faqData) return null;
 
@@ -148,12 +138,10 @@ const AIChat = () => {
     return bestMatch && bestMatch.score > 5 ? bestMatch.answer : null;
   }, [faqData, language]);
 
-  // Simuler un délai pour un effet de chargement stylé
   const simulateTypingDelay = (): Promise<void> => {
     return new Promise(resolve => setTimeout(resolve, TYPING_DELAY));
   };
 
-  // Envoyer un message
   const handleSend = useCallback(async () => {
     if (!inputValue.trim() || isLoading) return;
 
@@ -172,17 +160,15 @@ const AIChat = () => {
 
     try {
       await simulateTypingDelay();
-      
+
       const localAnswer = findLocalAnswer(currentQuestion);
-      
+
       let botResponse: string;
-      
+
       if (localAnswer) {
         botResponse = enhanceFAQFormatting(localAnswer);
-        console.log("✅ Réponse trouvée dans la FAQ");
       } else {
         botResponse = formalMessages[language as keyof typeof formalMessages] || formalMessages.fr;
-        console.log("ℹ️ Question hors FAQ - message formel envoyé");
       }
 
       const botMessage: Message = {
@@ -194,14 +180,13 @@ const AIChat = () => {
 
       setMessages(prev => [...prev, botMessage]);
       setNextId(prev => prev + 2);
-      
-      // Changer les suggestions APRÈS chaque question
+
       const newSuggestions = getRandomSuggestions(language, 4);
       setCurrentSuggestions(newSuggestions);
-      
+
     } catch (error: unknown) {
       console.error("Erreur:", error);
-      
+
       const errorMessage = errorMessages[language as keyof typeof errorMessages] || errorMessages.fr;
 
       setMessages(prev => [...prev, {
@@ -216,7 +201,6 @@ const AIChat = () => {
     }
   }, [inputValue, isLoading, nextId, findLocalAnswer, language]);
 
-  // Effacer la conversation
   const handleClearChat = () => {
     setMessages([{
       id: 0,
@@ -249,8 +233,8 @@ const AIChat = () => {
             transition={{ duration: 0.2, type: 'spring', stiffness: 400, damping: 30 }}
             className="fixed bottom-20 right-2 left-2 sm:bottom-24 sm:right-4 sm:left-auto z-50 
                        w-auto sm:w-112.5 
-                       bg-white dark:bg-gray-900 rounded-3xl shadow-2xl 
-                       border border-gray-200 dark:border-gray-800 
+                       bg-white  rounded-3xl shadow-2xl 
+                       border border-gray-200  
                        overflow-hidden flex flex-col"
             style={{
               height: isMinimized ? 'auto' : 'min(600px, calc(100vh - 120px))',
@@ -275,7 +259,6 @@ const AIChat = () => {
                   ref={messagesEndRef}
                 />
 
-                {/* 4 suggestions aléatoires */}
                 <div className="px-4 pb-2">
                   <ChatSuggestions
                     suggestions={currentSuggestions}

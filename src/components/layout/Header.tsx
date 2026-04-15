@@ -65,18 +65,16 @@ const Header = () => {
     <motion.header
       initial="hidden"
       animate="visible"
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
-        scrolled
-          ? 'bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl dark:shadow-[0_20px_40px_-15px_rgba(238,82,83,0.2)] py-2'
-          : 'bg-white dark:bg-black/70 backdrop-blur-md py-3 sm:py-4'
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${scrolled
+        ? 'bg-white/90 /90 backdrop-blur-xl  py-2'
+        : 'bg-white  backdrop-blur-md py-3 sm:py-4'
+        }`}
       style={{
         borderBottom: scrolled ? 'shadow' : 'none'
       }}
     >
-      <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-[#ee5253] to-transparent opacity-50" />
-      
-      {/* Éléments décoratifs d'arrière-plan */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-[#ee5253] opacity-50" />
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
@@ -98,7 +96,6 @@ const Header = () => {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 cursor-pointer shrink-0 group">
             <motion.div
               whileHover="hover"
@@ -108,8 +105,7 @@ const Header = () => {
               <div className="relative">
                 <div className="absolute inset-0 bg-[#ee5253] rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
                 <div className="absolute inset-0 bg-white rounded-full blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-700" />
-                
-                {/* Conteneur du logo */}
+
                 <div className="relative p-0.5">
                   <div className=" bg-transparent rounded-full p-1">
                     <img
@@ -120,14 +116,14 @@ const Header = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
                   <h1 className="font-black tracking-tight text-xl sm:text-2xl lg:text-[1.6rem] text-[#ee5253] transition-colors duration-300">
                     FIZANAKARA
                   </h1>
                 </div>
-                <p className="text-[9px] sm:text-[10px] text-gray-500 dark:text-gray-400 font-medium tracking-wide hidden sm:block">
+                <p className="text-[9px] sm:text-[10px] text-gray-500  font-medium tracking-wide hidden sm:block">
                   {language === 'mg' ? "Fikambanan'ny Zanak'Anakara" :
                     language === 'fr' ? "Association des Descendants Anakara" :
                       "Association of Anakara Descendants"}
@@ -136,7 +132,6 @@ const Header = () => {
             </motion.div>
           </Link>
 
-          {/* Navigation Desktop avec effet de verre */}
           <nav className="hidden lg:flex items-center justify-center gap-1 md lg:gap-2 flex-1 mx-4 lg:mx-8">
             <div className="relative rounded-2xl p-1 ">
               {navItems.slice(1).map((item) => (
@@ -147,15 +142,13 @@ const Header = () => {
                   onClick={() => handleNavClick(item.path)}
                   className="relative px-3 lg:px-4 py-2 group/nav"
                 >
-                  <span className={`text-xs lg:text-sm font-bold tracking-wider transition-all duration-300 uppercase ${
-                    isActive(item.path) 
-                      ? 'text-[#ee5253]' 
-                      : 'text-gray-600 dark:text-gray-300 group-hover/nav:text-gray-900 dark:group-hover/nav:text-white'
-                  }`}>
+                  <span className={`text-xs lg:text-sm font-bold tracking-wider transition-all duration-300 uppercase ${isActive(item.path)
+                    ? 'text-[#ee5253]'
+                    : 'text-gray-600  group-hover/nav:text-gray-900 '
+                    }`}>
                     {getLabel(item)}
                   </span>
 
-                  {/* Indicateur de page actif avec effet de brillance */}
                   {isActive(item.path) && (
                     <motion.div
                       layoutId="activeNav"
@@ -163,8 +156,7 @@ const Header = () => {
                       transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                     />
                   )}
-                  
-                  {/* Effet de hover */}
+
                   <motion.div
                     className="absolute inset-0 bg-linear-to-r from-[#ee5253]/0 to-[#932020]/0 group-hover/nav:from-[#ee5253]/5 group-hover/nav:to-[#932020]/5 rounded-xl -z-10"
                     transition={{ duration: 0.3 }}
@@ -174,9 +166,7 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* langue + burger - Design */}
           <div className="flex items-center gap-2 lg:gap-3">
-            {/* Sélecteur de langue */}
             <div className="relative lang-dropdown-container">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -188,13 +178,10 @@ const Header = () => {
                   group relative flex items-center gap-3
                   px-4 py-2 lg:px-5 lg:py-2.5
                   bg-linear-to-r from-white/90 to-gray-50/90 
-                  dark:from-gray-900/90 dark:to-gray-800/90 
                   backdrop-blur-xl
-                  border border-gray-200/50 dark:border-gray-700/50
+                  border border-gray-200/50  
                   hover:border-[#ee5253] 
-                  hover:shadow-[0_10px_30px_-10px_rgba(238,82,83,0.3)]
-                  dark:hover:shadow-[0_10px_30px_-10px_rgba(238,82,83,0.2)]
-                  text-gray-700 dark:text-white 
+                  text-gray-700  
                   transition-all duration-500
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5253]
                   ${isLangOpen ? 'border-[#ee5253] shadow-xl' : 'shadow-md'}
@@ -205,17 +192,14 @@ const Header = () => {
                 aria-label={`Langue actuelle : ${currentLang.label}`}
                 aria-expanded={isLangOpen}
               >
-                {/* Effet de brillance de fond */}
                 <motion.div
-                  className="absolute inset-0 rounded-[100px] bg-linear-to-r from-[#ee5253]/0 to-[#932020]/0 group-hover:from-[#ee5253]/5 group-hover:to-[#932020]/5 transition-all duration-500"
+                  className="absolute inset-0 rounded-[100px] transition-all duration-500"
                   animate={{
                     scale: hoveredLang === 'main' ? 1.05 : 1,
                   }}
                 />
-                
-                {/* Conteneur du drapeau avec effet 3D - TAILLE RÉDUITE */}
+
                 <div className="relative">
-                  {/* Effet de glow */}
                   <motion.div
                     animate={{
                       scale: hoveredLang === 'main' ? 1.3 : 1,
@@ -223,26 +207,19 @@ const Header = () => {
                     }}
                     className="absolute inset-0 bg-[#ee5253] rounded-lg blur-md"
                   />
-                  
-                  {/* Drapeau avec ombre portée - TAILLE RÉDUITE de text-3xl à text-2xl */}
+
                   <div className="relative transform transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-2">
                     <span className={`fi fi-${currentLang.countryCode} text-2xl lg:text-3xl drop-shadow-2xl`}></span>
                   </div>
-                  
-                  {/* Petit badge de brillance */}
-                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#ee5253] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* Code langue avec animation */}
                 <div className="hidden sm:flex flex-col items-start">
-                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                    Langue
-                  </span>
                   <span className="text-sm font-bold tracking-wider flex items-center gap-1">
                     {currentLang.code.toUpperCase()}
                     <motion.span
                       animate={{ width: hoveredLang === 'main' ? '100%' : '0%' }}
-                      className="h-0.5 bg-[#ee5253] rounded-full"
+                      className="h-0.5 rounded-full"
                     />
                   </span>
                 </div>
@@ -252,9 +229,8 @@ const Header = () => {
                   animate={{ rotate: isLangOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ChevronDown className={`w-4 h-4 transition-colors duration-300 ${
-                    isLangOpen ? 'text-[#ee5253]' : 'text-gray-400 group-hover:text-[#ee5253]'
-                  }`} />
+                  <ChevronDown className={`w-4 h-4 transition-colors duration-300 ${isLangOpen ? 'text-[#ee5253]' : 'text-gray-400 group-hover:text-[#ee5253]'
+                    }`} />
                 </motion.div>
               </motion.button>
 
@@ -265,7 +241,7 @@ const Header = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.3, type: 'spring', stiffness: 400, damping: 30 }}
-                    className="absolute right-0 top-full mt-3 w-24 rounded-2xl border border-gray-200/50 dark:border-gray-800/50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl shadow-2xl overflow-hidden z-50"
+                    className="absolute right-0 top-full mt-3 w-24 rounded-2xl border border-gray-200/50  bg-white/95 /95 backdrop-blur-xl shadow-2xl overflow-hidden z-50"
                     style={{
                       boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(238, 82, 83, 0.1) inset',
                     }}
@@ -275,7 +251,7 @@ const Header = () => {
                       {languages.map((lang, index) => {
                         const isActiveLang = language === lang.code;
                         const isHovered = hoveredLang === lang.code;
-                        
+
                         return (
                           <motion.button
                             key={lang.code}
@@ -291,8 +267,8 @@ const Header = () => {
                               text-left rounded-xl
                               transition-all duration-300 group/lang
                               ${isActiveLang
-                                ? 'bg-linear-to-r from-[#ee5253]/15 to-[#932020]/5 border border-[#ee5253]'
-                                : 'hover:bg-gray-50 dark:hover:bg-gray-800/50 border border-transparent hover:border-gray-200 dark:hover:border-gray-700'
+                                ? 'border border-[#ee5253]'
+                                : 'hover:bg-gray-50  border border-transparent hover:border-gray-200 '
                               }
                             `}
                           >
@@ -303,8 +279,7 @@ const Header = () => {
                                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                               />
                             )}
-                            
-                            {/* Drapeau avec effet de hover - TAILLE RÉDUITE */}
+
                             <div className="relative">
                               <motion.div
                                 animate={{ scale: isHovered ? 1.2 : 1 }}
@@ -335,21 +310,21 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
               className="lg:hidden relative group"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? 'Fermer menu' : 'Ouvrir menu'} 
+              aria-label={isMenuOpen ? 'Fermer menu' : 'Ouvrir menu'}
             >
               {/* Effet de glow */}
               <div className="absolute inset-0 bg-[#ee5253] rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
-              
+
               {/* Conteneur principal avec effet de verre */}
-              <div className="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-linear-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 group-hover:border-[#ee5253] shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <div className="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-linear-to-br from-white to-gray-100 border-2 border-gray-200  group-hover:border-[#ee5253] shadow-lg group-hover:shadow-xl transition-all duration-300">
                 {/* Icône avec animation */}
                 <motion.div
                   animate={{ rotate: isMenuOpen ? 90 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {isMenuOpen ? 
-                    <X size={24} className="text-gray-700 dark:text-gray-300 group-hover:text-[#ee5253] transition-colors" /> : 
-                    <Menu size={24} className="text-gray-700 dark:text-gray-300 group-hover:text-[#ee5253] transition-colors" />
+                  {isMenuOpen ?
+                    <X size={24} className="text-gray-700  group-hover:text-[#ee5253] transition-colors" /> :
+                    <Menu size={24} className="text-gray-700  group-hover:text-[#ee5253] transition-colors" />
                   }
                 </motion.div>
               </div>
@@ -366,11 +341,11 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden overflow-hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800/50 shadow-2xl"
+            className="lg:hidden overflow-hidden bg-white/95 /95 backdrop-blur-xl border-t border-gray-200  shadow-2xl"
           >
             {/* Décoration supérieure */}
-            <div className="relative h-1 bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
-            
+            <div className="relative h-1 bg-[#ee5253]" />
+
             <div className="px-4 py-8 space-y-3">
               {navItems.slice(1).map((item, i) => (
                 <motion.button
@@ -386,29 +361,24 @@ const Header = () => {
                     uppercase overflow-hidden group/mobile
                     ${isActive(item.path)
                       ? 'bg-linear-to-r from-[#ee5253]/20 to-[#932020]/10 text-[#ee5253] border-l-4 border-[#ee5253] shadow-lg'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-gray-800/50 hover:shadow-md border-l-4 border-transparent hover:border-[#ee5253]/30'
+                      : 'text-gray-700  hover:text-gray-900  hover:bg-white  hover:shadow-md border-l-4 border-transparent hover:border-[#ee5253]/30'
                     }
                   `}
                 >
                   {/* Effet de shine au hover */}
                   <motion.div
-                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 dark:via-white/10 to-transparent -translate-x-full group-hover/mobile:translate-x-full transition-transform duration-1000"
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/20  to-transparent -translate-x-full group-hover/mobile:translate-x-full transition-transform duration-1000"
                     style={{ pointerEvents: 'none' }}
                   />
-                  
+
                   {/* Contenu avec icône */}
                   <div className="relative z-10 flex items-center gap-4">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      isActive(item.path) ? 'bg-[#ee5253]/20' : 'bg-gray-100 dark:bg-gray-800'
-                    }`}>
-                      <span className="text-sm font-bold">{i + 1}</span>
-                    </div>
                     <span>{getLabel(item)}</span>
                   </div>
                 </motion.button>
               ))}
             </div>
-            
+
             {/* Décoration inférieure */}
             <div className="h-1 bg-linear-to-r from-transparent via-[#ee5253] to-transparent" />
           </motion.div>

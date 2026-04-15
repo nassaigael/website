@@ -3,9 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef, type JSX } from 'react';
 import { Link } from 'react-router-dom';
-import ProjectCard from '../components/cards/ProjectCard';
-import { projects, projectsData, getRelatedProjects } from '../data/projects';
-import { useLanguage } from '../contexts/LanguageContext';
+import ProjectCard from '../../components/cards/ProjectCard';
+import { projects, projectsData, getRelatedProjects } from '../../data/projects';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 import {
   FaCalendarAlt,
@@ -99,16 +99,16 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-white dark:bg-[#1e293b] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-white  flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <motion.div
             animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="text-8xl text-[#ee5253]/10 dark:text-[#ee5253]/20 mb-6 font-bold"
+            className="text-8xl text-[#ee5253]/10 /20 mb-6 font-bold"
           >
             404
           </motion.div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-3xl font-bold text-gray-900  mb-4">
             {language === 'mg' ? 'Tsy hita ny tetikasa' :
               language === 'fr' ? 'Projet non trouvé' :
                 'Project not found'}
@@ -301,7 +301,7 @@ const ProjectDetail = () => {
 
     return logos[partner] || {
       icon: <FaBuilding />,
-      bg: 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+      bg: 'bg-gray-100  text-gray-600 '
     };
   };
 
@@ -332,7 +332,7 @@ const ProjectDetail = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-white dark:bg-[#1e293b] pb-16 md:pb-20 relative overflow-hidden pt-8"
+      className="min-h-screen bg-white  pb-16 md:pb-20 relative overflow-hidden pt-8"
     >
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -341,7 +341,7 @@ const ProjectDetail = () => {
             y: [0, 50, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/5 dark:bg-[#ee5253]/5 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-96 h-96 bg-[#ee5253]/5 /5 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -349,7 +349,7 @@ const ProjectDetail = () => {
             y: [0, -50, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#932020]/5  rounded-full blur-3xl"
         />
 
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
@@ -444,10 +444,10 @@ const ProjectDetail = () => {
             onClick={() => navigate('/projects')}
             className="flex items-center gap-3 group"
           >
-            <div className="p-2 bg-gray-100 dark:bg-[#ee5253]/10 rounded-lg group-hover:bg-[#ee5253]/20 dark:group-hover:bg-[#ee5253]/20 transition-all duration-300">
-              <FaArrowLeft className="w-4 h-4 text-gray-700 dark:text-[#ee5253] group-hover:scale-110 transition-transform" />
+            <div className="p-2 bg-gray-100  rounded-lg group-hover:bg-[#ee5253]/20  transition-all duration-300">
+              <FaArrowLeft className="w-4 h-4 text-gray-700  group-hover:scale-110 transition-transform" />
             </div>
-            <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#ee5253] transition-colors">
+            <span className="font-medium text-gray-700  group-hover:text-[#ee5253] transition-colors">
               {language === 'mg' ? 'Hiverina' :
                 language === 'fr' ? 'Retour' :
                   'Back'}
@@ -460,9 +460,9 @@ const ProjectDetail = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowShareMenu(!showShareMenu)}
-              className="p-3 bg-gray-100 dark:bg-[#0f172a] rounded-xl border border-gray-200 dark:border-gray-800 hover:border-[#ee5253] hover:bg-gray-50 dark:hover:bg-[#1a1f2e] transition-all flex items-center gap-2"
+              className="p-3 bg-gray-100  rounded-xl border border-gray-200  hover:border-[#ee5253] hover:bg-gray-50  transition-all flex items-center gap-2"
             >
-              <FiShare2 className="w-5 h-5 text-gray-700 dark:text-[#ee5253]" />
+              <FiShare2 className="w-5 h-5 text-gray-700 " />
             </motion.button>
 
             <AnimatePresence>
@@ -471,10 +471,10 @@ const ProjectDetail = () => {
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute top-full mt-2 right-0 w-48 bg-white dark:bg-[#0f172a] rounded-xl shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden z-50"
+                  className="absolute top-full mt-2 right-0 w-48 bg-white  rounded-xl shadow-xl   border border-gray-200  overflow-hidden z-50"
                 >
-                  <div className="p-3 border-b border-gray-100 dark:border-gray-800">
-                    <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                  <div className="p-3 border-b border-gray-100 ">
+                    <p className="text-xs font-medium text-gray-500 ">
                       {language === 'mg' ? 'Zarao' : language === 'fr' ? 'Partager' : 'Share'}
                     </p>
                   </div>
@@ -492,7 +492,7 @@ const ProjectDetail = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 }}
                         onClick={() => shareProject(item.platform)}
-                        className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg hover:bg-[#ee5253]/10 text-gray-700 dark:text-gray-300 hover:text-[#ee5253] transition-colors text-sm"
+                        className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg hover:bg-[#ee5253]/10 text-gray-700  hover:text-[#ee5253] transition-colors text-sm"
                       >
                         <item.icon className="w-4 h-4" />
                         <span>{item.label}</span>
@@ -526,56 +526,56 @@ const ProjectDetail = () => {
             )}
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+          <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900  mb-6 leading-tight">
             {project.title[language]}
           </motion.h1>
 
           <motion.div variants={itemVariants} className="relative mb-8">
             <div className="absolute -left-2 top-0 w-1 h-full bg-[#ee5253]/30 rounded-full" />
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed pl-6 italic">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700  leading-relaxed pl-6 italic">
               {project.excerpt[language]}
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-gray-200 dark:border-gray-800">
-            <div className="space-y-2 bg-gray-50 dark:bg-transparent p-3 rounded-lg">
-              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-gray-200 ">
+            <div className="space-y-2 bg-gray-50  p-3 rounded-lg">
+              <div className="flex items-center gap-2 text-gray-600 ">
                 <FaCalendarAlt className="w-4 h-4 text-[#ee5253]" />
                 <span className="text-xs md:text-sm font-medium">
                   {language === 'mg' ? 'Daty' : language === 'fr' ? 'Date' : 'Date'}
                 </span>
               </div>
-              <p className="font-bold text-gray-900 dark:text-white text-sm md:text-base">{project.startDate}</p>
+              <p className="font-bold text-gray-900  text-sm md:text-base">{project.startDate}</p>
             </div>
 
-            <div className="space-y-2 bg-gray-50 dark:bg-transparent p-3 rounded-lg">
-              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+            <div className="space-y-2 bg-gray-50  p-3 rounded-lg">
+              <div className="flex items-center gap-2 text-gray-600 ">
                 <FaMapMarkerAlt className="w-4 h-4 text-[#ee5253]" />
                 <span className="text-xs md:text-sm font-medium">
                   {language === 'mg' ? 'Toerana' : language === 'fr' ? 'Localisation' : 'Location'}
                 </span>
               </div>
-              <p className="font-bold text-gray-900 dark:text-white text-sm md:text-base">{project.location}</p>
+              <p className="font-bold text-gray-900  text-sm md:text-base">{project.location}</p>
             </div>
 
-            <div className="space-y-2 bg-gray-50 dark:bg-transparent p-3 rounded-lg">
-              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+            <div className="space-y-2 bg-gray-50  p-3 rounded-lg">
+              <div className="flex items-center gap-2 text-gray-600 ">
                 <FaUserTie className="w-4 h-4 text-[#ee5253]" />
                 <span className="text-xs md:text-sm font-medium">
                   {language === 'mg' ? 'Mpikarakara' : language === 'fr' ? 'Responsable' : 'Manager'}
                 </span>
               </div>
-              <p className="font-bold text-gray-900 dark:text-white text-sm md:text-base truncate">{project.contactPerson}</p>
+              <p className="font-bold text-gray-900  text-sm md:text-base truncate">{project.contactPerson}</p>
             </div>
 
-            <div className="space-y-2 bg-gray-50 dark:bg-transparent p-3 rounded-lg">
-              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+            <div className="space-y-2 bg-gray-50  p-3 rounded-lg">
+              <div className="flex items-center gap-2 text-gray-600 ">
                 <FaUsers className="w-4 h-4 text-[#ee5253]" />
                 <span className="text-xs md:text-sm font-medium">
                   {language === 'mg' ? 'Mpiara-miasa' : language === 'fr' ? 'Partenaires' : 'Partners'}
                 </span>
               </div>
-              <p className="font-bold text-gray-900 dark:text-white text-sm md:text-base">{project.partners.length}</p>
+              <p className="font-bold text-gray-900  text-sm md:text-base">{project.partners.length}</p>
             </div>
           </motion.div>
         </motion.header>
@@ -587,9 +587,9 @@ const ProjectDetail = () => {
           className="mb-12"
         >
           <div className="relative">
-            <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-gray-300  to-transparent" />
 
-            <div className="relative bg-white/50 dark:bg-[#0f172a]/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-200 dark:border-gray-800 shadow-lg">
+            <div className="relative bg-white/50 /50 backdrop-blur-sm rounded-2xl p-2 border border-gray-200  shadow-lg">
               <div className="flex flex-wrap lg:flex-nowrap items-center justify-between gap-2">
                 {tabs.map((tab, index) => {
                   const isActive = activeTab === tab.id;
@@ -626,7 +626,7 @@ const ProjectDetail = () => {
                         transition-all duration-300
                         ${isActive
                           ? 'text-white'
-                          : 'text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
+                          : 'text-gray-600  group-hover:text-gray-900 '
                         }
                       `}>
                         {/* Icône visible seulement sur desktop */}
@@ -681,8 +681,8 @@ const ProjectDetail = () => {
               >
                 <div className="absolute -inset-4 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                <div className="relative bg-white dark:bg-[#0f172a] rounded-3xl shadow-2xl dark:shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-                  <div className="relative h-16 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 border-b border-gray-200 dark:border-gray-800">
+                <div className="relative bg-white  rounded-3xl shadow-2xl   border border-gray-200  overflow-hidden">
+                  <div className="relative h-16 bg-linear-to-r from-[#ee5253]/10 to-[#932020]/10 border-b border-gray-200 ">
                     <div className="absolute inset-0 bg-grid-pattern opacity-5" />
 
                     <div className="flex items-center h-full px-8">
@@ -690,7 +690,7 @@ const ProjectDetail = () => {
                         <div className="p-2 bg-[#ee5253] rounded-lg shadow-lg">
                           <FaChartBar className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                        <h3 className="text-xl font-bold text-gray-900 ">
                           {language === 'mg' ? 'Famintinana ny tetikasa' :
                             language === 'fr' ? 'Aperçu du projet' :
                               'Project Overview'}
@@ -700,26 +700,26 @@ const ProjectDetail = () => {
                   </div>
 
                   <div className="p-8">
-                    <div className="flex flex-wrap gap-3 mb-8 pb-6 border-b border-gray-200 dark:border-gray-800">
-                      <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
+                    <div className="flex flex-wrap gap-3 mb-8 pb-6 border-b border-gray-200 ">
+                      <div className="flex items-center gap-2 px-4 py-2 bg-gray-100  rounded-full">
                         <FaCalendarAlt className="w-4 h-4 text-[#ee5253]" />
-                        <span className="text-sm text-gray-700 dark:text-gray-300">
+                        <span className="text-sm text-gray-700 ">
                           {language === 'mg' ? 'Nanomboka' : language === 'fr' ? 'Début' : 'Started'}: {project.startDate}
                         </span>
                       </div>
 
                       {project.endDate && (
-                        <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
+                        <div className="flex items-center gap-2 px-4 py-2 bg-gray-100  rounded-full">
                           <FaCheckCircle className="w-4 h-4 text-[#ee5253]" />
-                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                          <span className="text-sm text-gray-700 ">
                             {language === 'mg' ? 'Vita' : language === 'fr' ? 'Fin' : 'Ended'}: {project.endDate}
                           </span>
                         </div>
                       )}
 
-                      <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full">
+                      <div className="flex items-center gap-2 px-4 py-2 bg-gray-100  rounded-full">
                         <FaMapMarkerAlt className="w-4 h-4 text-[#ee5253]" />
-                        <span className="text-sm text-gray-700 dark:text-gray-300">{project.location}</span>
+                        <span className="text-sm text-gray-700 ">{project.location}</span>
                       </div>
                     </div>
 
@@ -739,7 +739,7 @@ const ProjectDetail = () => {
                           <div className="relative pl-8">
                             <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent rounded-full" />
 
-                            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                            <p className="text-gray-700  text-lg leading-relaxed">
                               {paragraph}
                             </p>
                           </div>
@@ -762,7 +762,7 @@ const ProjectDetail = () => {
                   transition={{ delay: 0.3 }}
                 >
                   <div className="relative mb-8">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center">
+                    <h3 className="text-2xl font-bold text-gray-900  text-center">
                       {language === 'mg' ? 'Sary' : language === 'fr' ? 'Galerie' : 'Gallery'}
                     </h3>
                     <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-20 h-1 bg-[#ee5253]/30 rounded-full" />
@@ -819,10 +819,10 @@ const ProjectDetail = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+                    <h3 className="text-3xl font-bold text-gray-900 ">
                       {language === 'mg' ? 'Tanjona' : language === 'fr' ? 'Objectifs' : 'Objectives'}
                     </h3>
-                    <p className="text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-gray-500  mt-1">
                       {language === 'mg' ? 'Tanjona fototra amin\'ity tetikasa ity' :
                         language === 'fr' ? 'Objectifs principaux de ce projet' :
                           'Main objectives of this project'}
@@ -842,7 +842,7 @@ const ProjectDetail = () => {
                       whileHover={{ y: -4, scale: 1.01 }}
                       className="group relative"
                     >
-                      <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                      <div className="relative bg-white  rounded-2xl border border-gray-200  shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#ee5253] to-[#932020] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                         <div className="p-8">
@@ -861,7 +861,7 @@ const ProjectDetail = () => {
                             </div>
 
                             <div className="flex-1 pr-16">
-                              <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed font-medium">
+                              <p className="text-gray-800  text-lg leading-relaxed font-medium">
                                 {objective}
                               </p>
                             </div>
@@ -893,10 +893,10 @@ const ProjectDetail = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-3xl font-bold text-gray-900 ">
                         {language === 'mg' ? 'Zava-bita' : language === 'fr' ? 'Réalisations' : 'Achievements'}
                       </h3>
-                      <p className="text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="text-gray-500  mt-1">
                         {language === 'mg' ? 'Ireo zava-bita efa tratra' :
                           language === 'fr' ? 'Les réussites déjà accomplies' :
                             'Accomplishments already achieved'}
@@ -916,7 +916,7 @@ const ProjectDetail = () => {
                         whileHover={{ x: 4 }}
                         className="group"
                       >
-                        <div className="flex items-start gap-4 p-6 bg-linear-to-r from-[#ee5253]/5 to-white dark:from-[#ee5253]/10 dark:to-transparent rounded-xl border border-[#ee5253]/20 shadow-md hover:shadow-xl transition-all duration-300">
+                        <div className="flex items-start gap-4 p-6 bg-linear-to-r from-[#ee5253]/5 to-white  rounded-xl border border-[#ee5253]/20 shadow-md hover:shadow-xl transition-all duration-300">
                           <div className="relative">
                             <div className="absolute inset-0 bg-[#ee5253] rounded-xl blur-md opacity-30" />
                             <div className="relative p-3 bg-[#ee5253] text-white rounded-xl">
@@ -925,7 +925,7 @@ const ProjectDetail = () => {
                           </div>
 
                           <div className="flex-1">
-                            <p className="text-gray-800 dark:text-gray-200 text-base font-medium">
+                            <p className="text-gray-800  text-base font-medium">
                               {achievement}
                             </p>
                             <p className="text-[#ee5253] text-sm mt-2">
@@ -953,7 +953,7 @@ const ProjectDetail = () => {
                   <div className="p-3 bg-[#ee5253]/10 rounded-2xl">
                     <FaCalendarAlt className="w-6 h-6 text-[#ee5253]" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 ">
                     {language === 'mg' ? 'Daty Manan-danja' : language === 'fr' ? 'Dates Importantes' : 'Key Dates'}
                   </h3>
                   <div className="flex-1 h-px bg-linear-to-r from-[#ee5253]/30 to-transparent ml-4" />
@@ -977,8 +977,8 @@ const ProjectDetail = () => {
                         </div>
                       </div>
 
-                      <div className="flex-1 bg-white dark:bg-[#0f172a] rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-md">
-                        <p className="font-semibold text-gray-900 dark:text-white text-lg">
+                      <div className="flex-1 bg-white  rounded-xl p-5 border border-gray-200  shadow-md">
+                        <p className="font-semibold text-gray-900  text-lg">
                           {language === 'mg' ? 'Daty nanombohana' : language === 'fr' ? 'Date de début' : 'Start date'}
                         </p>
                         <p className="text-[#ee5253] font-medium mt-1">{project.startDate}</p>
@@ -1004,8 +1004,8 @@ const ProjectDetail = () => {
                           </div>
                         </div>
 
-                        <div className="flex-1 bg-white dark:bg-[#0f172a] rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-md">
-                          <p className="font-semibold text-gray-900 dark:text-white text-lg">
+                        <div className="flex-1 bg-white  rounded-xl p-5 border border-gray-200  shadow-md">
+                          <p className="font-semibold text-gray-900  text-lg">
                             {language === 'mg' ? 'Daty farany' : language === 'fr' ? 'Date de fin' : 'End date'}
                           </p>
                           <p className="text-[#ee5253] font-medium mt-1">{project.endDate}</p>
@@ -1028,7 +1028,7 @@ const ProjectDetail = () => {
                   <div className="p-3 bg-[#ee5253]/10 rounded-2xl">
                     <FaChartLine className="w-6 h-6 text-[#ee5253]" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 ">
                     {language === 'mg' ? 'Fampitana ny Fandrosoana' : language === 'fr' ? 'Détails de Progression' : 'Progress Details'}
                   </h3>
                   <div className="flex-1 h-px bg-linear-to-r from-[#ee5253]/30 to-transparent ml-4" />
@@ -1042,7 +1042,7 @@ const ProjectDetail = () => {
                     className="group relative"
                   >
                     <div className="absolute inset-0 bg-linear-to-br from-[#ee5253]/5 to-[#932020]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    <div className="relative bg-white  rounded-2xl p-6 border border-gray-200  shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                       <div className="flex items-center gap-4 mb-4">
                         <div className="relative">
                           <div className="absolute inset-0 bg-[#ee5253] rounded-xl blur-md opacity-30" />
@@ -1063,7 +1063,7 @@ const ProjectDetail = () => {
                           </div>
                         </div>
                       </div>
-                      <p className="text-gray-700 dark:text-gray-300 font-medium">
+                      <p className="text-gray-700  font-medium">
                         {language === 'mg' ? 'Mpiara-miasa' : language === 'fr' ? 'Partenaires' : 'Partners'}
                       </p>
                     </div>
@@ -1078,7 +1078,7 @@ const ProjectDetail = () => {
                       className="group relative"
                     >
                       <div className="absolute inset-0 bg-linear-to-br from-[#ee5253]/5 to-[#932020]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                      <div className="relative bg-white  rounded-2xl p-6 border border-gray-200  shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                         <div className="flex items-center gap-4 mb-4">
                           <div className="relative">
                             <div className="absolute inset-0 bg-[#ee5253] rounded-xl blur-md opacity-30" />
@@ -1095,7 +1095,7 @@ const ProjectDetail = () => {
                             </div>
                           </div>
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300 font-medium">
+                        <p className="text-gray-700  font-medium">
                           {language === 'mg' ? 'Fandrosoana' : language === 'fr' ? 'Progression' : 'Progress'}
                         </p>
                       </div>
@@ -1110,7 +1110,7 @@ const ProjectDetail = () => {
                     className="group relative"
                   >
                     <div className="absolute inset-0 bg-linear-to-br from-[#ee5253]/5 to-[#932020]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    <div className="relative bg-white  rounded-2xl p-6 border border-gray-200  shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                       <div className="flex items-center gap-4 mb-4">
                         <div className="relative">
                           <div className="absolute inset-0 bg-[#ee5253] rounded-xl blur-md opacity-30" />
@@ -1127,7 +1127,7 @@ const ProjectDetail = () => {
                           </div>
                         </div>
                       </div>
-                      <p className="text-gray-700 dark:text-gray-300 font-medium">
+                      <p className="text-gray-700  font-medium">
                         {language === 'mg' ? 'Toerana' : language === 'fr' ? 'Statut' : 'Status'}
                       </p>
 
@@ -1151,7 +1151,7 @@ const ProjectDetail = () => {
                 <div className="p-3 bg-[#ee5253]/10 rounded-2xl">
                   <FaUsers className="w-6 h-6 text-[#ee5253]" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 ">
                   {language === 'mg' ? 'Mpiara-miasa' : language === 'fr' ? 'Partenaires' : 'Partners'}
                 </h3>
                 <div className="flex-1 h-px bg-linear-to-r from-[#ee5253] to-transparent ml-4" />
@@ -1169,20 +1169,20 @@ const ProjectDetail = () => {
                       whileHover={{ y: -8, scale: 1.03 }}
                       className="group relative"
                     >
-                      <div className="relative bg-white dark:bg-[#0f172a] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                      <div className="relative bg-white  rounded-2xl border border-gray-200  shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                         <div className={`absolute top-0 left-0 right-0 h-1 bg-linear-to-r ${logo.bg.replace('/10', '')}`} />
 
                         <div className="p-6 text-center">
                           <div className="relative mb-4">
                             <div className={`absolute inset-0 ${logo.bg} rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
-                            <div className={`relative w-24 h-24 mx-auto rounded-2xl ${logo.bg} flex items-center justify-center border-2 border-white dark:border-gray-800 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            <div className={`relative w-24 h-24 mx-auto rounded-2xl ${logo.bg} flex items-center justify-center border-2 border-white  shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                               <div className="text-4xl">
                                 {logo.icon}
                               </div>
                             </div>
                           </div>
 
-                          <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-lg group-hover:text-[#ee5253] transition-colors">
+                          <h4 className="font-bold text-gray-900  mb-2 text-lg group-hover:text-[#ee5253] transition-colors">
                             {partner}
                           </h4>
 
@@ -1215,12 +1215,12 @@ const ProjectDetail = () => {
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 md:mb-10">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 ">
                   {language === 'mg' ? 'Tetikasa Mifandraika' :
                     language === 'fr' ? 'Projets Similaires' :
                       'Related Projects'}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                <p className="text-gray-600  mt-1">
                   {language === 'mg' ? 'Ireo tetikasa hafa mety ho liana aminao' :
                     language === 'fr' ? 'D\'autres projets qui pourraient vous intéresser' :
                       'Other projects you might be interested in'}
@@ -1231,7 +1231,7 @@ const ProjectDetail = () => {
                 <motion.button
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-gray-100 dark:bg-[#0f172a] text-[#ee5253] font-semibold rounded-xl border border-gray-200 dark:border-[#ee5253]/30 hover:border-[#ee5253] shadow-md hover:shadow-lg transition-all duration-300 group"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-gray-100  text-[#ee5253] font-semibold rounded-xl border border-gray-200  hover:border-[#ee5253] shadow-md hover:shadow-lg transition-all duration-300 group"
                 >
                   <span className="text-sm md:text-base">
                     {language === 'mg' ? 'Hijery ny rehetra' :

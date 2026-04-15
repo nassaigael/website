@@ -14,8 +14,8 @@ export interface NavItem {
 export interface LanguageOption {
   code: Language;
   label: string;
-  flag: string; 
-  countryCode: string; 
+  flag: string;
+  countryCode: string;
 }
 
 export const navItems: NavItem[] = [
@@ -86,12 +86,12 @@ export const languages: LanguageOption[] = [
     code: 'fr',
     label: 'FR',
     flag: '🇫🇷',
-    countryCode: 'fr' 
+    countryCode: 'fr'
   },
   {
     code: 'en',
     label: 'EN ',
     flag: '🇺🇸',
-    countryCode: 'us' 
+    countryCode: 'us'
   }
 ];

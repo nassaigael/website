@@ -28,7 +28,7 @@ export const NewsContent = forwardRef<HTMLDivElement, NewsContentProps>(({ conte
         >
             <div className="relative">
                 <div className="absolute -left-8 top-0 w-1 h-full bg-linear-to-b from-[#ee5253] via-[#ee5253]/50 to-transparent" />
-                <div className="space-y-8 text-gray-700 dark:text-white text-lg leading-relaxed">
+                <div className="space-y-8 text-gray-700  text-lg leading-relaxed">
                     {content.map((paragraph, index) => (
                         <motion.p
                             key={index}

@@ -166,13 +166,13 @@ export const getFeaturedText = (language: string) => {
 
 // Classes CSS communes
 export const cardClasses = {
-  container: "group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300",
+  container: "group relative bg-white  rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl border border-gray-200  transition-all duration-300",
   imageContainer: "relative h-56 overflow-hidden",
   image: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-500",
   content: "p-6",
-  title: "text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 h-14 group-hover:text-[#ee5253] transition-colors",
-  description: "text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 leading-relaxed text-sm h-16",
-  footer: "flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800",
+  title: "text-xl font-bold text-gray-900  mb-3 line-clamp-2 h-14 group-hover:text-[#ee5253] transition-colors",
+  description: "text-gray-600  mb-6 line-clamp-3 leading-relaxed text-sm h-16",
+  footer: "flex items-center justify-between pt-4 border-t border-gray-100 ",
   button: "px-4 py-2 bg-[#ee5253] text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-300",
   hoverLine: "absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#ee5253] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
 };

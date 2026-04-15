@@ -18,7 +18,7 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
   formatMessageText
 }, ref) => {
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-linear-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-linear-to-b from-gray-50 to-white ">
       {messages.map((msg) => (
         <motion.div
           key={msg.id}
@@ -41,8 +41,8 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
             {/* Bulle de message */}
             <div
               className={`rounded-2xl p-3 sm:p-4 ${msg.sender === 'user'
-                  ? 'bg-[#ee5253] text-white rounded-br-none shadow-lg shadow-[#ee5253]/20'
-                  : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-bl-none shadow-lg border border-gray-100 dark:border-gray-700'
+                ? 'bg-[#ee5253] text-white rounded-br-none shadow-lg shadow-[#ee5253]/20'
+                : 'bg-white  text-gray-900  rounded-bl-none shadow-lg border border-gray-100 '
                 }`}
             >
               <div className="flex items-center gap-1 sm:gap-2 mb-1">
@@ -53,7 +53,7 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
 
               {/* Message formaté */}
               <div
-                className="text-xs sm:text-sm leading-relaxed prose prose-sm max-w-none dark:prose-invert"
+                className="text-xs sm:text-sm leading-relaxed prose prose-sm max-w-none "
                 dangerouslySetInnerHTML={{ __html: formatMessageText(msg.text) }}
               />
             </div>
@@ -76,14 +76,14 @@ const ChatMessages = forwardRef<HTMLDivElement, ChatMessagesProps>(({
                 className="w-4 h-4 sm:w-5 sm:h-5 object-contain rounded-full"
               />
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl rounded-bl-none p-4 shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="bg-white  rounded-2xl rounded-bl-none p-4 shadow-lg border border-gray-100 ">
               <div className="flex items-center gap-2">
                 <div className="flex gap-1">
                   <span className="w-2 h-2 bg-[#ee5253] rounded-full animate-bounce" />
                   <span className="w-2 h-2 bg-[#ee5253] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                   <span className="w-2 h-2 bg-[#ee5253] rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
                 </div>
-                <span className="text-xs text-gray-500 dark:text-gray-400">{thinkingText}</span>
+                <span className="text-xs text-gray-500 ">{thinkingText}</span>
               </div>
             </div>
           </div>

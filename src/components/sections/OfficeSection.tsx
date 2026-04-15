@@ -2,7 +2,7 @@ import { motion, AnimatePresence, type PanInfo } from 'framer-motion';
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { getOfficeMembersByOrder } from '../../data/office_manager';
-import OfficeMemberCard from '../cards/OfficeMemberCard';
+import OfficeMemberCard from '../cards/OfficeCard';
 
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -112,7 +112,7 @@ const OfficeSection = () => {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 overflow-hidden">
+    <section className="py-16 md:py-24 bg-linear-to-b from-white to-gray-50  overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* HEADER */}
         <motion.div
@@ -126,7 +126,7 @@ const OfficeSection = () => {
           <div className="absolute -bottom-24 -left-24 w-64 h-64 md:w-96 md:h-96 bg-[#932020]/5 rounded-full blur-3xl" />
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900  mb-6 md:mb-8 leading-tight">
             <span className="relative inline-block">
               <span className="relative z-10">
                 {language === 'mg' ? 'Birao' : language === 'fr' ? 'Bureau' : 'Office'}
@@ -142,7 +142,7 @@ const OfficeSection = () => {
             transition={{ delay: 0.4 }}
             className="max-w-3xl mx-auto mb-10 md:mb-12 px-4"
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-gray-300 leading-relaxed font-light">
+            <p className="text-lg sm:text-xl md:text-2xl text-black  leading-relaxed font-light">
               {language === 'mg' ? 'Ireo olona manolo-tena hitarika sy hampandroso ny fikambanana' :
                 language === 'fr' ? 'Des personnes dévouées à diriger et faire progresser l\'association' :
                   'Dedicated individuals leading and advancing the association'}
@@ -171,13 +171,12 @@ const OfficeSection = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={prevSlide}
                 disabled={currentSlide === 0}
-                className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center transition-all duration-300 ${
-                  currentSlide === 0
-                    ? 'opacity-50 cursor-not-allowed'
-                    : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
-                }`}
+                className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white  shadow-lg flex items-center justify-center transition-all duration-300 ${currentSlide === 0
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
+                  }`}
               >
-                <FaChevronLeft className="w-4 h-4 md:w-5 md:h-5 dark:text-white text-black" />
+                <FaChevronLeft className="w-4 h-4 md:w-5 md:h-5  text-black" />
               </motion.button>
 
               <motion.button
@@ -185,13 +184,12 @@ const OfficeSection = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={nextSlide}
                 disabled={currentSlide === totalSlides - 1}
-                className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center transition-all duration-300 ${
-                  currentSlide === totalSlides - 1
-                    ? 'opacity-50 cursor-not-allowed'
-                    : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
-                }`}
+                className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white  shadow-lg flex items-center justify-center transition-all duration-300 ${currentSlide === totalSlides - 1
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:bg-[#ee5253] hover:text-white cursor-pointer'
+                  }`}
               >
-                <FaChevronRight className="w-4 h-4 md:w-5 md:h-5 dark:text-white text-black" />
+                <FaChevronRight className="w-4 h-4 md:w-5 md:h-5  text-black" />
               </motion.button>
             </>
           )}
@@ -232,9 +230,9 @@ const OfficeSection = () => {
           <div className="flex justify-center items-center gap-3 mt-10 px-4 overflow-x-auto py-2 scrollbar-thin scrollbar-thumb-[#ee5253]/30 scrollbar-track-transparent">
             {members.map((member, index) => {
               // Vérifier si ce membre est dans le slide actuel
-              const isInCurrentSlide = index >= validCurrentIndex && 
+              const isInCurrentSlide = index >= validCurrentIndex &&
                 index < validCurrentIndex + itemsPerPage;
-              
+
               // La miniature est active si le membre est dans le slide actuel
               const isActive = isInCurrentSlide;
 
@@ -248,11 +246,10 @@ const OfficeSection = () => {
                     const slideIndex = Math.floor(index / itemsPerPage);
                     goToSlide(slideIndex);
                   }}
-                  className={`relative rounded-full overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl ${
-                    isActive
-                      ? 'w-14 h-14 md:w-16 md:h-16 ring-4 ring-[#ee5253] ring-offset-2 ring-offset-white dark:ring-offset-gray-900 scale-110'
-                      : 'w-10 h-10 md:w-12 md:h-12 opacity-60 hover:opacity-100'
-                  }`}
+                  className={`relative rounded-full overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl ${isActive
+                    ? 'w-14 h-14 md:w-16 md:h-16 ring-4 ring-[#ee5253] ring-offset-2 ring-offset-white  scale-110'
+                    : 'w-10 h-10 md:w-12 md:h-12 opacity-60 hover:opacity-100'
+                    }`}
                 >
                   <img
                     src={member.image}
@@ -273,10 +270,10 @@ const OfficeSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex justify-center items-center gap-2 mt-4 text-xs text-gray-500 dark:text-gray-400"
+            className="flex justify-center items-center gap-2 mt-4 text-xs text-gray-500 "
           >
             <span>←</span>
-            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">
+            <span className="px-3 py-1 bg-gray-100  rounded-full">
               {language === 'mg' ? 'Ateleke mba hifindra' :
                 language === 'fr' ? 'Glissez pour naviguer' :
                   'Swipe to navigate'}

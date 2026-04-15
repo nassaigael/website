@@ -20,7 +20,7 @@ export const NewsGallery = ({ images, mainImage, title, onOpenGallery }: NewsGal
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-12"
             >
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800 group flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200  group flex items-center justify-center bg-gray-100 ">
                     <img
                         src={mainImage}
                         alt={title}
@@ -60,7 +60,7 @@ export const NewsGallery = ({ images, mainImage, title, onOpenGallery }: NewsGal
                     <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-3">
                             <Camera className="w-5 h-5 text-[#ee5253]" />
-                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                            <h3 className="text-xl font-semibold text-gray-900 ">
                                 {language === 'mg' ? "Sary mampiseho" :
                                     language === 'fr' ? "Aperçu de la galerie" :
                                         "Gallery preview"}

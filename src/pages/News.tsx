@@ -139,7 +139,7 @@ const NewsPage = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-white dark:bg-gray-950 pt-8 pb-32"
+            className="min-h-screen bg-white  pt-8 pb-32"
         >
             {/* Animated Background - Version Light améliorée */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -149,7 +149,7 @@ const NewsPage = () => {
                         y: [0, 50, 0],
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ee5253]/5 dark:bg-[#ee5253]/5 rounded-full blur-3xl"
+                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ee5253]/5 /5 rounded-full blur-3xl"
                 />
                 <motion.div
                     animate={{
@@ -157,10 +157,10 @@ const NewsPage = () => {
                         y: [0, -50, 0],
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#932020]/5 dark:bg-[#932020]/5 rounded-full blur-3xl"
+                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#932020]/5  rounded-full blur-3xl"
                 />
                 {/* Grille subtile */}
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px] dark:opacity-50" />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(238,82,83,0.02)_1px,transparent_1px),linear-gradient(180deg,rgba(147,32,32,0.02)_1px,transparent_1px)] bg-size-[50px_50px]" />
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -172,14 +172,14 @@ const NewsPage = () => {
                     className="text-center mb-16"
                 >
                     {/* Main Title */}
-                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight">
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900  mb-8 leading-tight">
                         <span className="relative">
                             <span className="relative z-10 capitalize">
                                 {language === 'mg' ? 'Vaovao farany' :
                                     language === 'fr' ? 'actualités' :
                                         'Latest news'}
                             </span>
-                            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253] dark:bg-[#ee5253] -z-10"></span>
+                            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-[#ee5253]  -z-10"></span>
                         </span>
                     </h1>
 
@@ -190,16 +190,16 @@ const NewsPage = () => {
                         transition={{ delay: 0.4 }}
                         className="max-w-3xl mx-auto mb-12"
                     >
-                        <p className="text-2xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                        <p className="text-2xl text-gray-600  leading-relaxed font-light">
                             {language === 'mg' ? 'Mijery ny zava-baovao, hetsika ary tetikasa rehetra momba ny Fikambanana Fizanakara. Miaraha miaina ny tantaranay isika.' :
                                 language === 'fr' ? 'Découvrez toutes les nouvelles, événements et projets de l\'Association Fizanakara. Partageons notre histoire ensemble.' :
                                     'Discover all news, events and projects of the Fizanakara Association. Let\'s share our story together.'}
                         </p>
                     </motion.div>
                     <div className="flex items-center justify-center gap-4 mb-16">
-                        <div className="w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
+                        <div className="w-12 h-0.5 bg-[#ee5253] "></div>
                         <div className="w-4 h-4 border-2 border-[#ee5253] rotate-45"></div>
-                        <div className="w-12 h-0.5 bg-[#ee5253] dark:bg-[#ee5253]"></div>
+                        <div className="w-12 h-0.5 bg-[#ee5253] "></div>
                     </div>
                 </motion.div>
 
@@ -229,13 +229,13 @@ const NewsPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1 }}
-                    className="sticky top-24 z-30 mb-12 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-2xl shadow-lg dark:shadow-2xl p-6 border border-gray-200 dark:border-gray-800/50"
+                    className="sticky top-24 z-30 mb-12 bg-white/90 /90 backdrop-blur-xl rounded-2xl shadow-lg   p-6 border border-gray-200 "
                 >
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
                         {/* Search */}
                         <div className="flex-1 w-full">
                             <div className="relative">
-                                <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 w-5 h-5" />
+                                <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400  w-5 h-5" />
                                 <input
                                     type="text"
                                     placeholder={
@@ -245,7 +245,7 @@ const NewsPage = () => {
                                     }
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-14 pr-12 py-4 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700/50 rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/10 dark:focus:ring-[#ee5253]/20 outline-none transition-all placeholder-gray-400 dark:placeholder-gray-500 text-gray-900 dark:text-white"
+                                    className="w-full pl-14 pr-12 py-4 bg-white  border-2 border-gray-200   rounded-xl focus:border-[#ee5253] focus:ring-4 focus:ring-[#ee5253]/10  outline-none transition-all placeholder-gray-400  text-gray-900 "
                                 />
                                 {searchTerm && (
                                     <motion.button
@@ -267,16 +267,16 @@ const NewsPage = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                className="flex items-center gap-2 px-4 py-3 bg-gray-100  rounded-xl hover:bg-gray-200  transition-colors"
                                 onClick={() => setShowFilters(!showFilters)}
                             >
-                                <Filter className="w-4 h-4 text-gray-700 dark:text-white" />
-                                <span className="text-sm text-gray-700 dark:text-white font-medium">
+                                <Filter className="w-4 h-4 text-gray-700 " />
+                                <span className="text-sm text-gray-700  font-medium">
                                     {sortBy === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
                                         sortBy === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
                                             (language === 'mg' ? 'Voavoatra' : language === 'fr' ? 'À la une' : 'Featured')}
                                 </span>
-                                <ChevronDown className={`w-4 h-4 text-gray-700 dark:text-white transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+                                <ChevronDown className={`w-4 h-4 text-gray-700  transition-transform ${showFilters ? 'rotate-180' : ''}`} />
                             </motion.button>
 
                             <AnimatePresence>
@@ -285,7 +285,7 @@ const NewsPage = () => {
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        className="absolute top-full mt-2 right-0 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-xl dark:shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden z-40"
+                                        className="absolute top-full mt-2 right-0 w-48 bg-white  rounded-xl shadow-xl   border border-gray-200  overflow-hidden z-40"
                                     >
                                         {['newest', 'oldest', 'featured'].map((option) => (
                                             <button
@@ -294,11 +294,10 @@ const NewsPage = () => {
                                                     setSortBy(option as 'newest' | 'oldest' | 'featured');
                                                     setShowFilters(false);
                                                 }}
-                                                className={`w-full px-4 py-3 text-left transition-colors ${
-                                                    sortBy === option
-                                                        ? 'bg-[#ee5253]/10 text-[#ee5253]'
-                                                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-white'
-                                                }`}
+                                                className={`w-full px-4 py-3 text-left transition-colors ${sortBy === option
+                                                    ? 'bg-[#ee5253]/10 text-[#ee5253]'
+                                                    : 'hover:bg-gray-100  text-gray-700 '
+                                                    }`}
                                             >
                                                 {option === 'newest' ? (language === 'mg' ? 'Vaovao indrindra' : language === 'fr' ? 'Plus récent' : 'Newest') :
                                                     option === 'oldest' ? (language === 'mg' ? 'Taloha indrindra' : language === 'fr' ? 'Plus ancien' : 'Oldest') :
@@ -313,7 +312,7 @@ const NewsPage = () => {
 
                     {/* Category Filters - CENTRÉ */}
                     <motion.div
-                        className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800/50"
+                        className="mt-8 pt-8 border-t border-gray-200 "
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
@@ -331,11 +330,10 @@ const NewsPage = () => {
                                             whileHover={{ scale: 1.05, y: -2 }}
                                             whileTap={{ scale: 0.95 }}
                                             onClick={() => setSelectedCategory(cat.id)}
-                                            className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${
-                                                selectedCategory === cat.id
-                                                    ? `bg-[#ee5253] text-white shadow-lg`
-                                                    : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-white'
-                                            }`}
+                                            className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all duration-300 ${selectedCategory === cat.id
+                                                ? `bg-[#ee5253] text-white shadow-lg`
+                                                : 'bg-gray-100  hover:bg-gray-200  text-gray-700 '
+                                                }`}
                                         >
                                             <Icon className="w-4 h-4" />
                                             <span className="font-medium text-sm">

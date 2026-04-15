@@ -18,7 +18,7 @@ const HomePage = () => {
     <div
       className={`
         relative overflow-x-hidden min-h-screen
-        ${location.pathname === '/' ? '' : 'pt-0'} bg-white dark:bg-[#1e293b]
+        ${location.pathname === '/' ? '' : 'pt-0'} bg-white 
       `}
     >
       {/* Carousel Section */}
@@ -27,7 +27,7 @@ const HomePage = () => {
       </div>
 
       {/* Stats Section */}
-      <section className="py-16 bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900">
+      <section className="py-16 bg-linear-to-b from-white to-gray-50 ">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
@@ -42,12 +42,12 @@ const HomePage = () => {
                   className="text-center group"
                 >
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-[#ee5253]/10 to-[#932020]/5 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-8 h-8 text-[#932020]" />
+                    <Icon className="w-8 h-8 text-[#ee5253]" />
                   </div>
-                  <div className="text-4xl font-bold text-gray-800 dark:text-white mb-2 bg-linear-to-r from-[#932020] to-[#ee5253] bg-clip-text">
+                  <div className="text-4xl font-bold text-gray-800  mb-2 bg-linear-to-r from-[#932020] to-[#ee5253] bg-clip-text">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400 font-medium">
+                  <div className="text-gray-600  font-medium">
                     {stat.label[language]}
                   </div>
                 </motion.div>
@@ -58,7 +58,7 @@ const HomePage = () => {
       </section>
 
       {/* About Fizanakara */}
-      <section className="py-24 bg-linear-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 relative overflow-hidden">
+      <section className="py-24 bg-linear-to-b from-white to-gray-50  relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -67,7 +67,7 @@ const HomePage = () => {
               y: [0, 50, 0],
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-linear-to-r from-[#ee5253]/5 to-[#932020]/5 rounded-full blur-3xl"
+            className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl"
           />
           <motion.div
             animate={{
@@ -93,7 +93,7 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-4 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900  mb-4 leading-tight"
             >
               <span className="relative inline-block">
                 <span className="relative z-10">
@@ -114,7 +114,7 @@ const HomePage = () => {
               transition={{ delay: 0.4 }}
               className="max-w-3xl mx-auto px-4"
             >
-              <p className="text-lg sm:text-xl md:text-2xl text-black dark:text-gray-300 leading-relaxed font-light">
+              <p className="text-lg sm:text-xl md:text-2xl text-black  leading-relaxed font-light">
                 {language === 'mg'
                   ? 'Fikambanan\'ny taranak\'i Ali Tawarath, miaro sy manandratra ny vakoka nentin-drazana'
                   : language === 'fr'
@@ -144,7 +144,7 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-amber-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-white  rounded-3xl p-8 shadow-2xl border border-amber-200/50  overflow-hidden"
               >
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
@@ -156,19 +156,19 @@ const HomePage = () => {
                       <Star className="w-8 h-8 text-white" />
                     </motion.div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-2xl font-bold text-gray-900 ">
                         {language === 'mg' ? 'Ny Anakara' :
                           language === 'fr' ? 'Les Anakara' :
                             'The Anakara'}
                       </h3>
                       <div className="flex items-center gap-2 mt-1">
                         <div className="w-2 h-2 bg-[#ee5253] rounded-full" />
-                        <span className="text-sm text-black dark:text-gray-600 ">1495</span>
+                        <span className="text-sm text-black">1495</span>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                  <p className="text-gray-700  leading-relaxed mb-6">
                     {language === 'mg'
                       ? 'Foko iray ao anatin\'ny Antemoro, taranak\'i Ali Tawarath izay tonga teto Madagasikara tamin\'ny taona 1495.'
                       : language === 'fr'
@@ -176,7 +176,7 @@ const HomePage = () => {
                         : 'A clan within the Antemoro, descendants of Ali Tawarath who arrived in Madagascar in 1495.'}
                   </p>
 
-                  <div className="bg-amber-100/50 dark:bg-gray-700 p-4 rounded-xl border border-amber-200/50 dark:border-gray-600">
+                  <div className="bg-amber-100/50  p-4 rounded-xl border border-amber-200/50 ">
                     <p className="text-sm text-[#ee5253] italic">
                       <span className="font-bold">"</span>
                       {language === 'mg'
@@ -188,7 +188,7 @@ const HomePage = () => {
                     </p>
                   </div>
 
-                  <div className="mt-6 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="mt-6 flex items-center gap-2 text-sm text-gray-600 ">
                     <MapPin className="w-4 h-4 text-[#ee5253]" />
                     <span>Vatomasina Vohipeno, Fitovinany</span>
                   </div>
@@ -207,7 +207,7 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-emerald-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-white  rounded-3xl p-8 shadow-2xl border border-emerald-200/50  overflow-hidden"
               >
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
@@ -219,7 +219,7 @@ const HomePage = () => {
                       <Award className="w-8 h-8 text-white" />
                     </motion.div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-2xl font-bold text-gray-900 ">
                         {language === 'mg' ? 'Mpanorina' :
                           language === 'fr' ? 'Fondateurs' :
                             'Founders'}
@@ -240,20 +240,20 @@ const HomePage = () => {
                       <motion.div
                         key={index}
                         whileHover={{ x: 5 }}
-                        className="flex items-center gap-3 p-3 bg-[#ee5253]/10 dark:bg-gray-700 rounded-xl"
+                        className="flex items-center gap-3 p-3 bg-[#ee5253]/10  rounded-xl"
                       >
                         <div className="w-8 h-8 bg-[#ee5253] rounded-full flex items-center justify-center text-white font-bold text-sm">
                           {founder.charAt(0)}
                         </div>
-                        <span className="text-gray-800 dark:text-gray-200 font-medium">{founder}</span>
+                        <span className="text-gray-800  font-medium">{founder}</span>
                       </motion.div>
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-emerald-200/50 dark:border-gray-700">
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="mt-6 pt-4 border-t border-emerald-200/50 ">
+                    <p className="text-sm text-gray-600 ">
                       <span className="font-light text-[#ee5253]">
-                        {language === 'fr' ? 'Président' : language === 'mg' ? 'Filoha' : "President"} : 
+                        {language === 'fr' ? 'Président' : language === 'mg' ? 'Filoha' : "President"} :
                       </span>
                       {' '}Patrick RAMONJAVELO
                     </p>
@@ -273,7 +273,7 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative h-full bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-purple-200/50 dark:border-gray-700 overflow-hidden"
+                className="relative h-full bg-white  rounded-3xl p-8 shadow-2xl border border-purple-200/50  overflow-hidden"
               >
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-6">
@@ -284,7 +284,7 @@ const HomePage = () => {
                       <Target className="w-8 h-8 text-white" />
                     </motion.div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-2xl font-bold text-gray-900 ">
                         {language === 'mg' ? 'Fisiana' :
                           language === 'fr' ? 'Présence' :
                             'Presence'}
@@ -293,8 +293,8 @@ const HomePage = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-purple-50 dark:bg-gray-700 rounded-xl">
-                      <span className="text-gray-700 dark:text-gray-300">Mpikambana</span>
+                    <div className="flex items-center justify-between p-4 bg-purple-50  rounded-xl">
+                      <span className="text-gray-700 ">Mpikambana</span>
                       <span className="text-3xl font-bold text-[#ee5253]">10k+</span>
                     </div>
 
@@ -305,15 +305,15 @@ const HomePage = () => {
                         { label: 'Manakara', icon: MapPin },
                         { label: 'Toamasina', icon: MapPin },
                       ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 p-2 bg-purple-50 dark:bg-gray-700 rounded-lg">
+                        <div key={i} className="flex items-center gap-2 p-2 bg-purple-50  rounded-lg">
                           <item.icon className="w-3 h-3 text-[#ee5253]" />
-                          <span className="text-xs text-gray-600 dark:text-gray-400">{item.label}</span>
+                          <span className="text-xs text-gray-600 ">{item.label}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-purple-200/50 dark:border-gray-700">
+                  <div className="mt-6 pt-4 border-t border-purple-200/50 ">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-500">Contact</span>
                       <span className="font-light text-[#ee5253]">24/7</span>

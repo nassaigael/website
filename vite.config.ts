@@ -8,22 +8,22 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    qrcode()          // ← C’est ce qui affiche le QR code
+    qrcode()
     ,
     VitePWA({
-      registerType: 'autoUpdate', // Met à jour le service worker automatiquement
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'], // Fichiers statiques à mettre en cache
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'FIZANAKARA', // Nom complet de votre application
-        short_name: 'FIZANAKARA', // Nom court affiché sous l'icône
+        name: 'FIZANAKARA',
+        short_name: 'FIZANAKARA',
         description: "Fikambanan'ny Zanak'Anakara — Association des Descendants d'Ali Tawarath",
-        theme_color: '#ee5253', // La couleur principale de votre thème
-        background_color: '#ffffff', // Couleur de fond pendant le chargement
-        display: 'standalone', // L'application s'ouvre comme une app native, sans barre de navigateur
+        theme_color: '#ee5253',
+        background_color: '#ffffff',
+        display: 'standalone',
         start_url: '/',
         icons: [
           {
-            src: '/icon-192x192.png', // Assurez-vous d'avoir ces icônes dans votre dossier 'public'
+            src: '/icon-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
@@ -35,31 +35,30 @@ export default defineConfig({
             purpose: 'any'
           },
           {
-            src: '/maskable-icon-512x512.png', // Icône adaptable pour Android
+            src: '/maskable-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
           }
         ],
-        // Optionnel : Ajoutez des captures d'écran pour un meilleur aperçu dans Chrome
         screenshots: [
           {
             src: '/screenshots/home-mobile.png',
             sizes: '720x1280',
             type: 'image/png',
-            form_factor: 'narrow', // Pour mobile
+            form_factor: 'narrow',
           },
           {
             src: '/screenshots/home-desktop.png',
             sizes: '1280x720',
             type: 'image/png',
-            form_factor: 'wide', // Pour tablette/desktop
+            form_factor: 'wide',
           }
         ]
       },
     }),
   ],
   server: {
-    host: true,       // expose sur le réseau (remplace --host)
+    host: true,
   }
 })

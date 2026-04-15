@@ -8,10 +8,10 @@ interface NoResultsStateProps {
   searchTerm?: string;
 }
 
-const NoResultsState = ({ 
-  entityType = 'news', 
-  onResetFilters, 
-  searchTerm 
+const NoResultsState = ({
+  entityType = 'news',
+  onResetFilters,
+  searchTerm
 }: NoResultsStateProps) => {
   const { language } = useLanguage();
 
@@ -43,31 +43,31 @@ const NoResultsState = ({
 
   const getMessages = () => {
     const labels = getEntityLabels();
-    
+
     if (searchTerm) {
       return {
         title: language === 'mg' ? `Tsy misy ${labels.plural} hita` :
-               language === 'fr' ? `Aucun ${labels.singular} trouvé` :
-               `No ${labels.plural} found`,
+          language === 'fr' ? `Aucun ${labels.singular} trouvé` :
+            `No ${labels.plural} found`,
         description: language === 'mg' ? `Tsy misy ${labels.plural} mifanaraka amin'ny fikarohana "${searchTerm}". Andramo ny manova ny teny fikarohana na ny karazana safidy.` :
-                     language === 'fr' ? `Aucun ${labels.singular} ne correspond à votre recherche "${searchTerm}". Essayez de modifier vos termes de recherche ou vos filtres.` :
-                     `No ${labels.plural} match your search "${searchTerm}". Try adjusting your search terms or filters.`,
+          language === 'fr' ? `Aucun ${labels.singular} ne correspond à votre recherche "${searchTerm}". Essayez de modifier vos termes de recherche ou vos filtres.` :
+            `No ${labels.plural} match your search "${searchTerm}". Try adjusting your search terms or filters.`,
         button: language === 'mg' ? 'Hamafa ny fikarohana' :
-                language === 'fr' ? 'Effacer la recherche' :
-                'Clear search'
+          language === 'fr' ? 'Effacer la recherche' :
+            'Clear search'
       };
     }
 
     return {
       title: language === 'mg' ? `Tsy misy ${labels.plural} hita` :
-             language === 'fr' ? `Aucun ${labels.singular} trouvé` :
-             `No ${labels.plural} found`,
+        language === 'fr' ? `Aucun ${labels.singular} trouvé` :
+          `No ${labels.plural} found`,
       description: language === 'mg' ? `Tsy misy ${labels.plural} mifanaraka amin'ny safidy nataonao. Andramo ny manova ny teny fikarohana na ny karazana safidy.` :
-                   language === 'fr' ? `Aucun ${labels.singular} ne correspond à vos critères. Essayez de modifier vos termes de recherche ou vos filtres.` :
-                   `No ${labels.plural} match your criteria. Try adjusting your search terms or filters.`,
+        language === 'fr' ? `Aucun ${labels.singular} ne correspond à vos critères. Essayez de modifier vos termes de recherche ou vos filtres.` :
+          `No ${labels.plural} match your criteria. Try adjusting your search terms or filters.`,
       button: language === 'mg' ? 'Hamafa ny safidy rehetra' :
-              language === 'fr' ? 'Réinitialiser tous les filtres' :
-              'Reset all filters'
+        language === 'fr' ? 'Réinitialiser tous les filtres' :
+          'Reset all filters'
     };
   };
 
@@ -86,12 +86,12 @@ const NoResultsState = ({
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="w-48 h-48 mx-auto mb-8 relative"
       >
-        <div className="absolute inset-0 dark:bg-[#ee5253] rounded-full blur-2xl opacity-20" />
-        <Search className="w-48 h-48 text-gray-300 dark:text-gray-700" />
+        <div className="absolute inset-0  rounded-full blur-2xl opacity-20" />
+        <Search className="w-48 h-48 text-gray-300 " />
       </motion.div>
 
       <motion.h3
-        className="text-3xl font-bold mb-4 text-gray-900 dark:text-white"
+        className="text-3xl font-bold mb-4 text-gray-900 "
         initial={{ y: 20 }}
         animate={{ y: 0 }}
         transition={{ type: "spring" }}
@@ -100,7 +100,7 @@ const NoResultsState = ({
       </motion.h3>
 
       <motion.p
-        className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto"
+        className="text-lg text-gray-600  mb-8 max-w-md mx-auto"
         initial={{ y: 20 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.1 }}
